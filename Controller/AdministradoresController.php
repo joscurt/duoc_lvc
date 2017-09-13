@@ -569,12 +569,12 @@ include '../Vendor/phpexcel/Classes/PHPExcel/IOFactory.php';
 				);
 					#
 				if ($this->data['ProgramacionClase']['TIPO'] == 'presencial') {
-					#debug($this->data['ProgramacionClase']['TIPO']);exit();
 					$new_programacion_clase['HORA_INICIO'] = $new_programacion_clase['FECHA_CLASE'].' '.$this->data['ProgramacionClase']['HORA_INICIO'];
 					$new_programacion_clase['HORA_FIN'] = $new_programacion_clase['FECHA_CLASE'].' '.$this->data['ProgramacionClase']['HORA_FIN'];
 					#debug($new_programacion_clase);exit();
 				}
-				if ($this->ProgramacionClase->save($new_programacion_clase)) {
+				debug($new_programacion_clase);exit();
+				if ($this->ProgramacionClase->set($new_programacion_clase)) {
 					$programacion_clase  = $this->ProgramacionClase->getProgramacionClaseFull($new_cod_programacion);
 					#SEND DOCENTE;
 					$cod_docente = $programacion_clase['ProgramacionClase']['COD_DOCENTE'];
