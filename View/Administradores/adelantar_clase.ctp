@@ -160,14 +160,14 @@
 
 
     var completarSalas = function () {
-        fecha = $('#input-datetimepicker-fecha-clase').val();
+        fecha = $('#input-date-fecha-programada').val();
         hora_inicio = $('#select-hora-inicio').val();
         hora_fin = $('#select-hora-fin').val();
         if (fecha != '') {
             if (hora_inicio != '') {
                 $('label.cargando-hidden-salas span').html("<i class='fa fa-cog fa-spin'></i>").show();
                 $.ajax({
-                    url: '<?php echo $this->Html->url(array('action'=>'getSalasDisponiblesByHorario')); ?>',
+                    url: '<?php echo $this->Html->url(array('action'=>'getSalasDisponiblesByHorarioProg')); ?>',
                     type: 'POST',
                     dataType: 'json',
                     data:{fecha:fecha,hora_inicio:hora_inicio,hora_fin:hora_fin},
@@ -177,7 +177,7 @@
                     if(response.status=='success'){
                         $('#select-sala').empty().append("<option value=''></option>");
                         $.each(response.data,function(index, el) {
-                            $('#select-sala').append("<option value='"+el.ID+"'>"+el.NOMBRE+"</option>").prop('disabled',false);
+                            $('#select-sala').append("<option value='"+response.data[index]["C"].COD+"'>"+response.data[index]["C"].SALA+"</option>").prop('disabled',false);
                             $('#select-sala').selectpicker('refresh');
                         });
                         $('label.cargando-hidden-salas span').hide();
@@ -352,7 +352,7 @@
                 $('.datos-presencial').hide();
                 $('.datos-virtual').show();
             }
-        });   
+        });
         // ----------------------------------------------------------------------
         $('#input-date-fecha-programada').datetimepicker({
             format:'DD-MM-YYYY',

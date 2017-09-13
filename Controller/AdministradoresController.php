@@ -651,7 +651,7 @@ include '../Vendor/phpexcel/Classes/PHPExcel/IOFactory.php';
 			$session_data = $this->Session->read('CoordinadorLogueado');
 			//debug($this->data['hola']);exit();
 			$fecha = str_replace('-', '.',$fecha);
-		//	var_dump($fecha);exit();
+			#var_dump($fecha);exit();
 			$salas = $this->Integracion->getSalasDisponiblesSede($session_data['Sede']['CODIGO_SAP'],$fecha,$hora_inicio,$hora_fin);
 
 			#debug($salas);exit();
@@ -679,7 +679,7 @@ include '../Vendor/phpexcel/Classes/PHPExcel/IOFactory.php';
 			#$fecha = date_format($fecha, 'Y-m-d');
 			#debug($hora_inicio);exit();
 			//$fecha = str_replace('-', '/',$fecha);
-			#var_dump($this->data);exit();
+			#var_dump($fecha);exit();
 			$this->loadModel('SalaHorario');
 			$salas = $this->SalaHorario->getSalasHorario($cod_sede,$fecha,$hora_inicio,$hora_fin);
 			//$salas = $this->Integracion->getSalasDisponiblesSede($session_data['Sede']['CODIGO_SAP'],$fecha,$hora_inicio,$hora_fin);
