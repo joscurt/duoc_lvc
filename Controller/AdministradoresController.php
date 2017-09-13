@@ -545,13 +545,12 @@ include '../Vendor/phpexcel/Classes/PHPExcel/IOFactory.php';
 				/* CD005 JLMorandé */			
 				$new_cod_programacion = uniqid();
 				$new_programacion_clase = array(
-					'ID'=> $programacion_clase['ProgramacionClase']['ID'],
+					#'ID'=> $programacion_clase['ProgramacionClase']['ID'],
 					'COD_PROGRAMACION'=>$new_cod_programacion,
 					'CANTIDAD_MODULOS'=>round($modulos),
 					'COD_DOCENTE'=>isset($this->data['ProgramacionClase']['DOCENTE_TITULAR'])? $programacion_clase['ProgramacionClase']['COD_DOCENTE']:$this->data['ProgramacionClase']['COD_DOCENTE_ALTERNATIVO'],
 					'FECHA_CLASE'=>date('Y-m-d',strtotime($this->data['ProgramacionClase']['FECHA_CLASE'])),
 					'SALA'=>isset($this->data['ProgramacionClase']['SALA']) ? $this->data['ProgramacionClase']['SALA'] : null ,
-					'SALA_REEMPLAZO'=> isset($this->data['ProgramacionClase']['SALA']) ? $this->data['ProgramacionClase']['SALA'] : null ,
 					'PRESENCIAL'=>$this->data['ProgramacionClase']['TIPO']=='presencial'? 1:0,
 					'MOTIVO_SOLICITUD_RECUPERA_ID'=>$this->data['ProgramacionClase']['MOTIVO_ID'],
 					'OBS_SOLICITUD_RECUPERACION'=>$this->data['ProgramacionClase']['OBS_SOLICITUD_RECUPERACION'],
@@ -571,11 +570,12 @@ include '../Vendor/phpexcel/Classes/PHPExcel/IOFactory.php';
 				if ($this->data['ProgramacionClase']['TIPO'] == 'presencial') {
 					$new_programacion_clase['HORA_INICIO'] = $new_programacion_clase['FECHA_CLASE'].' '.$this->data['ProgramacionClase']['HORA_INICIO'];
 					$new_programacion_clase['HORA_FIN'] = $new_programacion_clase['FECHA_CLASE'].' '.$this->data['ProgramacionClase']['HORA_FIN'];
-					#debug($new_programacion_clase);exit();
 				}
-				debug($new_programacion_clase);exit();
-				if ($this->ProgramacionClase->set($new_programacion_clase)) {
+				
+				if ($this->ProgramacionClase->save($new_programacion_clase)) {
+					#debug($new_cod_programacion);exit();
 					$programacion_clase  = $this->ProgramacionClase->getProgramacionClaseFull($new_cod_programacion);
+					#debug($programacion_clase);exit();
 					#SEND DOCENTE;
 					$cod_docente = $programacion_clase['ProgramacionClase']['COD_DOCENTE'];
 					#$docente = $this->Docente->findByCod();

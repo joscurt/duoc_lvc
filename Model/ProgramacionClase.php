@@ -1200,6 +1200,7 @@
 					'ProgramacionClase.COD_PROGRAMACION'=>$cod_programacion
 				)
 			));
+		#debug($result);exit();
 			#debug($this->getLastQuery()); exit();
 			return $result;
 		}
@@ -1289,7 +1290,7 @@
 				),
 				'order'=>'ProgramacionClase.FECHA_CLASE',
 			));
-			// debug($this->getLastQuery()); exit();
+			 debug($this->getLastQuery()); exit();
 			return $response;
 		}
 
