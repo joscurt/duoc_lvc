@@ -1,0 +1,1 @@
+<h1>Correo dirido al alumno/a <?php echo $alumno['Alumno']['NOMBRES'].' '.$alumno['Alumno']['APELLIDO_PAT'].' '.$alumno['Alumno']['APELLIDO_MAT']; ?> al cambiar sala .</h1>

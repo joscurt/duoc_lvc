@@ -1,0 +1,167 @@
+/*HEADER*/
+#header {
+	height: 90px !important;
+	background: #003964 !important;
+}
+#header .logo {
+	width: 230px; 
+	float: left;
+}
+#header .inside {
+	padding: 10px ; 
+	overflow: hidden; 
+}
+#header .info-usuario {
+	float: right; 
+	color: #fff; 
+	text-align: right;
+}
+#header .info-usuario label {
+	text-transform: uppercase; 
+	display: block;
+}
+#header .info-usuario a {
+	display: block; 
+	color: #fff; 
+	font-weight: 800;
+}
+
+/*MENU*/
+.menu > .active  {background: #003964; padding: 10px;}
+.menu > .active  > a{color: #fff !important;}
+.container-fluid .column .left .fecha {
+	padding: 5px; 
+	margin-bottom: 15px; 
+	border-bottom: 1px 
+	solid #0c253d; 
+	font-size: 1em; 
+}
+.container-fluid .column .left .menu {
+	list-style: none; margin: 0; padding: 0
+}
+.container-fluid .column .left .menu li.active a {
+	border-bottom: 0px !important;
+}
+.container-fluid .column .left .menu a {
+	display: block; 
+	color: #0c253d; 
+	padding: 15px 0; 
+	text-transform: uppercase; 
+	font-size: 0.8em;  
+	border-bottom: 1px solid #0c253d;
+}
+.container-fluid .column .left .menu a:hover {
+	background: #003964; 
+	color: #fff; 
+	padding: 15px;
+}
+.container-fluid .column .left .menu a.active {
+	background: #003964; 
+	color: #fff; 
+	padding: 15px;
+}
+table {
+	font-size: 1em; 
+	width: 100%; 
+	border-collapse: collapse; 
+	border-spacing: 0;
+}
+
+table.table thead tr th {
+    background-color: #092C50 !important;
+    color: #FFF !important;
+    font-weight: 500 !important;
+}
+
+table th
+table td {
+	padding: 10px 3px; 
+	text-align: center;
+}
+table.borde tbody td {
+	border: 1px solid #ccc;
+}
+table.big td {
+	padding: 10px;
+}
+table.size-7 tr,
+table.size-7 td {
+	width: 14.2%;
+}
+
+h1 {
+	font-weight: normal;
+	color: #333;
+	/*font-family:"MyriadPro-SemiboldCond";*/
+}
+
+h1 {margin: 0 0 10px 0}
+
+.tabs-content {overflow: hidden; margin-top: 25px; border-bottom: 3px solid #0c253d}
+.tabs-content .tab {display: inline-block; font-size: 0.85em;}
+.tabs-content .tab a {display: block; background: #f5f5f5; padding: 15px 10px; margin-right: 0px;}
+.tabs-content .tab a:hover {background: #f9f9f9;}
+.tabs-content .tab.active a {color: #fff; background: #0c253d; border-top: 5px solid #0c253d;}
+
+.content-tablas {}
+.paginador-semanas {background: ; padding: 10px 0; font-size: 0.85em; position: relative;}
+.paginador-semanas i {font-size: 2em; position: absolute; top: 17px;}
+.paginador-semanas i.fa-arrow-left {left: 10px;}
+.paginador-semanas i.fa-arrow-right {right: 10px;}
+.paginador-semanas .botones-semanas {padding: 0 35px; text-align: center;}
+.paginador-semanas a.pager {padding: 10px; margin: 5px; display: inline-block; font-size: 1.4em;}
+.paginador-semanas a.pager.active {color: #fff; background: #0c253d;}
+.paginador-semanas a.pager-2 {border-left: 1px solid #ccc; border-right: 1px solid #ccc;}
+
+.bloque {margin-bottom: 15px;}
+.bloque label {font-weight: 600;}
+h2 label {font-weight: 800;}
+.bloque .bloque-top {background: #092C50 !important; color: #fff; position: relative;  overflow: hidden;}
+.bloque .bloque-top i {position: absolute; right: 10px; top: 2px; font-size: 2.5em; font-weight: 800;}
+.bloque .bloque-bottom {background: #f4f4f4;  overflow: hidden;}
+.bloque .column {display:table-cell; border-right: 1px solid #ccc; padding: 10px;}
+.bloque .column.last {border: 0;}
+/*Gestión Clase*/
+
+.gestionClase {
+	text-align: left;
+}
+/*Ficha Detalle Clase*/
+.editarFicha {
+	text-align: left;
+}
+.editarFicha th,.editarFicha td{
+	font-size: 1.2em;
+}
+/*Disponibilidad de Sala*/
+.disponibilidadSala th,.disponibilidadSala td{
+	font-size: 1.2em;
+} 
+.disponibilidadCargaDocente th,.disponibilidadCargaDocente td{
+	font-size: 1.2em;
+}
+/*Asistencia Docente*/
+.asistenciaDocente th,.asistenciaDocente td{
+	font-size: 1.2em;
+}
+/*Grilla SOlicitud Recuperación*/
+.solicitudRecuperacion th,.solicitudRecuperacion td{
+	font-size: 1em;
+}
+
+table.gestionClase > thead > tr > th:first-child,
+ table.gestionClase > tbody > tr > th:first-child,
+  table.gestionClase> tfoot > tr > th:first-child,
+   table.gestionClase > thead > tr > td:first-child,
+   table.gestionClase > tbody > tr > td:first-child,
+     table.gestionClase > tfoot > tr > td:first-child{
+     	padding-left: 10px !important;
+     }
+table.gestionClase > thead > tr > th, 
+table.gestionClase > tbody > tr > th, 
+table.gestionClase > tfoot > tr > th,
+ table.gestionClase > thead > tr > td, 
+ table.gestionClase > tbody > tr > td, 
+ table.gestionClase > tfoot > tr > td{
+ 	padding: 6px !important;
+ }

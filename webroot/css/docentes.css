@@ -1,0 +1,83 @@
+.x-ocurrir{
+	background:#EC644B;
+	opacity: 0.8; 
+	color: #fff;
+}
+.td-active{
+	background: #26A65B;
+	opacity: 0.8;
+	color: #fff;
+}
+.ocurrido{
+	background: #2574A9;
+	opacity: 0.8;	
+	color: #fff;
+}
+.td-app{
+	 background: #34495e !important;
+	color:#fff !important;
+	border-right: 1px solid #fff !important;
+	border-left: 1px solid #fff !important;
+	font-weight: bold !important;
+}
+body{
+	background: #eee !important;
+}
+.logo_corporativo{
+	width: 16%;
+	margin-left: 10px;
+}
+.header{
+	background: #003964 !important;
+	color: #fff;
+	height: 70px !important;
+	z-index: 99999999;
+}
+.navegacion_app{
+	position: fixed;
+	width: 10%;
+	background: #ddd;
+	color: #fff;
+	height: 100%;
+	z-index: 99;
+}
+.ul_navegacion_app{
+	padding-left: 0;
+}
+li.li_navegacion_app{
+	list-style: none;
+	border: 2px solid #34495e;
+	background: #f1f1f1;
+	border-radius: 5px;
+	margin-top: 15px;
+	margin-left: 10%;
+	padding: 2em;
+	width: 80%;
+}
+.link_active{
+	background: #003964 !important;
+}
+.icono_active{
+	color: #fff !important;
+}
+i.icono_nav{
+	margin-left:-40%;
+	color:#34495e;
+	font-size: 2.5em;
+}
+a.a_navegacion_app{
+	cursor: pointer;
+	height: 100%;
+	width: 100%;
+	padding: 2em;
+}
+
+.table-docente thead  tr th{
+	background-color:#092C50 !important;
+	color:#FFF !important;
+	font-weight: 500 !important;
+}
+
+.table-docente td{
+	text-transform: uppercase;
+}

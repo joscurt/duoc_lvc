@@ -1,0 +1,30 @@
+.link_bo{
+	display: block;
+	height: 60px;
+	background: #D2D7D3;
+	margin:20px 0px 10px 0px;
+	padding: 10px;
+	width: 80%;
+	margin-left: 10%;
+	text-align: center;
+	border-radius: 5px;
+}
+.active{
+	background: #95A5A6;
+}
+.link_bo:hover{
+	background: #95A5A6;
+}
+.title_link{
+	color:#000;
+	margin-top: 10px;
+	font-weight: bold;
+}
+#nav_bo{
+	margin-top: 18px;
+	padding: 0px;
+	background: #fff;
+	height: 100%;
+	position: fixed;
+	z-index: 99;
+}
