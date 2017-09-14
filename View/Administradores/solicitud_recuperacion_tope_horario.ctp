@@ -194,10 +194,10 @@
 				</div>
 			</div>
 			<div class="row" id="content-lista-alumnos">
-				
+
 			</div>
 			<div class="row" id="content-lista-docentes">
-				
+
 			</div>
 		</div>
 	</div>
@@ -230,22 +230,31 @@
 		var fecha = $('#input-datetimepicker-fecha-clase').val();
 		var hora_inicio = $('#select-hora-inicio').val();
 		var hora_fin = $('#select-hora-fin').val();
-		$.ajax({
-				url: '<?php echo $this->Html->url(array('action'=>'listaDocentesConTope',$programacion_clase['ProgramacionClase']['COD_PROGRAMACION'])); ?>',
-				type: 'POST',
-				dataType: 'json',
-				data:{fecha:fecha,hora_inicio:hora_inicio,hora_fin:hora_fin},
-				success: function () {
-				 alert('Estamos');
-				       				}
-					})
-			$('#content-lista-docentes').empty();
+		$('#content-lista-docentes').empty();
 			var elemento_click = $(this);
 			elemento_click.html("<i class='fa fa-cog fa-spin'></i>");
 			$('#content-lista-docentes').load("<?php echo $this->Html->url(array('action'=>'listaDocentesConTope',$programacion_clase['ProgramacionClase']['COD_PROGRAMACION'])); ?>",function(){
 				var fecha = $('#input-datetimepicker-fecha-clase').val();
 				var hora_inicio = $('#select-hora-inicio').val();
 				var hora_fin = $('#select-hora-fin').val();
+				$.ajax({
+				url: '<?php echo $this->Html->url(array('action'=>'listaDocentesConTope',$programacion_clase['ProgramacionClase']['COD_PROGRAMACION'])); ?>',
+				type: 'POST',
+				dataType: 'json',
+				data:{fecha:fecha,hora_inicio:hora_inicio,hora_fin:hora_fin}
+					})
+/*				.always(function(response) {
+						if(response.status=='success'){
+							$('#content-lista-docentes').empty().append("<option value=''></option>");
+							$.each(response.data,function(index, el) {
+								$('#content-lista-docentes').append("<option value='"+response.data[index]["A"].ID+"'>"+response.data[index]["A"].CORREO+"</option>").prop('disabled',false);
+							});
+							$('#result-count-salas').html('Se encontraron '+response.data.length+' salas disponibles' );
+							$('label.cargando-hidden-salas span').hide();
+						}else{
+							notifyUser(response.message,response.status);
+						}
+						});*/
 				elemento_click.html("TOPE HORARIO DOCENTES");
 			});
 		}

@@ -57,6 +57,7 @@
 			style="background: #34495e;border: 2px solid #ddd;" 
 			class="btn btn-login btn-danger btn-float">
 			<i style="color: #FCA60A;" class="md md-arrow-forward"></i></button>
+			<span><strong>Versión QA 3 - Fecha:14/09/2017</strong></span>
 	</div>
 </form>
 <script>

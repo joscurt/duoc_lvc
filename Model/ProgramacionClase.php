@@ -168,15 +168,13 @@
 					Detalle.ID,
 					EstadoProgramacion.ID,
 					EstadoProgramacion.NOMBRE,
-					Sala.TIPO_SALA,
-					SalaReemplazo.TIPO_SALA
+					Sala.TIPO_SALA
 				FROM PROGRAMACION_CLASES ProgramacionClase
 				LEFT JOIN ASIGNATURAS Asignatura ON (ProgramacionClase.SIGLA = Asignatura.SIGLA)
 				LEFT JOIN LVC_VIEW_SEDES Sede ON (ProgramacionClase.COD_SEDE = Sede.COD_SEDE)
 				LEFT JOIN DETALLES Detalle ON (ProgramacionClase.DETALLE_ID = Detalle.ID)
 				LEFT JOIN DOCENTES Docente ON (ProgramacionClase.COD_DOCENTE = Docente.COD_DOCENTE)
 				LEFT JOIN ESTADOS EstadoProgramacion ON (ProgramacionClase.ESTADO_PROGRAMACION_ID = EstadoProgramacion.ID)
-				LEFT JOIN LVC_VIEW_SALAS SalaReemplazo ON (ProgramacionClase.SALA_REEMPLAZO = SalaReemplazo.ID)
 				LEFT JOIN LVC_VIEW_SALAS Sala ON (ProgramacionClase.SALA = Sala.COD_SALA)
 				WHERE ProgramacionClase.COD_SEDE = '".$cod_sede."'
 				".$where_and." 
@@ -2673,7 +2671,7 @@
 			#var_dump($fecha);exit();
 
 			$sql = "
-				SELECT DISTINCT RUT, A.ID, A.RUT, A.USERNAME, A.PERMISO_ID, A.DV, A.CORREO, A.COD_DOCENTE, A.UUID, A.CREATED, A.MODIFIED, A.NOMBRE
+				SELECT DISTINCT RUT, A.ID, A.RUT, A.USERNAME, A.PERMISO_ID, A.DV, A.CORREO, A.COD_DOCENTE, A.UUID, A.CREATED, A.MODIFIED, A.NOMBRE, A.APELLIDO_PAT, A.APELLIDO_MAT
 				FROM
 					PROGRAMACION_CLASES ProgramacionClase
 				LEFT JOIN DOCENTES A ON ProgramacionClase.COD_DOCENTE = A.COD_DOCENTE

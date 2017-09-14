@@ -455,11 +455,19 @@ include '../Vendor/phpexcel/Classes/PHPExcel/IOFactory.php';
 		}
 		public function listaDocentesConTope($cod_programacion=null){
 
+			#$this->autoRender = false;
 			$this->layout = 'ajax';
-			$a = $this->request->data['ProgramacionClase']['FECHA_CLASE'];
-			#var_dump($a);exit();
 			$this->loadModel('ProgramacionClase');
 			$programacion_clase = $this->ProgramacionClase->getProgramacionClase($cod_programacion);
+			/*if (isset($this->data['hora_inicio'])) {
+				$a = $this->data['hora_inicio'];
+				$b = $this->data['hora_fin'];
+				$c = $this->data['fecha'];
+				$hora_ini = date('Y-m-d',strtotime($c))." ".date('h:i:s',strtotime($a));
+				$hora_fin = date('Y-m-d',strtotime($c))." ".date('h:i:s',strtotime($b));
+				#var_dump($hora_fin);
+			}*/
+			#var_dump($programacion_clase['ProgramacionClase']['HORA_INICIO']);exit();
 
 			$docentes = Array();
 
@@ -476,23 +484,15 @@ include '../Vendor/phpexcel/Classes/PHPExcel/IOFactory.php';
 							$periodo['Periodo']['COD_PERIODO'],
 							$programacion_clase['ProgramacionClase']['ANHO'],
 							$programacion_clase['ProgramacionClase']['SEMESTRE'],
+							//$hora_ini,
+							//$hora_fin,
 							$programacion_clase['ProgramacionClase']['HORA_INICIO'],
 							$programacion_clase['ProgramacionClase']['HORA_FIN'],
 							$programacion_clase['ProgramacionClase']['ID']
-							//$fecha
 						);
-					#debug($docentes);exit();
-					/*if (!empty($docentes)) {
-						$this->loadModel('Docente');
-
-						foreach ($docentes as $key => $value) {
-						#$docentes = Array();
-						$docentes = $this->Docente->getDocentes($value['ProgramacionClase']['COD_DOCENTE']);
-						}
-						
-					}*/
 					
 				}
+				#echo json_encode(array('data'=>$docentes,'status'=>'success'));
 
 			}
 			$this->set(array(

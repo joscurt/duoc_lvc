@@ -113,10 +113,12 @@
         </div>
         
         <div class="modal-footer">
-        <button class="btn btn-info presencial" id="btn-tope" type="button">TOPE HORARIO ALUMNOS</button>
-        <button class="btn btn-info presencial" id="btn-tope_docentes" type="button">TOPE HORARIO DOCENTES</button>
+
+       <!-- <button class="btn btn-info presencial" id="btn-tope" type="button">TOPE HORARIO ALUMNOS</button> -->
+        <button class="btn btn-info" id="btn-tope_docentes" type="button">TOPE HORARIO DOCENTES</button>
             <button type="submit" class="btn btn-success">guardar</button>
             <button type="button" class="btn btn-default salir-modal-editar">salir</button>
+            <div class="row" id="content-lista-docentes"></div>
         </div>
     </form>
 <?php else: ?>
@@ -133,18 +135,44 @@
     <div class="modal-footer">
         <button type="button" class="btn btn-success salir-modal-editar">salir</button>
 
-            <div class="row" id="content-lista-alumnos">
-                
-            </div>
-            <div class="row" id="content-lista-docentes">
-                
-            </div>
+           <!-- <div class="row" id="content-lista-alumnos"></div> -->
+            
 
     </div>
 <?php endif; ?>
 
 
 <script type="text/javascript">
+
+//Boton tope Horario Docentes ========================================================================================
+    $('#btn-tope_docentes').on('click',function(event){
+        
+              event.preventDefault();
+        var fecha = $('#input-datetimepicker-fecha-clase').val();
+        var hora_inicio = $('#select-hora-inicio').val();
+        var hora_fin = $('#select-hora-fin').val();
+       /* $.ajax({
+                url: '<?php echo $this->Html->url(array('action'=>'listaDocentesConTope',$programacion_clase['ProgramacionClase']['COD_PROGRAMACION'])); ?>',
+                type: 'POST',
+                dataType: 'json',
+                data:{fecha:fecha,hora_inicio:hora_inicio,hora_fin:hora_fin},
+                success: function () {
+                 alert('Estamos');
+                                    }
+                    })*/
+            $('#content-lista-docentes').empty();
+            var elemento_click = $(this);
+            elemento_click.html("<i class='fa fa-cog fa-spin'></i>");
+            $('#content-lista-docentes').load("<?php echo $this->Html->url(array('action'=>'listaDocentesConTope',$programacion_clase['ProgramacionClase']['COD_PROGRAMACION'])); ?>",function(){
+                var fecha = $('#input-datetimepicker-fecha-clase').val();
+                var hora_inicio = $('#select-hora-inicio').val();
+                var hora_fin = $('#select-hora-fin').val();
+                elemento_click.html("TOPE HORARIO DOCENTES");
+            });
+        
+    });
+//=====================================================================================================================
+
 
 //Boton tope Horario Alumnos ========================================================================================
     $('#btn-tope').on('click',function(event){
@@ -157,6 +185,7 @@
             });
         
     });
+    
     var completarDocentes = function () {
        fecha = $('#input-date-fecha-programada').val();
         hora_inicio = $('#select-hora-inicio').val();
