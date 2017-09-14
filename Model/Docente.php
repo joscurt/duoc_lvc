@@ -20,7 +20,22 @@
 		    return $results;
 		}
 
-
+public function getDocHorario($cod_sede=null,$fecha=null,$hora_inicio=null,$hora_fin=null)
+	{
+			$db = $this->getDataSource();
+			$sql = $db->fetchAll("SELECT DISTINCT Docente.RUT, Docente.COD_DOCENTE, Docente.USERNAME, Docente.COD_SEDE, Docente.NOMBRE, Docente.APELLIDO_PAT, Docente.APELLIDO_MAT
+			FROM VW_DOCENTES Docente
+			WHERE Docente.COD_SEDE = '".$cod_sede."'
+			AND Docente.COD_DOCENTE NOT IN
+			(SELECT Horario.COD_DOCENTE FROM vw_salas_programacion Horario
+			WHERE Horario.TIPO_EVENTO = 'REGULAR' AND
+			Horario.FECHA_CLASE = '".$fecha."'
+			AND Horario.COD_SEDE = '".$cod_sede."'
+			AND ('".$hora_inicio."' BETWEEN Horario.SOLO_HORA_INICIO and Horario.SOLO_HORA_FIN OR
+			'".$hora_fin."' BETWEEN Horario.SOLO_HORA_INICIO and Horario.SOLO_HORA_FIN)
+			GROUP BY Horario.COD_DOCENTE)");
+			return $sql;
+  			}
 		public function getDocenteConSedesForLogin($username=null)
 		{
 			if (empty($username)) {

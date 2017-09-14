@@ -457,7 +457,7 @@ include '../Vendor/phpexcel/Classes/PHPExcel/IOFactory.php';
 
 			$this->layout = 'ajax';
 			$a = $this->request->data['ProgramacionClase']['FECHA_CLASE'];
-			var_dump($a);exit();
+			#var_dump($a);exit();
 			$this->loadModel('ProgramacionClase');
 			$programacion_clase = $this->ProgramacionClase->getProgramacionClase($cod_programacion);
 
@@ -686,6 +686,37 @@ include '../Vendor/phpexcel/Classes/PHPExcel/IOFactory.php';
 
 			#var_dump($salas);exit();
 			echo json_encode(array('data'=>$salas,'status'=>'success'));
+		}
+		public function getDocDisponiblesByHorarioProg()
+		{
+			$this->autoRender = false;
+			#debug($this->data);exit();
+			#$fecha = new DateTime('2017-08-17');
+			$fecha = isset($this->data['fecha'])?$this->data['fecha']:null;
+			$hora_inicio = isset($this->data['hora_inicio'])?$this->data['hora_inicio']:null;
+			#$hora_inicio  = date('h:i:s', $hora_inicio);
+			$hora_fin = isset($this->data['hora_fin'])?$this->data['hora_fin']:null;
+			$this->loadModel('Sala');
+			$session_data = $this->Session->read('CoordinadorLogueado');
+			$cod_sede =  $session_data['Sede']['COD_SEDE'];
+			#$fecha = '2017-08-07';
+			#$hora_inicio = '08:01';
+			#$hora_fin = '10:15';
+			$fecha = date("Y-m-d", strtotime($fecha));
+			$hora_inicio = date("h:i:s", strtotime($hora_inicio));
+			$hora_fin = date("h:i:s", strtotime($hora_fin));
+
+			#$fecha = date_format($fecha, 'Y-m-d');
+			#debug($hora_inicio);exit();
+			//$fecha = str_replace('-', '/',$fecha);
+			#var_dump($fecha);exit();
+			$this->loadModel('Docente');
+			$docentes = $this->Docente->getDocHorario($cod_sede,$fecha,$hora_inicio,$hora_fin);
+			#var_dump($docentes);exit();
+			//$salas = $this->Integracion->getSalasDisponiblesSede($session_data['Sede']['CODIGO_SAP'],$fecha,$hora_inicio,$hora_fin);
+
+			#var_dump($salas);exit();
+			echo json_encode(array('data'=>$docentes,'status'=>'success'));
 		}
 
 		public function getDocenteTitular($sigla_seccion=null)
@@ -2094,7 +2125,23 @@ include '../Vendor/phpexcel/Classes/PHPExcel/IOFactory.php';
 					}
 				}
 			}
-			$docentes = $this->Docente->getDocentesDisponibles($session_data['Sede']['COD_SEDE'],$programacion_clase['ProgramacionClase']['HORA_INICIO'],$programacion_clase['ProgramacionClase']['HORA_FIN'],$cod_programacion);
+			$this->loadModel('SalaHorario');
+			$fecha = date("d-m-Y", strtotime($programacion_clase['ProgramacionClase']['FECHA_CLASE']));
+			$hora_inicio = date("h:i", strtotime($programacion_clase['ProgramacionClase']['HORA_INICIO']));
+			$hora_fin = date("h:i", strtotime($programacion_clase['ProgramacionClase']['HORA_FIN']));
+
+
+			$docentes = $this->Docente->getDocHorario($session_data['Sede']['COD_SEDE'],$fecha,$hora_inicio,$hora_fin);
+			#$docentes2 = $this->Docente->getDocentesDisponibles($session_data['Sede']['COD_SEDE'],$programacion_clase['ProgramacionClase']['HORA_INICIO'],$programacion_clase['ProgramacionClase']['HORA_FIN'],$cod_programacion);
+			#debug($docentes2);exit();
+			/*foreach ($docentes as $key => $value) {
+				$nombre = $this->Docente->getDocentes($value['Docente']['COD_DOCENTE']);
+				$this->set(array(
+					'nombre'=>$nombre,
+					));
+
+			}*/
+			#var_dump($docentes);exit();
 			$this->loadModel('TipoJustificacionLegal');
 			$this->set(array(
 				'programacion_clase'=>$programacion_clase,
@@ -2106,7 +2153,7 @@ include '../Vendor/phpexcel/Classes/PHPExcel/IOFactory.php';
 		public function fichaDetalleClase($cod_programacion = null){
 			$this->loadModel('ProgramacionClase');
 			$programacion_clase = $this->ProgramacionClase->getProgramacionClaseFull($cod_programacion);
-					
+
 			if (empty($programacion_clase)) {
 				$this->Session->setFlash('Ha ocurrido un error con el envío de los datos de la programación. Intente nuevamente.','mensaje-info');
 				$this->redirect(array('action'=>'index'));

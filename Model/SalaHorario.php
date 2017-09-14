@@ -92,8 +92,8 @@
 			#debug($response);exit();
 			return $response;
      
-  }
-
+  			}
+  			
 		public function getSalasBySede($cod_sede=null)
 		{
 			return $this->find('all',array('conditions'=>array('COD_SEDE'=>$cod_sede),'order'=>'TIPO_SALA'));

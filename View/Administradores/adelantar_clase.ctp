@@ -91,16 +91,17 @@
                 </div>
                 <div class="col-md-9">
                     <div class="form-group">
-                        <label for="input-nombre-docente">Nombre Docente:</label>
+                        <label for="input-nombre-docente" class="cargando-hidden-docentes">Nombre Docente:<span style="display:none;float:right"></span></label>
                         <div id="div-docente-alternativo">
                             <select name="data[ProgramacionClase][COD_DOCENTE_ALTERNATIVO]" id="select-nombre-docente" class="form-control selectpicker" data-live-search="true">
                                 <option value=""></option>
-                                <?php foreach ($docentes as $key => $docente): ?>
+<!--                                 <?php foreach ($docentes as $key => $docente): ?>
                                     <option value="<?php echo $docente['Docente']['COD_DOCENTE']; ?>">
                                         <?php echo $docente['Docente']['NOMBRE'].' '.$docente['Docente']['APELLIDO_PAT'].' '.$docente['Docente']['APELLIDO_MAT'];  ?>
                                     </option>
-                                <?php endforeach ?>
+                                <?php endforeach ?> -->
                             </select>
+                            <label class="indicador-docentes"></label>
                         </div>
                         <div id="div-docente-titular" style="display:none;">
                             <input type="text" name="data[ProgramacionClase][DOCENTE]" id="input-nombre-docente" class="form-control" />
@@ -156,7 +157,40 @@
             });
         
     });
-
+    var completarDocentes = function () {
+       fecha = $('#input-date-fecha-programada').val();
+        hora_inicio = $('#select-hora-inicio').val();
+        hora_fin = $('#select-hora-fin').val();
+        if (fecha != '') {
+            if (hora_inicio != '') {
+                $('label.cargando-hidden-docentes span').html("<i class='fa fa-cog fa-spin'></i>").show();
+                $.ajax({
+                    url: '<?php echo $this->Html->url(array('action'=>'getDocDisponiblesByHorarioProg')); ?>',
+                    type: 'POST',
+                    dataType: 'json',
+                    data:{fecha:fecha,hora_inicio:hora_inicio,hora_fin:hora_fin},
+                }).fail(function() {
+                    notifyUser('Ha ocurrido un error inesperado. Intente nuevamente.','danger');
+                }).always(function(response) {
+                    if(response.status=='success'){
+                        $('#select-nombre-docente').empty().append("<option value=''></option>");
+                        $.each(response.data,function(index, el) {
+                            $('#select-nombre-docente').append("<option value='"+response.data[index]["Docente"].COD_DOCENTE+"'>"+response.data[index]["Docente"].RUT+' - '+response.data[index]["Docente"].NOMBRE+' '+response.data[index]["Docente"].APELLIDO_PAT+' '+response.data[index]["Docente"].APELLIDO_MAT+"</option>").prop('disabled',false);
+                            $('#select-nombre-docente').selectpicker('refresh');
+                        });
+                        $('label.cargando-hidden-docentes span').hide();
+                        $('label.indicador-docentes').html('Se han encontrado '+response.data.length+' Docentes disponibles.').show();
+                    }else{
+                        notifyUser(response.message,response.status);
+                    }
+                });
+            }else{
+                notifyUser('Seleccione una hora de inicio','info');
+            }
+        }else{
+            notifyUser('Seleccione una fecha del calendario','info');
+        }
+    }
 
 
     var completarSalas = function () {
@@ -265,7 +299,12 @@
                 h_fin=parseInt(h_fin.replace(":", ""));
                 if (h_ini<h_fin) {
                     completarSalas();
-                }else{
+                    completarDocentes();
+                }
+                // if(h_ini<h_fin){
+                    
+                // }
+                else{
                     $("#"+objId).val('');
                     notifyUser('La hora de inicio debe ser menor que la hora de fin.','info');
                     $(".alert-info").css("z-index", "2000");

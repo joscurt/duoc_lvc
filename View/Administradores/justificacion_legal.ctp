@@ -42,9 +42,10 @@
                         class="form-control selectpicker" 
                         data-live-search="true">
                         <option value="">Seleccionar</option>
-                        <?php foreach ($docentes as $key => $docente): ?>
-                            <option value="<?php echo $docente['Docente']['COD_DOCENTE']; ?>">
-                                <?php echo $docente['Docente']['NOMBRE'].' '.$docente['Docente']['APELLIDO_PAT'].' '.$docente['Docente']['APELLIDO_MAT']; ?>
+                        <?php foreach ($docentes as $key => $value): ?>
+                            <option value="<?php echo $value['Docente']['COD_DOCENTE'];; ?>">
+                            <?php echo $value['Docente']['NOMBRE'].' '.$value['Docente']['APELLIDO_PAT'].' '.$value['Docente']['APELLIDO_MAT']; ?>
+
                             </option>
                         <?php endforeach ?>
                     </select>
