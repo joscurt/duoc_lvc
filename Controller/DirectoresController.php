@@ -89,14 +89,10 @@
 		public function index($filtro_multiple=null) 
 		{
 
-			
-
-
 			//$coordinador = $this->Session->read('CoordinadorLogueado');
 
-		
 			$director = $this->Session->read('DirectorLogueado');
-			
+
 			if (empty($director)) {
 				$this->redirect(array('controller'=>'login','action'=>'logoutDirector'));
 			}
@@ -181,7 +177,7 @@
 		public function autocompletarDatos($tipo_filtro = null) 
 		{
 			if ($this->Session->check('DirectorLogueado')) {
-				$director = $this->Session->read('DirectorLogueado');
+				$coordinador = $this->Session->read('DirectorLogueado');
 			//debug($a);exit();
 			}
 			if($this->Session->check('CoordinadorLogueado')){

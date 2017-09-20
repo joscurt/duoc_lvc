@@ -69,7 +69,9 @@
 
 		public function getCargaHorario($cod_docente=null, $periodo=null)
 		{			
-			$conditions = array('OR'=>array('ProgramacionClase.COD_DOCENTE'=>$cod_docente,'ProgramacionClase.DOCENTE_REEMPLAZO_ID'=>$cod_docente));
+			$conditions = array('OR'=>array('ProgramacionClase.COD_DOCENTE'=>$cod_docente,
+				'ProgramacionClase.DOCENTE_REEMPLAZO_ID'=>$cod_docente
+				));
 			if (!empty($periodo)) {
 				$conditions['AsignaturaHorario.COD_PERIODO'] = $periodo;
 				$conditions['AsignaturaHorario.ESTADO_SAP'] = 1;
@@ -115,7 +117,12 @@
 						)
 					),
 				),
-				'conditions'=>$conditions,
+				'conditions'=> array(
+					"OR"=>array(
+						array("ProgramacionClase.DOCENTE_REEMPLAZO_ID='".$cod_docente."'"),
+						array("ProgramacionClase.COD_DOCENTE"=>$cod_docente),
+						
+				)),
 				'order' => array(
 					'Sede.NOMBRE' => 'ASC',
 					'Asignatura.NOMBRE' => 'ASC',

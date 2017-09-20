@@ -919,7 +919,7 @@
 							'OBSERVACIONES'=>isset($value['OBSERVACIONES']) && !empty($value['OBSERVACIONES'])? $value['OBSERVACIONES']:null,
 							'MODIFIED'=>date('Y-m-d H:i:s'),
 						);
-						DEBUG($value);
+						
 						$ri = $this->RI->getReprobadoInasistencia($value['ID_ALUMNO'],$cod_asignatura_horario);
 						if (!empty($ri)) {
 							$up_or_create_ri['ID']=$ri['RI']['ID'];
@@ -929,10 +929,10 @@
 							$up_or_create_ri['ID_ALUMNO']=$value['ID_ALUMNO'];
 							$up_or_create_ri['COD_ASIGNATURA_HORARIO']=$cod_asignatura_horario;
 						}
-						/*if (!$this->RI->save($up_or_create_ri)) {
+						if (!$this->RI->save($up_or_create_ri)) {
 							$error++;
-						}*/
-					}exit();
+						}
+					}
 					if ($error>0) {
 						$this->Session->setFlash('Algunos datos han quedado erroneos, verifique la información y vuelva a guardar.','mensaje-info');
 						$this->redirect(array('action'=>'reprobadoInacistencia',$cod_asignatura_horario));
@@ -941,7 +941,7 @@
 							'ID'=>$asignatura_horario['AsignaturaHorario']['ID'],
 							'RI_ENABLE'=>0,
 						);
-						//$this->AsignaturaHorario->save($up_asignatura_horario);
+						$this->AsignaturaHorario->save($up_asignatura_horario);
 						$this->Session->setFlash('Los datos se han guardado exitosamente.','mensaje-exito');
 						$this->redirect(array('action'=>'reprobadoInacistencia',$cod_asignatura_horario));
 					}
