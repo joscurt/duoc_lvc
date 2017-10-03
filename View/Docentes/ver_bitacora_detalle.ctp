@@ -4,7 +4,7 @@
 	}
 </style>
 <div class="modal-header">
-	<h4 class="modal-title">Bitácora Clase <?php echo $programacion_clase['ProgramacionClase']['SIGLA_SECCION']; ?>(T) - <?php echo $programacion_clase['Asignatura']['NOMBRE']; ?></h4>
+	<h4 class="modal-title">Bit&aacute;cora Clase <?php echo $programacion_clase['ProgramacionClase']['SIGLA_SECCION']; ?>(T) - <?php echo $programacion_clase['Asignatura']['NOMBRE']; ?></h4>
 </div>
 <form 
 	id="form-bitacora-send"
@@ -23,7 +23,7 @@
 						</span>
 					<?php if (strtotime($bitacora['Bitacora']['CREATED']) != strtotime($bitacora['Bitacora']['MODIFIED'])): ?>
 						<span class="badge bgm-green">
-							Última edición <?php echo date('H:i',strtotime($bitacora['Bitacora']['MODIFIED'])); ?>
+							&Uacute;ltima edici&oacute;n <?php echo date('H:i',strtotime($bitacora['Bitacora']['MODIFIED'])); ?>
 							(<?php echo date('d-m-Y',strtotime($bitacora['Bitacora']['MODIFIED'])); ?>)
 						</span>
 					<?php endif ?>
@@ -52,13 +52,13 @@
 			target="_blank"
 			class="btn btn-xs btn-default">
 			<i style="color:green;" 
-				class="fa fa-file-excel-o"></i>&nbsp;Exportar Bitácora</a>
+				class="fa fa-file-excel-o"></i>&nbsp;Exportar Bit&aacute;cora</a>
 		<a href="<?php echo $this->Html->url(array('action'=>'exportarBitacoraPdfClase',$programacion_clase['ProgramacionClase']['COD_PROGRAMACION'])); ?>" 
 			class="btn btn-xs btn-default" 
 			target="_blank"
-			><i style="color:red;" class="fa fa-file-pdf-o"></i>&nbsp;Exportar Bitácora</a>
-		<button type="button" class="btn btn-xs btn-info" id="btn-editar-bitacora"><i class="fa fa-edit"></i>&nbsp;Editar Bitácora</button>
-		<button type="submit" class="btn btn-xs btn-success" style="display:none;" id="btn-guardar-bitacora"><i class="fa fa-save"></i>&nbsp;Guardar Bitácora</button>
+			><i style="color:red;" class="fa fa-file-pdf-o"></i>&nbsp;Exportar Bit&aacute;cora</a>
+		<button type="button" class="btn btn-xs btn-info" id="btn-editar-bitacora"><i class="fa fa-edit"></i>&nbsp;Editar Bit&aacute;cora</button>
+		<button type="submit" class="btn btn-xs btn-success" style="display:none;" id="btn-guardar-bitacora"><i class="fa fa-save"></i>&nbsp;Guardar Bit&aacute;cora</button>
 		<?php endif; ?>
 		<button type="button" class="btn btn-xs btn-default" data-dismiss="modal"><i class="fa fa-times"></i>&nbsp;Cerrar</button>
 	</div>

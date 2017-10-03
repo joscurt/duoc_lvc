@@ -16,7 +16,7 @@
 		'Docente.NOMBRE'=>'Nombre docente',
 		'Docente.COD_FUNCIONARIO'=>'ID docente',
 		'Asignatura.NOMBRE'=>'Nombre asignatura',
-		'ProgramacionClase.SIGLA_SECCION'=>'Sigla - Sección',
+		'ProgramacionClase.SIGLA_SECCION'=>'Sigla - Secci&oacute;n',
 		'ProgramacionClase.PERIODO'=>'Periodo',
 		'ProgramacionClase.COD_JORNADA'=>'Jornada',
 		'ProgramacionClase.detalle'=>'Detalle',
@@ -28,7 +28,7 @@
 <div class="row">
 	<div class="col-md-12">
 		<div class="block-header">
-			<h1>Autorización de Clases</h1>
+			<h1>Autorizaci&oacute;n de Clases</h1>
 		</div>  
 	</div>
 </div>
@@ -44,7 +44,7 @@
 			?>
 			<div class="col-md-2">
 				<div class="form-group">
-					<button class="btn btn-default cambiar-filtro-multiple" style="margin-top: 27px;">Filtro múltiple</button>
+					<button class="btn btn-default cambiar-filtro-multiple" style="margin-top: 27px;">Filtro m&uacute;ltiple</button>
 				</div>
 			</div>
 		</div>
@@ -90,7 +90,7 @@
 								<option value="Docente.NOMBRE" <?php echo $ordenar == 'Docente.NOMBRE' ? 'selected="selected"':''; ?>>Nombre docente</option>
 								<option value="Docente.COD_DOCENTE" <?php echo $ordenar == 'Docente.COD_DOCENTE' ? 'selected="selected"':''; ?>>ID docente</option>
 								<option value="Asignatura.NOMBRE" <?php echo $ordenar == 'Asignatura.NOMBRE' ? 'selected="selected"':''; ?>>Nombre asignatura</option>
-								<option value="ProgramacionClase.SIGLA_SECCION" <?php echo $ordenar == 'ProgramacionClase.SIGLA_SECCION' ? 'selected="selected"':''; ?> >Sigla - Sección</option>
+								<option value="ProgramacionClase.SIGLA_SECCION" <?php echo $ordenar == 'ProgramacionClase.SIGLA_SECCION' ? 'selected="selected"':''; ?> >Sigla - Secci&oacute;n</option>
 								<option value="ProgramacionClase.ANHO,ProgramacionClase.SEMESTRE"<?php echo $ordenar == 'ProgramacionClase.ANHO,ProgramacionClase.SEMESTRE' ? 'selected="selected"':''; ?> >Periodo</option>
 								<option value="ProgramacionClase.HORA_INICIO" <?php echo $ordenar == 'ProgramacionClase.HORA_INICIO' ? 'selected="selected"':''; ?>>Horario</option>
 								<option value="ProgramacionClase.TIPO_EVENTO" <?php echo $ordenar == 'ProgramacionClase.TIPO_EVENTO' ? 'selected="selected"':''; ?>>Tipo</option>
@@ -118,7 +118,7 @@
 									</th>
 									<th class="una-linea">Fecha</th>
 									<th>Nombre Asignatura</th>
-									<th class="una-linea">Sigla-Sección</th>
+									<th class="una-linea">Sigla-Secci&oacute;n</th>
 									<th>Jornada</th>
 									<th>Modalidad</th>
 									<th class="una-linea">Rut docente</th>
@@ -307,11 +307,11 @@
 	<div class="modal-dialog modal-sm">
 		<div class="modal-content">
 			<div class="modal-header">
-				<h2 class="modal-title" style="border-bottom: 1px solid #0c253d; padding-bottom: 5px;">Autorización de Clases</h2>
+				<h2 class="modal-title" style="border-bottom: 1px solid #0c253d; padding-bottom: 5px;">Autorizaci&oacute;n de Clases</h2>
 			</div>
 			<div class="modal-body">
 				<p>Algunas clases persentan tope de horario.</p>
-				<p>Deberá des-seleccionar las clases que presentan problemas con el fin de que éstas se mantengan en la grilla para su posterior gestión individual.</p>
+				<p>Deber&aacute; des-seleccionar las clases que presentan problemas con el fin de que &eacute;stas se mantengan en la grilla para su posterior gesti&oacute;n individual.</p>
 			</div>
 			<div class="modal-footer">
 				<button type="button" class="btn btn-success pull-left" data-dismiss="modal">OK</button>

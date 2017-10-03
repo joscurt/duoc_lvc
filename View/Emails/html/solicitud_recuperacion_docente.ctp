@@ -1,6 +1,6 @@
 <p>Estimado(a) docente <strong><?php echo $clase['Docente']['NOMBRE'].' '.$clase['Docente']['APELLIDO_PAT'].' '.$clase['Docente']['APELLIDO_MAT']; ?></strong>:</p>
 <br>
-<p>Se ha <strong>Autorizado</strong> y agendado una solicitud para recuperar una clase según lo siguiente:</p>
+<p>Se ha <strong>Autorizado</strong> y agendado una solicitud para recuperar una clase seg&uacute;n lo siguiente:</p>
 <br/>
 <p>Sede: <?php echo $sede['NOMBRE']; ?></p>
 <br/>
@@ -14,7 +14,7 @@
 		<td <?php echo $class_dato; ?> ><?php echo $clase['Sede']['NOMBRE']; ?></td>
 	</tr>
 	<tr>
-		<td <?php echo $class_label; ?> >Sigla-Sección</td>
+		<td <?php echo $class_label; ?> >Sigla-Secci&oacute;n</td>
 		<td <?php echo $class_dato; ?> ><?php echo $clase['ProgramacionClase']['SIGLA_SECCION']; ?></td>
 	</tr>
 	<tr>

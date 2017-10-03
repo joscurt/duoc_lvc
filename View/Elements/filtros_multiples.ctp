@@ -139,7 +139,7 @@
 				/>
 			</div>
 			<div class="form-group">
-				<label for="">Sigla-Sección:</label>
+				<label for="">Sigla-Secci&oacute;n:</label>
 				<input type="text" 
 					class="form-control autocompletable-input"  
 					value="<?php echo !empty($datos_filtro['Filtro']['sigla_seccion']) ? $datos_filtro['Filtro']['sigla_seccion'] : '';?>" 
@@ -230,10 +230,10 @@
 								value="TEORICO">PRACTICA</option>
 							<option 
 								<?php echo !empty($datos_filtro['Filtro']['modalidad']) && ($datos_filtro['Filtro']['modalidad'] == 'PRA')? 'selected="selected"':''; ?>
-								value="PRA">TEÓRICA</option>
+								value="PRA">TE&Oacute;RICA</option>
 							<option 
 								<?php echo !empty($datos_filtro['Filtro']['modalidad']) && ($datos_filtro['Filtro']['modalidad'] == 'TEO-PRA')? 'selected="selected"':''; ?>
-								value="TEO-PRA">TEÓRICA + PRACTICA</option>
+								value="TEO-PRA">TE&Oacute;RICA + PRACTICA</option>
 					</select>
 				</div>
 			<?php endif; ?>
@@ -285,13 +285,13 @@
 		var fecha_inicio = $('#form-filtro-multiple .fecha-inicio').val();
 		var fecha_termino = $('#form-filtro-multiple .fecha-termino').val();
 		if(!fechaCorrecta(fecha_inicio,fecha_termino)){
-			notifyUser('La fecha de término no puede ser mayor a la fecha de inicio.','danger');
+			notifyUser('La fecha de t&eacute;rmino no puede ser menor a la fecha de inicio.','danger');
 			return false;	
 		}
 		<?php if($periodo_required): ?>
 			var periodo = $('#form-filtro-periodo-multiple').val();
 			if(periodo == ''){
-				notifyUser('Debe seleccionar un periodo.','danger');
+				notifyUser('Debe seleccionar un periodo2.','danger');
 				return false;	
 			}
 		<?php endif; ?>

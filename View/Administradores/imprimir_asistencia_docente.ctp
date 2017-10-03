@@ -8,7 +8,7 @@
 		<tr>
 			<th>&nbsp;</th>
 			<th>Fecha</th>
-			<th>Sigla-Sección</th>
+			<th>Sigla-Secci&oacute;n</th>
 			<th>ID Docente</th>
 			<th>Rut docente</th>
 			<th>Detalle</th>
@@ -18,7 +18,7 @@
 			<th>Hora fin</th>
 			<th>Registro fin</th>
 			<th>Total a recuperar</th>
-			<th>Módulos a recuperar</th>
+			<th>M&oacute;dulos a recuperar</th>
 		</tr>
 	</thead>
   	<tbody>

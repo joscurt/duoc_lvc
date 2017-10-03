@@ -22,7 +22,7 @@
 					type="password" 
 					class="form-control" 
 					name="data[User][password]" 
-					placeholder="Contraeña">
+					placeholder="Contrae&ntilde;a">
 			</div>
 		</div>
 		<div class="clearfix"></div>

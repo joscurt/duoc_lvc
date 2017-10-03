@@ -93,7 +93,47 @@
 			return $response;
      
   			}
-  			
+  			public function getDocHorario($cod_sede=null,$fecha=null,$hora_inicio=null,$hora_fin=null)
+		{
+
+			$sql = "
+					SELECT
+					  C.USERNAME,
+					  C.RUT,
+					  C. APELLIDO_PAT,
+					  C.COD_SEDE
+					FROM
+					VW_DOCENTES C
+					WHERE
+					C.COD_SEDE = '".$cod_sede."'
+					AND
+					C.COD_DOCENTE NOT IN
+					(SELECT A.COD_DOCENTE FROM vw_salas_programacion A
+					WHERE
+					A.TIPO_EVENTO = 'REGULAR' AND
+					A.FECHA_CLASE = '".$fecha."'
+					AND A.COD_SEDE = '".$cod_sede."'
+					AND
+					('".$hora_inicio."' BETWEEN A.SOLO_HORA_INICIO and A.SOLO_HORA_FIN OR
+					'".$hora_fin."' BETWEEN A.SOLO_HORA_INICIO and A.SOLO_HORA_FIN)
+					GROUP BY A.COD_DOCENTE)
+					";
+
+			$response = $this->query($sql);
+			$response_final = array();
+
+			/*foreach ($response as $key => $value)
+			{
+				$response_final[$value['C']['ID']]['COD'] = $value['COD'];
+				$response_final[$value['C']['ID']]['SALA'] = $value['SALA'];
+			} */
+
+
+			#debug($sql);
+			debug($response);exit();
+			return $response;
+     
+  			}
 		public function getSalasBySede($cod_sede=null)
 		{
 			return $this->find('all',array('conditions'=>array('COD_SEDE'=>$cod_sede),'order'=>'TIPO_SALA'));

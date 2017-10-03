@@ -59,7 +59,7 @@
 	);
 	$objPHPExcel->setActiveSheetIndex(0);
 	$objPHPExcel->setActiveSheetIndex()->mergeCells('B2:H2');
-	$objPHPExcel->setActiveSheetIndex()->setCellValue('B2', "Histórico Asistencia Curso : ".$asignatura_horario['AsignaturaHorario']['SIGLA_SECCION'].' | '.date('d-m-Y H:i'));
+	$objPHPExcel->setActiveSheetIndex()->setCellValue('B2', "Hist&oacute;rico Asistencia Curso : ".$asignatura_horario['AsignaturaHorario']['SIGLA_SECCION'].' | '.date('d-m-Y H:i'));
 	$objPHPExcel->setActiveSheetIndex()->getStyle("B2:J2")->applyFromArray($style_back_blue);
 	$objPHPExcel->setActiveSheetIndex()->getRowDimension("2")->setRowHeight(50);
 
@@ -81,9 +81,9 @@
         $count++;
         $objPHPExcel->setActiveSheetIndex()->setCellValue('B'.$fila, $count);
         $objPHPExcel->setActiveSheetIndex()->setCellValue('C'.$fila, $detalle['Alumno']['RUT']);
-        $objPHPExcel->setActiveSheetIndex()->setCellValue('D'.$fila, $detalle['Alumno']['APELLIDO_PAT']);
-        $objPHPExcel->setActiveSheetIndex()->setCellValue('E'.$fila, $detalle['Alumno']['APELLIDO_MAT']);
-        $objPHPExcel->setActiveSheetIndex()->setCellValue('F'.$fila, $detalle['Alumno']['NOMBRES']);
+        $objPHPExcel->setActiveSheetIndex()->setCellValue('D'.$fila, utf8_encode($detalle['Alumno']['APELLIDO_PAT']));
+        $objPHPExcel->setActiveSheetIndex()->setCellValue('E'.$fila, utf8_encode($detalle['Alumno']['APELLIDO_MAT']));
+        $objPHPExcel->setActiveSheetIndex()->setCellValue('F'.$fila, utf8_encode($detalle['Alumno']['NOMBRES']));
         $objPHPExcel->setActiveSheetIndex()->setCellValue('G'.$fila, isset($indicadores[$detalle['Alumno']['ID']])?$indicadores[$detalle['Alumno']['ID']]['CLASES_PRESENTE']:null);
         $objPHPExcel->setActiveSheetIndex()->setCellValue('H'.$fila, isset($indicadores[$detalle['Alumno']['ID']])?$indicadores[$detalle['Alumno']['ID']]['CLASES_AUSENTE']:null);
         $clases_presente = $indicadores[$detalle['Alumno']['ID']]['CLASES_PRESENTE'];

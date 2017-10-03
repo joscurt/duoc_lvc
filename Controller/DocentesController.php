@@ -28,7 +28,7 @@
 				$this->redirect(array('action'=>'getEventos',$cod_periodo));
 			}
 			$sedes = '';
-			#debug($this->data);
+			#debug($this->data);exit();
 			if (isset($this->data['Filtro']['SEDE']) && !empty($this->data['Filtro']['SEDE'])) {
 				$sedes = $this->data['Filtro']['SEDE'];
 			}elseif (!empty($sede_id)) {
@@ -55,16 +55,17 @@
 			$this->loadModel('HorarioModulo');
 			#debug($sedes);
 			$horarios_modulos = $this->HorarioModulo->getHorarios($sedes);
-			#debug($horarios_modulos);exit();
+			#debug($programacion_clases);exit();
 			$this->set(array(
 				'docente'=>$docente,
 				'sede'=>$sede,
 				'horarios_modulos'=>$horarios_modulos,
 				'programacion_clases'=>$programacion_clases,
 			));
+
 			$this->Mpdf->init(array('format' => 'A4-L','margin_top' => 10,'margin_bottom'=>20));
 			$this->Mpdf->setFilename('horario_docente.pdf');
-			$this->Mpdf->SetHTMLFooter('<div align="right">Página {PAGENO} de {nb}</div>');
+			$this->Mpdf->SetHTMLFooter('<div align="right">P&aacute;gina {PAGENO} de {nb}</div>');
 			$this->Mpdf->setOutput('A');
 		}
 
@@ -225,19 +226,19 @@
 			    			$this->RI_IM->save($data);
 			    			}
 					}else{
-						$this->Session->setFlash('No se ha insertado el número de Clases Registradas <b>"'.$clases_registradas.'"<b> de la fila "'.$i.'" es inválido. Intente nuevamente.','mensaje-error');
+						$this->Session->setFlash('No se ha insertado el n&uacute;mero de Clases Registradas <b>"'.$clases_registradas.'"<b> de la fila "'.$i.'" es inv&aacute;lido. Intente nuevamente.','mensaje-error');
 									$this->redirect(array('controller' => 'Docentes','action' => 'reprobadoInacistenciaImport/'.$cod_asignatura_horario.'' ));
 					}
 				}else{
-				$this->Session->setFlash('No se ha insertado el número de Clases Presentes <b>"'.$clases_presente.'"<b> de la fila "'.$i.'" es inválido. Intente nuevamente.','mensaje-error');
+				$this->Session->setFlash('No se ha insertado el n&uacute;mero de Clases Presentes <b>"'.$clases_presente.'"<b> de la fila "'.$i.'" es inv&aacute;lido. Intente nuevamente.','mensaje-error');
 				$this->redirect(array('controller' => 'Docentes','action' => 'reprobadoInacistenciaImport/'.$cod_asignatura_horario.'' ));
 			}
 				}else{
-				$this->Session->setFlash('Los datos del Excel están erroneos o son de otra Sección. Intente nuevamente.','mensaje-error');
+				$this->Session->setFlash('Los datos del Excel est&aacute;n erroneos o son de otra Secci&oacute;n. Intente nuevamente.','mensaje-error');
 					$this->redirect(array('controller' => 'Docentes','action' => 'reprobadoInacistencia/'.$cod_asignatura_horario.'' ));
 			}
 		}else{
-				$this->Session->setFlash('Éste Rut no Pertenece a la Sección  <b>"'.$rut.'"<b> de la fila "'.$i.'" es inválido. Intente nuevamente.','mensaje-error');
+				$this->Session->setFlash('&eacute;ste Rut no Pertenece a la Secci&oacute;n  <b>"'.$rut.'"<b> de la fila "'.$i.'" es inv&aacute;lido. Intente nuevamente.','mensaje-error');
 				$this->redirect(array('controller' => 'Docentes','action' => 'reprobadoInacistenciaImport/'.$cod_asignatura_horario.'' ));
 			}
 
@@ -339,7 +340,7 @@
 			$this->Mpdf->setFilename('reprobados_inasistencia_'.$asignatura_horario['Asignatura']['NOMBRE'].'.pdf');
 			$this->Mpdf->addPage('L');
 			$this->Mpdf->setOutput('a');
-			$footer = '<div align="right">Página {PAGENO} de {nb}</div>';
+			$footer = '<div align="right">P&aacute;gina {PAGENO} de {nb}</div>';
 			$this->Mpdf->SetHTMLFooter($footer);
 		}
 
@@ -399,7 +400,7 @@
 			$this->loadModel('ProgramacionClase');
 			$docente = $this->Session->read('DocenteLogueado');
 			$programacion_clase = $this->ProgramacionClase->getProgramacionClase($cod_programacion);
-			$response = array('status'=>'success','message'=>'Bitacora registrada con éxito.');
+			$response = array('status'=>'success','message'=>'Bitacora registrada con &eacute;xito.');
 			if (!empty($this->data) && !empty($cod_programacion)) {
 				$new_bitacora = array(
 					'COD'=>uniqid(),
@@ -413,7 +414,7 @@
 				$this->loadModel('Bitacora');
 				$this->Bitacora->create();
 				if(!$this->Bitacora->save($new_bitacora)){
-					$response = array('status'=>'danger','message'=>'Error en el almacenamiento de los datos. Intente más tarde.');
+					$response = array('status'=>'danger','message'=>'Error en el almacenamiento de los datos. Intente m&aacute;s tarde.');
 				};
 			}
 			echo json_encode($response);
@@ -575,10 +576,10 @@
 			$sedes='';
 			$programacion_clases=$semana=array();
 
-			# Obtener la información del docente.
+			# Obtener la informaci&oacute;n del docente.
 			$docente = $this->Session->read('DocenteLogueado');
 
-			# Obtener la información del periodo.
+			# Obtener la informaci&oacute;n del periodo.
 			if (!empty($cod_periodo)) {
 				$periodo = $this->Periodo->getPeriodo($cod_periodo);
 			}else{
@@ -648,7 +649,7 @@
 		{
 			$horarios=$periodos=$periodo_bd=$sedes=$semanas=array();
 			# -------------------------------------------------------------------
-			# Cargar el docente de la sesión.
+			# Cargar el docente de la sesi&oacute;n.
 			$docente = $this->Session->read('DocenteLogueado');
 			if(empty($docente)) {
 				$this->redirect(array('controller'=>'login','action'=>'logoutDocente'));
@@ -726,7 +727,7 @@
 							}
 						}
 						echo json_encode(array(
-							'message'=>'La información se ha almacenado con éxito.',
+							'message'=>'La informaci&oacute;n se ha almacenado con &eacute;xito.',
 							'status'=>'success'
 						));
 					}else{
@@ -812,7 +813,7 @@
 				}
 				
 				if($this->ProgramacionClase->save($up_programacion)){
-					$response = array('status'=>'success','mensaje'=>'Clase iniciada con éxito');
+					$response = array('status'=>'success','mensaje'=>'Clase iniciada con &eacute;xito');
 					$this->actualizarDatosAsignaturaHorario($programacion['ProgramacionClase']['COD_ASIGNATURA_HORARIO']);
 				};
 
@@ -825,7 +826,7 @@
 			$this->autoRender = false;
 			$this->loadModel('ProgramacionClase');
 			$programacion = $this->ProgramacionClase->find('first',array('conditions'=>array('COD_PROGRAMACION'=>$cod_programacion)));
-			$response = array('status'=>'danger','mensaje'=>'Ha ocurrido un error inesperado. Intente más tarde.');
+			$response = array('status'=>'danger','mensaje'=>'Ha ocurrido un error inesperado. Intente m&aacute;s tarde.');
 			if (!empty($programacion)) {
 				$up_programacion = array(
 					'ProgramacionClase'=>array(
@@ -836,7 +837,7 @@
 				);
 				if($this->ProgramacionClase->save($up_programacion)){
 					$this->actualizarDatosAsignaturaHorario($programacion['ProgramacionClase']['COD_ASIGNATURA_HORARIO']);
-					$response = array('status'=>'success','mensaje'=>'Clase finalizada con éxito');
+					$response = array('status'=>'success','mensaje'=>'Clase finalizada con &eacute;xito');
 				};
 			}
 			echo json_encode($response);
@@ -879,7 +880,7 @@
 						}
 					}#exit();
 					if ($error>0) {
-						$this->Session->setFlash('Algunos datos han quedado erroneos, verifique la información y vuelva a guardar.','mensaje-info');
+						$this->Session->setFlash('Algunos datos han quedado erroneos, verifique la informaci&oacute;n y vuelva a guardar.','mensaje-info');
 						$this->redirect(array('action'=>'reprobadoInacistencia',$cod_asignatura_horario));
 					}else{
 						$up_asignatura_horario = array(
@@ -893,7 +894,7 @@
 						$this->redirect(array('controller' => 'Docentes','action' => 'getEventos/',$asignatura_horario['AsignaturaHorario']['COD_PERIODO']));
 					}
 				}else{
-					$this->Session->setFlash('Ha ocurrido un error inesperado. Intente más tarde.','mensaje-error');
+					$this->Session->setFlash('Ha ocurrido un error inesperado. Intente m&aacute;s tarde.','mensaje-error');
 					$this->redirect(array('action'=>'reprobadoInacistencia',$cod_asignatura_horario));
 				}
 			}
@@ -934,7 +935,7 @@
 						}
 					}
 					if ($error>0) {
-						$this->Session->setFlash('Algunos datos han quedado erroneos, verifique la información y vuelva a guardar.','mensaje-info');
+						$this->Session->setFlash('Algunos datos han quedado erroneos, verifique la informaci&oacute;n y vuelva a guardar.','mensaje-info');
 						$this->redirect(array('action'=>'reprobadoInacistencia',$cod_asignatura_horario));
 					}else{
 						$up_asignatura_horario = array(
@@ -946,7 +947,7 @@
 						$this->redirect(array('action'=>'reprobadoInacistencia',$cod_asignatura_horario));
 					}
 				}else{
-					$this->Session->setFlash('Ha ocurrido un error inesperado. Intente más tarde.','mensaje-error');
+					$this->Session->setFlash('Ha ocurrido un error inesperado. Intente m&aacute;s tarde.','mensaje-error');
 					$this->redirect(array('action'=>'reprobadoInacistencia',$cod_asignatura_horario));
 				}
 			}
@@ -1044,7 +1045,7 @@
 			$this->Mpdf->setFilename('historico_asistencia_por_alumno.pdf');
 			$this->Mpdf->addPage('L');
 			$this->Mpdf->setOutput('A');
-			$footer = '<div align="right">Página {PAGENO} de {nb}</div>';
+			$footer = '<div align="right">P&aacute;gina {PAGENO} de {nb}</div>';
 			$this->Mpdf->SetHTMLFooter($footer);	
 		}
 
@@ -1073,7 +1074,7 @@
 			$this->Mpdf->setFilename('historico_asistencia_por_curso.pdf');
 			$this->Mpdf->addPage('L');
 			$this->Mpdf->setOutput('A');
-			$footer = '<div align="right">Página {PAGENO} de {nb}</div>';
+			$footer = '<div align="right">P&aacute;gina {PAGENO} de {nb}</div>';
 			$this->Mpdf->SetHTMLFooter($footer);	
 		}
 
@@ -1118,7 +1119,7 @@
 			$asignatura_horario = $this->AsignaturaHorario->getAsignaturaHorarioFirst($asignatura_horario_uuid);
 			$docente = $this->Session->read('DocenteLogueado');
 			if (empty($asignatura_horario)) {
-				echo '<script>notifyUser("Ha ocurrido un error inesperado. Intente más tarde.","danger"); </script>';
+				echo '<script>notifyUser("Ha ocurrido un error inesperado. Intente m&aacute;s tarde.","danger"); </script>';
 				exit();
 			}
 			$this->loadModel('AlumnoAsignatura');
@@ -1147,7 +1148,7 @@
 			$this->Mpdf->setFilename('historico_asistencia_por_curso.pdf');
 			$this->Mpdf->addPage('L');
 			$this->Mpdf->setOutput('A');
-			$footer = '<div align="right">Página {PAGENO} de {nb}</div>';
+			$footer = '<div align="right">P&aacute;gina {PAGENO} de {nb}</div>';
 			$this->Mpdf->SetHTMLFooter($footer);	
 		}
 
@@ -1203,7 +1204,7 @@
 			$asignatura_horario = $this->AsignaturaHorario->getAsignaturaHorarioFirst($asignatura_horario_uuid);
 			$docente = $this->Session->read('DocenteLogueado');
 			if (empty($asignatura_horario)) {
-				echo '<script>notifyUser("Ha ocurrido un error inesperado. Intente más tarde.","danger"); </script>';
+				echo '<script>notifyUser("Ha ocurrido un error inesperado. Intente m&aacute;s tarde.","danger"); </script>';
 				exit();
 			}
 			$this->loadModel('AlumnoAsignatura');
@@ -1237,7 +1238,7 @@
 			$asignatura_horario = $this->AsignaturaHorario->getAsignaturaHorarioFirst($asignatura_horario_uuid);
 			$docente = $this->Session->read('DocenteLogueado');
 			if (empty($asignatura_horario)) {
-				echo '<script>notifyUser("Ha ocurrido un error inesperado. Intente más tarde.","danger"); </script>';
+				echo '<script>notifyUser("Ha ocurrido un error inesperado. Intente m&aacute;s tarde.","danger"); </script>';
 				exit();
 			}
 			$this->loadModel('ProgramacionClase');
@@ -1258,7 +1259,7 @@
 			$asignatura_horario = $this->AsignaturaHorario->getAsignaturaHorarioFirst($asignatura_horario_uuid);
 			$docente = $this->Session->read('DocenteLogueado');
 			if (empty($asignatura_horario)) {
-				echo '<script>notifyUser("Ha ocurrido un error inesperado. Intente más tarde.","danger"); </script>';
+				echo '<script>notifyUser("Ha ocurrido un error inesperado. Intente m&aacute;s tarde.","danger"); </script>';
 				exit();
 			}
 			$this->loadModel('AlumnoAsignatura');
@@ -1356,7 +1357,7 @@
 			}
 			$this->Mpdf->init(array('format' => 'A4-L','margin_top' => 20,'margin_bottom'=>20));
 			$this->Mpdf->setFilename('botacora_detalle.pdf');
-			$this->Mpdf->SetHTMLFooter('<div align="right">Página {PAGENO} de {nb}</div>');
+			$this->Mpdf->SetHTMLFooter('<div align="right">P&aacute;gina {PAGENO} de {nb}</div>');
 			$this->Mpdf->setOutput('A');
 		}
 
@@ -1384,10 +1385,10 @@
 				));
 				$this->layout = null;
 				$this->Mpdf->init(array('margin_top' => 20,'margin_bottom'=>20,'margin_left'=>10,'margin_right'=>10));
-				$this->Mpdf->setFilename('Bitácora'.$asignatura_horario['Asignatura']['NOMBRE'].'.pdf');
+				$this->Mpdf->setFilename('Bit&aacute;cora'.$asignatura_horario['Asignatura']['NOMBRE'].'.pdf');
 				$this->Mpdf->addPage('L');
 				$this->Mpdf->setOutput('a');
-				$footer = '<div align="right">Página {PAGENO} de {nb}</div>';
+				$footer = '<div align="right">P&aacute;gina {PAGENO} de {nb}</div>';
 				$this->Mpdf->SetHTMLFooter($footer);
 			}
 		}

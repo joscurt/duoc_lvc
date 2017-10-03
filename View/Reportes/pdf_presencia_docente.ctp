@@ -42,7 +42,7 @@
 					<th class="una-linea">Fecha</th>
 					<th>Sede</th>
 					<th>Nombre Asignatura</th>
-					<th class="una-linea">Sigla-Sección</th>
+					<th class="una-linea">Sigla-Secci&oacute;n</th>
 					<th class="una-linea">Rut docente</th>
 					<th>Apellido Paterno</th>
 					<th>Apellido Materno</th>
@@ -61,9 +61,9 @@
 					    <td><?php echo $value['Asignatura']['NOMBRE']; ?></td>
 					    <td><?php echo $value['ProgramacionClase']['SIGLA_SECCION']; ?></td>
 					    <td><?php echo $value['Docente']['RUT'].'-'.$value['Docente']['DV']; ?></td>
-					    <td><?php echo $value['Docente']['APELLIDO_PAT']; ?></td>
-					    <td><?php echo $value['Docente']['APELLIDO_MAT']; ?></td>
-					    <td><?php echo $value['Docente']['NOMBRE']; ?></td>
+					    <td><?php echo utf8_encode($value['Docente']['APELLIDO_PAT']); ?></td>
+					    <td><?php echo utf8_encode($value['Docente']['APELLIDO_MAT']); ?></td>
+					    <td><?php echo utf8_encode($value['Docente']['NOMBRE']); ?></td>
 					    <td><?php echo !empty($value['Sala']['TIPO_SALA'])?$value['Sala']['TIPO_SALA']:$value['SalaReemplazo']['TIPO_SALA']; ?></td>
 					    <td>
 					    	<?php 

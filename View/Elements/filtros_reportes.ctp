@@ -35,7 +35,7 @@
 		<?php endif ?>
 		<?php if ($filtro_fecha_termino): ?>
 			<div class="col-md-2">
-				<label for="">Fecha término:</label>
+				<label for="">Fecha t&eacute;rmino:</label>
 				<div class="input-group form-group">
 					<span class="input-group-addon"><i class="md md-event"></i></span>
 						<div class="dtp-container dropdown fg-line">
@@ -72,7 +72,7 @@
 			</div>
 			<div class="col-md-2">
 				<div class="form-group">
-					<label class="m-b-10">Horario término</label>
+					<label class="m-b-10">Horario t&eacute;rmino</label>
 					<select 
 						class="form-control selectpicker horario-termino" 
 						name="data[Filtro][horario_termino]"
@@ -90,7 +90,7 @@
 		<?php if ($filtro_nombre_docente): ?>
 			<div class="col-md-2">
 				<div class="form-group">
-					<label for="">Nombre Docente<span title="Se desplegará un listado de opciones coincidentes con su búsqueda." data-toggle="tooltip"><i class="fa fa-info-circle"></i></span></label>
+					<label for="">Nombre Docente<span title="Se desplegar&aacute; un listado de opciones coincidentes con su b&uacute;squeda." data-toggle="tooltip"><i class="fa fa-info-circle"></i></span></label>
 					<input 
 						class="form-control autocompletable-input" 
 						type="text" 
@@ -110,7 +110,7 @@
 		<?php if ($filtro_nombre_asignatura): ?>
 			<div class="col-md-2">
 				<div class="form-group">
-					<label for="">Nombre Asignatura <span title="Se desplegará un listado de opciones coincidentes con su búsqueda." data-toggle="tooltip"><i class="fa fa-info-circle"></i></span></label>
+					<label for="">Nombre Asignatura <span title="Se desplegar&aacute; un listado de opciones coincidentes con su b&uacute;squeda." data-toggle="tooltip"><i class="fa fa-info-circle"></i></span></label>
 					<input 
 						class="form-control autocompletable-input" 
 						type="text" 
@@ -171,19 +171,19 @@
 			var fecha_inicio = $('#form-filtro-basico .fecha-inicio').val();
 			var fecha_termino = $('#form-filtro-basico .fecha-termino').val();
 			if(!fechaCorrecta(fecha_inicio,fecha_termino)){
-				notifyUser('La fecha de término no puede ser mayor a la fecha de inicio.','danger');
+				notifyUser('La fecha de t&eacute;rmino no puede ser menor a la fecha de inicio.','danger');
 				return false;	
 			}
 		<?php endif; ?>
 		<?php if($filtro_horarios): ?>
 			var horario_inicio = $('#form-filtro-basico .horario-inicio').val();
 			if(horario_inicio == ''){
-				notifyUser('El horario de inicio no puede estar vacío.','danger');
+				notifyUser('El horario de inicio no puede estar vac&iacute;o.','danger');
 				return false;	
 			}
 			var horario_termino = $('#form-filtro-basico .horario-termino').val();
 			if(horario_termino == ''){
-				notifyUser('El horario de término	 no puede estar vacío.','danger');
+				notifyUser('El horario de t&eacute;rmino	 no puede estar vac&iacute;o.','danger');
 				return false;	
 			}
 		<?php endif; ?>

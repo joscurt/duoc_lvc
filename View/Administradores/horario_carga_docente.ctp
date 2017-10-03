@@ -10,7 +10,7 @@
 		<div class="row">
 			<div class="col-md-2">
 				<div class="form-group">
-		 			<label for="">Período:</label>
+		 			<label for="">Per&iacute;odo:</label>
 		 			<select name="data[Filter][PERIODO]" id="select-periodo" class="form-control selectpicker" data-live-search="true">
 		 				<option value="" ></option>
 		 				<?php foreach ($periodos as $key => $value): ?>
@@ -26,17 +26,17 @@
 			<div class="col-md-2" id="contenedor-select-semana">
 				<div class="form-group">
 	 				<label for="">Semana:</label>
- 					<label id="label-ningun-periodo">Seleccione un período</label>
+ 					<label id="label-ningun-periodo">Seleccione un per&iacute;odo</label>
  				</div>
  			</div>
 			<div class="col-md-2">
 				<div class="form-group">
-					<label for="select-campo">Búscar en el campo:</label>
+					<label for="select-campo">B&uacute;scar en el campo:</label>
 					<select name="select-campo" id="select-campo" class="form-control selectpicker">
 						<option value="">Seleccione</option>
-						<option value="campo_1">Búscar por ID Docente</option>
-						<option value="campo_2">Búscar por Rut Docente</option>
-						<option value="campo_3">Búscar por Nombre Docente</option>
+						<option value="campo_1">B&uacute;scar por ID Docente</option>
+						<option value="campo_2">B&uacute;scar por Rut Docente</option>
+						<option value="campo_3">B&uacute;scar por Nombre Docente</option>
 					</select>
 				</div>	
 			</div>
@@ -62,7 +62,7 @@
 			</div>
 			<div class="col-md-2">
 				<div class="form-group">
-					<button action="duoc" class="btn btn-success btn-block btn-submit" style="margin-top: 2px;">VER CARGA ACADÉMICA</button>
+					<button action="duoc" class="btn btn-success btn-block btn-submit" style="margin-top: 2px;">VER CARGA ACAD&Eacute;MICA</button>
 		 		</div>	
 			</div>
 		</div>
@@ -111,7 +111,7 @@
 	$('#select-periodo').on('change',function(e){
 		var periodo_seleccionado_id = $(this).val();
 		if(periodo_seleccionado_id == ''){
-			$('#contenedor-select-semana').html('<div class="form-group"><label for="">Semana:</label><label id="label-ningun-periodo">Seleccione un período</label></div>');
+			$('#contenedor-select-semana').html('<div class="form-group"><label for="">Semana:</label><label id="label-ningun-periodo">Seleccione un per&iacute;odo</label></div>');
 			return false;
 		}
 		$.ajax({
@@ -120,7 +120,7 @@
 			dataType: 'html'
 		})
 		.fail(function() {
-			notifyUser("Ha ocurrido un error al intentar obtner los datos, favor intente más tarde.","danger");
+			notifyUser("Ha ocurrido un error al intentar obtner los datos, favor intente m&aacute;s tarde.","danger");
 		})
 		.always(function(html) {
 			var textHtml = html;
@@ -198,7 +198,7 @@
 				dataType: 'html',
 			})
 			.fail(function(error_reader) {
-				notifyUser('Ha ocurrido un error inesperado. Intente más tarde.','info');
+				notifyUser('Ha ocurrido un error inesperado. Intente m&aacute;s tarde.','info');
 				$('#contenedor-calendario').empty();
 			})
 			.always(function(view) {
@@ -207,7 +207,7 @@
 				$('.content-calendar').show();
 			});
 		}else{
-			notifyUser('Es necesario ingresar al menos un campo de búsqueda referente a la información del docente', 'info');
+			notifyUser('Es necesario ingresar al menos un campo de b&uacute;squeda referente a la informaci&oacute;n del docente', 'info');
 		}
 	}
 </script>

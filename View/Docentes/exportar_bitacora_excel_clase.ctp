@@ -54,7 +54,7 @@
 		)
 	);
 	$objPHPExcel->setActiveSheetIndex()->mergeCells('B2:J2');
-	$objPHPExcel->setActiveSheetIndex()->setCellValue('B2', "BITACORA DE EVENTOS: ".$programacion_clase['ProgramacionClase']['SIGLA_SECCION'].' | FECHA DE EXPORTACIÓN: '.date('d-m-Y H:i:s'));
+	$objPHPExcel->setActiveSheetIndex()->setCellValue('B2', "BITACORA DE EVENTOS: ".$programacion_clase['ProgramacionClase']['SIGLA_SECCION'].' | FECHA DE EXPORTACI&Oacute;N: '.date('d-m-Y H:i:s'));
 	$objPHPExcel->setActiveSheetIndex()->getStyle("B2:J2")->applyFromArray($style_back_blue);
 	$objPHPExcel->setActiveSheetIndex()->getRowDimension("2")->setRowHeight(50);
 
@@ -65,7 +65,7 @@
 	$objPHPExcel->setActiveSheetIndex()->setCellValue('F4',"Horario");
 	$objPHPExcel->setActiveSheetIndex()->setCellValue('G4',"Docente");
 	$objPHPExcel->setActiveSheetIndex()->setCellValue('H4',"Tipo");
-	$objPHPExcel->setActiveSheetIndex()->setCellValue('I4',"Bitácora Registrada");
+	$objPHPExcel->setActiveSheetIndex()->setCellValue('I4',"Bit&aacute;cora Registrada");
 	$objPHPExcel->setActiveSheetIndex()->setCellValue('J4',"Fecha Ingreso Bitacora");
 	$objPHPExcel->setActiveSheetIndex()->getStyle("B4:J4")->applyFromArray($style_back_blue);
 	$objPHPExcel->setActiveSheetIndex()->getRowDimension("4")->setRowHeight(40);
@@ -103,7 +103,7 @@
 
 	$objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel2007');
 	header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
-	header('Content-Disposition: attachment;filename="Bitácora '.$programacion_clase['Asignatura']['NOMBRE'].'.'.date('dmY').'.xlsx"');
+	header('Content-Disposition: attachment;filename="Bit&aacute;cora '.$programacion_clase['Asignatura']['NOMBRE'].'.'.date('dmY').'.xlsx"');
 	header('Cache-Control: max-age=0');
 	$objWriter->save('php://output');
 	exit;

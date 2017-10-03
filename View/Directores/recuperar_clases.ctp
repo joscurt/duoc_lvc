@@ -16,7 +16,7 @@
         'Docente.NOMBRE'=>'Nombre docente',
         'Docente.COD_FUNCIONARIO'=>'ID docente',
         'Asignatura.NOMBRE'=>'Nombre asignatura',
-        'ProgramacionClase.SIGLA_SECCION'=>'Sigla - Sección',
+        'ProgramacionClase.SIGLA_SECCION'=>'Sigla - Secci&oacute;n',
         'ProgramacionClase.PERIODO'=>'Periodo',
         'ProgramacionClase.COD_JORNADA'=>'Jornada',
         'ProgramacionClase.detalle'=>'Detalle',
@@ -44,7 +44,7 @@
             ?>
             <div class="col-md-2">
                 <div class="form-group">
-                    <button class="btn btn-default cambiar-filtro-multiple" style="margin-top: 27px;">Filtro múltiple</button>
+                    <button class="btn btn-default cambiar-filtro-multiple" style="margin-top: 27px;">Filtro m&uacute;ltiple</button>
                 </div>
             </div>
         </div>
@@ -78,7 +78,7 @@
                             <option value="Docente.NOMBRE" <?php echo $ordenar == 'Docente.NOMBRE' ? 'selected="selected"':''; ?>>Nombre docente</option>
                             <option value="Docente.COD_DOCENTE" <?php echo $ordenar == 'Docente.COD_DOCENTE' ? 'selected="selected"':''; ?>>ID docente</option>
                             <option value="Asignatura.NOMBRE" <?php echo $ordenar == 'Asignatura.NOMBRE' ? 'selected="selected"':''; ?>>Nombre asignatura</option>
-                            <option value="ProgramacionClase.SIGLA_SECCION" <?php echo $ordenar == 'ProgramacionClase.SIGLA_SECCION' ? 'selected="selected"':''; ?> >Sigla - Sección</option>
+                            <option value="ProgramacionClase.SIGLA_SECCION" <?php echo $ordenar == 'ProgramacionClase.SIGLA_SECCION' ? 'selected="selected"':''; ?> >Sigla - Secci&oacute;n</option>
                             <option value="ProgramacionClase.ANHO,ProgramacionClase.SEMESTRE"<?php echo $ordenar == 'ProgramacionClase.ANHO,ProgramacionClase.SEMESTRE' ? 'selected="selected"':''; ?> >Periodo</option>
                             <option value="ProgramacionClase.HORA_INICIO" <?php echo $ordenar == 'ProgramacionClase.HORA_INICIO' ? 'selected="selected"':''; ?>>Horario</option>
                             <option value="ProgramacionClase.TIPO_EVENTO" <?php echo $ordenar == 'ProgramacionClase.TIPO_EVENTO' ? 'selected="selected"':''; ?>>Tipo</option>
@@ -100,7 +100,7 @@
                                     <th>#</th>
                                     <th class="una-linea">Fecha</th>
                                     <th>Nombre Asignatura</th>
-                                    <th class="una-linea">Sigla-Sección</th>
+                                    <th class="una-linea">Sigla-Secci&oacute;n</th>
                                     <th>Jornada</th>
                                     <th class="una-linea">Rut docente</th>
                                     <th>Apellido Paterno</th>
@@ -230,7 +230,8 @@
                                                 name="data[Excel][<?php echo $count ?>][TIPO_EVENTO]"
                                                 value="<?php echo isset($dato['ProgramacionClase']['TIPO_EVENTO']) ? $dato['ProgramacionClase']['TIPO_EVENTO']: ''; ?>">
                                             </input>    
-                                            <?php echo isset($dato['ProgramacionClase']['COD_PROGRAMACION']) ? $dato['ProgramacionClase']['COD_PROGRAMACION']: ''; ?>
+                                            <?php 
+                                            echo isset($dato['ProgramacionClase']['TIPO_EVENTO']) ? $dato['ProgramacionClase']['TIPO_EVENTO']: ''; ?>
                                         </td>
                                         <td>
                                             <input 

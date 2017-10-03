@@ -111,7 +111,7 @@
 
 	$objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel2007');
 	header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
-	header('Content-Disposition: attachment;filename="Bitácora '.$asignatura_horario['Asignatura']['NOMBRE'].'.'.date('dmY').'.xlsx"');
+	header('Content-Disposition: attachment;filename="Bit&aacute;cora '.$asignatura_horario['Asignatura']['NOMBRE'].'.'.date('dmY').'.xlsx"');
 	header('Cache-Control: max-age=0');
 	$objWriter->save('php://output');
 	exit;

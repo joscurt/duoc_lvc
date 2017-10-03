@@ -151,12 +151,12 @@
 			<div class="col-md-2">
 				<div class="form-group">
 					<label for="">CARRERA</label>
-					<p class="c-black f-500 m-b-20">Ingeniería en Informatica</p>
+					<p class="c-black f-500 m-b-20">Ingenier&iacute;a en Informatica</p>
 				</div>
 			</div>
 			<div class="col-md-2">
 				<div class="form-group">
-					<label for="">SECCIÓN</label>
+					<label for="">SECCI&Oacute;N</label>
 					<p class="c-black f-500 m-b-20">PL201202V</p>
 				</div>
 			</div>
@@ -169,7 +169,7 @@
 			<div class="col-md-2">
 				<div class="form-group">
 					<label for="">NOMBRE ASIGNATURA</label>
-					<p class="c-black f-500 m-b-20">Práctica Laboral</p>
+					<p class="c-black f-500 m-b-20">Pr&aacute;ctica Laboral</p>
 				</div>
 			</div>
 		</div>

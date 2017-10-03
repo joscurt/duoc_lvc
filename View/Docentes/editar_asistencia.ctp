@@ -81,12 +81,12 @@
 	<div class="modal-dialog">
 		<div class="modal-content">
 			<div class="modal-header">
-				<h4 class="modal-title">Bitácora</h4>
+				<h4 class="modal-title">Bit&aacute;cora</h4>
 			</div>
 			<div class="modal-body">
 				<form class="addEvent" role="form">
 					<div class="col-md-6">
-						<label for="">Bitácora Docente</label>
+						<label for="">Bit&aacute;cora Docente</label>
 						<div class="form-group">
 							<div class="fg-line">
 								<textarea style="max-height: 300px;height: 300px;"placeholder="Ingrese sus comentarios" rows="5" class="form-control"></textarea>
@@ -94,7 +94,7 @@
 						</div>
 					</div>
 					<div class="col-md-6">
-						<label for="">Ver Bitácoras</label>
+						<label for="">Ver Bit&aacute;coras</label>
 						<div class="form-group" style="max-height: 300px; overflow: auto;">
 							<ul>
 								<li><span class="badge" style="background: #607D8B;">10:22 (12/03/2016)</span> - <br> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iste architecto tempore dicta consectetur omnis sequi reiciendis asperiores, maxime et enim non recusandae harum id officiis, numquam, aliquam earum obcaecati. Delectus. <br> </li>
@@ -113,7 +113,7 @@
 				</form>
 			</div>
 			<div class="modal-footer">
-				<button type="submit" class="btn btn-xs btn-success" id="addEvent"><i class="fa fa-save"></i>&nbsp;Guardar Bitácora</button>
+				<button type="submit" class="btn btn-xs btn-success" id="addEvent"><i class="fa fa-save"></i>&nbsp;Guardar Bit&aacute;cora</button>
 				<button type="button" class="btn btn-xs btn-default" data-dismiss="modal"><i class="fa fa-times"></i>&nbsp;Cerrar</button>
 			</div>
 		</div>
@@ -323,7 +323,7 @@
 		<a  id="btn-iniciar-clase" class=" btn btn-sm btn-success"><i class="fa fa-play"></i>&nbsp;Iniciar Clase</a>
 		<a  id="btn-finalizar-clase" style="display:none;" class=" btn btn-sm bgm-lightgreen"><i class="md md-done-all"></i>&nbsp;Finalizar Clase</a>
 		<a  id="btn-registrar-asistencia" style="display:none;" class=" btn btn-sm bgm-orange"><i class="md md-assignment"></i>&nbsp;Registrar Asistencia</a>
-		<a  id="btn-agregar-bitacora" style="display:none;" class="btn bgm-blue btn-sm  animated fadeIn"><i class="fa fa-plus"></i>&nbsp;Agregar Bitácora</a>
+		<a  id="btn-agregar-bitacora" style="display:none;" class="btn bgm-blue btn-sm  animated fadeIn"><i class="fa fa-plus"></i>&nbsp;Agregar Bit&aacute;cora</a>
 		<a  id="btn-guardar-asistencia" style="display:none;" class=" btn btn-sm btn-success animated fadeIn"><i class="fa fa-save"></i>&nbsp;Guardar Asistencia</a>
 		<a  id="btn-salir" class="btn btn-sm btn-info"><i class="fa fa-arrow-left"></i>&nbsp;Salir</a>
 	</div>
@@ -339,11 +339,11 @@
 	            showCancelButton: true, 
 	            cancelButtonText: "<?php echo __('Cancelar'); ?>",   
 	            confirmButtonColor: "#DD6B55",   
-	            confirmButtonText: "Sí, Estoy Seguro!",   
+	            confirmButtonText: "S&iacute;, Estoy Seguro!",   
 	            closeOnConfirm: false 
 	        }, function(){
 	        	window.location = href;
-	        	//swal("Completado!", "Eliminado con éxito.", "success"); 
+	        	//swal("Completado!", "Eliminado con &eacute;xito.", "success"); 
 	        });
 		});
 		$('#btn-guardar-asistencia').on('click',function (event) {
@@ -354,11 +354,11 @@
 	            showCancelButton: true, 
 	            cancelButtonText: "<?php echo __('Cancelar'); ?>",   
 	            confirmButtonColor: "#DD6B55",   
-	            confirmButtonText: "Sí, Estoy Seguro!",   
+	            confirmButtonText: "S&iacute;, Estoy Seguro!",   
 	            closeOnConfirm: false 
 	        }, function(){
 	        	location.reload();
-	        	//swal("Completado!", "Eliminado con éxito.", "success"); 
+	        	//swal("Completado!", "Eliminado con &eacute;xito.", "success"); 
 	        });
 		});
 		$('#btn-iniciar-clase').on('click',function(){

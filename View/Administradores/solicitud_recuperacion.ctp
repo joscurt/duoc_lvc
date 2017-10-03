@@ -4,23 +4,27 @@
 		'Docente.NOMBRE'=>'Nombre docente',
 		'Docente.COD_FUNCIONARIO'=>'ID docente',
 		'Asignatura.NOMBRE'=>'Nombre asignatura',
-		'ProgramacionClase.SIGLA_SECCION'=>'Sigla - Sección',
+		'ProgramacionClase.SIGLA_SECCION'=>'Sigla - Secci&oacute;n',
 		'ProgramacionClase.COD_JORNADA'=>'Jornada',
 		'ProgramacionClase.horario'=>'Horario',
 		'ProgramacionClase.detalle'=>'Detalle',
 		'ProgramacionClase.sub_estado'=>'Sub-Estado',
 	);
 	$datos_filtro = null;
-	$date = new DateTime($periodoActual['Periodo']['FECHA_INICIO']);
-	$datos_filtro['Filtro']['fecha_inicio']=$date->format('d-m-Y');
+	/*$asd = date('d-m-Y',strtotime($prog_ade['ProgramacionClase']['FECHA_CLASE']));
 
+	$date = new DateTime($periodoActual['Periodo']['FECHA_INICIO']);
+	$datos_filtro['Filtro']['fecha_inicio']=$date->format('d-m-Y');*/
+
+
+	$datos_filtro['Filtro']['fecha_inicio'] = date('d-m-Y',strtotime($periodoActual['Periodo']['FECHA_INICIO']));
 	$date = new DateTime($periodoActual['Periodo']['FECHA_FIN']);
 	$datos_filtro['Filtro']['fecha_fin']=$date->format('d-m-Y');
 ?>
 <div class="row">
 	<div class="col-md-12">
 		<div class="block-header">
-			<h1>Solicitud de Recuperación</h1>
+			<h1>Solicitud de Recuperaci&oacute;n</h1>
 		</div>	
 	</div>
 </div>
@@ -36,7 +40,7 @@
 			?>
 			<div class="col-md-2">
 				<div class="form-group">
-					<button class="btn btn-default cambiar-filtro-multiple" style="margin-top: 27px;">Filtro múltiple</button>
+					<button class="btn btn-default cambiar-filtro-multiple" style="margin-top: 27px;">Filtro m&uacute;ltiple</button>
 				</div>
 			</div>
 		</div>
@@ -68,7 +72,7 @@
 		/*var fecha_inicio = $('#form-filtro-basico .fecha-inicio').val();
 		var fecha_termino = $('#form-filtro-basico .fecha-termino').val();
 		if(!fechaCorrecta(fecha_inicio,fecha_termino)){
-			notifyUser('La fecha de término no puede ser mayor a la fecha de inicio.','danger');
+			notifyUser('La fecha de t&eacute;rmino no puede ser mayor a la fecha de inicio.','danger');
 			return false;	
 		}*/
 		var imagen_cargando = loadImage('<?php echo $this->Html->image('loading.gif'); ?>');
@@ -80,7 +84,7 @@
 			dataType: 'html',
 			data: form.serialize(),
 		}).fail(function() {
-			notifyUser('Ha ocurrido un error inesperado. Intente más tarde.','danger');
+			notifyUser('Ha ocurrido un error inesperado. Intente m&aacute;s tarde.','danger');
 		}).always(function(view) {
 			$('#card-content-grilla').html(view);
 		});
@@ -93,7 +97,7 @@
 		/*var fecha_inicio = $('#form-filtro-multiple .fecha-inicio').val();
 		var fecha_termino = $('#form-filtro-multiple .fecha-termino').val();
 		if(!fechaCorrecta(fecha_inicio,fecha_termino)){
-			notifyUser('La fecha de término no puede ser mayor a la fecha de inicio.','danger');
+			notifyUser('La fecha de t&eacute;rmino no puede ser mayor a la fecha de inicio.','danger');
 			return false;	
 		}*/
 		
@@ -105,7 +109,7 @@
 			dataType: 'html',
 			data: form.serialize(),
 		}).fail(function() {
-			notifyUser('Ha ocurrido un error inesperado. Intente más tarde.','danger');
+			notifyUser('Ha ocurrido un error inesperado. Intente m&aacute;s tarde.','danger');
 		}).always(function(view) {
 			$('#card-content-grilla').html(view);
 		});
@@ -125,7 +129,7 @@
 			data: form.serialize(),
 		})
 		.fail(function() {
-			notifyUser('Ha ocurrido un error inesperado. Intente más tarde.','danger');
+			notifyUser('Ha ocurrido un error inesperado. Intente m&aacute;s tarde.','danger');
 		})
 		.always(function(view) {
 			$('#card-content-grilla').html(view);
@@ -179,7 +183,7 @@
             if(dias<0){
             	$(".fecha-inicio").val( periodo_ini );
             	$('.fecha-termino').data("DateTimePicker").minDate(periodo_ini);
-            	notifyUser('Se tomará como fecha de inicio: '+periodo_ini+', que corresponde al periodo actual.','info');
+            	notifyUser('Se tomar&aacute; como fecha de inicio: '+periodo_ini+', que corresponde al periodo actual.','info');
             }
         });
         $(".fecha-termino").blur(function() {
@@ -188,7 +192,7 @@
             if(dias>0){
             	$(".fecha-termino").val( periodo_fin );
             	$('.fecha-inicio').data("DateTimePicker").maxDate(periodo_fin);
-            	notifyUser('Se tomará como fecha final: '+periodo_fin+', que corresponde al periodo actual.','info');
+            	notifyUser('Se tomar&aacute; como fecha final: '+periodo_fin+', que corresponde al periodo actual.','info');
             }
         });
 	});

@@ -71,10 +71,10 @@
 	$objPHPExcel->setActiveSheetIndex()->setCellValue('B4',"Semana");
 	$objPHPExcel->setActiveSheetIndex()->setCellValue('C4',"Lunes");
 	$objPHPExcel->setActiveSheetIndex()->setCellValue('D4',"Martes");
-	$objPHPExcel->setActiveSheetIndex()->setCellValue('E4',"Miércoles");
+	$objPHPExcel->setActiveSheetIndex()->setCellValue('E4',"Mi&eacute;rcoles");
 	$objPHPExcel->setActiveSheetIndex()->setCellValue('F4',"Jueves");
 	$objPHPExcel->setActiveSheetIndex()->setCellValue('G4',"Viernes");
-	$objPHPExcel->setActiveSheetIndex()->setCellValue('H4',"Sábado");
+	$objPHPExcel->setActiveSheetIndex()->setCellValue('H4',"S&aacute;bado");
 	$objPHPExcel->setActiveSheetIndex()->getStyle("B4:H4")->applyFromArray($style_back_blue);
 	$objPHPExcel->setActiveSheetIndex()->getRowDimension("4")->setRowHeight(40);
 	

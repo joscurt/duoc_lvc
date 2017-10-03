@@ -9,7 +9,7 @@
 			<div class="col-md-12">
 				<div class="form-group">
 					<label for="">Nombre:</label>
-					<input type="text" name="data[Suspension][MOTIVO]" class="form-control" placeholder="Nombre del Motivo Suspensión Clases" value="<?php echo !empty($suspension_clase_bd['MotivoSuspensionClase']['MOTIVO']) ? $suspension_clase_bd['MotivoSuspensionClase']['MOTIVO'] : ''; ?>">
+					<input type="text" name="data[Suspension][MOTIVO]" class="form-control" placeholder="Nombre del Motivo Suspensi&oacute;n Clases" value="<?php echo !empty($suspension_clase_bd['MotivoSuspensionClase']['MOTIVO']) ? $suspension_clase_bd['MotivoSuspensionClase']['MOTIVO'] : ''; ?>">
 					<input type="hidden" name="data[Suspension][ID]" value="<?php echo !empty($suspension_clase_bd['MotivoSuspensionClase']['ID']) ? $suspension_clase_bd['MotivoSuspensionClase']['ID'] : ''; ?>">
 				</div>
 			</div>

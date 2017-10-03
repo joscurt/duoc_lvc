@@ -1,6 +1,6 @@
 <div class="row">
 	<div class="col-md-12">
-		<h2 style="border-bottom: 1px solid #0c253d; padding-bottom: 5px;">Tipo Justificación Legal</h2>
+		<h2 style="border-bottom: 1px solid #0c253d; padding-bottom: 5px;">Tipo Justificaci&oacute;n Legal</h2>
 	</div>
 	<div class="col-md-12">
 		<?php if (!empty($tipos_justificacion_legal)): ?>

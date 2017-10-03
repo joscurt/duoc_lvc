@@ -138,7 +138,7 @@ die('datos');*/
 		public function logoutCoordinador()
 		{
 			$this->Session->destroy();
-			$this->Session->setFlash('Sesión finalizada.','mensaje-exito');
+			$this->Session->setFlash('Sesi&oacute;n finalizada.','mensaje-exito');
 			$this->redirect('/admin');
 		}
 
@@ -146,7 +146,7 @@ die('datos');*/
 		public function logoutDocente()
 		{
 			$this->Session->destroy();
-			$this->Session->setFlash('Sesión finalizada.','mensaje-exito');
+			$this->Session->setFlash('Sesi&oacute;n finalizada.','mensaje-exito');
 			$this->redirect('/');
 		}
 
@@ -187,7 +187,7 @@ die('datos');*/
 		public function logoutDirector()
 		{
 			$this->Session->destroy();
-			$this->Session->setFlash('Sesión finalizada.','mensaje-exito');
+			$this->Session->setFlash('Sesi&oacute;n finalizada.','mensaje-exito');
 			$this->redirect('/directores');
 		}
 
@@ -229,7 +229,7 @@ die('datos');*/
 		public function logoutBackOffice()
 		{
 			$this->Session->destroy();
-			$this->Session->setFlash('Sesión finalizada.','mensaje-exito');
+			$this->Session->setFlash('Sesi&oacute;n finalizada.','mensaje-exito');
 			$this->redirect('/bo');
 		}
 

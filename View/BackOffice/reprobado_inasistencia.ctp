@@ -132,7 +132,7 @@
 			data: formulario,
 		})
 		.fail(function(error_reader) {
-			notifyUser('Ha ocurrido un error inesperado. Intente más tarde.','info');
+			notifyUser('Ha ocurrido un error inesperado. Intente m&aacute;s tarde.','info');
 			$('#contenedor-vistas .card-body').empty();
 		})
 		.always(function(view) {

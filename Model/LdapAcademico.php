@@ -58,7 +58,7 @@ class LdapAcademico {
 						'tipo' => null, #docente o alumno
 						'rut' => null,#rut sin digito verificador
 						'status' => 'error', #success o error
-						'mensaje' => 'Usuario o contraseña incorrectos' #ok o mensaje de error
+						'mensaje' => 'Usuario o contrase&ntilde;a incorrectos' #ok o mensaje de error
 					);	
 				}
 			}
@@ -67,7 +67,7 @@ class LdapAcademico {
 				'tipo' => null, #docente o alumno
 				'rut' => null,#rut sin digito verificador
 				'status' => 'error', #success o error
-				'mensaje' => 'Hubo un error en la conexión, favor intente más tarde' #ok o mensaje de error
+				'mensaje' => 'Hubo un error en la conexi&oacute;n, favor intente m&aacute;s tarde' #ok o mensaje de error
 			);
 		}
 	return $ldap_response;
@@ -109,7 +109,7 @@ if ($_POST['boton'] == "Conectar")
     }
     else
     {
-                           $msg="No Existe una Conexión Valida";
+                           $msg="No Existe una Conexi&oacute;n Valida";
     }
 }
 */

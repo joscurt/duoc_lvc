@@ -247,7 +247,7 @@
 		<!-- calendario -->
 		<div class="row">
 			<div class="col-md-3">
-				<h5><strong>Resumen Sección</strong></h5>
+				<h5><strong>Resumen Secci&oacute;n</strong></h5>
 			</div>
 			<div class="col-md-9" >
 				<div class="row">
@@ -648,7 +648,7 @@
 				<div class="col-md-special"><a  font-size-small href="#modal_registro_atraso" data-toggle="modal" data-target="#modal_registro_atraso" 	class="btn btn-default"><i style="color:#F9690E;"class="fa fa-check "></i>&nbsp;Registrar Atraso</a></div>
 				<div class="col-md-special"><a  font-size-small href="#modal_atraso" 	data-toggle="modal" data-target="#modal_atraso" 	class="btn btn-default"><i style="color:#446CB3;"class="fa fa-clock-o "></i>&nbsp;Retiro Anticipado</a></div>
 				<div class="col-md-special"><a  font-size-small href="#modal_remlazo"data-toggle="modal" data-target="#modal_remlazo" class="btn btn-default"><i style="color:#e74c3c;"class="fa fa-calendar-times-o "></i>&nbsp;Reemplazar Docente</a><br/><br/></div>
-				<div class="col-md-special"><a  font-size-small href="#modal_suspender" data-toggle="modal" data-target="#modal_suspender" 	class="btn btn-default"><i style="color:#F9690E;"class="fa fa-times "></i>&nbsp;Suspención Clase</a></div>
+				<div class="col-md-special"><a  font-size-small href="#modal_suspender" data-toggle="modal" data-target="#modal_suspender" 	class="btn btn-default"><i style="color:#F9690E;"class="fa fa-times "></i>&nbsp;Suspenci&oacute;n Clase</a></div>
 				<div class="col-md-special"><a  font-size-small href="#modal_recurso"data-toggle="modal" data-target="#modal_recurso" class="btn btn-default"><i style="color:green;"class="fa fa-edit "></i>&nbsp;Modificar Recurso</a></div>
 				<div class="col-md-special"><a  font-size-small href="<?php echo $this->Html->url(array('action'=>'ingresarAsistenciaAlumno')) ?>"class="btn btn-default"><i style="color:green;"class="fa fa-file-text-o "></i>&nbsp;Ingresar Asistencia </a></div>
 				<div class="col-md-special"><a  font-size-small target="_blanck"href="<?php echo $this->Html->url(array('action'=>'modificarAsistencia')); ?>" class="btn btn-default"><i style="color:green;"class="fa fa-edit "></i>&nbsp;Modificar Asistencia </a></div>
@@ -804,18 +804,18 @@
 			<br><br>
 			<div class="modal-body">
 				<div class="form-group">
-					<label for="select_suspender">Seleccione el motivo de la suspensión</label>
+					<label for="select_suspender">Seleccione el motivo de la suspensi&oacute;n</label>
 					<div class="select">
 						<select class="form-control selectpicker" data-live-search="true" id="select_suspender">
-							<option value="">Seleccione Motivo de Suspensión </option>
-							<option value="">MOTIVO DE SUSPENSIÓN 1</option>
-							<option value="">MOTIVO DE SUSPENSIÓN 2</option>
-							<option value="">MOTIVO DE SUSPENSIÓN 3</option>
+							<option value="">Seleccione Motivo de Suspensi&oacute;n </option>
+							<option value="">MOTIVO DE SUSPENSI&Oacute;N 1</option>
+							<option value="">MOTIVO DE SUSPENSI&Oacute;N 2</option>
+							<option value="">MOTIVO DE SUSPENSI&Oacute;N 3</option>
 						</select>
 					</div>
 				</div>
 				<div class="form-group">
-					<label for="">Observaciones de la Suspensión de la clase</label>
+					<label for="">Observaciones de la Suspensi&oacute;n de la clase</label>
 					<div class="fg-line">
 						<textarea style="height: 130px;"placeholder="Ingrese los motivos por los cuales desea suspender la clases" rows="" class="form-control"></textarea>
 					</div>
@@ -872,7 +872,7 @@
 							<select class="form-control selectpicker" data-live-search="true" >
 								<option value="">Seleccione Tipo</option>
 								<option value="">Atraso</option>
-								<option value="">Capacitación DUOC</option>
+								<option value="">Capacitaci&oacute;n DUOC</option>
 								<option value="">Docente no informa</option>
 								<option value="">Licencia Medica</option>
 								<option value="">Problema Personal</option>
@@ -889,7 +889,7 @@
 				</div>
 				<div class="row" style="display: none;" id="motivo_suspension">
 					<div class="col-md-12">
-						<label for="">Motivo de Suspención</label>
+						<label for="">Motivo de Suspenci&oacute;n</label>
 						<div class="form-group">
 							<div class="fg-line">
 								<textarea style="height: 80px;"placeholder="Ingrese sus motivos" rows="" class="form-control"></textarea>
@@ -966,7 +966,7 @@
 					</div>
 					<div class="col-md-6">
 						<div class="form-group" >
-							<label for=""><i class="fa fa-user"></i>&nbsp;Docente:</label>&nbsp;&nbsp;<span id="docente">Felipe Oyarzún</span>&nbsp;&nbsp;&nbsp;&nbsp;
+							<label for=""><i class="fa fa-user"></i>&nbsp;Docente:</label>&nbsp;&nbsp;<span id="docente">Felipe Oyarz&uacute;n</span>&nbsp;&nbsp;&nbsp;&nbsp;
 							<a class="btn_cambio_docente btn btn-xs btn-warning"><i class="fa fa-eye"></i>&nbsp;Cambiar Docente</a>
 						</div>	
 					</div>
@@ -1001,7 +1001,7 @@
 								<select class="form-control selectpicker" data-live-search="true" >
 									<option value="">Seleccione Tipo</option>
 									<option value="">Atraso</option>
-									<option value="">Capacitación DUOC</option>
+									<option value="">Capacitaci&oacute;n DUOC</option>
 									<option value="">Docente no informa</option>
 									<option value="">Licencia Medica</option>
 									<option value="">Problema Personal</option>
@@ -1380,20 +1380,20 @@
 										<th class="td-app">Sede</th>
 										<th class="td-app">Nombre Evento</th>
 										<th class="td-app">ID Evento</th>
-										<th class="td-app">Sigla-Sección</th>
+										<th class="td-app">Sigla-Secci&oacute;n</th>
 										<th class="td-app">Tipo Evento</th>
 										<th class="td-app">Jornada</th>
 										<th class="td-app">Cantidad Horas</th>
 										<th class="td-app">Fecha Inicio</th>
 										<th class="td-app">Fecha Termino</th>
-										<th class="td-app">Categoría Programcación</th>
+										<th class="td-app">Categor&iacute;a Programcaci&oacute;n</th>
 									</tr>
 								</thead>
 								<tbody>
 									<?php foreach ($alumnos as $key => $value): ?>
 										<tr>
 											<td>Antonio Varas</td>
-											<td>Matemáticas I</td>
+											<td>Matem&aacute;ticas I</td>
 											<td>00213</td>
 											<td>MAT100001V</td>
 											<td>TEO</td>
@@ -1414,7 +1414,7 @@
 			</div>
 			<div class="modal-footer">
 				<a href="<?php echo $this->Html->url(array('controller'=>'Administradores','action'=>'descargarCarga')); ?>" class="btn btn-default btn-sm"><i style="color: green;"class="fa fa-file-excel-o"></i>&nbsp;Descargar Carga Docente</a>
-				<button type="button" class="btn btn-sm btn-default" data-dismiss="modal"><i class="fa fa-times"></i>&nbsp;Cerrar  Información</button>
+				<button type="button" class="btn btn-sm btn-default" data-dismiss="modal"><i class="fa fa-times"></i>&nbsp;Cerrar  Informaci&oacute;n</button>
 			</div>
 		</div>
 	</div>
@@ -1508,7 +1508,7 @@
 				</form>
 			</div>
 			<div class="modal-footer">
-				<button type="button" class="btn btn-sm btn-default" data-dismiss="modal"><i class="fa fa-times"></i>&nbsp;Cerrar  Información</button>
+				<button type="button" class="btn btn-sm btn-default" data-dismiss="modal"><i class="fa fa-times"></i>&nbsp;Cerrar  Informaci&oacute;n</button>
 			</div>
 		</div>
 	</div>

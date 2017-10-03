@@ -200,7 +200,7 @@
 </div>
 <div class="row">
 	<div class="col-md-12">
-		<p><strong>* Se muestra todos los eventos asociados a la Asignatura/Sección</strong></p>
+		<p><strong>* Se muestra todos los eventos asociados a la Asignatura/Secci&oacute;n</strong></p>
 		<p><strong>* Asistencia: Porcentaje de asistencia promedio del Alumno a la fecha de un nuevo registro (asistencia).</strong></p>
 		<!-- <p>
 			<ul class="ul-leyenda-colores">

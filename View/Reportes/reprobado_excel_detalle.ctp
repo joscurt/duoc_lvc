@@ -60,7 +60,7 @@
 
 	$objPHPExcel->setActiveSheetIndex()->setCellValue('B4',"#");
 	$objPHPExcel->setActiveSheetIndex()->setCellValue('C4',"Nombre Asignatura");
-	$objPHPExcel->setActiveSheetIndex()->setCellValue('D4',"Sigla-Sección");
+	$objPHPExcel->setActiveSheetIndex()->setCellValue('D4',"Sigla-Secci&oacute;n");
 	$objPHPExcel->setActiveSheetIndex()->setCellValue('E4',"Rut Docente");
 	$objPHPExcel->setActiveSheetIndex()->setCellValue('F4',"Apellido Paterno");
 	$objPHPExcel->setActiveSheetIndex()->setCellValue('G4',"Apellido Materno");

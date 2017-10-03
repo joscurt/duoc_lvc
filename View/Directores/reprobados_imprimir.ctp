@@ -42,13 +42,13 @@
                 <tr>
                     <th>&nbsp;</th>
                     <th>Nombre Asignatura</th>
-                    <th class="una-linea">Sigla-Sección</th>
+                    <th class="una-linea">Sigla-Secci&oacute;n</th>
                     <th>Jornada</th>
                     <th class="una-linea">Rut docente</th>
                     <th>Apellido Paterno</th>
                     <th>Apellido Materno</th>
                     <th>Nombres</th>
-                    <th>N° Clases Registradas </th>
+                    <th>N&deg; Clases Registradas </th>
                     <th>Asistencia Promedio</th>
                 </tr>
             </thead>
@@ -60,9 +60,9 @@
                         <td><?php echo $value['AsignaturaHorario']['SIGLA_SECCION']; ?></td>
                         <td><?php echo $value['AsignaturaHorario']['COD_JORNADA']; ?></td>
                         <td><?php echo $value['Docente']['RUT'].'-'.$value['Docente']['DV']; ?></td>
-                        <td><?php echo $value['Docente']['APELLIDO_PAT']; ?></td>
-                        <td><?php echo $value['Docente']['APELLIDO_MAT']; ?></td>
-                        <td><?php echo $value['Docente']['NOMBRE']; ?></td>
+                        <td><?php echo utf8_encode($value['Docente']['APELLIDO_PAT']); ?></td>
+                        <td><?php echo utf8_encode($value['Docente']['APELLIDO_MAT']); ?></td>
+                        <td><?php echo utf8_encode($value['Docente']['NOMBRE']); ?></td>
                         <td><?php echo $value['AsignaturaHorario']['CLASES_REGISTRADAS']; ?></td>
                         <td><?php echo (float)$value['AsignaturaHorario']['ASIST_PROMEDIO'].'%'; ?></td>
                     </tr>

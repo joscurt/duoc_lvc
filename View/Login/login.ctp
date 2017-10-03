@@ -1,4 +1,5 @@
 
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
 <form id="form-login" method="POST">
 	<div class="lc-block toggled caja-login z-depth-5" id="l-login">
 		<span class="titulo bs-item z-depth-3" style="padding: 5px; font-size: 20px;font-weight: bold;">Libro Virtual de Clases</span>
@@ -9,10 +10,10 @@
 			<div class="col-md-10">
 				<div class="form-group">
 					<select id="select-person" class="form-control selectpicker">
-						<option value="">SELECCIONE UNA VISTA</option>
+						<option value="<?php echo $this->Html->url(array('action'=>'login')); ?>">DOCENTE</option>
 						<option value="<?php echo $this->Html->url(array('action'=>'loginBackOffice')); ?>">BACKOFFICE</option>
 						<option value="<?php echo $this->Html->url(array('action'=>'loginCoordinador')); ?>">COORDINADOR DOCENTE</option>
-						<option value="<?php echo $this->Html->url(array('action'=>'login')); ?>">DOCENTE</option>
+
 						<option value="<?php echo $this->Html->url(array('action'=>'loginDirector')); ?>">DIRECTORES</option>
 					</select>
 				</div>
@@ -47,7 +48,7 @@
 							class="form-control"
 							required="required"  
 							name="data[User][password]"
-							placeholder="Contraseña">
+							placeholder="Contrase&#241;a">
 					</div>
 				</div>
 			</div>
@@ -57,7 +58,7 @@
 			style="background: #34495e;border: 2px solid #ddd;" 
 			class="btn btn-login btn-danger btn-float">
 			<i style="color: #FCA60A;" class="md md-arrow-forward"></i></button>
-			<span><strong>Versión QA 3 - Fecha:14/09/2017</strong></span>
+			<span><strong>Versi&oacute;n QA 3 - Fecha:14/09/2017</strong></span>
 	</div>
 </form>
 <script>

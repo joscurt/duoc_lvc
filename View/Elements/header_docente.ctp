@@ -17,7 +17,7 @@
 	</div>
 	<div class="col-md-2">
 		<div class="form-group">
-			<label for="">SIGLA-SECCIÓN</label>
+			<label for="">SIGLA-SECCI&Oacute;N</label>
 			<p class="c-black f-500 m-b-20">
 				<?php echo isset($asignatura_horario['AsignaturaHorario']['SIGLA_SECCION'])?$asignatura_horario['AsignaturaHorario']['SIGLA_SECCION']:null;  ?>
 			</p>

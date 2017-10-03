@@ -57,12 +57,12 @@
 	<div class="modal-dialog">
 		<div class="modal-content">
 			<div class="modal-header">
-				<h4 class="modal-title">Bitácora</h4>
+				<h4 class="modal-title">Bit&aacute;cora</h4>
 			</div>
 			<div class="modal-body">
 				<form class="addEvent" role="form">
 					<div class="col-md-6">
-						<label for="">Bitácora Docente</label>
+						<label for="">Bit&aacute;cora Docente</label>
 						<div class="form-group">
 							<div class="fg-line">
 								<textarea style="max-height: 300px;height: 300px;"placeholder="Ingrese sus comentarios" rows="5" class="form-control"></textarea>
@@ -70,7 +70,7 @@
 						</div>
 					</div>
 					<div class="col-md-6">
-						<label for="">Ver Bitácoras</label>
+						<label for="">Ver Bit&aacute;coras</label>
 						<div class="form-group" style="max-height: 300px; overflow: auto;">
 							<ul>
 								<li><span class="badge" style="background: #607D8B;">10:22 (12/03/2016)</span> - <br> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iste architecto tempore dicta consectetur omnis sequi reiciendis asperiores, maxime et enim non recusandae harum id officiis, numquam, aliquam earum obcaecati. Delectus. <br> </li>
@@ -89,7 +89,7 @@
 				</form>
 			</div>
 			<div class="modal-footer">
-				<button type="submit" class="btn btn-xs btn-success" id="addEvent"><i class="fa fa-save"></i>&nbsp;Guardar Bitácora</button>
+				<button type="submit" class="btn btn-xs btn-success" id="addEvent"><i class="fa fa-save"></i>&nbsp;Guardar Bit&aacute;cora</button>
 				<button type="button" class="btn btn-xs btn-default" data-dismiss="modal"><i class="fa fa-times"></i>&nbsp;Cerrar</button>
 			</div>
 		</div>
@@ -109,18 +109,18 @@
 			<div class="col-md-2">
 				<div class="form-group">
 					<label for="">CARRERA</label>
-					<p class="c-black f-500 m-b-20">Ingeniería en Informatica</p>
+					<p class="c-black f-500 m-b-20">Ingenier&iacute;a en Informatica</p>
 				</div>
 			</div>
 			<div class="col-md-3">
 				<div class="form-group">
 					<label for="">NOMBRE ASIGNATURA</label>
-					<p class="c-black f-500 m-b-20">Nivelación Matemáticas</p>
+					<p class="c-black f-500 m-b-20">Nivelaci&oacute;n Matem&aacute;ticas</p>
 				</div>
 			</div>
 			<div class="col-md-2">
 				<div class="form-group">
-					<label for="">SIGLA-SECCIÓN</label>
+					<label for="">SIGLA-SECCI&Oacute;N</label>
 					<p class="c-black f-500 m-b-20">PL201202V</p>
 				</div>
 			</div>
@@ -207,7 +207,7 @@
 			</thead>
 			<tbody>
 				<tr>
-					<td style="text-align: left;">MAT100-009(T) - Nivelación Matemática</td>
+					<td style="text-align: left;">MAT100-009(T) - Nivelaci&oacute;n Matem&aacute;tica</td>
 					<td>8:31 - 10:00</td>
 					<td>AO-311</td>
 					<td>TEO</td>
@@ -271,7 +271,7 @@
 <div class="card">
 	<div class="card-padding card-body" align="center">
 	<a href="<?php echo $this->Html->url(array('action'=>'verClase')) ?>"  class=" btn  btn-sm btn-info "><i class="fa fa-arrow-left"></i>&nbsp;Volver</a>
-		<a data-toggle="modal" data-target="#modalDefault" href="#modalDefault"  class=" btn  btn-sm btn-default "><i class="fa fa-search"></i>&nbsp;Ver Bitácora</a>
+		<a data-toggle="modal" data-target="#modalDefault" href="#modalDefault"  class=" btn  btn-sm btn-default "><i class="fa fa-search"></i>&nbsp;Ver Bit&aacute;cora</a>
 		<a style="margin-left: 10px;"class=" btn btn-sm btn-success"><i class="fa fa-save"></i>&nbsp;Guardar Asistencia</a>
 	</div>
 </div>
@@ -279,12 +279,12 @@
 	<div class="modal-dialog">
 		<div class="modal-content">
 			<div class="modal-header">
-				<h4 class="modal-title">Bitácora Clase MAT100-009(T) - Nivelación Matemática</h4>
+				<h4 class="modal-title">Bit&aacute;cora Clase MAT100-009(T) - Nivelaci&oacute;n Matem&aacute;tica</h4>
 			</div>
 			<div class="modal-body">
 				<form class="addEvent" role="form">
 					<div class="form-group" style="max-height: 500px;overflow: auto;">
-						<label for="eventName">Bitácora</label>
+						<label for="eventName">Bit&aacute;cora</label>
 						<div class="fg-line">
 							<span class="badge">10:00 (12/06/2016)</span><br>
 							<textarea disabled="disabled" class="form-control" name="" id="" style="height: 100px;" cols="30" rows="10">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sit quia laboriosam minima autem libero minus numquam sed facere temporibus. Quos unde iusto nulla eaque ad necessitatibus voluptas nemo omnis tempora.</textarea>
@@ -300,7 +300,7 @@
 			</div>
 			
 			<div class="modal-footer">
-				<button type="submit" class="btn btn-xs btn-default" id="addEvent"><i style="color:red;"class="fa fa-file-pdf-o"></i>&nbsp;Exportar Bitácora</button>
+				<button type="submit" class="btn btn-xs btn-default" id="addEvent"><i style="color:red;"class="fa fa-file-pdf-o"></i>&nbsp;Exportar Bit&aacute;cora</button>
 				<button type="button" class="btn btn-xs btn-default" data-dismiss="modal"><i class="fa fa-times"></i>&nbsp;Cerrar</button>
 			</div>
 		</div>

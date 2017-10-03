@@ -1,3 +1,4 @@
+<!-- INDEX COORDINADOR DOCENTE -->
 <style>
     .ui-autocomplete {
         max-height: 140px;
@@ -6,7 +7,9 @@
         padding-right: 20px;
         z-index: 1200;
     }
-    * html .ui-autocomplete {height: 100px;}
+    * html .ui-autocomplete {
+    	height: 100px;
+    }
 </style>
 <?php 
 	$filtros_posibles = array(
@@ -14,7 +17,7 @@
 		'Docente.NOMBRE'=>'Nombre docente',
 		'Docente.COD_FUNCIONARIO'=>'ID docente',
 		'Asignatura.NOMBRE'=>'Nombre asignatura',
-		'ProgramacionClase.SIGLA_SECCION'=>'Sigla - Sección',
+		'ProgramacionClase.SIGLA_SECCION'=>'Sigla - Secci&oacute;n',
 		'ProgramacionClase.COD_JORNADA'=>'Jornada',
 		'ProgramacionClase.detalle'=>'Detalle',
 		'ProgramacionClase.ESTADO_PROGRAMACION_ID' => 'Estado',
@@ -39,7 +42,7 @@
 		<?php if($value['Funcionalidad']['ACTIVO']==1 && $value['PermisoFuncionalidad']['LECTURA']==1){	?>
 		<a href="<?php echo $this->Html->url(array('action'=>'crearReforzamiento')) ?>" class="btn bgm-orange btn-lg pull-right">Crear Reforzamiento</a>
 <?php	}}} ?>
-			<h1>Gestión de Clases</h1>
+			<h1>Gesti&oacute;n de Clases</h1>
 		</div>	
 	</div>
 </div>
@@ -56,7 +59,7 @@
 			?>
 			<div class="col-md-2 text-right">
 				<div class="form-group">
-					<button class="btn btn-default cambiar-filtro-multiple" style="margin-top: 27px;">Filtro múltiple</button>
+					<button class="btn btn-default cambiar-filtro-multiple" style="margin-top: 27px;">Filtro m&uacute;ltiple</button>
 				</div>
 			</div>
 		</div>
@@ -121,9 +124,9 @@
 		})
 		.fail(function() {
 
-			notifyUser('Ha ocurridosssss un error inesperado. Intente más tarde.','danger');
+			notifyUser('Ha ocurridosssss un error inesperado. Intente m&aacute;s tarde.','danger');
 			
-		//notifyUser('Ha ocurrido un error inesperado. Intente más tarde.' + error ,'danger');
+		//notifyUser('Ha ocurrido un error inesperado. Intente m&aacute;s tarde.' + error ,'danger');
         //console.log("Post error: " + error);
 		})
 		.always(function(view) {
@@ -144,7 +147,7 @@
 			data: form.serialize(),
 		})
 		.fail(function() {
-			notifyUser('Ha ocurrido un error inesperado. Intente más tarde.','danger');
+			notifyUser('Ha ocurrido un error inesperado. Intente m&aacute;s tarde.','danger');
 		})
 		.always(function(view) {
 			$('#card-content-grilla').html(view);
@@ -176,7 +179,7 @@
             if(dias<0){
             	$(".fecha-inicio").val( periodo_ini );
             	$('.fecha-termino').data("DateTimePicker").minDate(periodo_ini);
-            	notifyUser('Se tomará como fecha de inicio: '+periodo_ini+', que corresponde al periodo actual.','info');
+            	notifyUser('Se tomar&aacute; como fecha de inicio: '+periodo_ini+', que corresponde al periodo actual.','info');
             }
         });
         $(".fecha-termino").blur(function() {
@@ -185,9 +188,12 @@
             if(dias>0){
             	$(".fecha-termino").val( periodo_fin );
             	$('.fecha-inicio').data("DateTimePicker").maxDate(periodo_fin);
-            	notifyUser('Se tomará como fecha final: '+periodo_fin+', que corresponde al periodo actual.','info');
+            	notifyUser('Se tomar&aacute; como fecha final: '+periodo_fin+', que corresponde al periodo actual.','info');
             }
         });
 	 });
+	 $('.date-time-picker').datetimepicker({
+		format: 'DD-MM-YYYY',
+	});
 	 // -----------------------------------------------------------------
 </script>

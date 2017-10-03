@@ -128,7 +128,7 @@
 	);
 	$objPHPExcel->setActiveSheetIndex(0);
 	$objPHPExcel->setActiveSheetIndex()->mergeCells('B2:J2');
-	$objPHPExcel->setActiveSheetIndex()->setCellValue('B2', "Histórico Asistencia Todo : ".$asignatura_horario['AsignaturaHorario']['SIGLA_SECCION'].' | '.date('d-m-Y H:i'));
+	$objPHPExcel->setActiveSheetIndex()->setCellValue('B2', "Hist&oacute;rico Asistencia Todo : ".$asignatura_horario['AsignaturaHorario']['SIGLA_SECCION'].' | '.date('d-m-Y H:i'));
 	$objPHPExcel->setActiveSheetIndex()->getStyle("B2:J2")->applyFromArray($style_back_blue);
 	$objPHPExcel->setActiveSheetIndex()->getRowDimension("2")->setRowHeight(50);
 	#ORANGE
@@ -150,7 +150,7 @@
 	$objPHPExcel->setActiveSheetIndex()->getColumnDimension('C')->setWidth(30);
 	$objPHPExcel->setActiveSheetIndex()->getStyle("C6")->applyFromArray($cell_normal);
 
-	$objPHPExcel->setActiveSheetIndex()->setCellValue('D8',"Número Clase");
+	$objPHPExcel->setActiveSheetIndex()->setCellValue('D8',"N&uacute;mero Clase");
 	$objPHPExcel->setActiveSheetIndex()->mergeCells('D8:G8');
 	$objPHPExcel->setActiveSheetIndex()->setCellValue('D9',"Modalidad Clase");
 	$objPHPExcel->setActiveSheetIndex()->mergeCells('D9:G9');

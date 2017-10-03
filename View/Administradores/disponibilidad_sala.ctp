@@ -11,7 +11,7 @@
 			<div class="row">
 				<div class="col-md-2">
 					<div class="form-group">
-			 			<label for="">Período:</label>
+			 			<label for="">Per&iacute;odo:</label>
 			 			<select id="select-periodo" name="data[Filter][PERIODO]" class="form-control selectpicker" data-live-search="true">
 			 				<option value=""></option>
 			 				<?php foreach ($periodos as $key => $value): ?>
@@ -52,7 +52,7 @@
 						<div class="form-group">
 			 				<label for="">Semana:</label>
 			 				<select class="form-control" >
-			 					<option value="">Requiere Período</option>
+			 					<option value="">Requiere Per&iacute;odo</option>
 			 				</select>
 		 				</div>
 		 			</div>
@@ -185,7 +185,7 @@
 									Semana 
 									<?php echo $value['Semana']['NUMERO_SEMANA']; ?> 
 									/ Lun <?php echo date('d-m-y',strtotime($value['Semana']['FECHA_INICIO'])); ?> a 
-									Sáb <?php echo date('d-m-y',strtotime($value['Semana']['FECHA_FIN'])); ?>	
+									S&aacute;b <?php echo date('d-m-y',strtotime($value['Semana']['FECHA_FIN'])); ?>	
 								</a>
 							<?php endforeach; ?>
 						</div>
@@ -216,7 +216,7 @@
 					data: { capacidad: $(this).val() },
 					dataType: "html"
 				}).fail(function(error_reader) {
-					notifyUser('Ha ocurrido un error inesperado. Intente más tarde.','info');
+					notifyUser('Ha ocurrido un error inesperado. Intente m&aacute;s tarde.','info');
 				}).always(function(htmlOptions) {
 					if (htmlOptions.indexOf("<error>") >= 0){
 						var mensaje_error = htmlOptions.replace('<error>','');
@@ -233,7 +233,7 @@
 	$('#select-periodo').on('change',function(e){
 		var periodo_seleccionado_id = $(this).val();
 		if(periodo_seleccionado_id == ''){
-			$('#contenedor-select-semana').html('<div class="form-group"><label for="">Semana:</label><select class="form-control"><option value="">Requiere Período</option></select></div>');
+			$('#contenedor-select-semana').html('<div class="form-group"><label for="">Semana:</label><select class="form-control"><option value="">Requiere Per&iacute;odo</option></select></div>');
 			return false;
 		}
 		$.ajax({
@@ -241,7 +241,7 @@
 			type: 'GET',
 			dataType: 'html'
 		}).fail(function() {
-			notifyUser("Ha ocurrido un error al intentar obtner los datos, favor intente más tarde.","danger");
+			notifyUser("Ha ocurrido un error al intentar obtner los datos, favor intente m&aacute;s tarde.","danger");
 		}).always(function(html) {
 			var textHtml = html;
 			if (textHtml.indexOf("<error>") >= 0){
@@ -312,7 +312,7 @@
 			dataType: 'html',
 		})
 		.fail(function(error_reader) {
-			notifyUser('Ha ocurrido un error inesperado. Intente más tarde.','info');
+			notifyUser('Ha ocurrido un error inesperado. Intente m&aacute;s tarde.','info');
 			$('#contenedor-calendario-salas').empty();
 		})
 		.always(function(view) {

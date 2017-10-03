@@ -53,6 +53,7 @@
 	}
 </style>
 <br>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
 <div class="card">
 	<div class="card-padding card-body">
 		<?php echo $this->element('header_docente'); ?>
@@ -120,7 +121,8 @@
 										# CALCULO EL PORCENTAJE DE ASISTENCIA DEL ALUMNO ================================================================================
 										$porcentaje = 0;
 										if (isset($indicadores_alumnos[$value['Alumno']['COD_ALUMNO']])) {
-											$porcentaje = $indicadores_alumnos[$value['Alumno']['COD_ALUMNO']]['CLASES_PRESENTE']*100/$clases_regulares_registradas;	
+											if($clases_regulares_registradas<0) # 02-10-2017 Luis Adan Agrega esta validacion debido que daba error por division de cero
+												$porcentaje = $indicadores_alumnos[$value['Alumno']['COD_ALUMNO']]['CLASES_PRESENTE']*100/$clases_regulares_registradas;	
 										}  # ============================================================================================================================
 
 										$color = ($porcentaje < $porcentaje_minimo_ri)?'red':'inherit';
@@ -162,7 +164,7 @@
 														class="form-control"
 														maxlength="300"
 														name="data[Alumno][<?php echo $key; ?>][OBSERVACIONES]"
-														placeholder="Máx. 300 carácteres"
+														placeholder="M&aacute;x. 300 car&aacute;cteres..."
 														type="text"
 														value="<?php echo $observaciones; ?>" />
 												</div>
@@ -174,8 +176,8 @@
 						</table>
 					</div>
 					<div class="col-md-12 text-left">
-						<strong style="color:#e9594a; display: none;" id="leyenda_reprobados">* Se muestran los Alumnos que el docente marcó en la columna RI</strong>
-						<strong style="color:#e9594a; display: none;" id="leyenda_reprobados_2">* Se muestra destacado en rojo todos aquellos alumnos que no cumplen con la condición de asistencia de la asignatura</strong>
+						<strong style="color:#e9594a; display: none;" id="leyenda_reprobados">* Se muestran los Alumnos que el docente marc&oacute; en la columna RI</strong>
+						<strong style="color:#e9594a; display: none;" id="leyenda_reprobados_2">* Se muestra destacado en rojo todos aquellos alumnos que no cumplen con la condici&oacute;n de asistencia de la asignatura</strong>
 					</div>
 				</div>
 			</div>
@@ -262,31 +264,31 @@
 			<img style="border:1px solid #ddd;" src="../../img/formato_excel.png">
 			<ul style="list-style:none;font-size:20px;margin-top: 15px;">
 				<li style="list-style:none;">
-					<i class="fa fa-check" style="color:green" aria-hidden="true"></i>&nbsp;&nbsp;Campos Obligatorios RUT, Nombres, Clases Presente, Clases Registradas, Sigla Sección.
+					<i class="fa fa-check" style="color:green" aria-hidden="true"></i>&nbsp;&nbsp;Campos Obligatorios RUT, Nombres, Clases Presente, Clases Registradas, Sigla Secci&oacute;n.
 				</li>
 				<li style="list-style:none;">
 					<i class="fa fa-check" style="color:green" aria-hidden="true"></i>&nbsp;&nbsp;No puedes dejar campos Obligatorios en blanco.
 				</li>
 				<li style="list-style:none;">
-					<i class="fa fa-check" style="color:green" aria-hidden="true"></i>&nbsp;&nbsp;Recuerda que los campos Clases Registradas y Clases Presente son númericos.
+					<i class="fa fa-check" style="color:green" aria-hidden="true"></i>&nbsp;&nbsp;Recuerda que los campos Clases Registradas y Clases Presente son n&uacute;mericos.
 				</li>
 				<li style="list-style:none;">
-					<i class="fa fa-check" style="color:green" aria-hidden="true"></i>&nbsp;&nbsp;El campo RUT debe ser de un Alumno de esta sección.
+					<i class="fa fa-check" style="color:green" aria-hidden="true"></i>&nbsp;&nbsp;El campo RUT debe ser de un Alumno de esta secci&oacute;n.
 				</li>
 				<li style="list-style:none;">
-					<i class="fa fa-check" style="color:green" aria-hidden="true"></i>&nbsp;&nbsp;La Sigla Sección debe corresponder a la Sigla de la Clase.
+					<i class="fa fa-check" style="color:green" aria-hidden="true"></i>&nbsp;&nbsp;La Sigla Secci&oacute;n debe corresponder a la Sigla de la Clase.
 				</li>
 				<li style="list-style:none;">
-					<i class="fa fa-check" style="color:green" aria-hidden="true"></i>&nbsp;&nbsp;El archivo Excel debe contener la Cabecera con los títulos del campo en el orden de la imagen.
+					<i class="fa fa-check" style="color:green" aria-hidden="true"></i>&nbsp;&nbsp;El archivo Excel debe contener la Cabecera con los t&iacute;tulos del campo en el orden de la imagen.
 				</li>
 				<li style="list-style:none;">
-					<i class="fa fa-check" style="color:green" aria-hidden="true"></i>&nbsp;&nbsp;El archivo Excel debe contener la Cabecera con los títulos del campo en el orden de la imagen.
+					<i class="fa fa-check" style="color:green" aria-hidden="true"></i>&nbsp;&nbsp;El archivo Excel debe contener la Cabecera con los t&iacute;tulos del campo en el orden de la imagen.
 				</li>
 			</ul>
 
         </div>
         <div class="modal-footer">
-			<a data-rel="tooltip" data-original-title="Acá puedes descargar el formato del excel que debes importar" style="background-color:#1F7244;float:left;" download="formato_plantilla_<?php echo $asignatura_horario['AsignaturaHorario']['SIGLA_SECCION']; ?>.xlsx" class="btn btn-warning" href="../../files/formato_plantilla.xlsx""> <i class="fa fa-file-excel-o" aria-hidden="true"></i>&nbsp;Descargar Formato Plantilla</a>	
+			<a data-rel="tooltip" data-original-title="Ac&aacute; puedes descargar el formato del excel que debes importar" style="background-color:#1F7244;float:left;" download="formato_plantilla_<?php echo $asignatura_horario['AsignaturaHorario']['SIGLA_SECCION']; ?>.xlsx" class="btn btn-warning" href="../../files/formato_plantilla.xlsx""> <i class="fa fa-file-excel-o" aria-hidden="true"></i>&nbsp;Descargar Formato Plantilla</a>	
 
           <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
         </div>
@@ -361,7 +363,7 @@
             showCancelButton: true, 
             cancelButtonText: "<?php echo __('Cancelar'); ?>",   
             confirmButtonColor: "#DD6B55",   
-            confirmButtonText: "Sí, Estoy Seguro!",   
+            confirmButtonText: "S&iacute;, Estoy Seguro!",   
             closeOnConfirm: false,
         }, function(){
         	window.location = "<?php echo $this->Html->url(array('action'=>'getEventos',$asignatura_horario['AsignaturaHorario']['COD_PERIODO'])); ?>";

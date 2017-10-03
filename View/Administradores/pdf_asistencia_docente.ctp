@@ -42,7 +42,7 @@
 			<label style="border-bottom:1px solid #ccc;">Docente</label>&nbsp;&nbsp;<?php echo !empty($docente)?$docente['Docente']['NOMBRE'].' '.$docente['Docente']['APELLIDO_PAT'].' '.$docente['Docente']['APELLIDO_MAT']:null; ?>
 		</td>
 		<td>
-			<label style="border-bottom:1px solid #ccc;">Sigla Sección</label>&nbsp;<?php echo $sigla_seccion; ?>
+			<label style="border-bottom:1px solid #ccc;">Sigla Secci&oacute;n</label>&nbsp;<?php echo $sigla_seccion; ?>
 		</td>
 		<td>
 			<label style="border-bottom:1px solid #ccc;">Desde</label>&nbsp;<?php echo $fecha_desde; ?>
@@ -60,7 +60,7 @@
 				<tr>
 					<th>&nbsp;</th>
 					<th>Fecha</th>
-					<th>Sigla-Sección</th>
+					<th>Sigla-Secci&oacute;n</th>
 					<th>ID Docente</th>
 					<th>Rut docente</th>
 					<th>Detalle</th>
@@ -70,7 +70,7 @@
 					<th>Hora fin</th>
 					<th>Registro fin</th>
 					<th>Total a recuperar</th>
-					<th>Módulos a recuperar</th>
+					<th>M&oacute;dulos a recuperar</th>
 				</tr>
 			</thead>
 		  	<tbody>

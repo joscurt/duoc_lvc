@@ -23,9 +23,9 @@
 		'motivo_rechazo_reforzamiento' =>'Motivo Rechazo Reforzamiento',
 		'motivo_recuperar_atraso_retiro' =>'Motivo Recuperar Atraso y Retiro',
 		'motivo_reforzamiento' =>'Motivo Reforzamiento',
-		'motivo_suspension_clase' =>'Motivo Suspensión Clases',
+		'motivo_suspension_clase' =>'Motivo Suspensi&oacute;n Clases',
 		'porcentaje_para_ri' =>'Porcentaje para RI',
-		'tipo_justificacion_legal' =>'Tipo Justificación Legal',
+		'tipo_justificacion_legal' =>'Tipo Justificaci&oacute;n Legal',
 	);
 ?>
 <div class="row">
@@ -107,9 +107,9 @@
 					<label for="">Escuela</label>
 					<select class="form-control selectpicker" data-live-search="true" id="escuela" name="escuela">
 						<option>Seleccionar</option>
-						<option>Escuela de Diseño</option>
-						<option>Escuela de Diseño</option>
-						<option>Escuela de Diseño</option>
+						<option>Escuela de Dise&ntilde;o</option>
+						<option>Escuela de Dise&ntilde;o</option>
+						<option>Escuela de Dise&ntilde;o</option>
 					</select>
 				</div>
 			</div>
@@ -118,9 +118,9 @@
 					<label for="">Carrera</label>
 					<select class="form-control selectpicker" data-live-search="true" id="carrera" name="carrera">
 						<option>Seleccionar</option>
-						<option>Técnico en Producción Industrial de Vestuario</option>
-						<option>Técnico en Producción Industrial de Vestuario</option>
-						<option>Técnico en Producción Industrial de Vestuario</option>
+						<option>T&eacute;cnico en Producci&oacute;n Industrial de Vestuario</option>
+						<option>T&eacute;cnico en Producci&oacute;n Industrial de Vestuario</option>
+						<option>T&eacute;cnico en Producci&oacute;n Industrial de Vestuario</option>
 					</select>
 				</div>
 			</div>
@@ -149,40 +149,40 @@
 				  		<tr class="odd">
 						    <td>1</td>
 						    <td>San Carlos de Apoquindo</td>
-						    <td>Escuela de Diseño</td>
-						    <td>Técnico en Producción Industrial de Vestuario</td>
+						    <td>Escuela de Dise&ntilde;o</td>
+						    <td>T&eacute;cnico en Producci&oacute;n Industrial de Vestuario</td>
 						    <td><a class="btn btn-info" href="#" data-toggle="modal" data-target="#modal_editar_porcentaje_ri" title="Editar"><i class="fa fa-pencil-square" aria-hidden="true"></i></a></td>
 						    <td><a class="btn btn-danger" href="#" data-toggle="modal" data-target="#modal_eliminar_porcentaje_ri" title="Eliminar"><i class="fa fa-times" aria-hidden="true"></i></a></td>
 					  	</tr>	
 					  	<tr class="even">
 						    <td>2</td>
 						    <td>San Carlos de Apoquindo</td>
-						    <td>Escuela de Diseño</td>
-						    <td>Técnico en Producción Industrial de Vestuario</td>
+						    <td>Escuela de Dise&ntilde;o</td>
+						    <td>T&eacute;cnico en Producci&oacute;n Industrial de Vestuario</td>
 							<td><a class="btn btn-info" href="#" data-toggle="modal" data-target="#modal_editar_porcentaje_ri" title="Editar"><i class="fa fa-pencil-square" aria-hidden="true"></i></a></td>
 						    <td><a class="btn btn-danger" href="#" data-toggle="modal" data-target="#modal_eliminar_porcentaje_ri" title="Eliminar"><i class="fa fa-times" aria-hidden="true"></i></a></td>
 					  	</tr>
 					  	<tr class="odd">
 						    <td>3</td>
 						    <td>San Carlos de Apoquindo</td>
-						    <td>Escuela de Diseño</td>
-						    <td>Técnico en Producción Industrial de Vestuario</td>
+						    <td>Escuela de Dise&ntilde;o</td>
+						    <td>T&eacute;cnico en Producci&oacute;n Industrial de Vestuario</td>
 						    <td><a class="btn btn-info" href="#" data-toggle="modal" data-target="#modal_editar_porcentaje_ri" title="Editar"><i class="fa fa-pencil-square" aria-hidden="true"></i></a></td>
 						    <td><a class="btn btn-danger" href="#" data-toggle="modal" data-target="#modal_eliminar_porcentaje_ri" title="Eliminar"><i class="fa fa-times" aria-hidden="true"></i></a></td>
 					  	</tr>
 					  	<tr class="even">
 						    <td>4</td>
 						    <td>San Carlos de Apoquindo</td>
-						    <td>Escuela de Diseño</td>
-						    <td>Técnico en Producción Industrial de Vestuario</td>
+						    <td>Escuela de Dise&ntilde;o</td>
+						    <td>T&eacute;cnico en Producci&oacute;n Industrial de Vestuario</td>
 						    <td><a class="btn btn-info" href="#" data-toggle="modal" data-target="#modal_editar_porcentaje_ri" title="Editar"><i class="fa fa-pencil-square" aria-hidden="true"></i></a></td>
 						    <td><a class="btn btn-danger" href="#" data-toggle="modal" data-target="#modal_eliminar_porcentaje_ri" title="Eliminar"><i class="fa fa-times" aria-hidden="true"></i></a></td>
 					  	</tr>
 					  	<tr class="odd">
 						    <td>5</td>
 						    <td>San Carlos de Apoquindo</td>
-						    <td>Escuela de Diseño</td>
-						    <td>Técnico en Producción Industrial de Vestuario</td>
+						    <td>Escuela de Dise&ntilde;o</td>
+						    <td>T&eacute;cnico en Producci&oacute;n Industrial de Vestuario</td>
 						    <td><a class="btn btn-info" href="#" data-toggle="modal" data-target="#modal_editar_porcentaje_ri" title="Editar"><i class="fa fa-pencil-square" aria-hidden="true"></i></a></td>
 						    <td><a class="btn btn-danger" href="#" data-toggle="modal" data-target="#modal_eliminar_porcentaje_ri" title="Eliminar"><i class="fa fa-times" aria-hidden="true"></i></a></td>
 					  	</tr>
@@ -221,9 +221,9 @@
 							<label for="">Escuela:</label>
 							<select class="form-control selectpicker" id="escuela" name="escuela">
 								<option>Seleccionar</option>
-								<option selected>Escuela de Diseño</option>
-								<option>Escuela de Diseño</option>
-								<option>Escuela de Diseño</option>
+								<option selected>Escuela de Dise&ntilde;o</option>
+								<option>Escuela de Dise&ntilde;o</option>
+								<option>Escuela de Dise&ntilde;o</option>
 							</select>
 						</div>
 					</div>
@@ -232,9 +232,9 @@
 							<label for="">Carrera:</label>
 							<select class="form-control selectpicker" id="carrera" name="carrera">
 								<option>Seleccionar</option>
-								<option selected>Técnico en Producción Industrial de Vestuario</option>
-								<option>Técnico en Producción Industrial de Vestuario</option>
-								<option>Técnico en Producción Industrial de Vestuario</option>
+								<option selected>T&eacute;cnico en Producci&oacute;n Industrial de Vestuario</option>
+								<option>T&eacute;cnico en Producci&oacute;n Industrial de Vestuario</option>
+								<option>T&eacute;cnico en Producci&oacute;n Industrial de Vestuario</option>
 							</select>
 						</div>
 					</div>
@@ -260,7 +260,7 @@
         		<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
         	</div>
             <div class="modal-body">
-				¿Seguro que desea eliminar <strong>San Carlos de Apoquindo</strong> > <strong>Escuela de Diseño</strong> > <strong>Técnico en Producción Industrial de Vestuario</strong>?
+				¿Seguro que desea eliminar <strong>San Carlos de Apoquindo</strong> > <strong>Escuela de Dise&ntilde;o</strong> > <strong>T&eacute;cnico en Producci&oacute;n Industrial de Vestuario</strong>?
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-danger">Eliminar</button>
@@ -295,9 +295,9 @@
 							<label for="">Escuela:</label>
 							<select class="form-control selectpicker" id="escuela" name="escuela">
 								<option>Seleccionar</option>
-								<option>Escuela de Diseño</option>
-								<option>Escuela de Diseño</option>
-								<option>Escuela de Diseño</option>
+								<option>Escuela de Dise&ntilde;o</option>
+								<option>Escuela de Dise&ntilde;o</option>
+								<option>Escuela de Dise&ntilde;o</option>
 							</select>
 						</div>
 					</div>
@@ -306,9 +306,9 @@
 							<label for="">Carrera:</label>
 							<select class="form-control selectpicker" id="carrera" name="carrera">
 								<option>Seleccionar</option>
-								<option>Técnico en Producción Industrial de Vestuario</option>
-								<option>Técnico en Producción Industrial de Vestuario</option>
-								<option>Técnico en Producción Industrial de Vestuario</option>
+								<option>T&eacute;cnico en Producci&oacute;n Industrial de Vestuario</option>
+								<option>T&eacute;cnico en Producci&oacute;n Industrial de Vestuario</option>
+								<option>T&eacute;cnico en Producci&oacute;n Industrial de Vestuario</option>
 							</select>
 						</div>
 					</div>
@@ -344,7 +344,7 @@
 			data:elemento_click.attr('type-response')=='json'? elemento_click.parents('form').serialize():{},
 		})
 		.fail(function(error_reader) {
-			notifyUser('Ha ocurrido un error inesperado. Intente más tarde.','info');
+			notifyUser('Ha ocurrido un error inesperado. Intente m&aacute;s tarde.','info');
 			$('#modal-generic .modal-content').empty();
 			$('#modal-generic').modal('hide');
 		})
@@ -369,7 +369,7 @@
 				dataType: 'html',
 			})
 			.fail(function(error_reader) {
-				notifyUser('Ha ocurrido un error inesperado. Intente más tarde.','info');
+				notifyUser('Ha ocurrido un error inesperado. Intente m&aacute;s tarde.','info');
 				$('#contenedor-vistas .card-body').empty();
 			})
 			.always(function(view) {

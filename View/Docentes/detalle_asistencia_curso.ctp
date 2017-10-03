@@ -19,13 +19,13 @@
 				<tr>
 					<td class="text-center"><?php echo $key +1;?></td>
 					<td class="text-center"><?php echo strtoupper($value['Alumno']['RUT']); ?></td>
-					<td class="text-left"><?php echo strtoupper($value['Alumno']['APELLIDO_PAT']); ?></td>
-					<td class="text-left"><?php echo strtoupper($value['Alumno']['APELLIDO_MAT']); ?></td>
+					<td class="text-left"><?php echo strtoupper(utf8_encode($value['Alumno']['APELLIDO_PAT'])); ?></td>
+					<td class="text-left"><?php echo strtoupper(utf8_encode($value['Alumno']['APELLIDO_MAT'])); ?></td>
 					<td class="text-left">
 						<a 
 							style="cursor: pointer; " 
 							data-dd="<?php echo $value['Alumno']['ID']; ?>"
-							class="alumno_active"><?php echo strtoupper($value['Alumno']['NOMBRES']); ?></a>
+							class="alumno_active"><?php echo strtoupper(utf8_encode($value['Alumno']['NOMBRES'])); ?></a>
 					</td>
 					<td  class="text-center"><?php echo isset($indicadores[$value['Alumno']['ID']])?$indicadores[$value['Alumno']['ID']]['CLASES_PRESENTE']:0; ?></td>
 					<td  class="text-center"><?php echo isset($indicadores[$value['Alumno']['ID']])?$indicadores[$value['Alumno']['ID']]['CLASES_AUSENTE']:0; ?></td>
@@ -49,7 +49,7 @@
 	<div class="row">
 		<div class="col-md-12">
 			<ul>
-				<li>La "Asistencia" considera solo las Clases Regulares de la asignatura sección, descontando las clases suspendidas</li>
+				<li>La "Asistencia" considera solo las Clases Regulares de la asignatura secci&oacute;n, descontando las clases suspendidas</li>
 				<li>La "Asistencia Actual" considera la asistencia del alumno solo a las Clases Regulares en las que se ha registrado la asistencia</li>
 			</ul>
 		</div>

@@ -51,7 +51,7 @@
 	</div>
 	<div class="col-md-2">
 		<div class="form-group">
-			<label for="">Buscar: <span title="Se desplegará un listado de opciones coincidentes con su búsqueda. Debe seleccionar una." data-toggle="tooltip"><i class="fa fa-info-circle"></i></span></label>
+			<label for="">Buscar: <span title="Se desplegar&aacute; un listado de opciones coincidentes con su b&uacute;squeda. Debe seleccionar una." data-toggle="tooltip"><i class="fa fa-info-circle"></i></span></label>
 			<input name="data[Filtro][autocomplete]" 
 				id="buscar-tipo" 
 				class="form-control" 
@@ -122,7 +122,7 @@
 		var fecha_inicio = $('#form-filtro-basico .fecha-inicio').val();
 		var fecha_termino = $('#form-filtro-basico .fecha-termino').val();
 		if(!fechaCorrecta(fecha_inicio,fecha_termino)){
-			notifyUser('La fecha de término no puede ser mayor a la fecha de inicio.','danger');
+			notifyUser('La fecha de t&eacute;rmino no puede ser menor a la fecha de inicio.','danger');
 			return false;	
 		}
 	});

@@ -66,7 +66,7 @@
 			<table class="table table-striped table-hover" id="table-eventos" >
 				<thead>
 					<tr>
-					<th class="td-app"><strong>N°</strong></th>
+					<th class="td-app"><strong>N&deg;</strong></th>
 						<th class="td-app"><strong>Rut</strong></th>
 						<th style="text-align: left;" class="td-app"><strong>Apellido Paterno</strong></th>
 						<th style="text-align: left;" class="td-app"><strong>Apellido Materno</strong></th>
@@ -89,9 +89,9 @@
 							<?php endif; ?>
 							<td class="text-center"><?php echo $key +1;?></td>
 							<td><?php echo $alumno['Alumno']['RUT'];?></td>
-							<td class="text-left"><?php echo strtoupper($alumno['Alumno']['APELLIDO_PAT']); ?></td>
-							<td class="text-left"><?php echo strtoupper($alumno['Alumno']['APELLIDO_MAT']); ?></td>
-							<td class="text-left"><?php echo strtoupper($alumno['Alumno']['NOMBRES']); ?></td>
+							<td class="text-left"><?php echo utf8_encode(strtoupper($alumno['Alumno']['APELLIDO_PAT'])); ?></td>
+							<td class="text-left"><?php echo utf8_encode(strtoupper($alumno['Alumno']['APELLIDO_MAT'])); ?></td>
+							<td class="text-left"><?php echo utf8_encode(strtoupper($alumno['Alumno']['NOMBRES'])); ?></td>
 
 							
 
@@ -173,7 +173,7 @@
 		
 		<!-- RFD11 VALIDA BOTON INICIAR CLASE SI NO ESTA A LA ESPERA DE AUTORIZACION - MP 14-08 =================================================================== -->
 		<?php if ($programacion_clase['ProgramacionClase']['SUB_ESTADO_PROGRAMACION_ID']=='1') { ?>
-		<a  id="btn-iniciar-clase" class=" btn btn-sm btn-success disabled " ><i class="fa fa-exclamation-circle"></i>&nbsp;Autorización Pendiente</a>
+		<a  id="btn-iniciar-clase" class=" btn btn-sm btn-success disabled " ><i class="fa fa-exclamation-circle"></i>&nbsp;Autorizaci&oacute;n Pendiente</a>
 		<?php } 
 		else { 
 
@@ -198,7 +198,7 @@
 		<!-- FIN VALIDACION BOTON INICIAR CLASE ================================================= -->
 
 		<a  id="btn-finalizar-clase"  class=" btn btn-sm bgm-lightgreen disabled <?php echo $is_add?null:'display-none'; ?>"><i class="md md-done-all"></i>&nbsp;Finalizar Clase</a>
-		<a  id="btn-agregar-bitacora" class="btn bgm-blue btn-sm <?php echo $is_add?'display-none':null; ?> animated fadeIn"><i class="fa fa-plus"></i>&nbsp;Agregar Bitácora</a>
+		<a  id="btn-agregar-bitacora" class="btn bgm-blue btn-sm <?php echo $is_add?'display-none':null; ?> animated fadeIn"><i class="fa fa-plus"></i>&nbsp;Agregar Bit&aacute;cora</a>
 		<a  id="btn-registrar-asistencia" class=" btn btn-sm bgm-orange disabled <?php echo $is_add?null:'display-none'; ?>"><i class="md md-assignment"></i>&nbsp;Registrar Asistencia</a>
 		<a  id="btn-guardar-asistencia" class=" btn btn-sm btn-success animated fadeIn <?php echo $is_add?'display-none':null; ?>"><i class="fa fa-save"></i>&nbsp;Guardar Asistencia</a>
 		<a  id="btn-salir" class="btn btn-sm btn-info btn-salir-listado"><i class="fa fa-arrow-left"></i>&nbsp;Salir</a>
@@ -211,7 +211,7 @@
 			// DO009 15 MINUTOS ANTES DE CLASES
 			$('#MSG1').on('click', function(event){
 				event.preventDefault();
-				notifyUser('El botón estará activo 15 minutos antes de la hora de inicio de la clase');
+				notifyUser('El bot&oacute;n estar&aacute; activo 15 minutos antes de la hora de inicio de la clase');
 			});
 			</script>
 
@@ -230,13 +230,13 @@
 		if(clase_finalizada){
 			if (hay_modificaciones) {
 				swal({
-		            title: "<?php echo __('¿Está seguro de salir sin guardar los datos de la asistencia de los alumnos?'); ?>",   
+		            title: "<?php echo __('¿Est&aacute; seguro de salir sin guardar los datos de la asistencia de los alumnos?'); ?>",   
 		            text: "<?php echo __(''); ?>",
 		            type: "warning",
 		            showCancelButton: true, 
 		            cancelButtonText: "<?php echo __('Cancelar'); ?>",   
 		            confirmButtonColor: "#DD6B55",   
-		            confirmButtonText: "Sí, estoy seguro!",   
+		            confirmButtonText: "S&iacute;, estoy seguro!",   
 		            closeOnConfirm: false,
 		        }, function(){
 		        	window.location = href;
@@ -259,7 +259,7 @@
 			dataType: 'json',
 		})
 		.fail(function() {
-			notifyUser('Ha ocurrido un error inesperado. Intente más tarde.','danger');
+			notifyUser('Ha ocurrido un error inesperado. Intente m&aacute;s tarde.','danger');
 			elemento_click.removeClass('disabled');
 		})
 		.always(function(response) {
@@ -282,7 +282,7 @@
 			dataType: 'json',
 		})
 		.fail(function() {
-			notifyUser('Ha ocurrido un error inesperado. Intente más tarde.','danger');
+			notifyUser('Ha ocurrido un error inesperado. Intente m&aacute;s tarde.','danger');
 			elemento_click.removeClass('disabled');
 		})
 		.always(function(response) {
@@ -306,7 +306,7 @@
 			data: form.serialize(),
 		})
 		.fail(function() {
-			notifyUser('Ha ocurrido un error inesperado. Intente más tarde.','danger');
+			notifyUser('Ha ocurrido un error inesperado. Intente m&aacute;s tarde.','danger');
 		})
 		.always(function(response) {
 			notifyUser(response.message,response.status);

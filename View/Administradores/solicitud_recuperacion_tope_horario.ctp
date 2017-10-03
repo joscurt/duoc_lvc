@@ -16,7 +16,7 @@
 	<div class="row">
 		<div class="col-md-12">
 			<div class="block-header">
-				<h1>Solicitud de Recuperación</h1>
+				<h1>Solicitud de Recuperaci&oacute;n</h1>
 			</div>
 		</div>
 	</div>
@@ -146,7 +146,7 @@
 		                    </div>
 						</div>
 						<div class="col-md-12 m-b-20 content-detalle-labels">
-						<!-- CD005 José Morandé -->
+						<!-- CD005 Jos&eacute; Morand&eacute; -->
 							<label class="label-modulos">MODULOS A RECUPERAR: <?php echo round($programacion_clase['ProgramacionClase']['CANTIDAD_MODULOS']); ?></label><br>
 							<!-- <label class="label-tope">TOPE HORARIO: 8 de 35 alumnos presentar tope</label> -->
 						</div>
@@ -270,7 +270,7 @@
 		var minutos = calcularMinutos($('#select-hora-inicio').val(),$('#select-hora-fin').val());
 		modulos = minutos / 45;
 		if (modulos <=0) {
-			notifyUser('Debe seleccionar un horario de término que almenos recupere 1 modulo','info');
+			notifyUser('Debe seleccionar un horario de t&eacute;rmino que almenos recupere 1 modulo','info');
 			resetHoraFin();
 			return false;
 		}
@@ -411,12 +411,12 @@
 		elemento_click = $(this);
 		swal({
 			title: "<?php echo __('¿Esta seguro que desea Salir?'); ?>",   
-            text: "<?php echo __('Al salir perderá todo el trabajo realizado en esta pantalla.'); ?>",
+            text: "<?php echo __('Al salir perder&aacute; todo el trabajo realizado en esta pantalla.'); ?>",
             type: "warning",
             showCancelButton: true, 
             cancelButtonText: "<?php echo __('Cancelar'); ?>",   
             confirmButtonColor: "#DD6B55",   
-            confirmButtonText: "Sí, Estoy Seguro!",   
+            confirmButtonText: "S&iacute;, Estoy Seguro!",   
             closeOnConfirm: false 
 		},function(){
 			window.location = elemento_click.attr('href');
@@ -463,7 +463,7 @@
 		}
 	});
 
-/* CD003 JL.Morandé C */
+/* CD003 JL.Morand&eacute; C */
 	$(function(){
         $("#form-crear-reforzamiento").submit(function( event ) {
             var error='';
@@ -474,7 +474,7 @@
                 error+='Debe Seleccionar la Fecha Programada.<br>';
             }
             if ($.trim($('#form-textarea-observacion-justificacion').val()).length < 1) {
-                error+='Debe adicionar una observación.<br>';
+                error+='Debe adicionar una observaci&oacute;n.<br>';
             }
             if ($.trim($('#select-tipo-clase').val()).length < 1) {
                 error+='Debe Seleccionar el Tipo de Clase.<br>';

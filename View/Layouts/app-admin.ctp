@@ -145,7 +145,7 @@
 	                                    <a class="lv-item" href="">
 	                                        <div class="media">
 	                                            <div class="media-body">
-	                                                <div class="lv-title">Notificación</div>
+	                                                <div class="lv-title">Notificaci&oacute;n</div>
 	                                                <small class="lv-small">Cum sociis natoque penatibus et magnis dis parturient montes</small>
 	                                            </div>
 	                                        </div>
@@ -153,7 +153,7 @@
 	                                    <a class="lv-item" href="">
 	                                        <div class="media">
 	                                            <div class="media-body">
-	                                                <div class="lv-title">Notificación</div>
+	                                                <div class="lv-title">Notificaci&oacute;n</div>
 	                                                <small class="lv-small">Nunc quis diam diamurabitur at dolor elementum, dictum turpis vel</small>
 	                                            </div>
 	                                        </div>
@@ -161,7 +161,7 @@
 	                                    <a class="lv-item" href="">
 	                                        <div class="media">
 	                                            <div class="media-body">
-	                                                <div class="lv-title">Notificación</div>
+	                                                <div class="lv-title">Notificaci&oacute;n</div>
 	                                                <small class="lv-small">Phasellus a ante et est ornare accumsan at vel magnauis blandit turpis at augue ultricies</small>
 	                                            </div>
 	                                        </div>
@@ -169,7 +169,7 @@
 	                                    <a class="lv-item" href="">
 	                                        <div class="media">
 	                                            <div class="media-body">
-	                                                <div class="lv-title">Notificación</div>
+	                                                <div class="lv-title">Notificaci&oacute;n</div>
 	                                                <small class="lv-small">Ut vitae lacus sem ellentesque maximus, nunc sit amet varius dignissim, dui est consectetur neque</small>
 	                                            </div>
 	                                        </div>
@@ -177,7 +177,7 @@
 	                                    <a class="lv-item" href="">
 	                                        <div class="media">
 	                                            <div class="media-body">
-	                                                <div class="lv-title">Notificación</div>
+	                                                <div class="lv-title">Notificaci&oacute;n</div>
 	                                                <small class="lv-small">Proin laoreet commodo eros id faucibus. Donec ligula quam, imperdiet vel ante placerat</small>
 	                                            </div>
 	                                        </div>
@@ -200,7 +200,7 @@
 	                                <a data-action="fullscreen" ><i style="color:#34495e;"class="md md-settings-applications"></i> BackOffice</a>
 	                            </li>
 	                            <li>
-	                                <a data-action="clear-localstorage" href="<?php echo $this->Html->url(array('controller'=>'Administradores','action'=>'suspenderMasivo')) ?>"><i style="color:#e67e22;"class="md md-warning"></i>Suspensión de clases</a>
+	                                <a data-action="clear-localstorage" href="<?php echo $this->Html->url(array('controller'=>'Administradores','action'=>'suspenderMasivo')) ?>"><i style="color:#e67e22;"class="md md-warning"></i>Suspensi&oacute;n de clases</a>
 	                            </li>
 	                            <li>
 	                                <a data-action="fullscreen" href="<?php echo $this->Html->url(array('controller'=>'Administradores','action'=>'login')) ?>"><i style="color:red;"class="md md-settings-power"></i>Salir</a>

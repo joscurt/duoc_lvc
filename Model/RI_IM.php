@@ -89,7 +89,7 @@
 						)
 					),
 				),
-				'conditions'=>array('COD_ASIGNATURA_HORARIO'=>$cod_asignatura_horario, 'RI.R_I' =>1), 'order' => 'RI_IM.id ASC',
+				'conditions'=>array('COD_ASIGNATURA_HORARIO'=>$cod_asignatura_horario), 'order' => 'RI_IM.id ASC',
 			));
 #debug($this->getLastQuery());
 #debug($result);exit();

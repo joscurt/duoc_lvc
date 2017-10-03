@@ -14,7 +14,7 @@
 	<div class="card-body card-padding">
 		<div class="row">
 			<div class="col-md-12">
-				<h2 style="border-bottom: 1px solid #0c253d; padding-bottom: 5px;">Información Docente:</h2>
+				<h2 style="border-bottom: 1px solid #0c253d; padding-bottom: 5px;">Informaci&oacute;n Docente:</h2>
 				<table class="table table-striped" border="0" cellpadding="0" cellspacing="0">
 					<thead>
 						<tr>
@@ -27,18 +27,18 @@
 					<tbody>
 						<tr class="odd">
 							<td>12.345.678-9</td>
-							<td>Sepúlveda</td>
+							<td>Sep&uacute;lveda</td>
 							<td>Villegas</td>
 							<td>Juan Pablo</td>
 						</tr>	
 					</tbody>
 				</table>
-				<h2 style="border-bottom: 1px solid #0c253d; padding-bottom: 5px;">Información Clase:</h2>
+				<h2 style="border-bottom: 1px solid #0c253d; padding-bottom: 5px;">Informaci&oacute;n Clase:</h2>
 				<table class="table table-striped" border="0" cellpadding="0" cellspacing="0">
 					<thead>
 						<tr>
 							<th>Nombre asignatura</th>
-							<th>Sigla-Sección</th>
+							<th>Sigla-Secci&oacute;n</th>
 							<th>Jornada</th>
 							<th>Fecha programada</th>
 							<th>Horario</th>
@@ -47,7 +47,7 @@
 					</thead>
 					<tbody>
 						<tr class="odd">
-							<td>Técnicas de arquitectura de la información</td>
+							<td>T&eacute;cnicas de arquitectura de la informaci&oacute;n</td>
 							<td>DID6011-01</td>
 							<td>Vespertina</td>
 							<td>01-07-2016</td>
@@ -60,9 +60,9 @@
 				<table class="table table-striped" border="0" cellpadding="0" cellspacing="0">
 					<thead>
 						<tr>
-							<th>Módulos</th>
-							<th>Módulos programados</th>
-							<th>Módulos por recuperar</th>
+							<th>M&oacute;dulos</th>
+							<th>M&oacute;dulos programados</th>
+							<th>M&oacute;dulos por recuperar</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -77,12 +77,12 @@
 				<table id="justificacion" class="table table-striped" border="0" cellpadding="0" cellspacing="0" class="one-column">
 					<thead>
 						<tr>
-							<th>Justificación Legal</th>
+							<th>Justificaci&oacute;n Legal</th>
 						</tr>
 					</thead>
 					<tbody>
-						<tr class="odd"><td class="odd"><label>Tipo de Justificación Legal:</label> justificación legal ingresada por el Coordinador Docente.</td></tr>
-						<tr class="even"><td class="odd"><label>Observaciones:</label>Descripción ingresada por el Coordinador Docente.</td></tr>		
+						<tr class="odd"><td class="odd"><label>Tipo de Justificaci&oacute;n Legal:</label> justificaci&oacute;n legal ingresada por el Coordinador Docente.</td></tr>
+						<tr class="even"><td class="odd"><label>Observaciones:</label>Descripci&oacute;n ingresada por el Coordinador Docente.</td></tr>		
 					</tbody>
 				</table>
 			</div>

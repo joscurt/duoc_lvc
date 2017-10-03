@@ -88,7 +88,8 @@
 /**
  * Application wide charset encoding
  */
-	Configure::write('App.encoding', 'UTF-8');
+	#Configure::write('App.encoding', 'UTF-8');
+	Configure::write('App.encoding', 'ISO-8859-1'); #Agregado por Luis Adan 02-10-2017
 
 /**
  * To configure CakePHP *not* to use mod_rewrite and to
@@ -218,9 +219,12 @@
  * To use database sessions, run the app/Config/Schema/sessions.php schema using
  * the cake shell command: cake schema create Sessions
  */
-	Configure::write('Session', array(
-		'defaults' => 'php'
+ Configure::write('Session.save', 'cake');
+ 	Configure::write('Session', array(
+		'defaults' => 'cake',
+		
 	));
+	Configure::write('Session.timeout', '120');
 
 /**
  * A random string used in security hashing methods.

@@ -68,7 +68,7 @@
 			dataType: 'html',
 		})
 		.fail(function() {
-			notifyUser('Ha ocurrido un error inesperado. Intente más tarde.','info');
+			notifyUser('Ha ocurrido un error inesperado. Intente m&aacute;s tarde.','info');
 		})
 		.always(function(view) {
 			$('select.select-carrera').html(view);

@@ -14,7 +14,7 @@
 	<div class="card-body card-padding">
 		<div class="row">
 			<div class="col-md-12">
-				<h2 style="border-bottom: 1px solid #0c253d; padding-bottom: 5px;">Información Docente:</h2>
+				<h2 style="border-bottom: 1px solid #0c253d; padding-bottom: 5px;">Informaci&oacute;n Docente:</h2>
 				<table class="table table-striped" border="0" cellpadding="0" cellspacing="0">
 					<thead>
 						<tr>
@@ -33,12 +33,12 @@
 						</tr>	
 					</tbody>
 				</table>
-				<h2 style="border-bottom: 1px solid #0c253d; padding-bottom: 5px;">Información Clase:</h2>
+				<h2 style="border-bottom: 1px solid #0c253d; padding-bottom: 5px;">Informaci&oacute;n Clase:</h2>
 				<table class="table table-striped" border="0" cellpadding="0" cellspacing="0">
 					<thead>
 						<tr>
 							<th>Nombre asignatura</th>
-							<th>Sigla-Sección</th>
+							<th>Sigla-Secci&oacute;n</th>
 							<th>Jornada</th>
 							<th>Fecha programada</th>
 							<th>Horario</th>
@@ -68,7 +68,7 @@
 						</tr>
 					</thead>
 					<tbody>
-						<tr class="odd"><td class="odd"><label>Sigla-Sección:</label> <?php echo $info_editar_recuperacion['ProgramacionClase']['SIGLA_SECCION']; ?></td></tr>
+						<tr class="odd"><td class="odd"><label>Sigla-Secci&oacute;n:</label> <?php echo $info_editar_recuperacion['ProgramacionClase']['SIGLA_SECCION']; ?></td></tr>
 						<tr class="even"><td class="odd"><label>Fecha:</label> <?php echo date('d-m-Y',strtotime($info_editar_recuperacion['ProgramacionClase']['FECHA_CLASE'])); ?></td></tr>
 						<tr class="odd"><td class="odd"><label>Horario:</label> <?php echo date('H:i',strtotime($info_editar_recuperacion['ProgramacionClase']['HORA_INICIO'])).' a '.date('H:i',strtotime($info_editar_recuperacion['ProgramacionClase']['HORA_FIN'])); ?></td></tr>
 						<tr class="even"><td class="odd"><label>Sala:</label> <?php echo empty($info_editar_recuperacion['ProgramacionClase']['SALA_REEMPLAZO'])? $info_editar_recuperacion['Sala']['TIPO_SALA']:$info_editar_recuperacion['SalaReemplazo']['TIPO_SALA']; ?></td></tr>
@@ -168,7 +168,7 @@
 	        showCancelButton: true, 
 	        cancelButtonText: "<?php echo __('Cancelar'); ?>",   
 	        confirmButtonColor: "#DD6B55",   
-	        confirmButtonText: "Sí, Estoy Seguro!",   
+	        confirmButtonText: "S&iacute;, Estoy Seguro!",   
 	        closeOnConfirm: false,
 		},function(){
 			window.location ="<?php echo $this->Html->url(array('action'=>'reforzamientos')); ?>";
@@ -177,13 +177,13 @@
 	$('.btn-salir-modal').on('click',function(event){	
 		event.preventDefault();
 		swal({
-			title: "<?php echo __('¿Esta seguro que desea salir sin realizar ningún cambio?'); ?>",   
+			title: "<?php echo __('¿Esta seguro que desea salir sin realizar ning&uacute;n cambio?'); ?>",   
 	        text: "<?php echo __(''); ?>",
 	        type: "warning",
 	        showCancelButton: true, 
 	        cancelButtonText: "<?php echo __('Cancelar'); ?>",   
 	        confirmButtonColor: "#DD6B55",   
-	        confirmButtonText: "Sí, Estoy Seguro!",   
+	        confirmButtonText: "S&iacute;, Estoy Seguro!",   
 	        closeOnConfirm: true,
 		},function(){
 			$('#rechazar_reforzamiento').modal('hide');
@@ -198,7 +198,7 @@
 	        showCancelButton: true, 
 	        cancelButtonText: "<?php echo __('Cancelar'); ?>",   
 	        confirmButtonColor: "#DD6B55",   
-	        confirmButtonText: "Sí, Estoy Seguro!",   
+	        confirmButtonText: "S&iacute;, Estoy Seguro!",   
 	        closeOnConfirm: false,
 		},function(){
 			window.location ="<?php echo $this->Html->url(array('action'=>'autorizarReforzamiento',$info_editar_recuperacion['ProgramacionClase']['COD_PROGRAMACION'])); ?>";

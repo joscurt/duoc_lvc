@@ -74,10 +74,10 @@
 							</label>
 						</td>
 						<td class="text-center"><?php echo strtoupper($value['Alumno']['RUT']); ?></td>
-						<td class="text-left"><?php echo strtoupper($value['Alumno']['APELLIDO_PAT']); ?></td>
-						<td class="text-left"><?php echo strtoupper($value['Alumno']['APELLIDO_MAT']); ?></td>
+						<td class="text-left"><?php echo utf8_encode(strtoupper($value['Alumno']['APELLIDO_PAT'])); ?></td>
+						<td class="text-left"><?php echo utf8_encode(strtoupper($value['Alumno']['APELLIDO_MAT'])); ?></td>
 						<td class="text-left">
-							<?php echo strtoupper($value['Alumno']['NOMBRES']); ?>
+							<?php echo utf8_encode(strtoupper($value['Alumno']['NOMBRES'])); ?>
 						</td>
 						<td class="text-center" ><?php echo isset($indicadores_alumnos[$value['Alumno']['COD_ALUMNO']])? $indicadores_alumnos[$value['Alumno']['COD_ALUMNO']]['CLASES_PRESENTE']:0; ?></td>
 						<td class="text-center" ><?php echo isset($indicadores_alumnos[$value['Alumno']['COD_ALUMNO']])? $indicadores_alumnos[$value['Alumno']['COD_ALUMNO']]['CLASES_AUSENTE']:0; ?></td>

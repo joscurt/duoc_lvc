@@ -16,7 +16,7 @@
         'Docente.NOMBRE'=>'Nombre docente',
         'Docente.COD_FUNCIONARIO'=>'ID docente',
         'Asignatura.NOMBRE'=>'Nombre asignatura',
-        'ProgramacionClase.SIGLA_SECCION'=>'Sigla - Sección',
+        'ProgramacionClase.SIGLA_SECCION'=>'Sigla - Secci&oacute;n',
         'ProgramacionClase.PERIODO'=>'Periodo',
         'ProgramacionClase.COD_JORNADA'=>'Jornada',
     );
@@ -42,7 +42,7 @@
             ?>
             <div class="col-md-3">
                 <div class="form-group">
-                    <button class="btn btn-default cambiar-filtro-multiple" style="margin-top: 27px;">Filtro múltiple</button>
+                    <button class="btn btn-default cambiar-filtro-multiple" style="margin-top: 27px;">Filtro m&uacute;ltiple</button>
                 </div>
             </div>
         </div>
@@ -78,10 +78,10 @@
                             <option value="Docente.APELLIDO_PAT" <?php echo $ordenar == 'Docente.APELLIDO_PAT' ? 'selected="selected"':''; ?> >Apellido Paterno docente</option>
                             <option value="Docente.APELLIDO_MAT" <?php echo $ordenar == 'Docente.APELLIDO_MAT' ? 'selected="selected"':''; ?>>Apellido Materno docente</option>
                             <option value="Docente.NOMBRE" <?php echo $ordenar == 'Docente.NOMBRE' ? 'selected="selected"':''; ?>>Nombre docente</option>
-                            <option value="Docente.COD_DOCENTE" <?php echo $ordenar == 'Docente.COD_DOCENTE' ? 'selected="selected"':''; ?>>ID docente</option>
+                            <!--<option value="Docente.COD_DOCENTE" <?php# echo $ordenar == 'Docente.COD_DOCENTE' ? 'selected="selected"':''; ?>>ID docente</option> -->
                             <option value="Asignatura.NOMBRE" <?php echo $ordenar == 'Asignatura.NOMBRE' ? 'selected="selected"':''; ?>>Nombre asignatura</option>
-                            <option value="ProgramacionClase.SIGLA_SECCION" <?php echo $ordenar == 'ProgramacionClase.SIGLA_SECCION' ? 'selected="selected"':''; ?> >Sigla - Sección</option>
-                            <option value="ProgramacionClase.ANHO,ProgramacionClase.SEMESTRE"<?php echo $ordenar == 'ProgramacionClase.ANHO,ProgramacionClase.SEMESTRE' ? 'selected="selected"':''; ?> >Periodo</option>
+                            <option value="ProgramacionClase.SIGLA_SECCION" <?php echo $ordenar == 'ProgramacionClase.SIGLA_SECCION' ? 'selected="selected"':''; ?> >Sigla - Secci&oacute;n</option>
+                           <!-- <option value="ProgramacionClase.ANHO,ProgramacionClase.SEMESTRE"<?php #echo $ordenar == 'ProgramacionClase.ANHO,ProgramacionClase.SEMESTRE' ? 'selected="selected"':''; ?> >Periodo</option> -->
                         </select>
                     </div>
                 </div>
@@ -91,13 +91,14 @@
                             <tr>
                                 <th>&nbsp;</th>
                                 <th>Nombre Asignatura</th>
-                                <th class="una-linea">Sigla-Sección</th>
+                                <th>Modalidad</th>
+                                <th class="una-linea">Sigla-Secci&oacute;n</th>
                                 <th>Jornada</th>
                                 <th class="una-linea">Rut docente</th>
                                 <th>Apellido Paterno</th>
                                 <th>Apellido Materno</th>
                                 <th>Nombres</th>
-                                <th>N° Clases Registradas </th>
+                                <th>N&deg; Clases Registradas </th>
                                 <th>Asistencia Promedio</th>
                                 <th>Reprobado por Inasistencia</th>
                             </tr>
@@ -107,6 +108,7 @@
                                 <tr>
                                     <td><?php echo $count; ?></td>
                                     <td><?php echo $value['Asignatura']['NOMBRE']; ?></td>
+                                    <td><?php echo $value['AsignaturaHorario']['TEO_PRA'] ?></td>
                                     <td><?php echo $value['AsignaturaHorario']['SIGLA_SECCION']; ?></td>
                                     <td><?php echo $value['AsignaturaHorario']['COD_JORNADA']; ?></td>
                                     <td><?php echo $value['Docente']['RUT'].'-'.$value['Docente']['DV']; ?></td>

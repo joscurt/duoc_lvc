@@ -34,8 +34,8 @@
 						<th class="td-app text-center">Horario</th>
 						<th class="td-app text-left">Docente</th>
 						<th class="td-app text-center">Tipo</th>
-						<th class="td-app text-center" align="center">Bitácora Registrada</th>
-						<th class="td-app text-center">Bitácora Docente</th>
+						<th class="td-app text-center" align="center">Bit&aacute;cora Registrada</th>
+						<th class="td-app text-center">Bit&aacute;cora Docente</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -69,7 +69,7 @@
 									data-toggle="modal"  
 									class="btn btn-sm btn-default ver-bitacora" 
 									style="color: #2196f3;"
-									><i class="fa fa-search"></i>&nbsp;<?php echo 'Ver Bitácora'; ?></a>
+									><i class="fa fa-search"></i>&nbsp;<?php echo 'Ver Bit&aacute;cora'; ?></a>
 								<a   
 									data-target="#modalvacio" 
 									href="<?php echo $this->Html->url(array('action'=>'addBitacoraModal',$clase['ProgramacionClase']['COD_PROGRAMACION'],TRUE)); ?>" 
@@ -77,7 +77,7 @@
 									data-cod="<?php echo $key; ?>"
 									class="btn btn-sm btn-default ver-bitacora" 
 									style="color: #2196f3;"
-									><i class="fa fa-search"></i>&nbsp;<?php echo 'Ingresar Bitácora'; ?></a>
+									><i class="fa fa-search"></i>&nbsp;<?php echo 'Ingresar Bit&aacute;cora'; ?></a>
 							</td>
 						</tr>
 					<?php endforeach ?>

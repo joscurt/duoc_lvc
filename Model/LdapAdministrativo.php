@@ -25,7 +25,7 @@ class LdapAdministrativo {
 					$ldap_response = array(
 						'username' => $user,
 						'status' => 'error', #success o error
-						'mensaje' => 'Usuario o contraseña incorrectos.' #ok o mensaje de error
+						'mensaje' => 'Usuario o contrase&ntilde;a incorrectos.' #ok o mensaje de error
 					);
 		       	}else{
 		       		$ldap_response = array(
@@ -38,14 +38,14 @@ class LdapAdministrativo {
 				$ldap_response = array(
 					'username' => $user,
 					'status' => 'error', #success o error
-					'mensaje' => 'Usuario o contraseña incorrectos' #ok o mensaje de error
+					'mensaje' => 'Usuario o contrase&ntilde;a incorrectos' #ok o mensaje de error
 				);
 			}
 		}catch(Exception $e){
 			$ldap_response = array(
 				'username' => $user,
 				'status' => 'error', #success o error
-				'mensaje' => 'Hubo un error en la conexión, favor intente más tarde' #ok o mensaje de error
+				'mensaje' => 'Hubo un error en la conexi&oacute;n, favor intente m&aacute;s tarde' #ok o mensaje de error
 			);
 		}
 		return $ldap_response;

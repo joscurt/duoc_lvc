@@ -128,12 +128,12 @@
 									</div>
 									<div class="row">
 										<div class="col-xs-12">
-											<span>Lenguajes de Programación I</span>	
+											<span>Lenguajes de Programaci&oacute;n I</span>	
 										</div>
 									</div>
 									<div class="row" style="margin-top: 10px;">
 										<div class="col-xs-12">
-											<span><i class="fa fa-calendar"></i>&nbsp;<span style="font-weight: bold;">Próxima Clase</span>&nbsp;16-09-2015 10:00</span>	
+											<span><i class="fa fa-calendar"></i>&nbsp;<span style="font-weight: bold;">Pr&oacute;xima Clase</span>&nbsp;16-09-2015 10:00</span>	
 										</div>
 									</div>
 									<div class="row">
@@ -168,12 +168,12 @@
 									</div>
 									<div class="row">
 										<div class="col-xs-12">
-											<span>Lenguajes de Programación I</span>	
+											<span>Lenguajes de Programaci&oacute;n I</span>	
 										</div>
 									</div>
 									<div class="row" style="margin-top: 10px;">
 										<div class="col-xs-12">
-											<span><i class="fa fa-calendar"></i>&nbsp;<span style="font-weight: bold;">Próxima Clase</span>&nbsp;16-09-2015 10:00</span>	
+											<span><i class="fa fa-calendar"></i>&nbsp;<span style="font-weight: bold;">Pr&oacute;xima Clase</span>&nbsp;16-09-2015 10:00</span>	
 										</div>
 									</div>
 									<div class="row">
@@ -208,12 +208,12 @@
 									</div>
 									<div class="row">
 										<div class="col-xs-12">
-											<span>Lenguajes de Programación I</span>	
+											<span>Lenguajes de Programaci&oacute;n I</span>	
 										</div>
 									</div>
 									<div class="row" style="margin-top: 10px;">
 										<div class="col-xs-12">
-											<span><i class="fa fa-calendar"></i>&nbsp;<span style="font-weight: bold;">Próxima Clase</span>&nbsp;16-09-2015 10:00</span>	
+											<span><i class="fa fa-calendar"></i>&nbsp;<span style="font-weight: bold;">Pr&oacute;xima Clase</span>&nbsp;16-09-2015 10:00</span>	
 										</div>
 									</div>
 									<div class="row">
@@ -248,12 +248,12 @@
 									</div>
 									<div class="row">
 										<div class="col-xs-12">
-											<span>Lenguajes de Programación I</span>	
+											<span>Lenguajes de Programaci&oacute;n I</span>	
 										</div>
 									</div>
 									<div class="row" style="margin-top: 10px;">
 										<div class="col-xs-12">
-											<span><i class="fa fa-calendar"></i>&nbsp;<span style="font-weight: bold;">Próxima Clase</span>&nbsp;16-09-2015 10:00</span>	
+											<span><i class="fa fa-calendar"></i>&nbsp;<span style="font-weight: bold;">Pr&oacute;xima Clase</span>&nbsp;16-09-2015 10:00</span>	
 										</div>
 									</div>
 									<div class="row">
@@ -279,7 +279,7 @@
 						</div>
 						<div class="row row-titulo-asignatura" style="display: none;">
 							<div class="col-md-12">
-								<h3 > Crear Evento: LPII102-V001 / Lenguajes de Programación I</h3>
+								<h3 > Crear Evento: LPII102-V001 / Lenguajes de Programaci&oacute;n I</h3>
 								<br>
 							</div>
 						</div>
@@ -341,12 +341,12 @@
 									</div>
 									<div class="row">
 										<div class="col-xs-12">
-											<span>Lenguajes de Programación I</span>	
+											<span>Lenguajes de Programaci&oacute;n I</span>	
 										</div>
 									</div>
 									<div class="row" style="margin-top: 10px;">
 										<div class="col-xs-12">
-											<span><i class="fa fa-calendar"></i>&nbsp;<span style="font-weight: bold;">Próxima Clase</span>&nbsp;16-09-2015 10:00</span>	
+											<span><i class="fa fa-calendar"></i>&nbsp;<span style="font-weight: bold;">Pr&oacute;xima Clase</span>&nbsp;16-09-2015 10:00</span>	
 										</div>
 									</div>
 									<div class="row">
@@ -381,12 +381,12 @@
 									</div>
 									<div class="row">
 										<div class="col-xs-12">
-											<span>Lenguajes de Programación I</span>	
+											<span>Lenguajes de Programaci&oacute;n I</span>	
 										</div>
 									</div>
 									<div class="row" style="margin-top: 10px;">
 										<div class="col-xs-12">
-											<span><i class="fa fa-calendar"></i>&nbsp;<span style="font-weight: bold;">Próxima Clase</span>&nbsp;16-09-2015 10:00</span>	
+											<span><i class="fa fa-calendar"></i>&nbsp;<span style="font-weight: bold;">Pr&oacute;xima Clase</span>&nbsp;16-09-2015 10:00</span>	
 										</div>
 									</div>
 									<div class="row">
@@ -421,12 +421,12 @@
 									</div>
 									<div class="row">
 										<div class="col-xs-12">
-											<span>Lenguajes de Programación I</span>	
+											<span>Lenguajes de Programaci&oacute;n I</span>	
 										</div>
 									</div>
 									<div class="row" style="margin-top: 10px;">
 										<div class="col-xs-12">
-											<span><i class="fa fa-calendar"></i>&nbsp;<span style="font-weight: bold;">Próxima Clase</span>&nbsp;16-09-2015 10:00</span>	
+											<span><i class="fa fa-calendar"></i>&nbsp;<span style="font-weight: bold;">Pr&oacute;xima Clase</span>&nbsp;16-09-2015 10:00</span>	
 										</div>
 									</div>
 									<div class="row">
@@ -461,12 +461,12 @@
 									</div>
 									<div class="row">
 										<div class="col-xs-12">
-											<span>Lenguajes de Programación I</span>	
+											<span>Lenguajes de Programaci&oacute;n I</span>	
 										</div>
 									</div>
 									<div class="row" style="margin-top: 10px;">
 										<div class="col-xs-12">
-											<span><i class="fa fa-calendar"></i>&nbsp;<span style="font-weight: bold;">Próxima Clase</span>&nbsp;16-09-2015 10:00</span>	
+											<span><i class="fa fa-calendar"></i>&nbsp;<span style="font-weight: bold;">Pr&oacute;xima Clase</span>&nbsp;16-09-2015 10:00</span>	
 										</div>
 									</div>
 									<div class="row">
@@ -492,7 +492,7 @@
 						</div>
 						<div class="row row-titulo-asignatura" style="display: none;">
 							<div class="col-md-12">
-								<h3 > Crear Evento: LPII102-V001 / Lenguajes de Programación I</h3>
+								<h3 > Crear Evento: LPII102-V001 / Lenguajes de Programaci&oacute;n I</h3>
 								<br>
 							</div>
 						</div>

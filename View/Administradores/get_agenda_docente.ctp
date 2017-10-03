@@ -1,5 +1,5 @@
 <?php 
-	$text = $filtro == 'duoc' ? "Carga Acádemica": "Carga Acádemica de la Sede";
+	$text = $filtro == 'duoc' ? "Carga Ac&aacute;demica": "Carga Ac&aacute;demica de la Sede";
 	//$left = 1;
 	//$right = 3;
 #	debug($semana);
@@ -61,7 +61,7 @@
 										Semana
 										<?php echo $value['Semana']['NUMERO_SEMANA']; ?> 
 										/ Lun <?php echo date('d-m-y',strtotime($value['Semana']['FECHA_INICIO'])); ?> a 
-										Sáb <?php echo date('d-m-y',strtotime($value['Semana']['FECHA_FIN'])); ?>	
+										S&aacute;b <?php echo date('d-m-y',strtotime($value['Semana']['FECHA_FIN'])); ?>	
 									</a>
 								<?php endforeach; ?>
 							</div>
@@ -74,10 +74,10 @@
 										<th style="text-align:center">Semana</th>
 										<th style="text-align:center">Lunes</th>
 										<th style="text-align:center">Martes</th>
-										<th style="text-align:center">Miércoles</th>
+										<th style="text-align:center">Mi&eacute;rcoles</th>
 										<th style="text-align:center">Jueves</th>
 										<th style="text-align:center">Viernes</th>
-										<th style="text-align:center">Sábado</th>
+										<th style="text-align:center">S&aacute;bado</th>
 									</tr>
 								</thead>
 							  	<tbody>
@@ -102,7 +102,7 @@
 											    			}
 											    		endif;
 											    	?>
-											    <!-- <td class="gris">TAI2011- 002D(P)<br /> TÉCNICA DE ARQ... <br /><strong>SEDE:ALAMEDA</strong></td> -->
+											    <!-- <td class="gris">TAI2011- 002D(P)<br /> T&Eacute;CNICA DE ARQ... <br /><strong>SEDE:ALAMEDA</strong></td> -->
 											    </td>
 											<?php endfor; ?>
 									  	</tr>	
@@ -182,7 +182,7 @@
 				dataType: 'html',
 			})
 			.fail(function(error_reader) {
-				notifyUser('Ha ocurrido un error inesperado. Intente más tarde.','info');
+				notifyUser('Ha ocurrido un error inesperado. Intente m&aacute;s tarde.','info');
 				$('#contenedor-calendario').empty();
 			})
 			.always(function(view) {
@@ -191,7 +191,7 @@
 				$('.content-calendar').show();
 			});
 		}else{
-			notifyUser('Es necesario ingresar al menos un campo de búsqueda referente a la información del docente', 'info');
+			notifyUser('Es necesario ingresar al menos un campo de b&uacute;squeda referente a la informaci&oacute;n del docente', 'info');
 		}
 	}*/
 

@@ -17,7 +17,7 @@
 	</div>
 	<div class="col-md-3">
 		<div class="form-group">
-			<label for="">Buscar: <span title="Se desplegará un listado de opciones coincidentes con su búsqueda. Debe seleccionar una." data-toggle="tooltip"><i class="fa fa-info-circle"></i></span></label>
+			<label for="">Buscar: <span title="Se desplegar&aacute; un listado de opciones coincidentes con su b&uacute;squeda. Debe seleccionar una." data-toggle="tooltip"><i class="fa fa-info-circle"></i></span></label>
 			<input id="buscar-tipo" 
 				class="form-control" 
 				type="text" 

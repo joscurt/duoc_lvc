@@ -44,7 +44,7 @@
 				$term = strtoupper($term);
 				$rut_alumno = $this->find('all',array(
 					'fields'=>array(
-						'Alumno.rut',
+						'DISTINCT Alumno.rut',
 						'Alumno.dv_rut',
 						'Alumno.cod_alumno',
 						'Alumno.NOMBRES',

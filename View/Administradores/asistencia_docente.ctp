@@ -3,7 +3,7 @@
 		'Docente.RUT'=>'Rut docente',
 		'Docente.NOMBRE'=>'Nombre docente',
 		'Docente.COD_FUNCIONARIO'=>'ID docente',
-		'ProgramacionClase.SIGLA_SECCION'=>'Sigla - Sección'
+		'ProgramacionClase.SIGLA_SECCION'=>'Sigla - Secci&oacute;n'
 	);
 	$datos_filtro = null;
 	$date = new DateTime($periodoActual['Periodo']['FECHA_INICIO']);
@@ -68,7 +68,7 @@
             if(dias<0){
             	$(".fecha-inicio").val( periodo_ini );
             	$('.fecha-termino').data("DateTimePicker").minDate(periodo_ini);
-            	notifyUser('Se tomará como fecha de inicio: '+periodo_ini+', que corresponde al periodo actual.','info');
+            	notifyUser('Se tomar&aacute; como fecha de inicio: '+periodo_ini+', que corresponde al periodo actual.','info');
             }
         });
         $(".fecha-termino").blur(function() {
@@ -77,7 +77,7 @@
             if(dias>0){
             	$(".fecha-termino").val( periodo_fin );
             	$('.fecha-inicio').data("DateTimePicker").maxDate(periodo_fin);
-            	notifyUser('Se tomará como fecha final: '+periodo_fin+', que corresponde al periodo actual.','info');
+            	notifyUser('Se tomar&aacute; como fecha final: '+periodo_fin+', que corresponde al periodo actual.','info');
             }
         });
 	});
@@ -99,7 +99,7 @@
 			data: form.serialize(),
 		})
 		.fail(function() {
-			notifyUser('Ha ocurrido un error inesperado. Intente más tarde.','danger');
+			notifyUser('Ha ocurrido un error inesperado. Intente m&aacute;s tarde.','danger');
 		})
 		.always(function(view) {
 			$('#contenedor-grilla').html(view);

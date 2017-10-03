@@ -71,7 +71,7 @@
 								<i class="input-helper"></i>  
 							</label>
 							&nbsp;<label for="mostrar" style="cursor:pointer;">Alumnos reprobados por inasistencia</label><br>
-							<strong style="color:#e9594a; display: none;" id="leyenda_reprobados">* Se muestra destacado en rojo todos aquellos alumnos que no cumplen con la condición de asistencia de la asignatura</strong>
+							<strong style="color:#e9594a; display: none;" id="leyenda_reprobados">* Se muestra destacado en rojo todos aquellos alumnos que no cumplen con la condici&oacute;n de asistencia de la asignatura</strong>
 						</div>
 						<div class="col-md-4">
 							<label class="radio radio-inline m-r-20">
@@ -92,7 +92,7 @@
 							<th class="td-app text-center">Clases Regulares Presente</th>
 							<th class="td-app text-center">Clases Regulares Ausente</th>
 							<th class="td-app text-center">Asistencia</th>
-							<th class="td-app text-center">Desición Docente</th>
+							<th class="td-app text-center">Desici&oacute;n Docente</th>
 							<th class="td-app text-center">Reprobar</th>
 							<th class="td-app text-left" style="text-align: left !important; ">Comentarios</th>
 						</tr>
@@ -153,17 +153,17 @@
 <script>
 	$('#btn-guardar-ri').on('click',function (event) {
 		swal({   
-            title: "<?php echo __('¿Está seguro que desea guardar?'); ?>",   
+            title: "<?php echo __('¿Est&aacute; seguro que desea guardar?'); ?>",   
             text: "<?php echo __(''); ?>",
             type: "warning",
             showCancelButton: true, 
             cancelButtonText: "<?php echo __('Cancelar'); ?>",   
             confirmButtonColor: "#DD6B55",   
-            confirmButtonText: "Sí, Estoy Seguro!",   
+            confirmButtonText: "S&iacute;, Estoy Seguro!",   
             closeOnConfirm: false 
         }, function(){
         	location.reload();
-        	//swal("Completado!", "Eliminado con éxito.", "success"); 
+        	//swal("Completado!", "Eliminado con &eacute;xito.", "success"); 
         }); 
 	});
 	$('#btn-volver').on('click',function (event) {
@@ -175,11 +175,11 @@
             showCancelButton: true, 
             cancelButtonText: "<?php echo __('Cancelar'); ?>",   
             confirmButtonColor: "#DD6B55",   
-            confirmButtonText: "Sí, Estoy Seguro!",   
+            confirmButtonText: "S&iacute;, Estoy Seguro!",   
             closeOnConfirm: false 
         }, function(){
         	window.location = "<?php echo $this->Html->url(array('action'=>'aprobarRi')); ?>";
-        	//swal("Completado!", "Eliminado con éxito.", "success"); 
+        	//swal("Completado!", "Eliminado con &eacute;xito.", "success"); 
         }); 
 	});
 	$('[data-toggle="popover"]').popover();

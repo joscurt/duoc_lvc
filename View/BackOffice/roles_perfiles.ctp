@@ -35,7 +35,7 @@
 						<option value="roles">Roles</option>
 						<option value="vistas">Vistas</option>
 						<option value="perfil">Perfil</option>
-						<option value="administracion">Administración</option>
+						<option value="administracion">Administraci&oacute;n</option>
 						<option value="funcionalidad">Funcionalidad</option>
 						<option value="asignar_permisos">Asignar Permisos</option>
 					</select>
@@ -445,7 +445,7 @@
 
 <div class="card" id="administracion" style="display: none;">
 	<div class="card-header">
-		<h2 style="border-bottom: 1px solid #0c253d; padding-bottom: 5px;">Administración</h2>
+		<h2 style="border-bottom: 1px solid #0c253d; padding-bottom: 5px;">Administraci&oacute;n</h2>
 	</div>
 	<div class="card-body card-padding">
 		<div class="row">
@@ -503,7 +503,7 @@
 				    		<td><i class="fa fa-pencil-square" aria-hidden="true" title="Editar"></i><i class="fa fa-eye" aria-hidden="true" title="Lectura"></i></td>
 						</tr>
 						<tr class="odd">
-				    		<td class="first">Histórico Asistencia</td>
+				    		<td class="first">Hist&oacute;rico Asistencia</td>
 				    		<td><i class="fa fa-plus-square" aria-hidden="true" title="Crear"></i><i class="fa fa-eye" aria-hidden="true" title="Lectura"></i></td>
 				    		<td><i class="fa fa-pencil-square" aria-hidden="true" title="Editar"></i><i class="fa fa-eye" aria-hidden="true" title="Lectura"></i></td>
 				    		<td><i class="fa fa-plus-square" aria-hidden="true" title="Crear"></i><i class="fa fa-pencil-square" aria-hidden="true" title="Editar"></i></td>
@@ -515,7 +515,7 @@
 				    		<td><i class="fa fa-plus-square" aria-hidden="true" title="Crear"></i><i class="fa fa-eye" aria-hidden="true" title="Lectura"></i></td>
 						</tr>
 						<tr class="even">
-				    		<td class="first">Bitácora Evento</td>
+				    		<td class="first">Bit&aacute;cora Evento</td>
 				    		<td><i class="fa fa-plus-square" aria-hidden="true" title="Crear"></i><i class="fa fa-pencil-square" aria-hidden="true" title="Editar"></i><i class="fa fa-eye" aria-hidden="true" title="Lectura"></i></td>
 				    		<td><i class="fa fa-plus-square" aria-hidden="true" title="Crear"></i><i class="fa fa-pencil-square" aria-hidden="true" title="Editar"></i><i class="fa fa-eye" aria-hidden="true" title="Lectura"></i></td>
 				    		<td><i class="fa fa-plus-square" aria-hidden="true" title="Crear"></i><i class="fa fa-pencil-square" aria-hidden="true" title="Editar"></i><i class="fa fa-eye" aria-hidden="true" title="Lectura"></i></td>
@@ -542,7 +542,7 @@
 				    		<td colspan="10">Coordinador docente</td>
 						</tr>
 						<tr class="odd">
-				    		<td class="first">Gestión de Clases</td>
+				    		<td class="first">Gesti&oacute;n de Clases</td>
 				    		<td><i class="fa fa-plus-square" aria-hidden="true" title="Crear"></i><i class="fa fa-eye" aria-hidden="true" title="Lectura"></i></td>
 				    		<td><i class="fa fa-pencil-square" aria-hidden="true" title="Editar"></i><i class="fa fa-eye" aria-hidden="true" title="Lectura"></i></td>
 				    		<td><i class="fa fa-plus-square" aria-hidden="true" title="Crear"></i><i class="fa fa-eye" aria-hidden="true" title="Lectura"></i></td>
@@ -590,7 +590,7 @@
 				    		<td><i class="fa fa-pencil-square" aria-hidden="true" title="Editar"></i></td>
 						</tr>
 						<tr class="odd">
-				    		<td class="first">Solicitud de Recuperación</td>
+				    		<td class="first">Solicitud de Recuperaci&oacute;n</td>
 				    		<td><i class="fa fa-plus-square" aria-hidden="true" title="Crear"></i><i class="fa fa-pencil-square" aria-hidden="true" title="Editar"></i><i class="fa fa-eye" aria-hidden="true" title="Lectura"></i></td>
 				    		<td><i class="fa fa-plus-square" aria-hidden="true" title="Crear"></i><i class="fa fa-pencil-square" aria-hidden="true" title="Editar"></i><i class="fa fa-eye" aria-hidden="true" title="Lectura"></i></td>
 				    		<td><i class="fa fa-pencil-square" aria-hidden="true" title="Editar"></i><i class="fa fa-eye" aria-hidden="true" title="Lectura"></i></td>
@@ -629,7 +629,7 @@
 				    		<td><i class="fa fa-plus-square" aria-hidden="true" title="Crear"></i><i class="fa fa-eye" aria-hidden="true" title="Lectura"></i></td>
 						</tr>
 						<tr class="odd">
-				    		<td class="first">Dashboard  de Gestión</td>
+				    		<td class="first">Dashboard  de Gesti&oacute;n</td>
 				    		<td><i class="fa fa-plus-square" aria-hidden="true" title="Crear"></i><i class="fa fa-pencil-square" aria-hidden="true" title="Editar"></i><i class="fa fa-eye" aria-hidden="true" title="Lectura"></i></td>
 				    		<td><i class="fa fa-pencil-square" aria-hidden="true" title="Editar"></i><i class="fa fa-eye" aria-hidden="true" title="Lectura"></i></td>
 				    		<td><i class="fa fa-plus-square" aria-hidden="true" title="Crear"></i><i class="fa fa-pencil-square" aria-hidden="true" title="Editar"></i><i class="fa fa-eye" aria-hidden="true" title="Lectura"></i></td>
@@ -668,7 +668,7 @@
 				    		<td><i class="fa fa-pencil-square" aria-hidden="true" title="Editar"></i><i class="fa fa-eye" aria-hidden="true" title="Lectura"></i></td>
 						</tr>
 						<tr class="odd">
-				    		<td class="first">Reportes periódicos de Clases Programadas (realizadas y no realizadas).</td>
+				    		<td class="first">Reportes peri&oacute;dicos de Clases Programadas (realizadas y no realizadas).</td>
 				    		<td><i class="fa fa-plus-square" aria-hidden="true" title="Crear"></i><i class="fa fa-pencil-square" aria-hidden="true" title="Editar"></i></td>
 				    		<td><i class="fa fa-pencil-square" aria-hidden="true" title="Editar"></i><i class="fa fa-eye" aria-hidden="true" title="Lectura"></i></td>
 				    		<td><i class="fa fa-pencil-square" aria-hidden="true" title="Editar"></i><i class="fa fa-eye" aria-hidden="true" title="Lectura"></i></td>
@@ -680,7 +680,7 @@
 				    		<td><i class="fa fa-pencil-square" aria-hidden="true" title="Editar"></i><i class="fa fa-eye" aria-hidden="true" title="Lectura"></i></td>
 						</tr>
 						<tr class="even">
-				    		<td class="first">Reportes periódicos de Clases Adelantadas y Recuperadas (realizadas y no realizadas).</td>
+				    		<td class="first">Reportes peri&oacute;dicos de Clases Adelantadas y Recuperadas (realizadas y no realizadas).</td>
 				    		<td><i class="fa fa-plus-square" aria-hidden="true" title="Crear"></i><i class="fa fa-pencil-square" aria-hidden="true" title="Editar"></i><i class="fa fa-eye" aria-hidden="true" title="Lectura"></i></td>
 				    		<td><i class="fa fa-pencil-square" aria-hidden="true" title="Editar"></i><i class="fa fa-eye" aria-hidden="true" title="Lectura"></i></td>
 				    		<td><i class="fa fa-plus-square" aria-hidden="true" title="Crear"></i></td>
@@ -692,7 +692,7 @@
 				    		<td><i class="fa fa-eye" aria-hidden="true" title="Lectura"></i></td>
 						</tr>
 						<tr class="odd">
-				    		<td class="first">Reporte de Presencia Docente (en qué lugar se encuentra un docente en un horario definido).</td>
+				    		<td class="first">Reporte de Presencia Docente (en qu&eacute; lugar se encuentra un docente en un horario definido).</td>
 				    		<td><i class="fa fa-plus-square" aria-hidden="true" title="Crear"></i><i class="fa fa-pencil-square" aria-hidden="true" title="Editar"></i></td>
 				    		<td><i class="fa fa-pencil-square" aria-hidden="true" title="Editar"></i><i class="fa fa-eye" aria-hidden="true" title="Lectura"></i></td>
 				    		<td><i class="fa fa-plus-square" aria-hidden="true" title="Crear"></i><i class="fa fa-pencil-square" aria-hidden="true" title="Editar"></i><i class="fa fa-eye" aria-hidden="true" title="Lectura"></i></td>
@@ -808,14 +808,14 @@
 					  <tr class="odd">
 					    	<td>3</td>
 					    	<td>Docente</td>
-					    	<td>Histórico Asistencia</td>
+					    	<td>Hist&oacute;rico Asistencia</td>
 					    	<td><a class="btn btn-info" data-toggle="modal" data-target="#modal_editar_funcionalidad" href="" title="Editar"><i class="fa fa-pencil-square" aria-hidden="true"></i></a></td>
 					    	<td><a class="btn btn-danger" data-toggle="modal" data-target="#modal_eliminar_funcionalidad" href="" title="Eliminar"><i class="fa fa-times" aria-hidden="true"></i></a></td>
 				  		</tr>
 					  	<tr class="even">
 					    	<td>4</td>
 					    	<td>Docente</td>
-					    	<td>Bitácora Evento</td>
+					    	<td>Bit&aacute;cora Evento</td>
 					    	<td><a class="btn btn-info" data-toggle="modal" data-target="#modal_editar_funcionalidad" href="" title="Editar"><i class="fa fa-pencil-square" aria-hidden="true"></i></a></td>
 					    	<td><a class="btn btn-danger" data-toggle="modal" data-target="#modal_eliminar_funcionalidad" href="" title="Eliminar"><i class="fa fa-times" aria-hidden="true"></i></a></td>
 				 	 	</tr>
@@ -843,7 +843,7 @@
 					  	<tr class="even">
 					    	<td>8</td>
 					    	<td>Director de Carrera</td>
-					    	<td>Dashboard  de Gestión</td>
+					    	<td>Dashboard  de Gesti&oacute;n</td>
 					    	<td><a class="btn btn-info" data-toggle="modal" data-target="#modal_editar_funcionalidad" href="" title="Editar"><i class="fa fa-pencil-square" aria-hidden="true"></i></a></td>
 					    	<td><a class="btn btn-danger" data-toggle="modal" data-target="#modal_eliminar_funcionalidad" href="" title="Eliminar"><i class="fa fa-times" aria-hidden="true"></i></a></td>
 					  	</tr>
@@ -887,8 +887,8 @@
 								<option>Seleccionar</option>
 								<option>Registrar Asistencia</option>
 								<option>Editar Registro Asistencia</option>
-								<option selected>Histórico Asistencia</option>
-								<option>Bitácora Evento</option>
+								<option selected>Hist&oacute;rico Asistencia</option>
+								<option>Bit&aacute;cora Evento</option>
 								<option>Reprobados por Inasistencia</option>
 							</select>
 						</div>
@@ -947,8 +947,8 @@
 								<option>Seleccionar</option>
 								<option>Registrar Asistencia</option>
 								<option>Editar Registro Asistencia</option>
-								<option>Histórico Asistencia</option>
-								<option>Bitácora Evento</option>
+								<option>Hist&oacute;rico Asistencia</option>
+								<option>Bit&aacute;cora Evento</option>
 								<option>Reprobados por Inasistencia</option>
 							</select>
 						</div>
@@ -1112,7 +1112,7 @@
 					</div>
 					<div class="col-md-6">
 						<div class="form-group">
-							<label for="vista">Correo Electrónico</label>
+							<label for="vista">Correo Electr&oacute;nico</label>
 							<input type="text" class="form-control" value="correo@electronico.cl">
 						</div>
 					</div>
@@ -1159,9 +1159,9 @@
 							<label for="funcionalidad">Escuela</label>
 							<select id="funcionalidad" name="funcionalidad" class="form-control selectpicker">
 								<option>Seleccionar</option>
-								<option selected>Escuela de Diseño</option>
-								<option>Escuela de Diseño</option>
-								<option>Escuela de Diseño</option>
+								<option selected>Escuela de Dise&ntilde;o</option>
+								<option>Escuela de Dise&ntilde;o</option>
+								<option>Escuela de Dise&ntilde;o</option>
 							</select>
 						</div>
 					</div>
@@ -1170,9 +1170,9 @@
 							<label for="funcionalidad">Carrera</label>
 							<select id="funcionalidad" name="funcionalidad" class="form-control selectpicker">
 								<option>Seleccionar</option>
-								<option selected>Técnico en Producción Industrial de Vestuario</option>
-								<option>Técnico en Producción Industrial de Vestuario</option>
-								<option>Técnico en Producción Industrial de Vestuario</option>
+								<option selected>T&eacute;cnico en Producci&oacute;n Industrial de Vestuario</option>
+								<option>T&eacute;cnico en Producci&oacute;n Industrial de Vestuario</option>
+								<option>T&eacute;cnico en Producci&oacute;n Industrial de Vestuario</option>
 							</select>
 						</div>
 					</div>
@@ -1225,7 +1225,7 @@
 					</div>
 					<div class="col-md-6">
 						<div class="form-group">
-							<label for="vista">Correo Electrónico</label>
+							<label for="vista">Correo Electr&oacute;nico</label>
 							<input type="text" class="form-control">
 						</div>
 					</div>
@@ -1273,9 +1273,9 @@
 							<label for="funcionalidad">Escuela</label>
 							<select id="funcionalidad" name="funcionalidad" class="form-control selectpicker">
 								<option>Seleccionar</option>
-								<option>Escuela de Diseño</option>
-								<option>Escuela de Diseño</option>
-								<option>Escuela de Diseño</option>
+								<option>Escuela de Dise&ntilde;o</option>
+								<option>Escuela de Dise&ntilde;o</option>
+								<option>Escuela de Dise&ntilde;o</option>
 							</select>
 						</div>
 					</div>
@@ -1284,9 +1284,9 @@
 							<label for="funcionalidad">Carrera</label>
 							<select id="funcionalidad" name="funcionalidad" class="form-control selectpicker">
 								<option>Seleccionar</option>
-								<option>Técnico en Producción Industrial de Vestuario</option>
-								<option>Técnico en Producción Industrial de Vestuario</option>
-								<option>Técnico en Producción Industrial de Vestuario</option>
+								<option>T&eacute;cnico en Producci&oacute;n Industrial de Vestuario</option>
+								<option>T&eacute;cnico en Producci&oacute;n Industrial de Vestuario</option>
+								<option>T&eacute;cnico en Producci&oacute;n Industrial de Vestuario</option>
 							</select>
 						</div>
 					</div>

@@ -27,7 +27,7 @@
 <table style="border-bottom:1px solid #ccc;">
 	<tr >
 		<td><img src="img/duocuc.png" style="width:150px;" alt=""></td>
-		<td><h2 class="titulo">BITÁCORA EVENTO</h2></td>
+		<td><h2 class="titulo">BIT&Aacute;CORA EVENTO</h2></td>
 	</tr>
 </table>
 <br>
@@ -62,8 +62,8 @@
 					<th>Horario</th>
 					<th>Docente</th>
 					<th>Tipo</th>
-					<th>Bitácora Registrada</th>
-					<th>Bitácora Docente</th>
+					<th>Bit&aacute;cora Registrada</th>
+					<th>Bit&aacute;cora Docente</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -77,7 +77,7 @@
 							<td><?php echo date('H:i', strtotime($detalle['ProgramacionClase']['HORA_INICIO'])).' - '.date('H:i', strtotime($detalle['ProgramacionClase']['HORA_FIN'])) ?></td>
 							<td><?php echo utf8_encode($detalle['Docente']['NOMBRE'].' '.$detalle['Docente']['APELLIDO_PAT'].' '.$detalle['Docente']['APELLIDO_MAT']); ?></td>
 							<td><?php echo $detalle['ProgramacionClase']['TIPO_EVENTO']; ?></td>
-							<td><?php echo $detalle['bitacora']==true ? 'Sí': 'No'; ?></td>
+							<td><?php echo $detalle['bitacora']==true ? 'S&iacute;': 'No'; ?></td>
 							<td><?php echo 'BITACORA DOCENTE' ?></td>
 						</tr>
 					<?php endforeach ?>

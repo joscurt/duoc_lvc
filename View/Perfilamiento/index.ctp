@@ -8,7 +8,7 @@
 		'AsignarPermiso'=>$this->Html->url(array('action'=>'asignarPermisos')),
 	);
 	$mantenedores = array(
-		'Administracion' =>'ADMINISTRACIÓN',
+		'Administracion' =>'ADMINISTRACI&Oacute;N',
 		'AsignarPermiso'=>'ASIGNAR PERMISOS',
 		'Funcionalidad'=>'MANTENEDOR FUNCIONALIDADES',
 		'Perfil'=>'MANTENEDOR PERFILES',
@@ -69,7 +69,7 @@
 			data:elemento_click.attr('type-response')=='json'? elemento_click.parents('form').serialize():{},
 		})
 		.fail(function(error_reader) {
-			notifyUser('Ha ocurrido un error inesperado. Intente más tarde.','info');
+			notifyUser('Ha ocurrido un error inesperado. Intente m&aacute;s tarde.','info');
 			$('#modal-generic .modal-content').empty();
 			$('#modal-generic').modal('hide');
 		})
@@ -95,7 +95,7 @@
 				data:{model:$('#select-vista').find('option:selected').attr('data-model')}
 			})
 			.fail(function(error_reader) {
-				notifyUser('Ha ocurrido un error inesperado. Intente más tarde.','info');
+				notifyUser('Ha ocurrido un error inesperado. Intente m&aacute;s tarde.','info');
 				$('#contenedor-vistas .card-body').empty();
 			})
 			.always(function(view) {

@@ -14,7 +14,7 @@
 	<div class="row">
 		<div class="col-md-12">
 			<div class="block-header">
-				<h1>Gestión de Clases</h1>
+				<h1>Gesti&oacute;n de Clases</h1>
 			</div>
 		</div>
 	</div>
@@ -27,7 +27,7 @@
 				<div class="col-md-2">
 					<div class="form-group">
 						<div class="fg-line">
-							<label for="input-sigla-seccion">Sigla Sección: <span title="Se desplegará un listado de opciones coincidentes con su búsqueda." data-toggle="tooltip"><i class="fa fa-info-circle"></i></span></label>
+							<label for="input-sigla-seccion">Sigla Secci&oacute;n: <span title="Se desplegar&aacute; un listado de opciones coincidentes con su b&uacute;squeda." data-toggle="tooltip"><i class="fa fa-info-circle"></i></span></label>
 							<input 
 								type="text"
 								id="input-sigla-seccion" 
@@ -189,7 +189,7 @@
 <?php	}
 else {
 	?>
-	<div class="alert alert-danger" role="alert"> <strong>Error!</strong> No tienes permisos para ingresar está sección. </div>
+	<div class="alert alert-danger" role="alert"> <strong>Error!</strong> No tienes permisos para ingresar est&aacute; secci&oacute;n. </div>
 	<div class="row">
 				<div class="col-md-12">
 					<div class="form-group">
@@ -284,12 +284,12 @@ else {
 		elemento_click = $(this);
 		swal({
 			title: "<?php echo __('¿Esta seguro que desea Salir?'); ?>",   
-            text: "<?php echo __('Al salir perderá todo el trabajo realizado en esta pantalla.'); ?>",
+            text: "<?php echo __('Al salir perder&aacute; todo el trabajo realizado en esta pantalla.'); ?>",
             type: "warning",
             showCancelButton: true, 
             cancelButtonText: "<?php echo __('Cancelar'); ?>",   
             confirmButtonColor: "#DD6B55",   
-            confirmButtonText: "Sí, Estoy Seguro!",   
+            confirmButtonText: "S&iacute;, Estoy Seguro!",   
             closeOnConfirm: false 
 		},function(){
 			window.location = elemento_click.attr('href');
@@ -333,7 +333,7 @@ else {
 				dataType: 'json',
 			})
 			.fail(function() {
-				notifyUser('Ha ocurrido un error inesperado. Intente más tarde.','danger');
+				notifyUser('Ha ocurrido un error inesperado. Intente m&aacute;s tarde.','danger');
 			})
 			.always(function(response) {
 				if (response.status == 'danger') {
@@ -348,7 +348,7 @@ else {
 	$('[data-toggle="tooltip"]').tooltip();
 	$('#form-crear-reforzamiento').on('submit', function(event) {
 		if ($('.autocompletar-sigla-seccion').val()=='') {
-			notifyUser('Debe seleccionar una sigla sección del listado autocompletable.','info');
+			notifyUser('Debe seleccionar una sigla secci&oacute;n del listado autocompletable.','info');
 			event.preventDefault();
 			return false;
 		}

@@ -27,7 +27,7 @@
 						<option value="Docente.NOMBRE" <?php echo $ordenar == 'Docente.NOMBRE' ? 'selected="selected"':''; ?>>Nombre docente</option>
 						<option value="Docente.COD_DOCENTE" <?php echo $ordenar == 'Docente.COD_DOCENTE' ? 'selected="selected"':''; ?>>ID docente</option>
 						<option value="Asignatura.NOMBRE" <?php echo $ordenar == 'Asignatura.NOMBRE' ? 'selected="selected"':''; ?>>Nombre asignatura</option>
-						<option value="ProgramacionClase.SIGLA_SECCION" <?php echo $ordenar == 'ProgramacionClase.SIGLA_SECCION' ? 'selected="selected"':''; ?> >Sigla - Sección</option>
+						<option value="ProgramacionClase.SIGLA_SECCION" <?php echo $ordenar == 'ProgramacionClase.SIGLA_SECCION' ? 'selected="selected"':''; ?> >Sigla - Secci&oacute;n</option>
 						<option value="ProgramacionClase.ANHO,ProgramacionClase.SEMESTRE"<?php echo $ordenar == 'ProgramacionClase.ANHO,ProgramacionClase.SEMESTRE' ? 'selected="selected"':''; ?> >Periodo</option>
 						<option value="ProgramacionClase.COD_JORNADA" <?php echo $ordenar == 'ProgramacionClase.COD_JORNADA' ? 'selected="selected"':''; ?>>Jornada</option>
 						<option value="ProgramacionClase.HORA_INICIO" <?php echo $ordenar == 'ProgramacionClase.HORA_INICIO' ? 'selected="selected"':''; ?>>Horario</option>
@@ -50,7 +50,7 @@
 								<th>ID</th>
 								<th>Fecha</th>
 								<th>Nombre Asignatura</th>
-								<th>Sigla-Sección</th>
+								<th>Sigla-Secci&oacute;n</th>
 								<th>Jornada</th>
 								<th>Rut docente</th>
 								<th>Apellido Paterno</th>
@@ -132,7 +132,7 @@
 			data: form.serialize(),
 		})
 		.fail(function() {
-			notifyUser('Ha ocurrido un error inesperado. Intente más tarde.','danger');
+			notifyUser('Ha ocurrido un error inesperado. Intente m&aacute;s tarde.','danger');
 		})
 		.always(function(view) {
 			$('#card-content-grilla').html(view);

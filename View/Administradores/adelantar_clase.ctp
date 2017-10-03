@@ -64,7 +64,7 @@
         		</div>
                 <div class="col-md-4">
                     <div class="form-group">
-                        <label for="input-clases-recuperar">Módulos a recuperar: </label>
+                        <label for="input-clases-recuperar">M&oacute;dulos a recuperar: </label>
                         <input name="data[LogEvento][CLASES_RECUPERAR]" id="input-clases-recuperar" class="form-control" disabled="disabled" value="<?php echo number_format($programacion_clase['ProgramacionClase']['CANTIDAD_MODULOS'], 0); ?>"/>
                     </div>
                 </div>
@@ -128,7 +128,7 @@
     <div class="modal-body">
         <div class="row">
             <div class="col-md-12">
-                <center><h3><?php echo 'Esta clase ya se encuentra vencida en su programación por fecha: '.date('Y-m-d', strtotime($programacion_clase['ProgramacionClase']['FECHA_CLASE'])).'.'; ?></h3></center>
+                <center><h3><?php echo 'Esta clase ya se encuentra vencida en su programaci&oacute;n por fecha: '.date('Y-m-d', strtotime($programacion_clase['ProgramacionClase']['FECHA_CLASE'])).'.'; ?></h3></center>
             </div>
         </div>
     </div>
@@ -351,7 +351,7 @@
         var minutos = calcularMinutos($('#select-hora-inicio').val(),$('#select-hora-fin').val());
         modulos = minutos / 45;
         if (modulos <=0) {
-            notifyUser('Debe seleccionar un horario de término que almenos recupere 1 modulo','info');
+            notifyUser('Debe seleccionar un horario de t&eacute;rmino que almenos recupere 1 modulo','info');
             $(".alert-info").css("z-index", "2000");
             resetHoraFin();
             return false;
@@ -445,7 +445,7 @@
                 error+='Debe seleccionar el motivo.<br>';
             }
             if ($.trim($('#textarea-observaciones-adelantar-clase').val()).length < 1) {
-                error+='Debe adicionar una observación.<br>';
+                error+='Debe adicionar una observaci&oacute;n.<br>';
             }
             if ($("#select-tipo-clase").val()=='') {
                 error+='Debe seleccionar el tipo de clase.<br>';

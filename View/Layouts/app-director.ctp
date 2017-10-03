@@ -17,7 +17,7 @@
 	<head>
 		<?php echo $this->Html->charset(); ?>
 		<title>
-			Gestión de clases | DUOC UC
+			Gesti&oacute;n de clases | DUOC UC
 			<?php echo $this->fetch('title'); ?>
 		</title>
 		<?php
@@ -89,7 +89,7 @@
 								$session_data2['CoordinadorDocente']['APELLIDO_MAT'].' '.
 
 						$session_data['Director']['NOMBRES'].' '.$session_data['Director']['APELLIDO_PAT'].' '.$session_data['Director']['APELLIDO_MAT']; ?></label>
-						<a href="<?php echo $this->Html->url(array('controller'=>'Login','action'=>'logoutDirector')) ?>"><i class="fa fa-power-off" aria-hidden="true"></i> Cerrar Sesión</a>					
+						<a href="<?php echo $this->Html->url(array('controller'=>'Login','action'=>'logoutDirector')) ?>"><i class="fa fa-power-off" aria-hidden="true"></i> Cerrar Sesi&oacute;n</a>					
 					</div>
 					<div class="">		
 						<?php echo $this->Html->image('logo-duoc-v2.png',array('class'=>'logo')); ?>
@@ -127,7 +127,7 @@
 <!-- MENU ANTIGUO -->
 <!--
 							<?php if (isset($funcionalidades[12])): ?>
-								<li class="<?php echo $in_home;?>"><a href="<?php echo $this->Html->url(array('action'=>'index')) ?>" title="Gestión de clases" >Autorización de Clases</a></li>
+								<li class="<?php echo $in_home;?>"><a href="<?php echo $this->Html->url(array('action'=>'index')) ?>" title="Gesti&oacute;n de clases" >Autorizaci&oacute;n de Clases</a></li>
 							<?php endif; ?>
 							<?php if (isset($funcionalidades[13])): ?>
 								<li class="<?php echo $in_recuperar_clases ?>"><a href="<?php echo $this->Html->url(array('action'=>'recuperarClases')) ?>" >Recuperar Clases</a></li>

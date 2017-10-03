@@ -25,13 +25,13 @@
 	id="form-add-bitacora-modal"
 	action="<?php echo $this->Html->url(array('action'=>'saveBitacora',$programacion_clase['ProgramacionClase']['COD_PROGRAMACION'])); ?>">
 	<div class="modal-header">
-		<h4 class="modal-title">Bitácora
+		<h4 class="modal-title">Bit&aacute;cora
 			<span class="close" data-dismiss="modal">x</span>
 		</h4>
 	</div>
 	<div class="modal-body">
 		<div class="col-md-6">
-			<label for="">Bitácora Docente</label>
+			<label for="">Bit&aacute;cora Docente</label>
 			<div class="form-group">
 				<div class="fg-line">
 					<textarea 
@@ -45,7 +45,7 @@
 			</div>
 		</div>
 		<div class="col-md-6">
-			<label for="">Ver Bitácoras</label>
+			<label for="">Ver Bit&aacute;coras</label>
 			<div class="form-group content-li-bitacora">
 				<ul>
 					<?php foreach ($bitacoras as $key => $value): ?>
@@ -62,7 +62,7 @@
 		</div>
 	</div>
 	<div class="modal-footer">
-		<button type="submit" class="btn btn-xs btn-success" ><i class="fa fa-save"></i>&nbsp;Guardar Bitácora</button>
+		<button type="submit" class="btn btn-xs btn-success" ><i class="fa fa-save"></i>&nbsp;Guardar Bit&aacute;cora</button>
 		<button type="button" class="btn btn-xs btn-default" data-dismiss="modal"><i class="fa fa-times"></i>&nbsp;Cerrar</button>
 	</div>
 </form>
@@ -79,7 +79,7 @@
 		})
 		.fail(function() {
 			$('#modal-bitacora').modal('hide');
-			notifyUser('Ha ocurrido un error inesperado.Intente más tarde.','danger');
+			notifyUser('Ha ocurrido un error inesperado.Intente m&aacute;s tarde.','danger');
 		})
 		.always(function(response) {
 			notifyUser(response.message,response.status);

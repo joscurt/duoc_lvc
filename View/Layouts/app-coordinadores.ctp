@@ -22,7 +22,7 @@
 	<head>
 		<?php echo $this->Html->charset(); ?>
 		<title>
-			Gestión de clases | DUOC UC
+			Gesti&oacute;n de clases | DUOC UC
 			<?php echo $this->fetch('title'); ?>
 		</title>
 		<?php
@@ -101,7 +101,7 @@
 				<div class="inside">
 					<div class="pull-right info-usuario">
 						<label>Usuario: </label><?php echo $session_data['CoordinadorDocente']['NOMBRES'].' '.$session_data['CoordinadorDocente']['APELLIDO_PAT'].' '.$session_data['CoordinadorDocente']['APELLIDO_MAT']; ?>
-						<a href="<?php echo $this->Html->url(array('controller'=>'login','action'=>'logoutCoordinador')); ?>"><i class="fa fa-power-off" ></i> Cerrar Sesión 1</a>					
+						<a href="<?php echo $this->Html->url(array('controller'=>'login','action'=>'logoutCoordinador')); ?>"><i class="fa fa-power-off" ></i> Cerrar Sesi&oacute;n 1</a>					
 					</div>
 					<div class="">		
 						<?php echo $this->Html->image('logo-duoc-v2.png',array('class'=>'logo')); ?>
@@ -126,7 +126,7 @@
 
 
 							<!--<?php if (isset($funcionalidades[7])): ?>
-								<li class="<?php echo $in_home;?>"><a href="<?php echo $this->Html->url(array('action'=>'index')) ?>" title="Gestión de clases" >Gestión de clases</a></li>
+								<li class="<?php echo $in_home;?>"><a href="<?php echo $this->Html->url(array('action'=>'index')) ?>" title="Gesti&oacute;n de clases" >Gesti&oacute;n de clases</a></li>
 							<?php endif; ?>
 							<?php if (isset($funcionalidades[8])): ?>
 								<li class="<?php echo $in_disponibilidad_sala ?>"><a href="<?php echo $this->Html->url(array('action'=>'disponibilidadSala')) ?>" title="Disponibilidad Sala">Disponibilidad Sala</a></li>
@@ -138,7 +138,7 @@
 								<li class="<?php echo $in_asistencia_docente ?>"><a href="<?php echo $this->Html->url(array('action'=>'asistenciaDocente')) ?>" title="Asistencia docente" >Asistencia docente</a></li>
 							<?php endif; ?>
 							<?php if (isset($funcionalidades[11])): ?>
-								<li class="<?php echo $in_solicitud_recuperacion ?>"><a href="<?php echo $this->Html->url(array('action'=>'solicitudRecuperacion')) ?>" title="Solicitud de recuperación" >Solicitud de recuperación</a></li>
+								<li class="<?php echo $in_solicitud_recuperacion ?>"><a href="<?php echo $this->Html->url(array('action'=>'solicitudRecuperacion')) ?>" title="Solicitud de recuperaci&oacute;n" >Solicitud de recuperaci&oacute;n</a></li>
 							<?php endif; ?>
 							<?php if (isset($funcionalidades[61])): ?>
 								<li class="<?php echo $in_reportes ?>"><a href="<?php echo $this->Html->url(array('action'=>'reportes')) ?>" title="Reportes" >Reportes</a></li>

@@ -13,7 +13,7 @@
 <br>
 <div class="card">
 	<div class="card-header">
-		<h2><i class="fa fa-check"></i>&nbsp;Aprobación RI</h2>
+		<h2><i class="fa fa-check"></i>&nbsp;Aprobaci&oacute;n RI</h2>
 		<br><br>
 		<div class="row">
 			<div class="col-md-10">
@@ -40,18 +40,18 @@
 						<th style="width: 7%;"class="td-app">Nombre Asignatura</th>
 						<!--<th style="width: 7%;"class="td-app">Correo</th>-->
 						<th style="width: 7%;"class="td-app">Tipo Clase</th>
-						<th style="width: 7%;"class="td-app">Sigla-Sección</th>
+						<th style="width: 7%;"class="td-app">Sigla-Secci&oacute;n</th>
 						<th style="width: 7%;"class="td-app">Jornada</th>
 						<th style="width: 7%;"class="td-app">Nº Clases Registradas</th>
 						<th style="width: 7%;"class="td-app">Asistencia Promedio</th>
-						<th style="width: 7%;"class="td-app">Último Registro</th>
-						<th style="width: 7%;"class="td-app">Reprobación por Inasistencia</th>
+						<th style="width: 7%;"class="td-app">&Uacute;ltimo Registro</th>
+						<th style="width: 7%;"class="td-app">Reprobaci&oacute;n por Inasistencia</th>
 					</tr>
 				</thead>
 				<tbody>
 					<tr>
 						<td >Antonio Varas</td>
-						<td>Nivelación Matemáticas</td>
+						<td>Nivelaci&oacute;n Matem&aacute;ticas</td>
 						<!--<td>evivanco@profesores.duoc.cl</td>-->
 						<td style="text-align: center;"><span class="badge" style="background:#336E7B;">TEO</span></td>
 						<td>MAT100-009</td>
@@ -68,7 +68,7 @@
 					</tr>
 					<tr>
 						<td>San Joaquin</td>
-						<td>Comunicación Escrita</td>
+						<td>Comunicaci&oacute;n Escrita</td>
 						<!--<td>jcayala@profesores.duoc.cl</td>-->
 						<td style="text-align: center;"><span class="badge"style="background:#336E7B;">TEO</span></td>
 						<td>PLC010-003</td>
@@ -85,7 +85,7 @@
 					</tr>
 					<tr>
 						<td>Plaza Vespusio</td>
-						<td>Operaciones Logísticas</td>
+						<td>Operaciones Log&iacute;sticas</td>
 						<!--<td>rlavin@profesores.duoc.cl</td>-->
 						<td style="text-align: center;"><span class="badge"style="background:#336E7B;">TEO</span></td>
 						<td>LOA1104-001</td>
@@ -96,8 +96,8 @@
 						<td align="center"><a data-rel="tooltip" title="Reprobar por Inasistencia" href="" class="btn btn-danger btn-sm"><i class="fa fa-info"></i></a></td>
 					</tr>
 					<tr>
-						<td>Valparaíso</td>
-						<td>Preparación del Paciente para Toma de Muestras</td>
+						<td>Valpara&iacute;so</td>
+						<td>Preparaci&oacute;n del Paciente para Toma de Muestras</td>
 						<!--<td>mrodriguez@profesores.duoc.cl</td>-->
 						<td style="text-align: center;"><span class="badge"style="text-align: center;background:#f1c40f;">TEO + PRA</span></td>
 						<td>PTS1101-002</td>
@@ -108,8 +108,8 @@
 						<td align="center"><a data-rel="tooltip" title="Reprobar por Inasistencia" href="" class="btn btn-danger btn-sm"><i class="fa fa-info"></i></a></td>
 					</tr>
 					<tr>
-						<td>Valparaíso</td>
-						<td>Preparación del Paciente para Toma de Muestras</td>
+						<td>Valpara&iacute;so</td>
+						<td>Preparaci&oacute;n del Paciente para Toma de Muestras</td>
 						<!--<td>rramirez@profesores.duoc.cl</td>-->
 						<td style="text-align: center;"><span class="badge"style="text-align: center;background:#f1c40f;">TEO + PRA</span></td>
 						<td>PTS1101-002</td>
@@ -120,8 +120,8 @@
 						<td align="center"><a data-rel="tooltip" title="Reprobar por Inasistencia" href="" class="btn btn-danger btn-sm"><i class="fa fa-info"></i></a></td>
 					</tr>
 					<tr>
-						<td>Valparaíso</td>
-						<td>Preparación del Paciente para Toma de Muestras</td>
+						<td>Valpara&iacute;so</td>
+						<td>Preparaci&oacute;n del Paciente para Toma de Muestras</td>
 						<!--<td>aguerrero@profesores.duoc.cl</td>-->
 						<td style="text-align: center;"><span class="badge"style="text-align: center;background:#f1c40f;">TEO + PRA</span></td>
 						<td>PTS1101-002</td>

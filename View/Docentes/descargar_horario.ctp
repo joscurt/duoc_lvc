@@ -2,6 +2,7 @@
 #GENERA PDF DE HORARIOS DEL DOCENTE ======================00
 
 	#debug($programacion_clases);exit();
+$page = 0;
 ?>
 <style>
 	table{
@@ -22,7 +23,13 @@
 		<td><h2 class="titulo">HORARIO DOCENTE SEDE   <?php echo isset($sede['Sede']['ID_TIPO_SEDE']) && $sede['Sede']['ID_TIPO_SEDE'] == '1' ? ' IP' : ' CFT';?> - <?php echo $sede['Sede']['NOMBRE'];?></h2></td>
 	</tr>
 </table><br>
+
 <?php foreach ($programacion_clases as $key => $value): ?>
+	
+	<?php if ($page ==1) { ?>
+	<pagebreak />
+	<?php } ?>
+
 	<table style="width:100%;">
 		<tr >
 			<td>
@@ -65,7 +72,7 @@
 			<?php 
 	  			$contador=0;
 	  			$modulos_siguientes = array();
-	  			#debug($horarios_modulos);exit();
+	  			#debug($horarios_modulos);
 	  			foreach ($horarios_modulos as $horario): 
 	  				$contador++;
 	  				$class_tr = $contador%2==0?'odd':'even';
@@ -90,5 +97,5 @@
 		  	<?php endforeach ?>
 		</tbody>
 	</table>
-	<pagebreak />
+	<?php $page = 1; ?>
 <?php endforeach ?>

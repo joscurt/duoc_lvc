@@ -2,11 +2,11 @@
 	id="form-bitacora-send"
 	action="<?php echo $this->Html->url(array('action'=>'saveBitacora',$programacion_clase['ProgramacionClase']['COD_PROGRAMACION'])); ?>">
 	<div class="modal-header">
-		<h4 class="modal-title">Bitácora Clase <?php echo $programacion_clase['ProgramacionClase']['SIGLA_SECCION']; ?>(T) - <?php echo $programacion_clase['Asignatura']['NOMBRE']; ?></h4>
+		<h4 class="modal-title">Bit&aacute;cora Clase <?php echo $programacion_clase['ProgramacionClase']['SIGLA_SECCION']; ?>(T) - <?php echo $programacion_clase['Asignatura']['NOMBRE']; ?></h4>
 	</div>
 	<div class="modal-body">
 		<div class="form-group" style="max-height: 500px;overflow: auto;">
-			<label for="eventName">Bitácora</label>
+			<label for="eventName">Bit&aacute;cora</label>
 			<div class="fg-line">
 				<span class="badge"><?php echo date('H:i').' ('.date('d-m-Y').')'; ?></span><br>
 				<textarea 
@@ -17,7 +17,7 @@
 		</div>
 	</div>
 	<div class="modal-footer">
-		<button type="submit" class="btn btn-xs btn-success" id="addEvent"><i class="fa fa-save"></i>&nbsp;Guardar Bitácora</button>
+		<button type="submit" class="btn btn-xs btn-success" id="addEvent"><i class="fa fa-save"></i>&nbsp;Guardar Bit&aacute;cora</button>
 		<button type="button" class="btn btn-xs btn-default" data-dismiss="modal"><i class="fa fa-times"></i>&nbsp;Cerrar</button>
 	</div>
 </form>

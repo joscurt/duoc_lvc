@@ -2,7 +2,7 @@
 	<table class="table table-hover table-striped">
 		<thead>
 			<tr>
-				<th class="td-app">N°</th>
+				<th class="td-app">N&deg;</th>
 				<th class="td-app">Horario</th>
 				<th class="td-app">Sala</th>
 				<th class="td-app">Tipo</th>
@@ -140,7 +140,7 @@
 						$Difer=round((strtotime($FechaActual) - strtotime($value['ProgramacionClase']['FECHA_CLASE']))/3600,2);
 							$disabled = 'disabled';
 							if ($Difer<0) {
-								# Aquí es tiempo futuro, no se permite dar clase.
+								# Aqu&iacute; es tiempo futuro, no se permite dar clase.
 								#echo '<a href="#" class="btn btn-sm btn-success boton-editar disabled"><i class="fa fa-calendar-times-o"></i></a>';
 								echo '<a href="#" id="M001" class="btn btn-sm btn-warning"><i class="fa fa-clock-o"></i></a>';
 							}
@@ -155,7 +155,7 @@
 								else
 								{
 
-							#José Luis Morandé 8/3/2017 DO009
+							#Jos&eacute; Luis Morand&eacute; 8/3/2017 DO009
 							//date_default_timezone_set("UTC"); 
 							$a = strtotime('-15 min', strtotime($value['ProgramacionClase']['HORA_INICIO']));
 							$b = date('d-m-Y H:i:s', $a);
@@ -198,7 +198,7 @@
 			 var diaini = "<?php echo $format_dia_inicio ?>"
 			$('#M009').on('click', function(event){
 				event.preventDefault();
-				notifyUser('Recuerda que la hora de inicio es '+horaini+' el dia '+diaini+'.El botón estará activo 15 minutos antes de esa Hora');
+				notifyUser('Recuerda que la hora de inicio es '+horaini+' el dia '+diaini+'.El bot&oacute;n estar&aacute; activo 15 minutos antes de esa Hora');
 			});
 			</script>
 
@@ -206,7 +206,7 @@
 			// DO008 SUB-ESTADO : AUTORIZACION PENDIENTE
 			$('#M008').on('click', function(event){
 			event.preventDefault();
-			notifyUser('Clase con Autorización Pendiente');
+			notifyUser('Clase con Autorizaci&oacute;n Pendiente');
 			});
 
 			// DO001 FECHA FUTURA
@@ -240,7 +240,7 @@
 			})
 			.fail(function() {
 				$('#content-listado-programacion-clases').empty();
-				notifyUser('Ha ocurrido un error inesperado. Intente más tarde.','danger');
+				notifyUser('Ha ocurrido un error inesperado. Intente m&aacute;s tarde.','danger');
 			})
 			.always(function(view) {
 				$('#content-listado-programacion-clases').html(view);
@@ -249,5 +249,5 @@
 		
 	</script>
 <?php else: ?>	
-	<h4 >* No hay información para el rango de fecha seleccionado.</h4>
+	<h4 >* No hay informaci&oacute;n para el rango de fecha seleccionado.</h4>
 <?php endif ?>

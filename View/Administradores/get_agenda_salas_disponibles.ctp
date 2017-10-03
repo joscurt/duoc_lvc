@@ -4,10 +4,10 @@
 			<th style="text-align:center">Horario</th>
 			<th style="text-align:center">Lunes</th>
 			<th style="text-align:center">Martes</th>
-			<th style="text-align:center">Miércoles</th>
+			<th style="text-align:center">Mi&eacute;rcoles</th>
 			<th style="text-align:center">Jueves</th>
 			<th style="text-align:center">Viernes</th>
-			<th style="text-align:center">Sábado</th>
+			<th style="text-align:center">S&aacute;bado</th>
 		</tr>
 	</thead>
   	<tbody>

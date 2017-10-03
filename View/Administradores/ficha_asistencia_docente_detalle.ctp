@@ -51,7 +51,7 @@
 	<div class="card-body card-padding">
 		<div class="row">
 			<div class="col-md-12">
-				<h2 style="border-bottom: 1px solid #0c253d; padding-bottom: 5px;">Información Docente:</h2>
+				<h2 style="border-bottom: 1px solid #0c253d; padding-bottom: 5px;">Informaci&oacute;n Docente:</h2>
 				<table border="0" cellpadding="0" cellspacing="0" class="table table-striped">
 					<thead>
 						<tr>
@@ -87,12 +87,12 @@
 		</div>
 		<div class="row">
 			<div class="col-md-12">
-				<h2 style="border-bottom: 1px solid #0c253d; padding-bottom: 5px;">Información Clase:</h2>
+				<h2 style="border-bottom: 1px solid #0c253d; padding-bottom: 5px;">Informaci&oacute;n Clase:</h2>
 				<table border="0" cellpadding="0" cellspacing="0" class="table table-striped">
 					<thead>
 						<tr>
 							<th>Nombre asignatura</th>
-							<th>Sigla-Sección</th>
+							<th>Sigla-Secci&oacute;n</th>
 							<th>Jornada</th>
 							<th>Fecha programada</th>
 							<th>Horario</th>
@@ -124,8 +124,8 @@
 						<tr>
 							<th>Estado</th>
 							<th>Motivo</th>
-							<th>Módulos programados</th>
-							<th>Módulos por recuperar</th>
+							<th>M&oacute;dulos programados</th>
+							<th>M&oacute;dulos por recuperar</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -206,7 +206,7 @@
 	                <div class="row">
 	                	<div class="col-md-12">
 	                		<div class="form-group">
-	                			<label for="">Módulos a Recuperar:</label>
+	                			<label for="">M&oacute;dulos a Recuperar:</label>
 	                			<input type="number"
 	                				required="required"
 	                				name="data[ProgramacionClase][MODULOS]"
@@ -255,7 +255,7 @@
 										<th>Registro inicio</th>
 										<th>Registro fin</th>
 										<th>Total a recuperar</th>
-										<th>Módulos a recuperar</th>
+										<th>M&oacute;dulos a recuperar</th>
 									</tr>
 								</thead>
 								<tbody>
@@ -404,7 +404,7 @@
 						return false;
 					}
 					if (response.modulos>$("#validarModulos").val()) {
-						notifyUser('Solo se permite un máximo: '+$("#validarModulos").val()+' Módulos a recuperar.','info');
+						notifyUser('Solo se permite un m&aacute;ximo: '+$("#validarModulos").val()+' M&oacute;dulos a recuperar.','info');
 						$(".alert-info").css("z-index", "20000");
 						$("#imgLoader").hide();
 						return false;

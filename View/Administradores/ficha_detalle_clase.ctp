@@ -8,7 +8,7 @@
 </style>
 <div class="row">
 	<div class="col-md-12">
-		<div class="block-header"><h1>Gestión de Clases</h1></div>	
+		<div class="block-header"><h1>Gesti&oacute;n de Clases</h1></div>	
 	</div>
 </div>
 <div class="card">
@@ -21,7 +21,7 @@
 						<option value="">SELECCIONAR</option>
 						<option value="<?php echo $this->Html->url(array('action'=>'cambiarSala',$programacion_clase['ProgramacionClase']['COD_PROGRAMACION'])); ?>">CAMBIAR SALA</option>
 						<option value="<?php echo $this->Html->url(array('action'=>'inasistenciaDocente',$programacion_clase['ProgramacionClase']['COD_PROGRAMACION'])); ?>">INASISTENCIA DOCENTE</option>
-						<option value="<?php echo $this->Html->url(array('action'=>'justificacionLegal',$programacion_clase['ProgramacionClase']['COD_PROGRAMACION'])); ?>">JUSTIFICACIÓN LEGAL</option>
+						<option value="<?php echo $this->Html->url(array('action'=>'justificacionLegal',$programacion_clase['ProgramacionClase']['COD_PROGRAMACION'])); ?>">JUSTIFICACI&Oacute;N LEGAL</option>
 
 						<?php 
 						if($programacion_clase['EstadoProgramacion']['ID'] == 3 && ($programacion_clase['Detalle']['ID'] == 4 || $programacion_clase['Detalle']['ID'] == 1 || $programacion_clase['Detalle']['ID'] == 5) ){?>
@@ -45,7 +45,7 @@
 	<div class="card-body card-padding">
 		<div class="row">
 			<div class="col-md-12">
-				<h2 style="border-bottom: 1px solid #0c253d; padding-bottom: 5px;">Información Docente:</h2>
+				<h2 style="border-bottom: 1px solid #0c253d; padding-bottom: 5px;">Informaci&oacute;n Docente:</h2>
 				<table border="0" cellpadding="0" cellspacing="0" class="table table-striped">
 					<thead>
 						<tr>
@@ -79,12 +79,12 @@
 				</table>
 			</div>
 			<div class="col-md-12">
-				<h2 style="border-bottom: 1px solid #0c253d; padding-bottom: 5px;">Información Clase:</h2>
+				<h2 style="border-bottom: 1px solid #0c253d; padding-bottom: 5px;">Informaci&oacute;n Clase:</h2>
 				<table border="0" cellpadding="0" cellspacing="0" class="table table-striped">
 					<thead>
 						<tr>
 							<th>Nombre asignatura</th>
-							<th>Sigla-Sección</th>
+							<th>Sigla-Secci&oacute;n</th>
 							<th>Jornada</th>
 							<th>Fecha programada</th>
 							<th>Horario</th>
@@ -100,27 +100,8 @@
 							<td><?php echo $programacion_clase['Asignatura']['NOMBRE']; ?></td>
 							<td><?php echo $programacion_clase['ProgramacionClase']['SIGLA_SECCION']; ?></td>
 							<td><?php echo $asignatura_horario['AsignaturaHorario']['COD_JORNADA'] == 'D'?'DIURNA':'VESPERTINO'; ?></td>
-							<td><?php 
-							if(isset($prog_ade['ProgramacionClase']['COD_PROGRAMACION_PADRE'])){
-							if($prog_ade['ProgramacionClase']['COD_PROGRAMACION_PADRE']==$programacion_clase['ProgramacionClase']['COD_PROGRAMACION']){
-								echo date('d-m-Y',strtotime($prog_ade['ProgramacionClase']['FECHA_CLASE']));
-							}}else{
-								echo date('d-m-Y',strtotime($programacion_clase['ProgramacionClase']['FECHA_CLASE']));
-							}
-
-							 ?></td>
-							<td><?php 
-
-							if (isset($prog_ade['ProgramacionClase']['COD_PROGRAMACION_PADRE'])) {
-								if($prog_ade['ProgramacionClase']['COD_PROGRAMACION_PADRE']==$programacion_clase['ProgramacionClase']['COD_PROGRAMACION']){
-									echo date('H:i', strtotime($prog_ade['ProgramacionClase']['HORA_INICIO'])).' a '.date('H.i',strtotime($prog_ade['ProgramacionClase']['HORA_FIN']));
-								}
-
-							}else{
-								echo date('H:i',strtotime($programacion_clase['ProgramacionClase']['HORA_INICIO'])).' a '.date('H:i',strtotime($programacion_clase['ProgramacionClase']['HORA_FIN']));
-							}
-
-							?></td>
+							<td><?php echo date('d-m-Y',strtotime($programacion_clase['ProgramacionClase']['FECHA_CLASE'])); ?></td>
+							<td><?php echo date('H:i',strtotime($programacion_clase['ProgramacionClase']['HORA_INICIO'])).' a '.date('H:i',strtotime($programacion_clase['ProgramacionClase']['HORA_FIN'])); ?></td>
 							<td><?php echo $programacion_clase['Sala']['TIPO_SALA']; ?></td>
 							<?php if (!empty($programacion_clase['ProgramacionClase']['SALA_REEMPLAZO'])): ?>
 								<td><?php echo  $programacion_clase['SalaReemplazo']['TIPO_SALA']; ?></td>
@@ -135,15 +116,28 @@
 						<tr>
 							<th>Tipo</th>
 							<th>Fecha Original</th>
-
+							<th>Horario Original</th>
 						</tr>
 					</thead>
 					<tbody>
 						<tr class="odd">
 							<td><?php echo $programacion_clase['ProgramacionClase']['TIPO_EVENTO']; ?></td>
-							<td><?php echo date('d-m-Y',strtotime($programacion_clase['ProgramacionClase']['FECHA_CLASE'])) ?></td>
-							
-						</tr>	
+							<td><?php
+							if(isset($programacion_clase['ProgramacionClase']['COD_PROGRAMACION_PADRE'])){
+								echo date('d-m-Y',strtotime($prog_ade['ProgramacionClase']['FECHA_CLASE']));
+							}else{
+								echo date('d-m-Y',strtotime($programacion_clase['ProgramacionClase']['FECHA_CLASE']));
+							}
+							 ?></td>
+							<td>
+							<?php if (isset($programacion_clase['ProgramacionClase']['COD_PROGRAMACION_PADRE'])) {																	echo date('H:i', strtotime($prog_ade['ProgramacionClase']['HORA_INICIO'])).' a '.date('H.i',strtotime($prog_ade['ProgramacionClase']['HORA_FIN']));
+							}else{
+								echo date('H:i',strtotime($programacion_clase['ProgramacionClase']['HORA_INICIO'])).' a '.date('H:i',strtotime($programacion_clase['ProgramacionClase']['HORA_FIN']));
+							}
+ ?>
+							</td>
+
+						</tr>
 					</tbody>
 				</table>
 				<br>
@@ -152,8 +146,8 @@
 						<tr>
 							<th>Estado</th>
 							<th>Motivo</th>
-							<th>Módulos programados</th>
-							<th>Módulos por recuperar</th>
+							<th>M&oacute;dulos programados</th>
+							<th>M&oacute;dulos por recuperar</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -299,7 +293,7 @@
 				</form>
 			</div>
 			<div class="col-md-4">
-				<h2 style="border-bottom: 1px solid #0c253d; padding-bottom: 5px;">Bitácora evento</h2>
+				<h2 style="border-bottom: 1px solid #0c253d; padding-bottom: 5px;">Bit&aacute;cora evento</h2>
 				<ul>
 					<?php foreach ($bitacora as $key => $bitacora_tmp): ?>
 						<li>
@@ -341,7 +335,7 @@
 				type: 'POST',
 				dataType: 'html',
 			}).fail(function(error_reader) {
-				notifyUser('Ha ocurrido un error inesperado. Intente más tarde.','info');
+				notifyUser('Ha ocurrido un error inesperado. Intente m&aacute;s tarde.','info');
 				$('#modal-editar').modal('hide');
 			}).always(function(view) {
 				$('#modal-editar .modal-content').html(view);
@@ -360,7 +354,7 @@
 			dataType: 'json',
 			data: elemento_submit.serialize(),
 		}).fail(function(error_reader) {
-			notifyUser('Ha ocurrido un error inesperado. Intente más tarde.','info');
+			notifyUser('Ha ocurrido un error inesperado. Intente m&aacute;s tarde.','info');
 			$('#modal-editar').modal('hide');
 		}).always(function(response) {
 			notifyUser(response.message,response.status);
@@ -369,17 +363,17 @@
 	});
 	$('body').on('click','.salir-modal-editar',function(){
 		swal({
-            title: "<?php echo __('¿Está seguro de salir sin guardar?'); ?>",   
+            title: "<?php echo __('¿Est&aacute; seguro de salir sin guardar?'); ?>",   
             text: "<?php echo __(''); ?>",
             type: "warning",
             showCancelButton: true, 
             cancelButtonText: "<?php echo __('Cancelar'); ?>",   
             confirmButtonColor: "#DD6B55",   
-            confirmButtonText: "Sí, estoy seguro!",   
+            confirmButtonText: "S&iacute;, estoy seguro!",   
             closeOnConfirm: true 
         }, function(){
         	$('#modal-editar').modal('hide');
-        	//swal("Completado!", "Eliminado con éxito.", "success"); 
+        	//swal("Completado!", "Eliminado con &eacute;xito.", "success"); 
         });
 	});
 </script>

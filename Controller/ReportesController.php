@@ -134,7 +134,7 @@
 			$this->Mpdf->setFilename('reporte_'.date('dmY_Hi').'.pdf');
 			$this->Mpdf->addPage('L');
 			$this->Mpdf->setOutput('D');
-			$footer = '<div align="right">Página {PAGENO} de {nb}</div>';
+			$footer = '<div align="right">P&aacute;gina {PAGENO} de {nb}</div>';
 			$this->Mpdf->SetHTMLFooter($footer);
 			$this->set(array(
 				'registros'=>$registros,
@@ -254,7 +254,7 @@
 			$this->Mpdf->setFilename('reporte_'.date('dmY_Hi').'.pdf');
 			$this->Mpdf->addPage('L');
 			$this->Mpdf->setOutput('D');
-			$footer = '<div align="right">Página {PAGENO} de {nb}</div>';
+			$footer = '<div align="right">P&aacute;gina {PAGENO} de {nb}</div>';
 			$this->Mpdf->SetHTMLFooter($footer);
 			$this->set(array(
 				'registros'=>$registros,
@@ -386,7 +386,7 @@
 			$this->Mpdf->setFilename('reporte_'.date('dmY_Hi').'.pdf');
 			$this->Mpdf->addPage('L');
 			$this->Mpdf->setOutput('D');
-			$footer = '<div align="right">Página {PAGENO} de {nb}</div>';
+			$footer = '<div align="right">P&aacute;gina {PAGENO} de {nb}</div>';
 			$this->Mpdf->SetHTMLFooter($footer);
 			$this->set(array(
 				'registros'=>$registros,
@@ -518,7 +518,7 @@
 			$this->Mpdf->setFilename('reporte_'.date('dmY_Hi').'.pdf');
 			$this->Mpdf->addPage('L');
 			$this->Mpdf->setOutput('D');
-			$footer = '<div align="right">Página {PAGENO} de {nb}</div>';
+			$footer = '<div align="right">P&aacute;gina {PAGENO} de {nb}</div>';
 			$this->Mpdf->SetHTMLFooter($footer);
 			$this->set(array(
 				'registros'=>$registros,
@@ -667,7 +667,7 @@
 			$this->Mpdf->setFilename('reporte_'.date('dmY_Hi').'.pdf');
 			$this->Mpdf->addPage('L');
 			$this->Mpdf->setOutput('D');
-			$footer = '<div align="right">Página {PAGENO} de {nb}</div>';
+			$footer = '<div align="right">P&aacute;gina {PAGENO} de {nb}</div>';
 			$this->Mpdf->SetHTMLFooter($footer);
 			$this->set(array(
 				'registros'=>$registros,
@@ -709,18 +709,25 @@
 						}
 						$this->loadModel('AlumnoAsignatura');
 						$registros = $this->AlumnoAsignatura->getTasaAsistencia($periodo['Periodo']['COD_PERIODO'],$cod_alumno,$sigla_seccion,$ordenar);
+						#debug($registros);exit();
 						$siglas_secciones = array();
+
 						foreach ($registros as $key => $value) {
-							$siglas_secciones[$value['AlumnoAsignatura']['SIGLA_SECCION']] = $value['AlumnoAsignatura']['SIGLA_SECCION'];
+							$siglas_secciones[$value['AlumnoAsignatura']['COD_HORARIO_ASIGNATURA']] = $value['AlumnoAsignatura']['COD_HORARIO_ASIGNATURA'];
+							
 						}
+
 						if (!empty($siglas_secciones)) {
 							$this->loadModel('ProgramacionClase');
 							foreach ($siglas_secciones as $value) {
-								$indicadores_alumnos[$value] = $this->ProgramacionClase->getIndicadoresAlumno($value);	
+								
+								$indicadores_alumnos[$value] = $this->ProgramacionClase->getIndicadoresAlumno($value);
+								$this->loadModel('AsignaturaHorario');
+								$asignatura_horario[$value] = $this->AsignaturaHorario->getAsignaturaHorario($value);
+								
 							}	
 						}
-						#debug($registros);
-						#exit();
+												
 					}
 				}
 			}
@@ -784,7 +791,7 @@
 			$this->Mpdf->setFilename('reporte_'.date('dmY_Hi').'.pdf');
 			$this->Mpdf->addPage('L');
 			$this->Mpdf->setOutput('D');
-			$footer = '<div align="right">Página {PAGENO} de {nb}</div>';
+			$footer = '<div align="right">P&aacute;gina {PAGENO} de {nb}</div>';
 			$this->Mpdf->SetHTMLFooter($footer);
 			$indicadores_alumnos = $datos_filtro = $registros = array();
 			$ordenar = '';
@@ -980,7 +987,7 @@
 			$this->Mpdf->setFilename('reporte_'.date('dmY_Hi').'.pdf');
 			$this->Mpdf->addPage('L');
 			$this->Mpdf->setOutput('D');
-			$footer = '<div align="right">Página {PAGENO} de {nb}</div>';
+			$footer = '<div align="right">P&aacute;gina {PAGENO} de {nb}</div>';
 			$this->Mpdf->SetHTMLFooter($footer);
 			$this->layout = null;
 			$indicadores_sigla_seccion = $datos_filtro = $registros = array();

@@ -2,12 +2,12 @@
 <br>
 <?php if ($hay_reemplazo_docente): ?>
 	<p>
-		Se nos ha informado que no podrá realizar una clase, 
-		por lo que se gestionó su reemplazo docente según lo siguiente:
+		Se nos ha informado que no podr&aacute; realizar una clase, 
+		por lo que se gestion&oacute; su reemplazo docente seg&uacute;n lo siguiente:
 	</p>
 <?php else: ?>
 	<p>
-		Se ha suspendido la clase según lo siguiente:
+		Se ha suspendido la clase seg&uacute;n lo siguiente:
 	</p>
 <?php endif ?>
 <?php 
@@ -20,7 +20,7 @@
 		<td <?php echo $class_dato; ?> ><?php echo $clase['Sede']['NOMBRE']; ?></td>
 	</tr>
 	<tr>
-		<td <?php echo $class_label; ?> >Sigla-Sección</td>
+		<td <?php echo $class_label; ?> >Sigla-Secci&oacute;n</td>
 		<td <?php echo $class_dato; ?> ><?php echo $clase['ProgramacionClase']['SIGLA_SECCION']; ?></td>
 	</tr>
 	<tr>
@@ -56,11 +56,11 @@
 <br>
 <?php if ($hay_reemplazo_docente): ?>
 	<p>
-		Para coordinar la recuperación de horas asociadas, favor dirigirse a su Coordinador Docente,
+		Para coordinar la recuperaci&oacute;n de horas asociadas, favor dirigirse a su Coordinador Docente,
 	</p>
 <?php else: ?>
 	<p>
-		Para coordinar su recuperación, favor dirigirse a su Coordinador Docente,
+		Para coordinar su recuperaci&oacute;n, favor dirigirse a su Coordinador Docente,
 	</p>
 <?php endif; ?>
 <p>Atte.</p>

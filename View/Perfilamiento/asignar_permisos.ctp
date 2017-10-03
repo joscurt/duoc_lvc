@@ -25,7 +25,7 @@
 	<form method="POST" action="<?php echo $this->Html->url(array('action'=>'asignarPermisos')); ?>">
 		<div class="col-md-2">
 			<div class="form-group">
-				<label for="">Nombre Usuario <span title="Se desplegará un listado de opciones coincidentes con su búsqueda." data-toggle="tooltip"><i class="fa fa-info-circle"></i></span></label>
+				<label for="">Nombre Usuario <span title="Se desplegar&aacute; un listado de opciones coincidentes con su b&uacute;squeda." data-toggle="tooltip"><i class="fa fa-info-circle"></i></span></label>
 				<input 
 					type="text" 
 					id="nombre-usuario-filtro"
@@ -36,7 +36,7 @@
 		</div>
 		<div class="col-md-2">
 			<div class="form-group">
-				<label for="">Nombres <span title="Se desplegará un listado de opciones coincidentes con su búsqueda." data-toggle="tooltip"><i class="fa fa-info-circle"></i></span></label>
+				<label for="">Nombres <span title="Se desplegar&aacute; un listado de opciones coincidentes con su b&uacute;squeda." data-toggle="tooltip"><i class="fa fa-info-circle"></i></span></label>
 				<input 
 					type="text"
 					id="nombre-filtro"
@@ -47,7 +47,7 @@
 		</div>
 		<div class="col-md-2">
 			<div class="form-group">
-				<label for="">Rut <span title="Se desplegará un listado de opciones coincidentes con su búsqueda." data-toggle="tooltip"><i class="fa fa-info-circle"></i></span></label>
+				<label for="">Rut <span title="Se desplegar&aacute; un listado de opciones coincidentes con su b&uacute;squeda." data-toggle="tooltip"><i class="fa fa-info-circle"></i></span></label>
 				<input
 					type="text"
 					id="rut-filtro"
@@ -134,7 +134,7 @@
 					<div class="row">
 						<div class="col-md-6">
 							<div class="form-group">
-								<label for="vista">Nombre de Usuario <span title="Se desplegará un listado de opciones coincidentes con su búsqueda." data-toggle="tooltip"><i class="fa fa-info-circle"></i></span></label>
+								<label for="vista">Nombre de Usuario <span title="Se desplegar&aacute; un listado de opciones coincidentes con su b&uacute;squeda." data-toggle="tooltip"><i class="fa fa-info-circle"></i></span></label>
 								<input
 									type="text"
 									id="add-nombre-usuario"
@@ -143,7 +143,7 @@
 						</div>
 						<div class="col-md-6">
 							<div class="form-group">
-								<label for="vista">Nombres <span title="Se desplegará un listado de opciones coincidentes con su búsqueda." data-toggle="tooltip"><i class="fa fa-info-circle"></i></span></label>
+								<label for="vista">Nombres <span title="Se desplegar&aacute; un listado de opciones coincidentes con su b&uacute;squeda." data-toggle="tooltip"><i class="fa fa-info-circle"></i></span></label>
 								<input 
 									type="text"
 									id="add-nombre"
@@ -152,7 +152,7 @@
 						</div>
 						<div class="col-md-6">
 							<div class="form-group">
-								<label for="vista">Rut <span title="Se desplegará un listado de opciones coincidentes con su búsqueda." data-toggle="tooltip"><i class="fa fa-info-circle"></i></span></label>
+								<label for="vista">Rut <span title="Se desplegar&aacute; un listado de opciones coincidentes con su b&uacute;squeda." data-toggle="tooltip"><i class="fa fa-info-circle"></i></span></label>
 								<input
 									id="add-rut"
 									type="text"
@@ -284,7 +284,7 @@
 			data:form.serialize(),
 		})
 		.fail(function(error){
-			notifyUser('Ha ocurrido un error inesperado. Intente más tarde.','danger');
+			notifyUser('Ha ocurrido un error inesperado. Intente m&aacute;s tarde.','danger');
 			$('#contenedor-vistas .card-body').html('');
 		})
 		.always(function(view){
@@ -303,7 +303,7 @@
 				dataType: 'html',
 			})
 			.fail(function(error){
-				notifyUser('Ha ocurrido un error inesperado. Intente más tarde.','danger');
+				notifyUser('Ha ocurrido un error inesperado. Intente m&aacute;s tarde.','danger');
 				$('#modal_editar_usuario').modal('hide');
 			})
 			.always(function(view){
@@ -322,7 +322,7 @@
 				data:elemento_click.parents('form').serialize(),
 			})
 			.fail(function() {
-				notifyUser('Ha ocurrido un error inesperado. Intente más tarde.','info');
+				notifyUser('Ha ocurrido un error inesperado. Intente m&aacute;s tarde.','info');
 			})
 			.always(function(response) {
 				$('#select-vista').change();
@@ -344,7 +344,7 @@
 			dataType: 'html',
 		})
 		.fail(function() {
-			notifyUser('Ha ocurrido un error inesperado. Intente más tarde.','info');
+			notifyUser('Ha ocurrido un error inesperado. Intente m&aacute;s tarde.','info');
 		})
 		.always(function(view) {
 			$('select.select-carrera-'+selector_carreras).html(view);

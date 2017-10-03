@@ -41,7 +41,7 @@
 					<th>Nº</th>
 					<th>Fecha Clase</th>
 					<th>Nombre Asignatura</th>
-					<th>Sigla-Sección</th>
+					<th>Sigla-Secci&oacute;n</th>
 					<th>Jornada</th>
 					<th>Rut Docente</th>
 					<th>Apellido Paterno</th>

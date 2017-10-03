@@ -1,6 +1,6 @@
 <?php
 
-# Versión original.
+# Versi&oacute;n original.
 class DATABASE_CONFIG {
 	public $default = array(
 		'datasource' => 'Database/Oracle',
@@ -13,12 +13,12 @@ class DATABASE_CONFIG {
 		'database' => '(DESCRIPTION=(ADDRESS_LIST = (ADDRESS = (PROTOCOL = TCP)(HOST = 10.10.150.16)(PORT = 1521)))(CONNECT_DATA=(SID=dbdesa)))',
 		'prefix' => '',
 		'schema'=>'LIBROVIRTUALCLASES',
-		'owner'=>'LIBROVIRTUALCLASES',
-		'encoding' => 'utf8' 
+		'owner'=>'LIBROVIRTUALCLASES'
+		/*'encoding' => 'utf8' */
 	);
 	/**/
 
-	# Versión copia.
+	# Versi&oacute;n copia.
 	/*public $default = array(
 		'datasource' => 'Database/Oracle',
 		'driver'=>'oracle',
@@ -34,7 +34,7 @@ class DATABASE_CONFIG {
 		'encoding' => 'utf8'
 	);
 	
-	# Versión copia.
+	# Versi&oacute;n copia.
 	/*public $default = array(
 		'datasource' => 'Database/Oracle',
 		'driver'=>'oracle',

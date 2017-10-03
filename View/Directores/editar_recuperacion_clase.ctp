@@ -14,7 +14,7 @@
 	<div class="card-body card-padding">
 		<div class="row">
 			<div class="col-md-12">
-				<h2 style="border-bottom: 1px solid #0c253d; padding-bottom: 5px;">Información Docente:</h2>
+				<h2 style="border-bottom: 1px solid #0c253d; padding-bottom: 5px;">Informaci&oacute;n Docente:</h2>
 				<table class="table table-striped" border="0" cellpadding="0" cellspacing="0">
 					<thead>
 						<tr>
@@ -33,12 +33,12 @@
 						</tr>	
 					</tbody>
 				</table>
-				<h2 style="border-bottom: 1px solid #0c253d; padding-bottom: 5px;">Información Clase:</h2>
+				<h2 style="border-bottom: 1px solid #0c253d; padding-bottom: 5px;">Informaci&oacute;n Clase:</h2>
 				<table class="table table-striped" border="0" cellpadding="0" cellspacing="0">
 					<thead>
 						<tr>
 							<th>Nombre asignatura</th>
-							<th>Sigla-Sección</th>
+							<th>Sigla-Secci&oacute;n</th>
 							<th>Jornada</th>
 							<th>Fecha programada</th>
 							<th>Horario</th>
@@ -64,9 +64,9 @@
 				<table class="table table-striped" border="0" cellpadding="0" cellspacing="0">
 					<thead>
 						<tr>
-							<th>Módulos</th>
-							<th>Módulos programados</th>
-							<th>Módulos por recuperar</th>
+							<th>M&oacute;dulos</th>
+							<th>M&oacute;dulos programados</th>
+							<th>M&oacute;dulos por recuperar</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -96,7 +96,7 @@
 							<tr class="even"><td class="odd"><label>Observaciones:</label> <?php echo $info_editar_recuperacion['ProgramacionClase']['OBSERVACIONES_ADELANTAR_CLASE']; ?></td></tr>
 						<?php endif ?>
 						<?php if ($info_editar_recuperacion['Detalle']['ID']==5): ?>
-							<tr class="odd"><td class="odd"><label>Tipo de Justificación Legal:</label> <?php echo $info_editar_recuperacion['TipoJustificacionLegal']['TIPO_JUSTIFICACION']; ?></td></tr>
+							<tr class="odd"><td class="odd"><label>Tipo de Justificaci&oacute;n Legal:</label> <?php echo $info_editar_recuperacion['TipoJustificacionLegal']['TIPO_JUSTIFICACION']; ?></td></tr>
 							<tr class="even"><td class="odd"><label>Observaciones:</label> <?php echo $info_editar_recuperacion['ProgramacionClase']['OBSERVACIONES_ADELANTAR_CLASE']; ?></td></tr>
 						<?php endif ?>		
 					</tbody>
@@ -115,20 +115,20 @@
 		<?php 
 			#FUTURO
 			/*if (strtotime($info_editar_recuperacion['ProgramacionClase']['HORA_INICIO']) > strtotime(date('Y-m-d H:i:s'))) {
-				$text = 'Dado que aun no llega la fecha de realización de la clase esta recuperación corresponde a un Reemplazo Docente';
+				$text = 'Dado que aun no llega la fecha de realizaci&oacute;n de la clase esta recuperaci&oacute;n corresponde a un Reemplazo Docente';
 			}else{
-				$text = 'Dado que ya pasó la fecha de la clase esta quedará como Inasistencia Docente';
+				$text = 'Dado que ya pas&oacute; la fecha de la clase esta quedar&aacute; como Inasistencia Docente';
 			}*/
 			$text= '';
 		?>
 		swal({
-            title: "<?php echo __('¿Está seguro?'); ?>",   
+            title: "<?php echo __('¿Est&aacute; seguro?'); ?>",   
             text: "<?php echo __($text); ?>",
             type: "warning",
             showCancelButton: true, 
             cancelButtonText: "<?php echo __('Cancelar'); ?>",   
             confirmButtonColor: "#DD6B55",   
-            confirmButtonText: "Sí, estoy seguro!",   
+            confirmButtonText: "S&iacute;, estoy seguro!",   
             closeOnConfirm: false 
         }, function(){
         	window.location="<?php echo $this->Html->url(array('action'=>'cambioEstadoRecuperacionClase',$info_editar_recuperacion['ProgramacionClase']['COD_PROGRAMACION'])); ?>"

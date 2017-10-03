@@ -14,7 +14,7 @@
 	    |-------------------------------------------------------------------------------------------
 	    | @Metodo: getPeriodos.
 	    | @return: array
-	    | @Descipción: Retorna un arreglo con los periodos filtrados por el año actual.
+	    | @Descipci&oacute;n: Retorna un arreglo con los periodos filtrados por el a&ntilde;o actual.
 	    */
 		public function getPeriodos()
 		{
@@ -51,6 +51,7 @@
 			$anho = $obj_parametro->getValorParametro('ANHO_ACTUAL');
 			$semestre = $obj_parametro->getValorParametro('SEMESTRE_ACTUAL');
 			$periodo = $this->getPeriodoByAnhoSemestre($anho,$semestre);
+			#debug($periodo);exit();
 			return $periodo;
 		}
 

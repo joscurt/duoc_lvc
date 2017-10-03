@@ -3,7 +3,7 @@
 	<head>
 		<?php echo $this->Html->charset(); ?>
 		<title>
-			Gestión de clases | DUOC UC
+			Gesti&oacute;n de clases | DUOC UC
 			<?php echo $this->fetch('title'); ?>
 		</title>
 		<?php

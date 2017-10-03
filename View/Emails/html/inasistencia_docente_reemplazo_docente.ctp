@@ -1,7 +1,7 @@
 
 <p>Estimado(a) <strong><?php echo $docente_reemplazo['Docente']['NOMBRE'].' '.$docente_reemplazo['Docente']['APELLIDO_PAT'].' '.$docente_reemplazo['Docente']['APELLIDO_MAT'] ?></strong>,</p>
 <br>
-<p>Según lo coordinado con usted, realizará un reemplazo docente según lo siguiente:<p>
+<p>Seg&uacute;n lo coordinado con usted, realizar&aacute; un reemplazo docente seg&uacute;n lo siguiente:<p>
 <?php 
 	$class_label = 'style="background:rgb(140, 135, 135);color:white;border:1px solid #c4c4c4;padding:3px 10px 3px 3px; width:80px;"';
 	$class_dato = 'style="border:1px solid #c4c4c4;padding:3px 3px 3px 10px; font-weight:900"';
@@ -12,7 +12,7 @@
 		<td <?php echo $class_dato; ?> ><?php echo $clase['Sede']['NOMBRE']; ?></td>
 	</tr>
 	<tr>
-		<td <?php echo $class_label; ?> >Sigla-Sección</td>
+		<td <?php echo $class_label; ?> >Sigla-Secci&oacute;n</td>
 		<td <?php echo $class_dato; ?> ><?php echo $clase['ProgramacionClase']['SIGLA_SECCION']; ?></td>
 	</tr>
 	<tr>

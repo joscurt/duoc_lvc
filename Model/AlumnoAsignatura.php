@@ -90,6 +90,7 @@
 
 		public function getListadoAlumnosSeccionForRI($cod_asignatura_horario=null)
 		{
+			#debug($cod_asignatura_horario);exit();
 			$result = $this->find('all',array(
 				'fields'=>array(
 					'DISTINCT Alumno.ID',
@@ -142,6 +143,7 @@
 				),
 				'order'=>'Alumno.APELLIDO_PAT'
 			));
+			#debug($this->getLastQuery());exit();
 			return $result;
 		}
 		public function getListadoAsistencia($cod_periodo=null,$cod_sede=null,$cod_asignatura_horario=null)
@@ -235,6 +237,7 @@
 					'Asignatura.NOMBRE',
 					'Asignatura.SIGLA',
 					'AlumnoAsignatura.SIGLA_SECCION',
+					'AlumnoAsignatura.COD_HORARIO_ASIGNATURA',
 					'AsignaturaHorario.CLASES_REGISTRADAS',
 				),
 				'joins'=>array(

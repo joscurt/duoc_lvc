@@ -19,7 +19,7 @@
 <br>
 <div class="card">
 	<div class="card-header">
-		<h2>Revisión de atrasos</h2>
+		<h2>Revisi&oacute;n de atrasos</h2>
 	</div>
 	<div class="card-body card-padding">
 		<div class="row">
@@ -58,8 +58,8 @@
 				<p class="f-500 c-black m-b-15">Asignatura</p>
 				
 				<select class="selectpicker" style="display: none;">
-					<option disabled="disabled">Programación I</option>
-					<option>Programación II</option>
+					<option disabled="disabled">Programaci&oacute;n I</option>
+					<option>Programaci&oacute;n II</option>
 					<option>Base de datos</option>
 					<option disabled="disabled">Redes I</option>
 					<option>CCNA</option>
@@ -91,7 +91,7 @@
 			</div>
 			<div class="col-md-3">
 				<div class="form-group">
-					<strong style="font-size: 1.5em;"><i class="fa fa-file-text"></i>&nbsp;Programación II</strong>
+					<strong style="font-size: 1.5em;"><i class="fa fa-file-text"></i>&nbsp;Programaci&oacute;n II</strong>
 				</div>
 			</div>
 			<table class="table table-striped table-hover" style="margin-top: 8%;">

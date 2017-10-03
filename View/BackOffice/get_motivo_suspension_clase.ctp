@@ -1,6 +1,6 @@
 <div class="row">
 	<div class="col-md-12">
-		<h3 style="border-bottom: 1px solid #0c253d; padding-bottom: 5px;">Motivo Suspensión Clase</h3>
+		<h3 style="border-bottom: 1px solid #0c253d; padding-bottom: 5px;">Motivo Suspensi&oacute;n Clase</h3>
 	</div>
 	<div class="col-md-12">
 		<?php if (!empty($suspension_clases)): ?>

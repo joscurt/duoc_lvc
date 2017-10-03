@@ -2,12 +2,12 @@
 	<div class="modal-dialog">
 		<div class="modal-content">
 			<div class="modal-header">
-				<h4 class="modal-title">Bitácora</h4>
+				<h4 class="modal-title">Bit&aacute;cora</h4>
 			</div>
 			<div class="modal-body">
 				<form class="addEvent" role="form">
 					<div class="col-md-6">
-						<label for="">Bitácora Docente</label>
+						<label for="">Bit&aacute;cora Docente</label>
 						<div class="form-group">
 							<div class="fg-line">
 								<textarea style="max-height: 300px;height: 300px;"placeholder="Ingrese sus comentarios" rows="5" class="form-control"></textarea>
@@ -15,7 +15,7 @@
 						</div>
 					</div>
 					<div class="col-md-6">
-						<label for="">Ver Bitácoras</label>
+						<label for="">Ver Bit&aacute;coras</label>
 						<div class="form-group" style="max-height: 300px; overflow: auto;">
 							<ul>
 								<li><span class="badge" style="background: #607D8B;">10:22 (12/03/2016)</span> - <br> Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iste architecto tempore dicta consectetur omnis sequi reiciendis asperiores, maxime et enim non recusandae harum id officiis, numquam, aliquam earum obcaecati. Delectus. <br> </li>
@@ -34,7 +34,7 @@
 				</form>
 			</div>
 			<div class="modal-footer">
-				<button type="submit" class="btn btn-xs btn-success" id="addEvent"><i class="fa fa-save"></i>&nbsp;Guardar Bitácora</button>
+				<button type="submit" class="btn btn-xs btn-success" id="addEvent"><i class="fa fa-save"></i>&nbsp;Guardar Bit&aacute;cora</button>
 				<button type="button" class="btn btn-xs btn-default" data-dismiss="modal"><i class="fa fa-times"></i>&nbsp;Cerrar</button>
 			</div>
 		</div>
@@ -54,18 +54,18 @@
 			<div class="col-md-2">
 				<div class="form-group">
 					<label for="">CARRERA</label>
-					<p class="c-black f-500 m-b-20">Ingeniería en Informatica</p>
+					<p class="c-black f-500 m-b-20">Ingenier&iacute;a en Informatica</p>
 				</div>
 			</div>
 			<div class="col-md-3">
 				<div class="form-group">
 					<label for="">NOMBRE ASIGNATURA</label>
-					<p class="c-black f-500 m-b-20">Nivelación Matemáticas</p>
+					<p class="c-black f-500 m-b-20">Nivelaci&oacute;n Matem&aacute;ticas</p>
 				</div>
 			</div>
 			<div class="col-md-2">
 				<div class="form-group">
-					<label for="">SIGLA-SECCIÓN</label>
+					<label for="">SIGLA-SECCI&Oacute;N</label>
 					<p class="c-black f-500 m-b-20">PL201202V</p>
 				</div>
 			</div>
@@ -88,7 +88,7 @@
 				<table class="table table-striped table-hover">
 					<thead>
 						<tr>
-							<th class="td-app"><strong>Día</strong></th>
+							<th class="td-app"><strong>D&iacute;a</strong></th>
 							<th class="td-app"><strong>Horario</strong></th>
 							<th class="td-app"><strong>Sala</strong></th>
 							<th class="td-app"><strong>Tipo Clase</strong></th>
@@ -126,7 +126,7 @@
 			<table class="table table-striped table-hover">
 				<thead>
 					<tr>
-						<th class="td-app"><strong>Día</strong></th>
+						<th class="td-app"><strong>D&iacute;a</strong></th>
 						<th class="td-app"><strong>Horario</strong></th>
 						<th class="td-app"><strong>Sala</strong></th>
 						<th class="td-app"><strong>Tipo Clase</strong></th>

@@ -41,7 +41,7 @@
 		public function agregarObjeto($model=null)
 		{
 			if (!empty($this->data)) {
-				$mensaje='No ha sido posible almacenar su información.';
+				$mensaje='No ha sido posible almacenar su informaci&oacute;n.';
 				$estado='danger';
 				$this->autoRender=false; 
 				if (!empty($model)) {
@@ -61,13 +61,13 @@
 							}
 							$this->{$model}->create();
 							if ($this->{$model}->save($new_obj)) {
-								$mensaje='Su información se ha almacenado con éxito.';
+								$mensaje='Su informaci&oacute;n se ha almacenado con &eacute;xito.';
 								$estado='success';
 							}else{
 								$mensaje='No se ha podido agregar el nuevo registro.';
 							}
 						}else{
-							$mensaje='Su información no se ha almacenado. Intente más tarde.';
+							$mensaje='Su informaci&oacute;n no se ha almacenado. Intente m&aacute;s tarde.';
 						}
 					}
 				}
@@ -109,10 +109,10 @@
 					$update['VISTA_ID'] = $this->data[$model]['VISTA_ID'];
 				}
 				if ($this->{$model}->save($update)) {
-					$mensaje='Su información se ha editado con éxito.';
+					$mensaje='Su informaci&oacute;n se ha editado con &eacute;xito.';
 					$estado='success';
 				}else{
-					$mensaje = 'No se ha podido guardar la edición.';
+					$mensaje = 'No se ha podido guardar la edici&oacute;n.';
 				}
 				echo json_encode(array('status'=>$estado,'mensaje'=>$mensaje));
 			}
@@ -145,10 +145,10 @@
 					'MODIFIED'=>date('Y-m-d H:i:s'),
 				);
 				if ($this->{$model}->save($update)) {
-					$mensaje='Su información se ha editado con éxito.';
+					$mensaje='Su informaci&oacute;n se ha editado con &eacute;xito.';
 					$estado='success';
 				}else{
-					$mensaje = 'No se ha podido guardar la edición.';
+					$mensaje = 'No se ha podido guardar la edici&oacute;n.';
 				}
 				echo json_encode(array('status'=>$estado,'mensaje'=>$mensaje));
 			}
@@ -327,10 +327,10 @@
 				$permiso['Permiso']['ACTIVO'] = $permiso['Permiso']['ACTIVO']==1? 0:1;
 				$permiso['Permiso']['MODIFIED'] = date('Y-m-d H:i:s');
 				if (!$this->Permiso->save($permiso['Permiso'])) {
-					$msj = 'Su información no se pudo actualizar. Intente más tarde.';
+					$msj = 'Su informaci&oacute;n no se pudo actualizar. Intente m&aacute;s tarde.';
 					$status = 'danger';
 				}else{
-					$msj = 'información actualizada con éxito.';
+					$msj = 'informaci&oacute;n actualizada con &eacute;xito.';
 					$status = 'success';
 				}
 				echo json_encode(array('status'=>$status,'mensaje'=>$msj));
@@ -344,7 +344,7 @@
 		{
 			$this->autoRender = false;
 			$status = 'danger';
-			$msj = 'Su información no se pudo almacenar. Intente más tarde';
+			$msj = 'Su informaci&oacute;n no se pudo almacenar. Intente m&aacute;s tarde';
 			if (!empty($this->data)) {
 				#debug($cod_permiso);
 				#debug($this->data);#exit();
@@ -494,7 +494,7 @@
 										}
 									}
 								}
-								$msj = 'Su información se ha almacenado con éxito';
+								$msj = 'Su informaci&oacute;n se ha almacenado con &eacute;xito';
 								$status = 'success';
 							}
 						}else{
@@ -538,7 +538,7 @@
 		{
 			$this->autoRender = false;
 			$status = 'danger';
-			$msj = 'No se pudo almacenar su información.';
+			$msj = 'No se pudo almacenar su informaci&oacute;n.';
 			if (!empty($this->data)) {
 				$permiso_funcionalidad = $this->data;
 				if (empty($permiso_funcionalidad['ID'])) {
@@ -554,7 +554,7 @@
 				#debug($permiso_funcionalidad);
 				if ($this->PermisoFuncionalidad->save($permiso_funcionalidad)) {
 					$status = 'success';
-					$msj = 'Su información se ha actualizado con éxito.';
+					$msj = 'Su informaci&oacute;n se ha actualizado con &eacute;xito.';
 				}
 			}
 			echo json_encode(array('status'=>$status,'mensaje'=>$msj));

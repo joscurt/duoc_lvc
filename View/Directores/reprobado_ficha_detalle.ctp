@@ -32,7 +32,7 @@
 		<?php endif ?>
 			<div class="row">
 				<div class="col-md-12">
-					<h2 style="border-bottom: 1px solid #0c253d; padding-bottom: 5px;">Información Docente:</h2>
+					<h2 style="border-bottom: 1px solid #0c253d; padding-bottom: 5px;">Informaci&oacute;n Docente:</h2>
 					<table class="table table-striped" border="0" cellpadding="0" cellspacing="0">
 						<thead>
 							<tr>
@@ -49,12 +49,12 @@
 							</tr>	
 						</tbody>
 					</table>
-					<h2 style="border-bottom: 1px solid #0c253d; padding-bottom: 5px;">Información Clase:</h2>
+					<h2 style="border-bottom: 1px solid #0c253d; padding-bottom: 5px;">Informaci&oacute;n Clase:</h2>
 					<table class="table table-striped" border="0" cellpadding="0" cellspacing="0">
 						<thead>
 							<tr>
 								<th>Nombre asignatura</th>
-								<th>Sigla-Sección</th>
+								<th>Sigla-Secci&oacute;n</th>
 								<th>Periodo</th>
 								<th>Jornada</th>
 								<th>Tipo de clase</th>
@@ -74,18 +74,46 @@
 					<table class="table table-striped" border="0" cellpadding="0" cellspacing="0">
 						<thead>
 							<tr>
-								<th>Clases Regulares Registradas</th>
-								<th>Clases Regulares </th>
-								<th>Clases Regulares Suspendidas</th>
-								<th>Asistencia Promedio</th>
+								<th style="text-align: center;">Clases Regulares Registradas</th>
+								<th style="text-align: center;">Clases Regulares </th>
+								<th style="text-align: center;">Clases Regulares Suspendidas</th>
+								<th style="text-align: center;">Cantidad de 	Alumnos RI</th>
+								<th style="text-align: center;">Asistencia Promedio</th>
 							</tr>
 						</thead>
 						<tbody>
 							<tr class="odd">
-								<td><?php echo (int)$asignatura_horario['AsignaturaHorario']['CLASES_REGISTRADAS']; ?></td>
-								<td><?php echo $clases_regulares; ?></td>
-								<td><?php echo $clases_suspendidas; ?></td>
-								<td><?php echo (float)$asignatura_horario['AsignaturaHorario']['ASIST_PROMEDIO'] ?>%</td>
+								<td style="text-align: center;"><?php 
+								echo (int)$asignatura_horario['AsignaturaHorario']['CLASES_REGISTRADAS']; ?></td>
+								<td style="text-align: center;"><?php echo $clases_regulares; ?></td>
+								<td style="text-align: center;"><?php echo $clases_suspendidas; ?></td>
+								<td style="font-size: 12px;text-align: center;">
+									<?php 
+									$i = 0;
+										foreach ($alumnos as $key => $value) {
+											
+											if ($asignatura_horario['AsignaturaHorario']['RI_IMPORT'] == 1) {
+												$porcentaje = 0;
+											$porcentaje = $value['RI_IM']['CLASES_PRESENTE']*100/$value['RI_IM']['CLASES_REGISTRADAS'];
+											if($porcentaje < $porcentaje_minimo_ri)	{
+											$i++;
+											}
+											}else{
+
+											if (isset($indicadores_alumnos[$value['Alumno']['COD_ALUMNO']])) {
+											$porcentaje = $indicadores_alumnos[$value['Alumno']['COD_ALUMNO']]['CLASES_PRESENTE']*100/$asignatura_horario['AsignaturaHorario']['CLASES_REGISTRADAS'];	
+												}
+
+											if($porcentaje < $porcentaje_minimo_ri)	{
+											$i++;
+											}
+											}
+										}
+										echo $i;
+									 ?>
+
+								</td>
+								<td style="text-align: center;"><?php echo (float)$asignatura_horario['AsignaturaHorario']['ASIST_PROMEDIO'] ?>%</td>
 							</tr>	
 						</tbody>
 					</table>
@@ -126,6 +154,7 @@
 						</thead>
 						<tbody>
 							<?php 
+							$i = 0;
 								foreach ($alumnos as $key => $value): 
 										if ($asignatura_horario['AsignaturaHorario']['RI_IMPORT'] == 1) {
 											$porcentaje = 0;
@@ -139,6 +168,10 @@
 										$checkbox2 = ($porcentaje === 100)?'disabled':null;
 										
 										$checkbox = ($porcentaje < $porcentaje_minimo_ri)?'checked="checked"':null; 
+										
+										if ($porcentaje < $porcentaje_minimo_ri) {
+											$i++;
+										}
 										$observaciones = '';
 										if (!empty($value['RI_IM']['RI'])  &&  $porcentaje <> 100) {
 											$checkbox = ((int)$value['RI_IM']['RI'] === 1 )?'checked="checked"':null; 
@@ -146,6 +179,8 @@
 											$observaciones = $value['RI_IM']['OBSERVACIONES'];
 										}
 										}else{
+
+
 										$porcentaje = 0;
 										if (isset($indicadores_alumnos[$value['Alumno']['COD_ALUMNO']])) {
 											$porcentaje = $indicadores_alumnos[$value['Alumno']['COD_ALUMNO']]['CLASES_PRESENTE']*100/$asignatura_horario['AsignaturaHorario']['CLASES_REGISTRADAS'];	
@@ -160,6 +195,9 @@
 										if ((int)$value['RI']['BORRADOR'] === 1) {
 											$checkbox = ((int)$value['RI']['RI_DIRECTOR']===1)? 'checked="checked"':null; 
 										}
+										if ($porcentaje < $porcentaje_minimo_ri) {
+											$i++;
+										}	
 									}
 							?>
 								<tr >
@@ -204,13 +242,14 @@
 													class="form-control "
 													disabled="disabled" 
 													value="<?php echo $observaciones; ?>"
-													placeholder="Máx. 300 caracteres" />
+													placeholder="M&aacute;x. 300 caracteres" />
 											</div>
 										</div>
 									</td>
 								</tr>
 							<?php endforeach ?>
 						</tbody>
+
 					</table>
 				</div>
 				<div class="col-md-12 m-t-30">
@@ -269,7 +308,7 @@
 	            showCancelButton: true, 
 	            cancelButtonText: "<?php echo __('Cancelar'); ?>",   
 	            confirmButtonColor: "#DD6B55",   
-	            confirmButtonText: "Sí, Estoy Seguro!",   
+	            confirmButtonText: "S&iacute;, Estoy Seguro!",   
 	            closeOnConfirm: false,
 	        }, function(){
 	        	form.append('<input name="data[borrador]" type="hidden" value="0" /> ');
@@ -297,5 +336,5 @@
 		$('#tabla-ri tbody tr td.td-danger').each(function(index, el) {
 			$(this).parents('tr').show();
 		});
-	});
+	}); 
 </script>

@@ -83,7 +83,7 @@
                 error+='Debe seleccionar el motivo.<br>';
             }
             if ($.trim($('#textarea-observaciones-inasistencia-docente').val()).length < 1) {
-                error+='Debe adicionar una observación.<br>';
+                error+='Debe adicionar una observaci&oacute;n.<br>';
             }
             if( $('#checkbox-reemplazo-docente').prop('checked') ) {
                 if ($("#select-docente-reemplazo").val()=='') {

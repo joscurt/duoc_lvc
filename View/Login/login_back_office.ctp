@@ -14,7 +14,7 @@
 		<div class="input-group m-b-20">
 			<span class="input-group-addon"><i class="md md-accessibility"></i></span>
 			<div class="fg-line">
-				<input type="password" name="data[User][password]" class="form-control" placeholder="Contraeña">
+				<input type="password" name="data[User][password]" class="form-control" placeholder="Contrae&ntilde;a">
 			</div>
 		</div>
 		<div class="clearfix"></div>

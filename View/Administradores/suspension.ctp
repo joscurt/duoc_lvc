@@ -2,7 +2,7 @@
 	<div class="col-md-12">
 		<div class="block-header">
 			<button class="btn btn-success pull-right">Crear Reforzamiento</button>
-			<h1>Gestión de Clases</h1>
+			<h1>Gesti&oacute;n de Clases</h1>
 		</div>	
 	</div>
 </div>
@@ -16,9 +16,9 @@
 						<option>Seleccionar</option>
 						<option value="cambiar-sala" selected="">Cambiar sala</option>
 						<option value="inasistencia-docente">Inasistencia docente</option>
-						<option value="justificacion-legal">Justificación legal</option>
+						<option value="justificacion-legal">Justificaci&oacute;n legal</option>
 						<option value="adelantar-clase">Adelantar clase</option>
-						<option value="ajustes-eliminacion">Ajustes o eliminación de estado</option>
+						<option value="ajustes-eliminacion">Ajustes o eliminaci&oacute;n de estado</option>
 					</select>
 				</div>
 			</div>
@@ -32,7 +32,7 @@
 	<div class="card-body card-padding">
 		<div class="row">
 			<div class="col-md-12">
-				<h2 style="border-bottom: 1px solid #0c253d; padding-bottom: 5px;"><label>Información Docente: </label></h2>
+				<h2 style="border-bottom: 1px solid #0c253d; padding-bottom: 5px;"><label>Informaci&oacute;n Docente: </label></h2>
 				<table border="0" cellpadding="0" cellspacing="0" class="table table-striped">
 					<thead>
 						<tr>
@@ -46,19 +46,19 @@
 						<tr class="odd">
 							<td>12.345.678-9</td>
 							<td>Bustamante</td>
-							<td>Rodríguez</td>
-							<td>José Ignacio</td>
+							<td>Rodr&iacute;guez</td>
+							<td>Jos&eacute; Ignacio</td>
 						</tr>	
 					</tbody>
 				</table>
 			</div>
 			<div class="col-md-12">
-				<h2 style="border-bottom: 1px solid #0c253d; padding-bottom: 5px;">Información Clase:</h2>
+				<h2 style="border-bottom: 1px solid #0c253d; padding-bottom: 5px;">Informaci&oacute;n Clase:</h2>
 				<table border="0" cellpadding="0" cellspacing="0" class="table table-striped">
 					<thead>
 						<tr>
 							<th>Nombre asignatura</th>
-							<th>Sigla-Sección</th>
+							<th>Sigla-Secci&oacute;n</th>
 							<th>Jornada</th>
 							<th>Fecha programada</th>
 							<th>Horario</th>
@@ -68,7 +68,7 @@
 					</thead>
 					<tbody>
 						<tr class="odd">
-							<td>Técnicas de arquitectura de la información</td>
+							<td>T&eacute;cnicas de arquitectura de la informaci&oacute;n</td>
 							<td>DID6011-01</td>
 							<td>Vespertina</td>
 							<td>01-07-2016</td>
@@ -84,8 +84,8 @@
 						<tr>
 							<th>Estado</th>
 							<th>Motivo</th>
-							<th>Módulos programados</th>
-							<th>Módulos por recuperar</th>
+							<th>M&oacute;dulos programados</th>
+							<th>M&oacute;dulos por recuperar</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -118,7 +118,7 @@
 							<label>Rut: </label>12.345.678-9
 						</div>
 						<div class="column">
-							<label>Apellido Paterno: </label>Sepúlveda
+							<label>Apellido Paterno: </label>Sep&uacute;lveda
 						</div>
 						<div class="column">
 							<label>Apellido Materno: </label>Villegas
@@ -302,8 +302,8 @@
 				</div>
 			</div>
 			<div class="col-md-4">
-				<h2 style="border-bottom: 1px solid #0c253d; padding-bottom: 5px;">Bitácora evento</h2>
-				<h3>Título</h3>
+				<h2 style="border-bottom: 1px solid #0c253d; padding-bottom: 5px;">Bit&aacute;cora evento</h2>
+				<h3>T&iacute;tulo</h3>
 				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod bibendum laoreet. Proin gravida dolor sit amet lacus accumsan et viverra justo commodo. Proin sodales pulvinar tempor. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.</p>
 				<p>Nam fermentum, nulla luctus pharetra vulputate, felis tellus mollis orci, sed rhoncus sapien nunc eget.</p>
 			</div>

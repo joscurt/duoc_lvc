@@ -53,7 +53,7 @@
 				<?php if ($mode_view != 'admin'): ?>
 					<div class="col-md-6">
 						<div class="form-group" >
-							<label for=""><i class="fa fa-user"></i>&nbsp;Docente:</label>&nbsp;&nbsp;<span id="docente">Felipe Oyarzún</span>&nbsp;&nbsp;&nbsp;&nbsp;
+							<label for=""><i class="fa fa-user"></i>&nbsp;Docente:</label>&nbsp;&nbsp;<span id="docente">Felipe Oyarz&uacute;n</span>&nbsp;&nbsp;&nbsp;&nbsp;
 							<!-- <a class="btn_cambio_docente btn btn-xs btn-warning"><i class="fa fa-eye"></i>&nbsp;Cambiar Docente</a> -->
 						</div>	
 					</div>
@@ -90,7 +90,7 @@
 								<select class="form-control selectpicker" data-live-search="true" >
 									<option value="">Seleccione Tipo</option>
 									<option value="">Atraso</option>
-									<option value="">Capacitación DUOC</option>
+									<option value="">Capacitaci&oacute;n DUOC</option>
 									<option value="">Docente no informa</option>
 									<option value="">Licencia Medica</option>
 									<option value="">Problema Personal</option>

@@ -1,7 +1,7 @@
 <form method="POST">
 	<div class="modal-header" >
 		<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-		<h4 style="border-bottom: 1px solid #0c253d; padding-bottom: 5px;" class="modal-title">Ingreso de Tipo Justificación Legal</h4>
+		<h4 style="border-bottom: 1px solid #0c253d; padding-bottom: 5px;" class="modal-title">Ingreso de Tipo Justificaci&oacute;n Legal</h4>
 	</div>
 	<br>
 	<div class="modal-body">

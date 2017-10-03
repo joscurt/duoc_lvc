@@ -28,7 +28,7 @@
 								<option value="Docente.NOMBRE" <?php echo $ordenar == 'Docente.NOMBRE' ? 'selected="selected"':''; ?>>Nombre docente</option>
 								<option value="Docente.COD_DOCENTE" <?php echo $ordenar == 'Docente.COD_DOCENTE' ? 'selected="selected"':''; ?>>ID docente</option>
 								<option value="Asignatura.NOMBRE" <?php echo $ordenar == 'Asignatura.NOMBRE' ? 'selected="selected"':''; ?>>Nombre asignatura</option>
-								<option value="ProgramacionClase.SIGLA_SECCION" <?php echo $ordenar == 'ProgramacionClase.SIGLA_SECCION' ? 'selected="selected"':''; ?> >Sigla - Sección</option>
+								<option value="ProgramacionClase.SIGLA_SECCION" <?php echo $ordenar == 'ProgramacionClase.SIGLA_SECCION' ? 'selected="selected"':''; ?> >Sigla - Secci&oacute;n</option>
 								<option value="ProgramacionClase.ANHO,ProgramacionClase.SEMESTRE"<?php echo $ordenar == 'ProgramacionClase.ANHO,ProgramacionClase.SEMESTRE' ? 'selected="selected"':''; ?> >Periodo</option>
 								<option value="ProgramacionClase.COD_JORNADA" <?php echo $ordenar == 'ProgramacionClase.COD_JORNADA' ? 'selected="selected"':''; ?>>Jornada</option>
 								<option value="ProgramacionClase.HORA_INICIO" <?php echo $ordenar == 'ProgramacionClase.HORA_INICIO' ? 'selected="selected"':''; ?>>Horario</option>
@@ -55,7 +55,7 @@
 								</th>
 								<th>Fecha</th>
 								<th>Nombre Asignatura</th>
-								<th>Sigla-Sección</th>
+								<th>Sigla-Secci&oacute;n</th>
 								<th>Jornada</th>
 								<th>Modalidad</th>
 								<th>Rut docente</th>
@@ -138,7 +138,7 @@
 					  	</tbody>
 					</table>
 					<div class="card-header">
-						<a href="#suspension-masiva" data-toggle="modal" data-target="#suspension-masiva" class="btn btn-danger">Suspensión</a>
+						<a href="#suspension-masiva" data-toggle="modal" data-target="#suspension-masiva" class="btn btn-danger">Suspensi&oacute;n</a>
 						
 						<a href="<?php echo $this->Html->url(array('action'=>'excelGestionClases',$filtro,$tipo_fitrar,$fecha_desde,$fecha_hasta,$valor_filtros)); ?>" target="_blank" class="btn btn-success"><i class="fa fa-file-excel-o"></i>&nbsp;EXPORTAR EXCEL</a>
 
@@ -152,10 +152,10 @@
 	    <div class="modal-dialog ">
 	        <div class="modal-content">
 	        	<div class="modal-header">
-	        		<h4 style="border-bottom:1px solid #c4c4c4;">Suspensión
+	        		<h4 style="border-bottom:1px solid #c4c4c4;">Suspensi&oacute;n
 	        			<span class="close" data-dismiss="modal" style="font-size: 2em !important;margin-top: -18px;">&times;</span>
 	        		</h4>
-	        		<p>Se aplicará la suspensión a todas las clases seleccionadas <strong id="numero-check-list"></strong></p>
+	        		<p>Se aplicar&aacute; la suspensi&oacute;n a todas las clases seleccionadas <strong id="numero-check-list"></strong></p>
 	        	</div>
 	        	<div class="modal-body">
 	        		<form 
@@ -224,7 +224,7 @@
 	            showCancelButton: true, 
 	            cancelButtonText: "<?php echo __('Cancelar'); ?>",   
 	            confirmButtonColor: "#DD6B55",   
-	            confirmButtonText: "Sí, Estoy Seguro!",   
+	            confirmButtonText: "S&iacute;, Estoy Seguro!",   
 	            closeOnConfirm: true 
 			},function(){
 				$('#suspension-masiva').modal('hide');
@@ -244,7 +244,7 @@
 				data: form.serialize(),
 			})
 			.fail(function() {
-				notifyUser('Ha ocurrido un error inesperado. Intente más tarde.','danger');
+				notifyUser('Ha ocurrido un error inesperado. Intente m&aacute;s tarde.','danger');
 			})
 			.always(function(view) {
 				$('#card-content-grilla').html(view);

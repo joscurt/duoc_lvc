@@ -60,7 +60,7 @@
 		)
 	);
 	
-	/*$objPHPExcel->setActiveSheetIndex()->setCellValue('B2', "Sigla Sección: ");
+	/*$objPHPExcel->setActiveSheetIndex()->setCellValue('B2', "Sigla Secci&oacute;n: ");
 	$objPHPExcel->setActiveSheetIndex()->setCellValue('C2', !empty($docente)?"Docente: ".$docente['Docente']['NOMBRE'].' '.$docente['Docente']['APELLIDO_PAT'].' '.$docente['Docente']['APELLIDO_MAT']:null);
 	$objPHPExcel->setActiveSheetIndex()->setCellValue('D2', "Fecha Desde: ".$fecha_desde);
 	$objPHPExcel->setActiveSheetIndex()->setCellValue('E2', "Fecha Hasta: ".$fecha_hasta);
@@ -72,7 +72,7 @@
 	$objPHPExcel->setActiveSheetIndex()->setCellValue('B4',"#");
 	$objPHPExcel->setActiveSheetIndex()->setCellValue('C4',"Fecha");
 	$objPHPExcel->setActiveSheetIndex()->setCellValue('D4',"Nombre Asignatura");
-	$objPHPExcel->setActiveSheetIndex()->setCellValue('E4',"Sigla-Sección");
+	$objPHPExcel->setActiveSheetIndex()->setCellValue('E4',"Sigla-Secci&oacute;n");
 	$objPHPExcel->setActiveSheetIndex()->setCellValue('F4',"Jornada");
 	$objPHPExcel->setActiveSheetIndex()->setCellValue('G4',"Rut docente");
 	$objPHPExcel->setActiveSheetIndex()->setCellValue('H4',"Apellido Paterno");

@@ -29,7 +29,7 @@
 		<td>
 			<?php echo $this->Html->image('duocuc.png',array("style"=>"width:150px;")); ?>
 		</td>
-		<td><h2 class="titulo">BITÁCORA EVENTO</h2></td>
+		<td><h2 class="titulo">BIT&Aacute;CORA EVENTO</h2></td>
 	</tr>
 </table>
 <br>

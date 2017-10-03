@@ -4,3 +4,6 @@
 	RewriteCond %{REQUEST_FILENAME} !-f
 	RewriteRule ^ index.php [L]
 </IfModule>
+AddDefaultCharset UTF-8
+AddCharset utf-8 .html .css .js .php
+IndexOptions +Charset=UTF-8

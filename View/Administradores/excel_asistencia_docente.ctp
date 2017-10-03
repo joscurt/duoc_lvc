@@ -60,7 +60,7 @@
 		)
 	);
 	
-	$objPHPExcel->setActiveSheetIndex()->setCellValue('B2', "Sigla Sección: ".$sigla_seccion);
+	$objPHPExcel->setActiveSheetIndex()->setCellValue('B2', "Sigla Secci&oacute;n: ".$sigla_seccion);
 	$objPHPExcel->setActiveSheetIndex()->setCellValue('C2', !empty($docente)?"Docente: ".$docente['Docente']['NOMBRE'].' '.$docente['Docente']['APELLIDO_PAT'].' '.$docente['Docente']['APELLIDO_MAT']:null);
 	$objPHPExcel->setActiveSheetIndex()->setCellValue('D2', "Fecha Desde: ".$fecha_desde);
 	$objPHPExcel->setActiveSheetIndex()->setCellValue('E2', "Fecha Hasta: ".$fecha_hasta);
@@ -124,7 +124,7 @@
 
 	$objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel2007');
 	header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
-	header('Content-Disposition: attachment;filename="Bitácora '.'.'.date('dmY').'.xlsx"');
+	header('Content-Disposition: attachment;filename="Bit&aacute;cora '.'.'.date('dmY').'.xlsx"');
 	header('Cache-Control: max-age=0');
 	$objWriter->save('php://output');
 	exit;

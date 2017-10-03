@@ -9,7 +9,7 @@
 			<th>&nbsp;</th>
 			<th>Fecha</th>
 			<th>Nombre Asignatura</th>
-			<th>Sigla-Sección</th>
+			<th>Sigla-Secci&oacute;n</th>
 			<th>Jornada</th>
 			<th>Rut docente</th>
 			<th>Apellido Paterno</th>

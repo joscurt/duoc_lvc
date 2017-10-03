@@ -22,6 +22,7 @@
 
 public function getDocHorario($cod_sede=null,$fecha=null,$hora_inicio=null,$hora_fin=null)
 	{
+
 			$db = $this->getDataSource();
 			$sql = $db->fetchAll("SELECT DISTINCT Docente.RUT, Docente.COD_DOCENTE, Docente.USERNAME, Docente.COD_SEDE, Docente.NOMBRE, Docente.APELLIDO_PAT, Docente.APELLIDO_MAT
 			FROM VW_DOCENTES Docente
@@ -34,6 +35,9 @@ public function getDocHorario($cod_sede=null,$fecha=null,$hora_inicio=null,$hora
 			AND ('".$hora_inicio."' BETWEEN Horario.SOLO_HORA_INICIO and Horario.SOLO_HORA_FIN OR
 			'".$hora_fin."' BETWEEN Horario.SOLO_HORA_INICIO and Horario.SOLO_HORA_FIN)
 			GROUP BY Horario.COD_DOCENTE)");
+
+#debug($this->getLastQuery());
+
 			return $sql;
   			}
 		public function getDocenteConSedesForLogin($username=null)

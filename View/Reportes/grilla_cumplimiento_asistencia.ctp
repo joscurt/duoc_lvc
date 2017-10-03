@@ -10,7 +10,7 @@
 				<option value="Docente.APELLIDO_MAT" <?php echo $ordenar == 'Docente.APELLIDO_MAT' ? 'selected="selected"':''; ?>>Apellido Materno </option>
 				<option value="Docente.NOMBRE" <?php echo $ordenar == 'Docente.NOMBRE' ? 'selected="selected"':''; ?>>Nombre Docente</option>
 				<option value="Asignatura.NOMBRE" <?php echo $ordenar == 'Asignatura.NOMBRE' ? 'selected="selected"':''; ?>>Nombre Asignatura</option>
-				<option value="AsignaturaHorario.SIGLA_SECCION" <?php echo $ordenar == 'AsignaturaHorario.SIGLA_SECCION' ? 'selected="selected"':''; ?> >Sigla - Sección</option>
+				<option value="AsignaturaHorario.SIGLA_SECCION" <?php echo $ordenar == 'AsignaturaHorario.SIGLA_SECCION' ? 'selected="selected"':''; ?> >Sigla - Secci&oacute;n</option>
 				<option value="clases_regulares" <?php echo $ordenar == 'clases_regulares' ? 'selected="selected"':''; ?> >Clases Regulares</option>
 				<option value="clases_suspendidas" <?php echo $ordenar == 'clases_suspendidas' ? 'selected="selected"':''; ?> >Clases Suspendidas</option>
 				<option value="clases_registradas" <?php echo $ordenar == 'clases_registradas' ? 'selected="selected"':''; ?> >Clases Registradas</option>
@@ -24,7 +24,7 @@
 				<tr>
 					<th>&nbsp;</th>
 					<th>Nombre Asignatura</th>
-					<th class="una-linea">Sigla-Sección</th>
+					<th class="una-linea">Sigla-Secci&oacute;n</th>
 					<th class="una-linea">Rut Docente</th>
 					<th>Apellido Paterno</th>
 					<th>Apellido Materno</th>

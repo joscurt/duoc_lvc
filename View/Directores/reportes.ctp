@@ -58,7 +58,7 @@
 				dataType: 'html',
 			})
 			.fail(function(error_reader) {
-				notifyUser('Ha ocurrido un error inesperado. Intente más tarde.','info');
+				notifyUser('Ha ocurrido un error inesperado. Intente m&aacute;s tarde.','info');
 				$('#contenedor-encabezado .card-body').empty();
 				$('#contenedor-grilla').hide();
 			})
@@ -90,7 +90,7 @@
 				data:form.serialize(),
 			})
 			.fail(function(error_reader) {
-				notifyUser('Ha ocurrido un error inesperado. Intente más tarde.','info');
+				notifyUser('Ha ocurrido un error inesperado. Intente m&aacute;s tarde.','info');
 				$('#contenedor-grilla .card-body').empty();
 			})
 			.always(function(view) {

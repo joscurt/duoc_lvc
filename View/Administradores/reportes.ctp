@@ -28,10 +28,10 @@
 					<label for="">Seleccionar tipo de reporte</label>
 					<select id="select-tipo-de-reporte" name="" class="form-control selectpicker">
 						<option value="" selected>Seleccionar</option>
-						<option value="<?php echo $this->Html->url(array('controller'=>'reportes','action'=>'reporteNominaClasesRecuperarAdelantar')); ?>">Nómina Diaria de Clases a Recuperar y Adelantar</option>
-						<option value="<?php echo $this->Html->url(array('controller'=>'reportes','action'=>'reporteNominaClasesProgramadas')); ?>">Nómina Diaria de Clases Programadas</option>
-						<option value="<?php echo $this->Html->url(array('controller'=>'reportes','action'=>'reportePeriodicoClasesProgramadas')); ?>">Reportes Periódicos de Clases Programadas (realizadas y no realizadas)</option>
-						<option value="<?php echo $this->Html->url(array('controller'=>'reportes','action'=>'reportePeriodicoClasesAdelantadasRecuperadas')); ?>">Reportes Periódicos de Clases Adelantadas y Recuperadas (realizadas y no realizadas)</option>
+						<option value="<?php echo $this->Html->url(array('controller'=>'reportes','action'=>'reporteNominaClasesRecuperarAdelantar')); ?>">N&oacute;mina Diaria de Clases a Recuperar y Adelantar</option>
+						<option value="<?php echo $this->Html->url(array('controller'=>'reportes','action'=>'reporteNominaClasesProgramadas')); ?>">N&oacute;mina Diaria de Clases Programadas</option>
+						<option value="<?php echo $this->Html->url(array('controller'=>'reportes','action'=>'reportePeriodicoClasesProgramadas')); ?>">Reportes Peri&oacute;dicos de Clases Programadas (realizadas y no realizadas)</option>
+						<option value="<?php echo $this->Html->url(array('controller'=>'reportes','action'=>'reportePeriodicoClasesAdelantadasRecuperadas')); ?>">Reportes Peri&oacute;dicos de Clases Adelantadas y Recuperadas (realizadas y no realizadas)</option>
 						<option value="<?php echo $this->Html->url(array('controller'=>'reportes','action'=>'reportePresenciaDocente')); ?>">Reporte de Presencia Docente</option>
 					</select>
 				</div>
@@ -60,7 +60,7 @@
 				type: 'POST',
 				dataType: 'html',
 			}).fail(function(error_reader) {
-				notifyUser('Ha ocurrido un error inesperado. Intente más tarde.','info');
+				notifyUser('Ha ocurrido un error inesperado. Intente m&aacute;s tarde.','info');
 				$('#contenedor-encabezado .card-body').empty();
 				$('#contenedor-grilla').hide();
 			}).always(function(view) {
@@ -82,7 +82,7 @@
 			dataType: 'html',
 			data:form.serialize(),
 		}).fail(function(error_reader) {
-			notifyUser('Ha ocurrido un error inesperado. Intente más tarde.','info');
+			notifyUser('Ha ocurrido un error inesperado. Intente m&aacute;s tarde.','info');
 			$('#contenedor-grilla .card-body').empty();
 		}).always(function(view) {
 			$('#contenedor-grilla .card-body').html(view);

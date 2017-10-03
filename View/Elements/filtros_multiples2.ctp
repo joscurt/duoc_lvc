@@ -111,7 +111,7 @@
 				/>
 			</div>
 			<div class="form-group">
-				<label for="">Sigla-Sección:</label>
+				<label for="">Sigla-Secci&oacute;n:</label>
 				<input type="text" 
 					class="form-control autocompletable-input"  
 					value="<?php echo !empty($datos_filtro['Filtro']['sigla_seccion']) ? $datos_filtro['Filtro']['sigla_seccion'] : '';?>" 
@@ -202,10 +202,10 @@
 								value="TEORICO">PRACTICA</option>
 							<option 
 								<?php echo !empty($datos_filtro['Filtro']['modalidad']) && ($datos_filtro['Filtro']['modalidad'] == 'PRA')? 'selected="selected"':''; ?>
-								value="PRA">TEÓRICA</option>
+								value="PRA">TE&Oacute;RICA</option>
 							<option 
 								<?php echo !empty($datos_filtro['Filtro']['modalidad']) && ($datos_filtro['Filtro']['modalidad'] == 'TEO-PRA')? 'selected="selected"':''; ?>
-								value="TEO-PRA">TEÓRICA + PRACTICA</option>
+								value="TEO-PRA">TE&Oacute;RICA + PRACTICA</option>
 					</select>
 				</div>
 			<?php endif; ?>

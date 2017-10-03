@@ -1,6 +1,6 @@
 <p>Estimado(a) Director(a) <strong><?php echo $director['Director']['NOMBRES'].' '.$director['Director']['APELLIDO_PAT'].' '.$director['Director']['APELLIDO_MAT'] ?></strong>,</p>
 <br>
-<p>Se ha creado una solicitud para adelantar una clase según lo siguiente:<p>
+<p>Se ha creado una solicitud para adelantar una clase seg&uacute;n lo siguiente:<p>
 <?php 
 	$class_label = 'style="background:rgb(140, 135, 135);color:white;border:1px solid #c4c4c4;padding:3px 10px 3px 3px; width:80px;"';
 	$class_dato = 'style="border:1px solid #c4c4c4;padding:3px 3px 3px 10px; font-weight:900"';
@@ -11,7 +11,7 @@
 		<td <?php echo $class_dato; ?> ><?php echo $clase['Sede']['NOMBRE']; ?></td>
 	</tr>
 	<tr>
-		<td <?php echo $class_label; ?> >Sigla-Sección</td>
+		<td <?php echo $class_label; ?> >Sigla-Secci&oacute;n</td>
 		<td <?php echo $class_dato; ?> ><?php echo $clase['ProgramacionClase']['SIGLA_SECCION']; ?></td>
 	</tr>
 	<tr>
@@ -45,6 +45,6 @@
 	</tr>
 </table>
 <br>
-<p>Para su <strong>autorización</strong> o <strong>rechazo</strong> debe ingresar a la plataforma. </p>
+<p>Para su <strong>autorizaci&oacute;n</strong> o <strong>rechazo</strong> debe ingresar a la plataforma. </p>
 <p>Atte.</p>
 <p>Duoc UC</p>

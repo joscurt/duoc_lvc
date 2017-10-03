@@ -11,7 +11,7 @@
 				<option value="Docente.NOMBRE" <?php echo $ordenar == 'Docente.NOMBRE' ? 'selected="selected"':''; ?>>Nombre docente</option>
 				<!-- <option value="Docente.COD_DOCENTE" <?php echo $ordenar == 'Docente.COD_DOCENTE' ? 'selected="selected"':''; ?>>ID docente</option> -->
 				<option value="Asignatura.NOMBRE" <?php echo $ordenar == 'Asignatura.NOMBRE' ? 'selected="selected"':''; ?>>Nombre asignatura</option>
-				<option value="ProgramacionClase.SIGLA_SECCION" <?php echo $ordenar == 'ProgramacionClase.SIGLA_SECCION' ? 'selected="selected"':''; ?> >Sigla - Sección</option>
+				<option value="ProgramacionClase.SIGLA_SECCION" <?php echo $ordenar == 'ProgramacionClase.SIGLA_SECCION' ? 'selected="selected"':''; ?> >Sigla - Secci&oacute;n</option>
 				<!-- <option value="ProgramacionClase.ANHO,ProgramacionClase.SEMESTRE"<?php echo $ordenar == 'ProgramacionClase.ANHO,ProgramacionClase.SEMESTRE' ? 'selected="selected"':''; ?> >Periodo</option> -->
 				<option value="ProgramacionClase.HORA_INICIO" <?php echo $ordenar == 'ProgramacionClase.HORA_INICIO' ? 'selected="selected"':''; ?>>Horario</option>
 			</select>
@@ -25,7 +25,7 @@
 					<th class="una-linea">Fecha</th>
 					<th>Sede</th>
 					<th>Nombre Asignatura</th>
-					<th class="una-linea">Sigla-Sección</th>
+					<th class="una-linea">Sigla-Secci&oacute;n</th>
 					<th class="una-linea">Rut docente</th>
 					<th>Apellido Paterno</th>
 					<th>Apellido Materno</th>
@@ -44,9 +44,9 @@
 					    <td><?php echo $value['Asignatura']['NOMBRE']; ?></td>
 					    <td><?php echo $value['ProgramacionClase']['SIGLA_SECCION']; ?></td>
 					    <td><?php echo $value['Docente']['RUT'].'-'.$value['Docente']['DV']; ?></td>
-					    <td><?php echo $value['Docente']['APELLIDO_PAT']; ?></td>
-					    <td><?php echo $value['Docente']['APELLIDO_MAT']; ?></td>
-					    <td><?php echo $value['Docente']['NOMBRE']; ?></td>
+					    <td><?php echo utf8_encode($value['Docente']['APELLIDO_PAT']); ?></td>
+					    <td><?php echo utf8_encode($value['Docente']['APELLIDO_MAT']); ?></td>
+					    <td><?php echo utf8_encode($value['Docente']['NOMBRE']); ?></td>
 					    <td><?php echo !empty($value['SalaReemplazo']['TIPO_SALA'])?$value['SalaReemplazo']['TIPO_SALA']:$value['Sala']['TIPO_SALA']; ?></td>
 					    <td>
 					    	<?php 

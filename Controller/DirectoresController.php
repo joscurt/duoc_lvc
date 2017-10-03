@@ -174,6 +174,97 @@
 			));
 }
 
+
+public function listar_clases_justificados($filtro_multiple=null) # vista justificados autoriza director
+		{
+
+			//$coordinador = $this->Session->read('CoordinadorLogueado');
+
+			$director = $this->Session->read('DirectorLogueado');
+
+			if (empty($director)) {
+				$this->redirect(array('controller'=>'login','action'=>'logoutDirector'));
+			}
+			$sede_id = $director['Sede']['COD_SEDE'];
+			$datos_tabla = $datos_filtro = array();
+			$session_data = $this->Session->read('Message');
+			$filtros_session['Filtro'] = isset($session_data['flash']['params'])? $session_data['flash']['params']:null;
+			$docente_filtro=array();
+			$ordenar = '';
+			if (!empty($this->data) || !empty($filtros_session['Filtro'])) {
+				#debug($this->data);#exit();
+				$datos_filtro = !empty($this->data)? $this->data:$filtros_session;
+				$this->loadModel('ProgramacionClase');
+				if (isset($datos_filtro['ordenar']) && !empty($datos_filtro['ordenar'])) {
+					$ordenar = $datos_filtro['ordenar'];
+				}
+				if ($filtro_multiple == 1) {
+					$conditions = $this->procesarDatosFiltroMultiple($datos_filtro);
+					$datos_tabla = $this->ProgramacionClase->getDatosTablaAutorizacionClaseNewMultiple($conditions);
+				}else{
+					$fecha_desde = $fecha_hasta = '';
+					if (isset($datos_filtro['Filtro']['fecha_inicio']) && !empty($datos_filtro['Filtro']['fecha_inicio'])) {
+						$fecha_desde = date('Y-m-d',strtotime($datos_filtro['Filtro']['fecha_inicio']));
+					}
+					if (isset($datos_filtro['Filtro']['fecha_fin']) && !empty($datos_filtro['Filtro']['fecha_fin'])) {
+						$fecha_hasta = date('Y-m-d',strtotime($datos_filtro['Filtro']['fecha_fin']));
+					}
+					$datos_tabla = $this->ProgramacionClase->getDatosTablaAutorizacionJustificados(
+						$fecha_desde,
+						$fecha_hasta,
+						$sede_id,
+						$datos_filtro['Filtro']['filtro'],
+						$datos_filtro['Filtro']['value'],
+						$ordenar
+					);
+				}
+			}
+			if (!empty($datos_tabla)) {
+				foreach ($datos_tabla as $key => $dato) {
+					$programacion_tmp = $this->ProgramacionClase->getProgramacionByDirectorSede($sede_id, $dato['ProgramacionClase']['HORA_INICIO'], $dato['ProgramacionClase']['HORA_FIN']);
+					if (!empty($programacion_tmp)) {
+						$datos_tabla[$key]['ProgramacionClase']['TOPE_HORARIO'] = $programacion_tmp;
+					}
+				}
+			}
+			#FILTRO MULTIPLE
+				$this->loadModel('Periodo');
+				$periodos = $this->Periodo->getPeriodos();
+				$this->loadModel('Detalle');
+				#NEGOCIO EXCLUSIVO DE LA PANTALLA;
+				$detalles = $this->Detalle->find('all', array(
+					'conditions'=>array(
+						'Detalle.ID'=>array('1','2','3','4','5','6')
+					),
+					'order'=>'Detalle.DETALLE'
+				));
+				#debug($this->Detalle->getLastQuery());
+				$this->loadModel('SubEstado');
+				#NEGOCIO EXCLUSIVO DE LA PANTALLA;
+				$sub_estados = $this->SubEstado->find('all', array('conditions'=>array('ID <= 3'),'order'=>'SubEstado.NOMBRE'));
+				$this->loadModel('Estado');
+				$estados = $this->Estado->getEstados();
+				$this->loadModel('HorarioModulo');
+				$horarios = $this->HorarioModulo->getSimpleHorarioBySede($sede_id);
+				$this->set(array(
+					'detalles'=>$detalles,
+					'horarios'=>$horarios,
+					'periodos'=>$periodos,
+					'estados'=>$estados,
+					'sub_estados'=>$sub_estados,
+					'filtro_multiple'=>$filtro_multiple,
+				));
+			#FIN FILTRO MULTIPLE
+			$this->set(array(
+				'datos_filtro'=>$datos_filtro,
+				'datos_tabla'=>$datos_tabla,
+				'ordenar'=>$ordenar,
+				'docente_filtro'=>$docente_filtro,
+			));
+}
+
+
+
 		public function autocompletarDatos($tipo_filtro = null) 
 		{
 			if ($this->Session->check('DirectorLogueado')) {
@@ -491,8 +582,17 @@
 				$this->Session->setFlash('No ha sido posible encontrar la clase a editar', 'mensaje-error');
 				$this->redirect(array('action'=>'index'));
 			}
-			// debug($info_editar_clase);
+
+			$this->loadModel('ProgramacionClase');
+
+
+			$prog_ade = $this->ProgramacionClase->getProgramacionRecuperar($info_editar_clase['ProgramacionClase']['COD_PROGRAMACION_PADRE']);
+
+
+			#debug($info_editar_clase);exit();
+			#debug($prog_ade);exit();
 			$this->set(array(
+				'prog_ade'=>$prog_ade,
 				'info_editar_clase'=>$info_editar_clase,
 				'motivos'=>$motivos,
 			));
@@ -544,6 +644,7 @@
 					$datos_filtro = $this->data;
 					$conditions = $this->procesarDatosFiltroMultiple($datos_filtro);
 					$datos_tabla = $this->ProgramacionClase->getDatosTablaRecuperarClaseNewMultiple($conditions,$ordenar);
+					#debug($datos_tabla);exit();
 				}
 			}else{
 				$datos_tabla = $this->ProgramacionClase->getDatosTablaRecuperarClaseNew($fecha_inicio,$fecha_fin,$sede_id,$tipo_filtro,$valor_filtro,$ordenar);
@@ -597,7 +698,7 @@
 			$this->loadModel('ProgramacionClase');
 			$clase = $this->ProgramacionClase->getProgramacionClaseFull($cod_programacion);
 			if (empty($clase)) {
-				$this->Session->setFlash('Ha ocurrido un error inesperado. Intente más tarde.', 'mensaje-error');
+				$this->Session->setFlash('Ha ocurrido un error inesperado. Intente m&aacute;s tarde.', 'mensaje-error');
 				$this->redirect(array('action'=>'recuperarClases'));
 			}
 			if ($clase['ProgramacionClase']['SUB_ESTADO_PROGRAMACION_ID'] == 5) {
@@ -627,7 +728,7 @@
 				}else{
 					$this->log("No se pudo enviar el mail al coordinador docente en ".$this->params['controller']."/".$this->params['action'].": NO SE ENCUENTRA FUNCIONARIO : ".$cod_funcionario, 'debug');
 				}
-				$this->Session->setFlash('Autorización realizada con éxito.', 'mensaje-exito');
+				$this->Session->setFlash('Autorizaci&oacute;n realizada con &eacute;xito.', 'mensaje-exito');
 				$this->redirect(array('action'=>'recuperarClases'));
 			};
 			$this->Session->setFlash('Ha ocurrido un problema. Intente nuevamente', 'mensaje-info');
@@ -652,7 +753,7 @@
 			} else {
 				$this->Mpdf->setOutput('D');
 			}
-			$footer = '<div align="right">Página {PAGENO} de {nb}</div>';
+			$footer = '<div align="right">P&aacute;gina {PAGENO} de {nb}</div>';
 			$this->Mpdf->SetHTMLFooter($footer);	
 		}
 		public function editarRecuperacionClase($cod_programacion=null)
@@ -780,7 +881,7 @@
 			$this->Mpdf->setFilename('Clases por recuperar.pdf');
 			$this->Mpdf->addPage('L');
 			$this->Mpdf->setOutput('A');
-			$footer = '<div align="right">Página {PAGENO} de {nb}</div>';
+			$footer = '<div align="right">P&aacute;gina {PAGENO} de {nb}</div>';
 			$this->Mpdf->SetHTMLFooter($footer);	
 			$this->set(array(
 				'datos_tabla'=>$datos_tabla,
@@ -935,7 +1036,7 @@
 			$this->Mpdf->setFilename('reprobados.pdf');
 			$this->Mpdf->addPage('L');
 			$this->Mpdf->setOutput('A');
-			$footer = '<div align="right">Página {PAGENO} de {nb}</div>';
+			$footer = '<div align="right">P&aacute;gina {PAGENO} de {nb}</div>';
 			$this->Mpdf->SetHTMLFooter($footer);
 			$this->set(array(
 				'datos_tabla'=>$datos_tabla,
@@ -975,7 +1076,7 @@
 		public function reprobadoFichaDetalle($cod_asignatura_horario=null) 
 		{
 			if (empty($cod_asignatura_horario)) {
-				$this->Session->setFlash('El parametro de entrada esta vacío. Intente nuevamente.', 'mensaje-error');
+				$this->Session->setFlash('El parametro de entrada esta vac&iacute;o. Intente nuevamente.', 'mensaje-error');
 				$this->redirect(array('action'=>'reprobados'));
 			}
 			$this->loadModel('AsignaturaHorario');
@@ -987,7 +1088,7 @@
 				$this->redirect(array('action'=>'reprobados'));
 			}
 			if ($asignatura_horario['AsignaturaHorario']['RI_ENABLE']==1) {
-				$this->Session->setFlash('Esta sección aun no esta dispoble para gestionar RI.', 'mensaje-error');
+				$this->Session->setFlash('Esta secci&oacute;n aun no esta dispoble para gestionar RI.', 'mensaje-error');
 				$this->redirect(array('action'=>'reprobados'));
 			}
 			$this->loadModel('ProgramacionClase');
@@ -998,15 +1099,14 @@
 			#debug($asignatura_horario);exit();
 			if ($asignatura_horario['AsignaturaHorario']['RI_IMPORT'] == 1) {
 				$alumnos = $this->RI_IM->getAlumnoByRi($cod_asignatura_horario);
+				#DEBUG($alumnos);exit();
 			}else{
-				$alumnos = $this->AlumnoAsignatura->getListadoAlumnosSeccionForRI($asignatura_horario['AsignaturaHorario']['SIGLA_SECCION']);
+				$alumnos = $this->AlumnoAsignatura->getListadoAlumnosSeccionForRI($asignatura_horario['AsignaturaHorario']['COD_ASIGNATURA_HORARIO']);
+				#DEBUG($asignatura_horario);exit();
 
 			}
 			#DEBUG($alumnos);exit();
-			$indicadores_alumnos = $this->ProgramacionClase->getIndicadoresAlumno($asignatura_horario['AsignaturaHorario']['SIGLA_SECCION']);
-
-			
-			
+			$indicadores_alumnos = $this->ProgramacionClase->getIndicadoresAlumno($asignatura_horario['AsignaturaHorario']['COD_ASIGNATURA_HORARIO']);
 
 			$this->set(array(
 				'alumnos'=>$alumnos,
@@ -1020,7 +1120,7 @@
 		{
 			$this->layout = null;
 			if (empty($cod_asignatura_horario)) {
-				$this->Session->setFlash('El parametro de entrada esta vacío. Intente nuevamente.', 'mensaje-error');
+				$this->Session->setFlash('El parametro de entrada esta vac&iacute;o. Intente nuevamente.', 'mensaje-error');
 				$this->redirect(array('action'=>'reprobados'));
 			}
 			$this->loadModel('AsignaturaHorario');
@@ -1030,7 +1130,7 @@
 				$this->redirect(array('action'=>'reprobados'));
 			}
 			if ($asignatura_horario['AsignaturaHorario']['RI_ENABLE']==1) {
-				$this->Session->setFlash('Esta sección aun no esta dispoble para gestionar RI.', 'mensaje-error');
+				$this->Session->setFlash('Esta secci&oacute;n aun no esta dispoble para gestionar RI.', 'mensaje-error');
 				$this->redirect(array('action'=>'reprobados'));
 			}
 			$this->loadModel('ProgramacionClase');
@@ -1051,7 +1151,7 @@
 		{
 			$this->layout = null;
 			if (empty($cod_asignatura_horario)) {
-				$this->Session->setFlash('El parametro de entrada esta vacío. Intente nuevamente.', 'mensaje-error');
+				$this->Session->setFlash('El parametro de entrada esta vac&iacute;o. Intente nuevamente.', 'mensaje-error');
 				$this->redirect(array('action'=>'reprobados'));
 			}
 			$this->loadModel('AsignaturaHorario');
@@ -1061,7 +1161,7 @@
 				$this->redirect(array('action'=>'reprobados'));
 			}
 			if ($asignatura_horario['AsignaturaHorario']['RI_ENABLE']==1) {
-				$this->Session->setFlash('Esta sección aun no esta dispoble para gestionar RI.', 'mensaje-error');
+				$this->Session->setFlash('Esta secci&oacute;n aun no esta dispoble para gestionar RI.', 'mensaje-error');
 				$this->redirect(array('action'=>'reprobados'));
 			}
 			$this->loadModel('ProgramacionClase');
@@ -1081,14 +1181,14 @@
 			$this->Mpdf->setFilename('reprobados.pdf');
 			$this->Mpdf->addPage('L');
 			$this->Mpdf->setOutput('A');
-			$footer = '<div align="right">Página {PAGENO} de {nb}</div>';
+			$footer = '<div align="right">P&aacute;gina {PAGENO} de {nb}</div>';
 			$this->Mpdf->SetHTMLFooter($footer);
 		}
 		public function sendRiSap($cod_asignatura_horario=null)
 		{
 			if (!empty($this->data)) {
 				if (empty($cod_asignatura_horario)) {
-					$this->Session->setFlash('El parametro de entrada esta vacío. Intente nuevamente.', 'mensaje-error');
+					$this->Session->setFlash('El parametro de entrada esta vac&iacute;o. Intente nuevamente.', 'mensaje-error');
 					$this->redirect(array('action'=>'reprobados'));
 				}
 				$this->loadModel('AsignaturaHorario');
@@ -1098,7 +1198,7 @@
 					$this->redirect(array('action'=>'reprobados'));
 				}
 				if ($asignatura_horario['AsignaturaHorario']['RI_ENVIADO_A_SAP']==1) {
-					$this->Session->setFlash('Esta sección ya fue enviada a SAP.', 'mensaje-error');
+					$this->Session->setFlash('Esta secci&oacute;n ya fue enviada a SAP.', 'mensaje-error');
 					$this->redirect(array('action'=>'reprobadoFichaDetalle',$cod_asignatura_horario));
 				}
 				##debug($asignatura_horario);
@@ -1138,20 +1238,20 @@
 						$asignatura_horario['AsignaturaHorario']['DIRECTOR_SEND_SAP_ID'] = $session_data['Director']['COD'];
 						if ($error == 0) {
 							if ($this->AsignaturaHorario->save($asignatura_horario)) {
-								$this->Session->setFlash('Ri enviado con éxito.', 'mensaje-exito');
+								$this->Session->setFlash('Ri enviado con &eacute;xito.', 'mensaje-exito');
 								$this->redirect(array('action'=>'reprobadoFichaDetalle',$cod_asignatura_horario));
 							}
 						}
 					}else{
 						if ($error == 0) {
-							$this->Session->setFlash('Guardado con éxito.', 'mensaje-exito');
+							$this->Session->setFlash('Guardado con &eacute;xito.', 'mensaje-exito');
 							$this->redirect(array('action'=>'reprobadoFichaDetalle',$cod_asignatura_horario));
 							
 						}
 					}
 				}
 			}
-			$this->Session->setFlash('El parametro de entrada esta vacío. Intente nuevamente.', 'mensaje-error');
+			$this->Session->setFlash('El parametro de entrada esta vac&iacute;o. Intente nuevamente.', 'mensaje-error');
 			$this->redirect(array('action'=>'reprobadoFichaDetalle',$cod_asignatura_horario));
 		}
 		public function reportes() 
@@ -1242,9 +1342,9 @@
 						}
 					}
 					if ($clase_autorizada_anteriormente > 0) {
-						$this->Session->setFlash('Algunas clases ya estaban autorizadas. Operación realizada con éxito.', 'mensaje-exito',$this->data['Filtro']);
+						$this->Session->setFlash('Algunas clases ya estaban autorizadas. Operaci&oacute;n realizada con &eacute;xito.', 'mensaje-exito',$this->data['Filtro']);
 					}else{
-						$this->Session->setFlash('Autorización realizada con éxito.', 'mensaje-exito',$this->data['Filtro']);
+						$this->Session->setFlash('Autorizaci&oacute;n realizada con &eacute;xito.', 'mensaje-exito',$this->data['Filtro']);
 					}
 					$this->redirect(array('action'=>'index',));	
 				}else{
@@ -1270,7 +1370,7 @@
 				}
 				$this->ProgramacionClase->create(FALSE);
 				if(!$this->ProgramacionClase->save($up_clase)){
-					$this->Session->setFlash('No se pudo modificar la información. Intente nuevamente.', 'mensaje-info');
+					$this->Session->setFlash('No se pudo modificar la informaci&oacute;n. Intente nuevamente.', 'mensaje-info');
 					$this->redirect(array('action'=>'autorizacionFichaDetalle', $cod_programacion));
 				}else{
 					#ACTUALIZAR CLASE PADRE CUANDO SEA AUTORIZADO EL ADELANTAMIENTO DE CLASES.
@@ -1351,13 +1451,61 @@
 				}
 
 				if ($rechazada) {
-					$this->Session->setFlash('La clase ha sido rechazada con éxito.', 'mensaje-exito');
+					$this->Session->setFlash('La clase ha sido rechazada con &eacute;xito.', 'mensaje-exito');
 					$this->redirect(array('action'=>'autorizacionFichaDetalle', $cod_programacion));
 				}else{
-					$this->Session->setFlash('Autorización realizada con éxito.', 'mensaje-exito');
+					$this->Session->setFlash('Autorizaci&oacute;n realizada con &eacute;xito.', 'mensaje-exito');
 					$this->redirect(array('action'=>'autorizacionFichaDetalle', $cod_programacion));
 				}
 			}
+		}
+		public function listaDocentesConTope($sigla_seccion=null,$cod_programacion=null){
+
+			#$this->autoRender = false;
+			$this->layout = 'ajax';
+			$this->loadModel('ProgramacionClase');
+			$programacion_clase = $this->ProgramacionClase->getProgramacionClase($cod_programacion);
+			/*if (isset($this->data['hora_inicio'])) {
+				$a = $this->data['hora_inicio'];
+				$b = $this->data['hora_fin'];
+				$c = $this->data['fecha'];
+				$hora_ini = date('Y-m-d',strtotime($c))." ".date('h:i:s',strtotime($a));
+				$hora_fin = date('Y-m-d',strtotime($c))." ".date('h:i:s',strtotime($b));
+				#var_dump($hora_fin);
+			}*/
+			#var_dump($programacion_clase['ProgramacionClase']['HORA_INICIO']);exit();
+
+			$docentes = Array();
+
+			if (!empty($programacion_clase)) {
+				$this->loadModel('Periodo');
+				$this->loadModel('Docente');
+				$session_data = $this->Session->read('DirectorLogueado');
+				#debug($session_data);exit();
+				$periodo = $this->Periodo->getPeriodoByAnhoSemestre($programacion_clase['ProgramacionClase']['ANHO'],$programacion_clase['ProgramacionClase']['SEMESTRE']);
+
+				#debug($periodo);exit();
+				if (!empty($periodo)) {
+					$docentes = $this->ProgramacionClase->getIdTopeHorarioDocente(
+						$session_data['Sede']['COD_SEDE'],
+						$programacion_clase['ProgramacionClase']['SIGLA_SECCION'],
+							$periodo['Periodo']['COD_PERIODO'],
+							$programacion_clase['ProgramacionClase']['ANHO'],
+							$programacion_clase['ProgramacionClase']['SEMESTRE'],
+							//$hora_ini,
+							//$hora_fin,
+							$programacion_clase['ProgramacionClase']['HORA_INICIO'],
+							$programacion_clase['ProgramacionClase']['HORA_FIN'],
+							$programacion_clase['ProgramacionClase']['ID']
+						);
+					
+				}
+				#echo json_encode(array('data'=>$docentes,'status'=>'success'));
+			}
+			$this->set(array(
+				'docentes'=>$docentes
+		//		'count_topes'=>$count_topes,
+			));
 		}
 		public function alumnosTope($sigla_seccion=null,$cod_programacion=null)
 		{
@@ -1369,9 +1517,12 @@
 			if (!empty($programacion_clase)) {
 				$this->loadModel('Periodo');
 				$periodo = $this->Periodo->getPeriodoByAnhoSemestre($programacion_clase['ProgramacionClase']['ANHO'],$programacion_clase['ProgramacionClase']['SEMESTRE']);
+				
 				if (!empty($periodo)) {
 					$this->loadModel('AlumnoAsignatura');
-					$alumnos = $this->AlumnoAsignatura->getListadoAsistencia($sigla_seccion,$periodo['Periodo']['COD_PERIODO'],$programacion_clase['ProgramacionClase']['COD_SEDE']);
+					$alumnos = $this->AlumnoAsignatura->getListadoAsistencia($periodo['Periodo']['COD_PERIODO'],$programacion_clase['ProgramacionClase']['COD_SEDE'],$programacion_clase['ProgramacionClase']['COD_ASIGNATURA_HORARIO']);
+
+					#debug($alumnos);exit();
 					foreach ($alumnos as $key => $value) {
 						#debug($value);
 						$tope = $this->ProgramacionClase->getIdTopeHorario(
@@ -1401,13 +1552,13 @@
 		{
 			$this->autoRender = false;
 			if (empty($cod_programacion)) {
-				$this->Session->setFlash('Ha ocurrido un en su navegación. Vuelva a intentar.','mensaje-error');
+				$this->Session->setFlash('Ha ocurrido un en su navegaci&oacute;n. Vuelva a intentar.','mensaje-error');
 				$this->redirect(array('action'=>'reforzamientos'));
 			}
 			$this->loadModel('ProgramacionClase');
 			$programacion_clase = $this->ProgramacionClase->getProgramacionClaseFull($cod_programacion);
 			if (empty($programacion_clase)) {
-				$this->Session->setFlash('Error de navegación. Vuelva a intentar.','mensaje-error');
+				$this->Session->setFlash('Error de navegaci&oacute;n. Vuelva a intentar.','mensaje-error');
 				$this->redirect(array('action'=>'reforzamientos'));
 			}
 			if ($programacion_clase['ProgramacionClase']['ESTADO_PROGRAMACION_ID']==3 && $programacion_clase['ProgramacionClase']['SUB_ESTADO_PROGRAMACION_ID']==2) {
@@ -1481,7 +1632,7 @@
 				}else{
 					$this->log("No se pudo enviar el mail al coordinador docente en ".$this->params['controller']."/".$this->params['action'].": NO SE ENCONTRO EL CODIGO FUNCIONARIO " .$programacion_clase['ProgramacionClase']['COORDINADOR_CREATED_ID'], 'debug');
 				}
-				$this->Session->setFlash('Reforzamiento autorizado con éxito.','mensaje-exito');
+				$this->Session->setFlash('Reforzamiento autorizado con &eacute;xito.','mensaje-exito');
 				$this->redirect(array('action'=>'reforzamientos',$cod_programacion));
 			}else{
 				$this->ProgramacionClase->save($rollback_clase);
@@ -1493,13 +1644,13 @@
 		{
 			$this->autoRender = false;
 			if (empty($cod_programacion)) {
-				$this->Session->setFlash('Ha ocurrido un en su navegación. Vuelva a intentar.','mensaje-error');
+				$this->Session->setFlash('Ha ocurrido un en su navegaci&oacute;n. Vuelva a intentar.','mensaje-error');
 				$this->redirect(array('action'=>'reforzamientos'));
 			}
 			$this->loadModel('ProgramacionClase');
 			$programacion_clase = $this->ProgramacionClase->getProgramacionClaseFull($cod_programacion);
 			if (empty($programacion_clase)) {
-				$this->Session->setFlash('Error de navegación. Vuelva a intentar.','mensaje-error');
+				$this->Session->setFlash('Error de navegaci&oacute;n. Vuelva a intentar.','mensaje-error');
 				$this->redirect(array('action'=>'reforzamientos'));
 			}
 			if ($programacion_clase['ProgramacionClase']['SUB_ESTADO_PROGRAMACION_ID']==3) {
@@ -1547,7 +1698,7 @@
 				}else{
 					$this->log("No se pudo enviar el mail al coordinador docente en ".$this->params['controller']."/".$this->params['action'].": NO SE ENCONTRO EL CODIGO FUNCIONARIO " .$programacion_clase['ProgramacionClase']['COORDINADOR_CREATED_ID'], 'debug');
 				}
-				$this->Session->setFlash('Reforzamiento rechazo con éxito.','mensaje-exito');
+				$this->Session->setFlash('Reforzamiento rechazo con &eacute;xito.','mensaje-exito');
 				$this->redirect(array('action'=>'reforzamientos',$cod_programacion));
 			}else{
 				$this->ProgramacionClase->save($rollback_clase);
@@ -1559,13 +1710,13 @@
 		{
 			$this->autoRender = false;
 			if (empty($cod_programacion)) {
-				$this->Session->setFlash('Ha ocurrido un en su navegación. Vuelva a intentar.','mensaje-error');
+				$this->Session->setFlash('Ha ocurrido un en su navegaci&oacute;n. Vuelva a intentar.','mensaje-error');
 				$this->redirect(array('action'=>'reforzamientos'));
 			}
 			$this->loadModel('ProgramacionClase');
 			$programacion_clase = $this->ProgramacionClase->getProgramacionClaseFull($cod_programacion);
 			if (empty($programacion_clase)) {
-				$this->Session->setFlash('Error de navegación. Vuelva a intentar.','mensaje-error');
+				$this->Session->setFlash('Error de navegaci&oacute;n. Vuelva a intentar.','mensaje-error');
 				$this->redirect(array('action'=>'reforzamientos'));
 			}
 			if ($programacion_clase['ProgramacionClase']['SUB_ESTADO_PROGRAMACION_ID']==3) {
@@ -1638,7 +1789,7 @@
 				}else{
 					$this->log("No se pudo enviar el mail al coordinador docente en ".$this->params['controller']."/".$this->params['action'].": NO SE ENCONTRO EL CODIGO FUNCIONARIO " .$programacion_clase['ProgramacionClase']['COORDINADOR_CREATED_ID'], 'debug');
 				}
-				$this->Session->setFlash('La clase se ha rechazado con éxito.','mensaje-exito');
+				$this->Session->setFlash('La clase se ha rechazado con &eacute;xito.','mensaje-exito');
 				$this->redirect(array('action'=>'autorizacionFichaDetalle',$cod_programacion));
 			}else{
 				$this->ProgramacionClase->save($rollback_clase);

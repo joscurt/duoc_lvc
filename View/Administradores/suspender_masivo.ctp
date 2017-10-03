@@ -88,7 +88,7 @@
 						</div>
 					</div>
 					<div class="col-md-12">
-						<a class=" btn btn-success pull-right"><i class="fa fa-filter"></i>&nbsp;Verificar Suspensión</a>
+						<a class=" btn btn-success pull-right"><i class="fa fa-filter"></i>&nbsp;Verificar Suspensi&oacute;n</a>
 					</div>
 				</div>
 			</div>
@@ -101,15 +101,15 @@
 			<div class="col-md-12">
 				<div class="col-md-12" style="margin-bottom: 4%;">
 					<div class="col-md-5 alert alert-danger" align="left">
-						<p>Para culminar con la suspensión debe ingresar el motivo en el siguiente cuadro de texto y presionar el botón "SUSPENDER", adicionalmente hemos dispuesto un listado de todos los eventos que suspenderá que puede revisar haciendo click en el botón "MOSTRAR EVENTOS"</p>
-						<p>Estimado Coordinador está a punto de suspender todos los eventos de la sede <b>ANTONIO VARAS</b> entre los días <b>27-04-2016</b> y <b>29-04-2016</b>. La suspensión global es un acto irreversible, por lo que se le ruega ser muy cuidadoso, ya que va a suspender 400 eventos.</p>
+						<p>Para culminar con la suspensi&oacute;n debe ingresar el motivo en el siguiente cuadro de texto y presionar el bot&oacute;n "SUSPENDER", adicionalmente hemos dispuesto un listado de todos los eventos que suspender&aacute; que puede revisar haciendo click en el bot&oacute;n "MOSTRAR EVENTOS"</p>
+						<p>Estimado Coordinador est&aacute; a punto de suspender todos los eventos de la sede <b>ANTONIO VARAS</b> entre los d&iacute;as <b>27-04-2016</b> y <b>29-04-2016</b>. La suspensi&oacute;n global es un acto irreversible, por lo que se le ruega ser muy cuidadoso, ya que va a suspender 400 eventos.</p>
 					</div>
 					<div class="col-md-5" align="left">
 						
 						<div class="fg-line">
-						<label>Ingrese los motivos de la suspensión</label>
+						<label>Ingrese los motivos de la suspensi&oacute;n</label>
 						<br/><br/>
-							<textarea class="form-control" rows="5" placeholder="Ingrese los motivos de la suspensión"></textarea>
+							<textarea class="form-control" rows="5" placeholder="Ingrese los motivos de la suspensi&oacute;n"></textarea>
 						</div>	
 					</div>
 					<div class="form-group col-md-2" align="right">
@@ -162,7 +162,7 @@
 			<div class="modal-body">
 				<div class="alert alert-warnig">
 					<h4>
-						<p>¿Esta seguro de suspender la los eventos seleccionados ?</p><p>Recuerde que esta acción es irreversible.</p>
+						<p>¿Esta seguro de suspender la los eventos seleccionados ?</p><p>Recuerde que esta acci&oacute;n es irreversible.</p>
 					</h4>
 				</div>
 			</div>

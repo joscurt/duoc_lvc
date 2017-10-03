@@ -1,8 +1,8 @@
 <p>Estimado Docente <strong><?php echo $docente['Docente']['NOMBRE'].' '.$docente['Docente']['APELLIDO_PAT'].' '.$docente['Docente']['APELLIDO_MAT']; ?></strong>:</p>
 <br>
 <p>
-	Se ha creado una solicitud para que usted gestione la recuperación de un 
-	atraso y/o retiro de una clase según lo siguiente:
+	Se ha creado una solicitud para que usted gestione la recuperaci&oacute;n de un 
+	atraso y/o retiro de una clase seg&uacute;n lo siguiente:
 </p>
 <?php 
 	$class_label = 'style="background:rgb(140, 135, 135);color:white;border:1px solid #c4c4c4;padding:3px 10px 3px 3px; width:80px;"';
@@ -14,7 +14,7 @@
 		<td <?php echo $class_dato; ?> ><?php echo $clase['Sede']['NOMBRE']; ?></td>
 	</tr>
 	<tr>
-		<td <?php echo $class_label; ?> >Sigla-Sección</td>
+		<td <?php echo $class_label; ?> >Sigla-Secci&oacute;n</td>
 		<td <?php echo $class_dato; ?> ><?php echo $clase['ProgramacionClase']['SIGLA_SECCION']; ?></td>
 	</tr>
 	<tr>
@@ -31,7 +31,7 @@
 		</td>
 	</tr>
 	<tr>
-		<td <?php echo $class_label; ?> >Módulos a Recuperar</td>
+		<td <?php echo $class_label; ?> >M&oacute;dulos a Recuperar</td>
 		<td <?php echo $class_dato; ?> ><?php echo $modulos_recuperar; ?></td>
 	</tr>
 	<tr>
@@ -52,6 +52,6 @@
 	</tr>
 </table>
 <br>
-<p>Para coordinar la recuperación de módulos asociados, favor dirigirse a su Coordinador Docente.</p>
+<p>Para coordinar la recuperaci&oacute;n de m&oacute;dulos asociados, favor dirigirse a su Coordinador Docente.</p>
 <p>Atte.</p>
 <p>Duoc UC</p>

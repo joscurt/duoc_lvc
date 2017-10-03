@@ -54,14 +54,14 @@
 		)
 	);
 	$objPHPExcel->setActiveSheetIndex()->mergeCells('B2:P2');
-	$objPHPExcel->setActiveSheetIndex()->setCellValue('B2', "NÓMINA DIARIA DE CLASES PROGRAMADAS: ". " FECHA: ".date('d-m-Y') . " HORA: ".date('H:i'));
+	$objPHPExcel->setActiveSheetIndex()->setCellValue('B2', "N&Oacute;MINA DIARIA DE CLASES PROGRAMADAS: ". " FECHA: ".date('d-m-Y') . " HORA: ".date('H:i'));
 	$objPHPExcel->setActiveSheetIndex()->getStyle("B2:P2")->applyFromArray($style_back_blue);
 	$objPHPExcel->setActiveSheetIndex()->getRowDimension("2")->setRowHeight(50);
 
 	$objPHPExcel->setActiveSheetIndex()->setCellValue('B4',"#");
 	$objPHPExcel->setActiveSheetIndex()->setCellValue('C4',"Fecha");
 	$objPHPExcel->setActiveSheetIndex()->setCellValue('D4',"Nombre Asignatura");
-	$objPHPExcel->setActiveSheetIndex()->setCellValue('E4',"Sigla-Sección");
+	$objPHPExcel->setActiveSheetIndex()->setCellValue('E4',"Sigla-Secci&oacute;n");
 	$objPHPExcel->setActiveSheetIndex()->setCellValue('F4',"Jornada");
 	$objPHPExcel->setActiveSheetIndex()->setCellValue('G4',"Rut Docente");
 	$objPHPExcel->setActiveSheetIndex()->setCellValue('H4',"Apellido Paterno");

@@ -66,7 +66,7 @@
 <br>
 <div class="card">
 	<div class="card-header">
-		<h2>Programación de Clases</h2>
+		<h2>Programaci&oacute;n de Clases</h2>
 		<br><br>
 		<div class="row">
 			<div class="col-md-3">
@@ -139,22 +139,22 @@
 						<tr>
 							<th style="width: 7%;" class="td-app">Sede</th>
 							<th style="width: 5%;" class="td-app">Nombre Asignatura</th>
-							<th style="width: 12%;" class="td-app">Sigla-Sección</th>
+							<th style="width: 12%;" class="td-app">Sigla-Secci&oacute;n</th>
 							<th style="width: 7%;" class="td-app">Jornada</th>
 							<?php if (isset($funcionalidades[2])): ?>
 								<th style="width: 7%;" class="td-app">Registrar Clase</th>
 							<?php endif; ?>
 							<?php if (isset($funcionalidades[4])): ?>
-								<th style="width: 7%;" class="td-app">Histórico Asistencia</th>
+								<th style="width: 7%;" class="td-app">Hist&oacute;rico Asistencia</th>
 							<?php endif; ?>
 							<?php if (isset($funcionalidades[5])): ?>
-								<th style="width: 7%;" class="td-app">Bitácora Evento</th>
+								<th style="width: 7%;" class="td-app">Bit&aacute;cora Evento</th>
 							<?php endif; ?>
 							<th style="width: 7%;" class="td-app">Nº Clases Registradas</th>
 							<th style="width: 7%;" class="td-app">Asistencia Promedio</th>
-							<th style="width: 9%;padding: 14px;" class="td-app">Último Registro</th>
+							<th style="width: 9%;padding: 14px;" class="td-app">&Uacute;ltimo Registro</th>
 							<?php if (isset($funcionalidades[6])): ?>
-								<th style="width: 3%;" class="td-app">Reprobación por Inasistencia</th>
+								<th style="width: 3%;" class="td-app">Reprobaci&oacute;n por Inasistencia</th>
 							<?php endif; ?>
 						</tr>
 					</thead>
@@ -170,10 +170,10 @@
 									<td><a href="<?php echo $this->Html->Url(array('action'=>'registrarNuevaClase',$horario['AsignaturaHorario']['COD_ASIGNATURA_HORARIO'])) ?>" data-rel="tooltip" title="Registrar Nueva Clase" class="btn btn-sm btn-success"><i class="fa fa-plus"></i></a></td>
 								<?php endif; ?>
 								<?php if (isset($funcionalidades[4])): ?>
-									<td><a href="<?php echo $this->Html->url(array('action'=>'historicoAsistencia',$horario['AsignaturaHorario']['COD_ASIGNATURA_HORARIO'])); ?>" data-rel="tooltip" title="Histórico de Asistencia" class="btn btn-sm btn-default"><i class="md md-find-in-page"></i></a></td>
+									<td><a href="<?php echo $this->Html->url(array('action'=>'historicoAsistencia',$horario['AsignaturaHorario']['COD_ASIGNATURA_HORARIO'])); ?>" data-rel="tooltip" title="Hist&oacute;rico de Asistencia" class="btn btn-sm btn-default"><i class="md md-find-in-page"></i></a></td>
 								<?php endif; ?>
 								<?php if (isset($funcionalidades[5])): ?>
-									<td><a href="<?php echo $this->Html->url(array('action'=>'bitacoraEvento',$horario['AsignaturaHorario']['COD_ASIGNATURA_HORARIO'])) ?>" data-rel="tooltip" title="Bitácora Evento" class="btn btn-sm btn-default"><i class="md md-find-in-page"></i></a></td>
+									<td><a href="<?php echo $this->Html->url(array('action'=>'bitacoraEvento',$horario['AsignaturaHorario']['COD_ASIGNATURA_HORARIO'])) ?>" data-rel="tooltip" title="Bit&aacute;cora Evento" class="btn btn-sm btn-default"><i class="md md-find-in-page"></i></a></td>
 								<?php endif; ?>
 								<td class="td-nro-clases"><?php echo $horario['AsignaturaHorario']['CLASES_REGISTRADAS']; ?></td>
 								<td class="td-asistencia">

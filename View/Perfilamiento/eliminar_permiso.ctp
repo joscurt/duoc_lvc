@@ -12,7 +12,7 @@
 	    				$icon = 'check';
 	    			}
 	    		?>
-				<h5>¿Está seguro que desea <strong><?php echo strtoupper($text); ?></strong> el permiso?</h5>
+				<h5>¿Est&aacute; seguro que desea <strong><?php echo strtoupper($text); ?></strong> el permiso?</h5>
 				<input type="hidden" name="data[Permiso][COD]" value="<?php echo $permiso['Permiso']['COD']; ?>">
 			</div>
 		</div>

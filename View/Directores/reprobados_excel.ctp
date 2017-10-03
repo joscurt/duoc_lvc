@@ -60,7 +60,7 @@
 
 	$objPHPExcel->setActiveSheetIndex()->setCellValue('C4',"#");
 	$objPHPExcel->setActiveSheetIndex()->setCellValue('D4',"Nombre Asignatura");
-	$objPHPExcel->setActiveSheetIndex()->setCellValue('E4',"Sigla-Sección");
+	$objPHPExcel->setActiveSheetIndex()->setCellValue('E4',"Sigla-Secci&oacute;n");
 	$objPHPExcel->setActiveSheetIndex()->setCellValue('F4',"Jornada");
 	$objPHPExcel->setActiveSheetIndex()->setCellValue('G4',"Rut Docente");
 	$objPHPExcel->setActiveSheetIndex()->setCellValue('H4',"Apellido Paterno");
@@ -80,9 +80,9 @@
         $objPHPExcel->setActiveSheetIndex()->setCellValue('E'.$fila, $detalle['AsignaturaHorario']['SIGLA_SECCION']);
         $objPHPExcel->setActiveSheetIndex()->setCellValue('F'.$fila, $detalle['AsignaturaHorario']['COD_JORNADA']);
         $objPHPExcel->setActiveSheetIndex()->setCellValue('G'.$fila, $detalle['Docente']['RUT'].'-'.$detalle['Docente']['DV']);
-       	$objPHPExcel->setActiveSheetIndex()->setCellValue('H'.$fila, $detalle['Docente']['APELLIDO_PAT']);
-        $objPHPExcel->setActiveSheetIndex()->setCellValue('I'.$fila, $detalle['Docente']['APELLIDO_MAT']);
-        $objPHPExcel->setActiveSheetIndex()->setCellValue('J'.$fila, $detalle['Docente']['NOMBRE']);
+       	$objPHPExcel->setActiveSheetIndex()->setCellValue('H'.$fila, utf8_encode($detalle['Docente']['APELLIDO_PAT']));
+        $objPHPExcel->setActiveSheetIndex()->setCellValue('I'.$fila, utf8_encode($detalle['Docente']['APELLIDO_MAT']));
+        $objPHPExcel->setActiveSheetIndex()->setCellValue('J'.$fila, utf8_encode($detalle['Docente']['NOMBRE']));
         $objPHPExcel->setActiveSheetIndex()->setCellValue('K'.$fila, (int)$detalle['AsignaturaHorario']['CLASES_REGISTRADAS']);
         $objPHPExcel->setActiveSheetIndex()->setCellValue('L'.$fila, (float)$detalle['AsignaturaHorario']['ASIST_PROMEDIO']);
        	$objPHPExcel->setActiveSheetIndex()->getRowDimension($fila)->setRowHeight(30);

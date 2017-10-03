@@ -81,7 +81,7 @@
 				<div class="inside">
 					<div class="pull-right info-usuario">
 						<label>Usuario: <br> <?php echo $usuario_conectado['AccesoBackOffice']['NOMBRES'].' '.$usuario_conectado['AccesoBackOffice']['APELLIDOS'] ?></label>
-						<a href="<?php echo $this->Html->url(array('controller'=>'login','action'=>'logoutBackOffice')); ?>"><i class="fa fa-power-off" aria-hidden="true"></i> Cerrar Sesión</a>					
+						<a href="<?php echo $this->Html->url(array('controller'=>'login','action'=>'logoutBackOffice')); ?>"><i class="fa fa-power-off" aria-hidden="true"></i> Cerrar Sesi&oacute;n</a>					
 					</div>
 					<div class="">		
 						<?php echo $this->Html->image('logo-duoc-v2.png',array('class'=>'logo')); ?>
@@ -107,7 +107,7 @@
 							<?php }} ?>
 
 							<!--<?php if (isset($funcionalidades[17])): ?>
-								<li class="<?php echo $in_home;?>"><a href="<?php echo $this->Html->url(array('controller'=>'BackOffice','action'=>'index')) ?>" title="Gestión de clases" >Mantenedores</a></li>
+								<li class="<?php echo $in_home;?>"><a href="<?php echo $this->Html->url(array('controller'=>'BackOffice','action'=>'index')) ?>" title="Gesti&oacute;n de clases" >Mantenedores</a></li>
 							<?php endif; ?>
 							<?php if (isset($funcionalidades[18])): ?>
 								<li class="<?php echo $in_roles_perfiles ?>"><a href="<?php echo $this->Html->url(array('controller'=>'perfilamiento', 'action'=>'index')) ?>" >Roles y perfiles</a></li>

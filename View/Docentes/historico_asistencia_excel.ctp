@@ -59,7 +59,7 @@
 	);
 	$objPHPExcel->setActiveSheetIndex(0);
 	$objPHPExcel->setActiveSheetIndex()->mergeCells('B2:H2');
-	$objPHPExcel->setActiveSheetIndex()->setCellValue('B2', "Histórico Asistencia Alumno: ".$alumno['Alumno']['NOMBRES'].' '.$alumno['Alumno']['APELLIDO_PAT'].' '.$alumno['Alumno']['APELLIDO_MAT'].' | '.date('d-m-Y H:i'));
+	$objPHPExcel->setActiveSheetIndex()->setCellValue('B2', "Hist&oacute;rico Asistencia Alumno: ".utf8_encode($alumno['Alumno']['NOMBRES'].' '.$alumno['Alumno']['APELLIDO_PAT'].' '.$alumno['Alumno']['APELLIDO_MAT']).' | '.date('d-m-Y H:i'));
 	$objPHPExcel->setActiveSheetIndex()->getStyle("B2:H2")->applyFromArray($style_back_blue);
 	$objPHPExcel->setActiveSheetIndex()->getRowDimension("2")->setRowHeight(50);
 
@@ -84,7 +84,10 @@
        	$objPHPExcel->setActiveSheetIndex()->setCellValue('F'.$fila, utf8_encode($detalle['Docente']['NOMBRE'].' '.$detalle['Docente']['APELLIDO_PAT'].' '.$detalle['Docente']['APELLIDO_MAT']));
         $objPHPExcel->setActiveSheetIndex()->setCellValue('G'.$fila, $detalle['ProgramacionClase']['TIPO_EVENTO']);
         if ($detalle['ProgramacionClase']['WF_ESTADO_ID']>2):
-        	$objPHPExcel->setActiveSheetIndex()->setCellValue('H'.$fila, $detalle['Asistencia']['ASISTENCIA']==1 ? 'Sí': 'No');
+        	$objPHPExcel->setActiveSheetIndex()->setCellValue('H'.$fila, $detalle['Asistencia']['ASISTENCIA']==1 ? 'S&iacute;': 'No');
+       	 $objPHPExcel->setActiveSheetIndex()->setCellValue('H'.$fila, $detalle['Asistencia']['ASISTENCIA']==2 ? 'Justificado': 'No');
+       	 $objPHPExcel->setActiveSheetIndex()->setCellValue('H'.$fila, $detalle['Asistencia']['ASISTENCIA']==0 ? 'No': 'No');
+       	 $objPHPExcel->setActiveSheetIndex()->setCellValue('H'.$fila, $detalle['Asistencia']['ASISTENCIA']=='' ? 'No Registra': 'No');
        	else:
        		$objPHPExcel->setActiveSheetIndex()->setCellValue('H'.$fila, 'NO IMPARTIDA');
        	endif; 

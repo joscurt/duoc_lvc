@@ -179,7 +179,7 @@
 	                        <a data-toggle="dropdown" class="tm-settings" href=""></a>
 	                        <ul class="dropdown-menu dm-icon pull-right">
 	                            <li>
-	                                <a href="<?php echo $this->Html->url(array('controller'=>'docentes','action'=>'getEventos')); ?>"><i style="color:gray;"class="md md-home"></i>Programación de Clases</a>
+	                                <a href="<?php echo $this->Html->url(array('controller'=>'docentes','action'=>'getEventos')); ?>"><i style="color:gray;"class="md md-home"></i>Programaci&oacute;n de Clases</a>
 	                            </li>
 	                            <li>
 	                                <a data-action="fullscreen" href="<?php echo $this->Html->url(array('controller'=>'Login','action'=>'login')) ?>"><i style="color:red;"class="md md-settings-power"></i>Salir</a>

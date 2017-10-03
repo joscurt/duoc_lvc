@@ -1,6 +1,6 @@
 <p>Estimado(a) Coordinador <strong><?php echo $coordinador['NOMBRES'].' '.$coordinador['APELLIDO_PAT'].' '.$coordinador['APELLIDO_MAT']; ?></strong>:</p>
 <br>
-<p>Se ha creado una solicitud para recuperar una clase según lo siguiente:</p>
+<p>Se ha creado una solicitud para recuperar una clase seg&uacute;n lo siguiente:</p>
 <?php
 	$class_label = 'style="background:rgb(140, 135, 135);color:white;border:1px solid #c4c4c4;padding:3px 10px 3px 3px; width:80px;"';
 	$class_dato = 'style="border:1px solid #c4c4c4;padding:3px 3px 3px 10px; font-weight:900"';
@@ -11,7 +11,7 @@
 		<td <?php echo $class_dato; ?> ><?php echo $sede['NOMBRE']; ?></td>
 	</tr>
 	<tr>
-		<td <?php echo $class_label; ?> >Sigla-Sección</td>
+		<td <?php echo $class_label; ?> >Sigla-Secci&oacute;n</td>
 		<td <?php echo $class_dato; ?> ><?php echo $clase['ProgramacionClase']['SIGLA_SECCION']; ?></td>
 	</tr>
 	<tr>
@@ -58,6 +58,6 @@
 	</tr>
 </table>
 <br>
-<p>La respuesta de la <b>autorización</b> o <b>rechazo</b> será entregada por parte de su Director de Carrera.</p>
+<p>La respuesta de la <b>autorizaci&oacute;n</b> o <b>rechazo</b> ser&aacute; entregada por parte de su Director de Carrera.</p>
 <p>Atte.</p>
 <p>Duoc UC</p>

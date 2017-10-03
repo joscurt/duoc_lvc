@@ -135,7 +135,7 @@
 			dataType: 'html',
 		})
 		.fail(function() {
-			notifyUser('Ha ocurrido un error inesperado. Intente más tarde.','danger');
+			notifyUser('Ha ocurrido un error inesperado. Intente m&aacute;s tarde.','danger');
 		})
 		.always(function(view) {
 			$('#contenido-alumno').html(view).show();
@@ -157,7 +157,7 @@
 			dataType: 'html',
 		})
 		.fail(function() {
-			notifyUser('Ha ocurrido un error inesperado. Intente más tarde.','danger');
+			notifyUser('Ha ocurrido un error inesperado. Intente m&aacute;s tarde.','danger');
 		})
 		.always(function(view) {
 			$('#ver_curso').html(view).show();
@@ -174,7 +174,7 @@
 			dataType: 'html',
 		})
 		.fail(function() {
-			notifyUser('Ha ocurrido un error inesperado. Intente más tarde.','danger');
+			notifyUser('Ha ocurrido un error inesperado. Intente m&aacute;s tarde.','danger');
 		})
 		.always(function(view) {
 			$('#ver_todo').html(view).show();

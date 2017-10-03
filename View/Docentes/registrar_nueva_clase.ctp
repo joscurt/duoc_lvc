@@ -124,7 +124,7 @@
 			var fecha_inicio = $('#form-filtro-fecha .fecha-inicio').val();
 			var fecha_termino = $('#form-filtro-fecha .fecha-termino').val();
 			if(!fechaCorrecta(fecha_inicio,fecha_termino)){
-				notifyUser('La fecha de término no puede ser mayor a la fecha de inicio.','danger');
+				notifyUser('La fecha de t&eacute;rmino no puede ser menor a la fecha de inicio.','danger');
 				return false;	
 			}
 			img_cargando.style="width:150px;";
@@ -139,7 +139,7 @@
 			})
 			.fail(function() {
 				$('#content-listado-programacion-clases').empty();
-				notifyUser('Ha ocurrido un error inesperado. Intente más tarde.','danger');
+				notifyUser('Ha ocurrido un error inesperado. Intente m&aacute;s tarde.','danger');
 			})
 			.always(function(view) {
 				$('#content-listado-programacion-clases').html(view);
@@ -166,17 +166,17 @@
 
 		$('#btn-guardar-asistencia').on('click',function (event) {
 			swal({   
-	            title: "<?php echo __('¿Está seguro que deseas guardar los datos de la asistencia de los alumnos?'); ?>",   
+	            title: "<?php echo __('¿Est&aacute; seguro que deseas guardar los datos de la asistencia de los alumnos?'); ?>",   
 	            text: "<?php echo __(''); ?>",
 	            type: "warning",
 	            showCancelButton: true, 
 	            cancelButtonText: "<?php echo __('Cancelar'); ?>",   
 	            confirmButtonColor: "#DD6B55",   
-	            confirmButtonText: "Sí, estoy seguro!",   
+	            confirmButtonText: "S&iacute;, estoy seguro!",   
 	            closeOnConfirm: false 
 	        }, function(){
 	        	location.reload();
-	        	//swal("Completado!", "Eliminado con éxito.", "success"); 
+	        	//swal("Completado!", "Eliminado con &eacute;xito.", "success"); 
 	        }); 
 		});
 	});

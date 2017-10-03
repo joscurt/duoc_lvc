@@ -6,7 +6,7 @@
 			</h3>
 		</div>
 		<div class="col-md-2 text-right">
-			<button type="button" class="btn btn-sm btn-default" data-dismiss="modal"><i class="fa fa-times"></i>&nbsp;Cerrar  Información</button>
+			<button type="button" class="btn btn-sm btn-default" data-dismiss="modal"><i class="fa fa-times"></i>&nbsp;Cerrar  Informaci&oacute;n</button>
 		</div>
 	</div>
 </div>
@@ -78,7 +78,7 @@
 								
 								if (isset($programacion_clases[$hora_inicio][$i])):
 									echo $programacion_clases[$hora_inicio][$i]['Sede']['NOMBRE'].'<br>'.$programacion_clases[$hora_inicio][$i]['ProgramacionClase']['SIGLA_SECCION'].'<br>'.$programacion_clases[$hora_inicio][$i]['Asignatura']['NOMBRE']
-									#José Luis Morandé Solucionado en el model agregue el join para la llamada
+									#Jos&eacute; Luis Morand&eacute; Solucionado en el model agregue el join para la llamada
 					.'<br>'.$programacion_clases[$hora_inicio][$i]['ProgramacionClase']['MODALIDAD'];
 
 					#$a = strtotime('-15 min', strtotime($value['ProgramacionClase']['HORA_INICIO']));
@@ -113,7 +113,7 @@
 	</div>
 </div>
 <div class="modal-footer">
-	<button type="button" class="btn btn-sm btn-default" data-dismiss="modal"><i class="fa fa-times"></i>&nbsp;Cerrar  Información</button>
+	<button type="button" class="btn btn-sm btn-default" data-dismiss="modal"><i class="fa fa-times"></i>&nbsp;Cerrar  Informaci&oacute;n</button>
 </div>
 <script>
 	$(function(){

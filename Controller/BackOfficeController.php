@@ -58,7 +58,7 @@
 			$cod_sede =  $session_data['Sede']['COD_SEDE'];
 			if (!empty($this->data)) {
 				$this->autoRender = false;
-				$mensaje='No se ha podido almacenar su información';
+				$mensaje='No se ha podido almacenar su informaci&oacute;n';
 				$estado='danger';
 				#debug($this->data);exit();
 				$new_ri = array(
@@ -73,7 +73,7 @@
 				);
 				$this->loadModel('BoRi');
 				if($this->BoRi->save($new_ri)){
-					$mensaje='Su información se ha almacenado con éxito.';
+					$mensaje='Su informaci&oacute;n se ha almacenado con &eacute;xito.';
 					$estado='success';
 				}
 				echo json_encode(array('status'=>$estado,'mensaje'=>$mensaje));
@@ -99,7 +99,7 @@
 			}
 			if (!empty($this->data)) {
 				$this->autoRender = false;
-				$mensaje='No se ha podido almacenar su información';
+				$mensaje='No se ha podido almacenar su informaci&oacute;n';
 				$estado='danger';
 				#debug($this->data);exit();
 				$new_ri = array(
@@ -111,7 +111,7 @@
 					'MODIFIED'=>date('Y-m-d H:i:s'),
 				);
 				if($this->BoRi->save($new_ri)){
-					$mensaje='Su información se ha almacenado con éxito.';
+					$mensaje='Su informaci&oacute;n se ha almacenado con &eacute;xito.';
 					$estado='success';
 				}
 				echo json_encode(array('status'=>$estado,'mensaje'=>$mensaje));
@@ -140,7 +140,7 @@
 		{
 			$this->autoRender=false;
 			$estado='danger';
-			$mensaje='Ha ocurrido un error inesperado. Intente más tarde.';
+			$mensaje='Ha ocurrido un error inesperado. Intente m&aacute;s tarde.';
 			$active='';
 			$estado_bd_desactivado = array();
 			// debug($this->data);
@@ -159,9 +159,9 @@
 					$this->BoRi->create(FALSE);
 					if ($this->BoRi->save($desactivar_bo_ri)) {
 						if ($activo == 1) {
-							$mensaje = 'Su información se ha activado con éxito.';
+							$mensaje = 'Su informaci&oacute;n se ha activado con &eacute;xito.';
 						}else{
-							$mensaje='Su información se ha desactivado con éxito.';
+							$mensaje='Su informaci&oacute;n se ha desactivado con &eacute;xito.';
 						}
 						$estado='success';
 					}else{
@@ -209,13 +209,13 @@
 					$this->loadModel('SubEstado');
 					$this->SubEstado->create();
 					if ($this->SubEstado->save($nuevo_sub_estado)) {
-						$mensaje='Su información se ha almacenado con éxito.';
+						$mensaje='Su informaci&oacute;n se ha almacenado con &eacute;xito.';
 						$estado='success';
 					}else{
 						$mensaje='No se ha podido agregar el nuevo sub estado.';
 					}
 				}else{
-					$mensaje='Su información no se ha almacenado. Intente más tarde.';
+					$mensaje='Su informaci&oacute;n no se ha almacenado. Intente m&aacute;s tarde.';
 				}
 				echo json_encode(array(
 					'status'=>$estado,
@@ -252,13 +252,13 @@
 					$this->loadModel('SubEstado');
 					$this->SubEstado->create(FALSE);
 					if ($this->SubEstado->save($update_sub_estado)) {
-						$mensaje='El sub-estado se ha editado con éxito.';
+						$mensaje='El sub-estado se ha editado con &eacute;xito.';
 						$estado='success';
 					}else{
-						$mensaje = 'No se ha podido guardar la edición.';
+						$mensaje = 'No se ha podido guardar la edici&oacute;n.';
 					}
 				}else{
-					$mensaje = 'No se ha podido guardar la edición.';
+					$mensaje = 'No se ha podido guardar la edici&oacute;n.';
 				}	
 			}else{
 				$mensaje = 'No se ha encontrado el sub-estado que se quiere editar.';
@@ -317,9 +317,9 @@
 							$tmp_sub_estado=$sub_estado_bd_desactivado['SubEstado'];
 						}
 						if ($tmp_sub_estado['ACTIVO'] == 1) {
-							$mensaje = 'Su motivo se ha activado con éxito.';
+							$mensaje = 'Su motivo se ha activado con &eacute;xito.';
 						}else{
-							$mensaje='Su motivo se ha desactivado con éxito.';
+							$mensaje='Su motivo se ha desactivado con &eacute;xito.';
 						}
 						$estado='success';
 					}else{
@@ -368,13 +368,13 @@
 						if (!empty($motivo_bd)) {
 							$tmp_motivo=$motivo_bd['RecuperarAtrasoRetiro'];
 						}
-						$mensaje='Su motivo se ha almacenado con éxito.';
+						$mensaje='Su motivo se ha almacenado con &eacute;xito.';
 						$estado='success';
 					}else{
 						$mensaje='No se ha podido agregar el nuevo motivo.';
 					}
 				}else{
-					$mensaje='Su motivo se ha almacenado con éxito.';
+					$mensaje='Su motivo se ha almacenado con &eacute;xito.';
 				}
 				echo json_encode(array(
 					'status'=>$estado,
@@ -415,13 +415,13 @@
 					$this->RecuperarAtrasoRetiro->create(FALSE);
 					if ($this->RecuperarAtrasoRetiro->save($update_motivo)) {
 						$motivo_editado=$this->RecuperarAtrasoRetiro->find('first',array('conditions'=>array('ID'=>$update_motivo['ID'])));
-						$mensaje='El estado se ha editado con éxito.';
+						$mensaje='El estado se ha editado con &eacute;xito.';
 						$estado='success';
 					}else{
-						$mensaje = 'No se ha podido guardar la edición.';
+						$mensaje = 'No se ha podido guardar la edici&oacute;n.';
 					}
 				}else{
-					$mensaje = 'No se ha podido guardar la edición.';
+					$mensaje = 'No se ha podido guardar la edici&oacute;n.';
 				}	
 			}else{
 				$mensaje = 'No se ha encontrado el motivo que se quiere editar.';
@@ -477,9 +477,9 @@
 							$tmp_motivo=$motivo_bd_desactivado['RecuperarAtrasoRetiro'];
 						}
 						if ($tmp_motivo['ACTIVO'] == 1) {
-							$mensaje = 'Su motivo se ha activado con éxito.';
+							$mensaje = 'Su motivo se ha activado con &eacute;xito.';
 						}else{
-							$mensaje='Su motivo se ha desactivado con éxito.';
+							$mensaje='Su motivo se ha desactivado con &eacute;xito.';
 						}
 						$estado='success';
 					}else{
@@ -525,13 +525,13 @@
 					$this->loadModel('Estado');
 					$this->Estado->create();
 					if ($this->Estado->save($nuevo_estado)) {
-						$mensaje='Su información se ha almacenado con éxito.';
+						$mensaje='Su informaci&oacute;n se ha almacenado con &eacute;xito.';
 						$estado='success';
 					}else{
 						$mensaje='No se ha podido agregar el nuevo estado.';
 					}
 				}else{
-					$mensaje='Su motivo se ha almacenado con éxito.';
+					$mensaje='Su motivo se ha almacenado con &eacute;xito.';
 				}
 				echo json_encode(array(
 					'status'=>$estado,
@@ -566,13 +566,13 @@
 					$this->loadModel('Estado');
 					$this->Estado->create(FALSE);
 					if ($this->Estado->save($update_estado)) {
-						$mensaje='El estado se ha editado con éxito.';
+						$mensaje='El estado se ha editado con &eacute;xito.';
 						$estado='success';
 					}else{
-						$mensaje = 'No se ha podido guardar la edición.';
+						$mensaje = 'No se ha podido guardar la edici&oacute;n.';
 					}
 				}else{
-					$mensaje = 'No se ha podido guardar la edición.';
+					$mensaje = 'No se ha podido guardar la edici&oacute;n.';
 				}	
 			}else{
 				$mensaje = 'No se ha encontrado el estado que se quiere editar.';
@@ -628,9 +628,9 @@
 							$tmp_estado=$estado_bd_desactivado['Estado'];
 						}
 						if ($tmp_estado['ACTIVO'] == 1) {
-							$mensaje = 'Su motivo se ha activado con éxito.';
+							$mensaje = 'Su motivo se ha activado con &eacute;xito.';
 						}else{
-							$mensaje='Su motivo se ha desactivado con éxito.';
+							$mensaje='Su motivo se ha desactivado con &eacute;xito.';
 						}
 						$estado=true;
 					}else{
@@ -677,13 +677,13 @@
 					$this->loadModel('MotivoAdelantarClase');
 					$this->MotivoAdelantarClase->create();
 					if ($this->MotivoAdelantarClase->save($nuevo_motivo)) {
-						$mensaje='Su motivo se ha almacenado con éxito.';
+						$mensaje='Su motivo se ha almacenado con &eacute;xito.';
 						$estado='success';
 					}else{
 						$mensaje='No se ha podido agregar el nuevo motivo.';
 					}
 				}else{
-					$mensaje='Su motivo se ha almacenado con éxito.';
+					$mensaje='Su motivo se ha almacenado con &eacute;xito.';
 				}
 				echo json_encode(array(
 					'status'=>$estado,
@@ -724,13 +724,13 @@
 					$this->loadModel('MotivoAdelantarClase');
 					$this->MotivoAdelantarClase->create(FALSE);
 					if ($this->MotivoAdelantarClase->save($update_motivo)) {$motivo_editado=$this->MotivoAdelantarClase->find('first',array('conditions'=>array('ID'=>$update_motivo['ID'])));
-						$mensaje='El motivo se ha editado con éxito.';
+						$mensaje='El motivo se ha editado con &eacute;xito.';
 						$estado='success';
 					}else{
-						$mensaje = 'No se ha podido guardar la edición.';
+						$mensaje = 'No se ha podido guardar la edici&oacute;n.';
 					}
 				}else{
-					$mensaje = 'No se ha podido guardar la edición.';
+					$mensaje = 'No se ha podido guardar la edici&oacute;n.';
 				}	
 			}else{
 				$mensaje = 'No se ha encontrado el motivo que se quiere editar.';
@@ -788,9 +788,9 @@
 							$tmp_motivo=$motivo_bd_desactivado['MotivoAdelantarClase'];
 						}
 						if ($tmp_motivo['ACTIVO'] == 1) {
-							$mensaje = 'Su motivo se ha activado con éxito.';
+							$mensaje = 'Su motivo se ha activado con &eacute;xito.';
 						}else{
-							$mensaje='Su motivo se ha desactivado con éxito.';
+							$mensaje='Su motivo se ha desactivado con &eacute;xito.';
 						}
 						$estado='success';
 					}else{
@@ -837,12 +837,12 @@
 					if (!$this->Detalle->save($nuevo_detalle)) {
 						$mensaje='No se ha podido agregar el nuevo detalle.';					
 					}else{
-						$mensaje='Su información se ha almacenado con éxito.';
+						$mensaje='Su informaci&oacute;n se ha almacenado con &eacute;xito.';
 						$estado='success';
 					}
 					#debug($this->Detalle->getLastQuery());
 				}else{
-					$mensaje='Su información se ha almacenado con éxito.';
+					$mensaje='Su informaci&oacute;n se ha almacenado con &eacute;xito.';
 				}
 				echo json_encode(array(
 					'status'=>$estado,
@@ -879,13 +879,13 @@
 					$this->loadModel('Detalle');
 					$this->Detalle->create(FALSE);
 					if ($this->Detalle->save($update_detalle)) {
-						$mensaje='El detalle se ha editado con éxito.';
+						$mensaje='El detalle se ha editado con &eacute;xito.';
 						$estado='success';
 					}else{
-						$mensaje = 'No se ha podido guardar la edición.';
+						$mensaje = 'No se ha podido guardar la edici&oacute;n.';
 					}
 				}else{
-					$mensaje = 'No se ha podido guardar la edición.';
+					$mensaje = 'No se ha podido guardar la edici&oacute;n.';
 				}	
 			}else{
 				$mensaje = 'No se ha encontrado el detalle que se quiere editar.';
@@ -932,10 +932,10 @@
 						if (!empty($detalle_bd_desactivado)) {
 							$tmp_detalle=$detalle_bd_desactivado['Detalle'];
 						}
-						$mensaje = 'Su información se ha actualizado con éxito.';
+						$mensaje = 'Su informaci&oacute;n se ha actualizado con &eacute;xito.';
 						$estado='success';
 					}else{
-						$mensaje='No se ha podido guardar el cambio, intente más tarde.';
+						$mensaje='No se ha podido guardar el cambio, intente m&aacute;s tarde.';
 					}	
 				}else{
 					$mensaje = 'No se ha encontrado el detalle que desea modificar. Intente mas tarde.';
@@ -975,13 +975,13 @@
 					$this->loadModel('TipoJustificacionLegal');
 					$this->TipoJustificacionLegal->create();
 					if ($this->TipoJustificacionLegal->save($nuevo_justificacion_legal)) {
-						$mensaje='Su motivo se ha almacenado con éxito.';
+						$mensaje='Su motivo se ha almacenado con &eacute;xito.';
 						$estado='success';
 					}else{
 						$mensaje='No se ha podido agregar el nuevo motivo.';
 					}
 				}else{
-					$mensaje='Su motivo se ha almacenado con éxito.';
+					$mensaje='Su motivo se ha almacenado con &eacute;xito.';
 				}
 				$_json=json_encode(array('status'=>$estado,'mensaje'=>$mensaje));echo $_json;
 			}
@@ -1019,13 +1019,13 @@
 					$this->loadModel('TipoJustificacionLegal');
 					$this->TipoJustificacionLegal->create(FALSE);
 					if ($this->TipoJustificacionLegal->save($update_justificacion)) {$tipo_justifiacion_editado=$this->TipoJustificacionLegal->find('first',array('conditions'=>array('ID'=>$update_justificacion['ID'])));
-						$mensaje='Su justificacion legal se ha editado con éxito.';
+						$mensaje='Su justificacion legal se ha editado con &eacute;xito.';
 						$estado='success';
 					}else{
-						$mensaje = 'No se ha podido guardar la edición.';
+						$mensaje = 'No se ha podido guardar la edici&oacute;n.';
 					}
 				}else{
-					$mensaje = 'No se ha podido guardar la edición.';
+					$mensaje = 'No se ha podido guardar la edici&oacute;n.';
 				}	
 			}else{
 				$mensaje = 'No se ha encontrado la  justificacion legal que se quiere editar.';
@@ -1076,9 +1076,9 @@
 					$this->TipoJustificacionLegal->create(FALSE);
 					if ($this->TipoJustificacionLegal->save($desactivar_justificacion)) {
 						if ($desactivar_justificacion['ACTIVO'] == 1) {
-							$mensaje = 'Su motivo se ha activado con éxito.';
+							$mensaje = 'Su motivo se ha activado con &eacute;xito.';
 						}else{
-							$mensaje='Su motivo se ha desactivado con éxito.';
+							$mensaje='Su motivo se ha desactivado con &eacute;xito.';
 						}
 						$estado='success';
 					}else{
@@ -1122,13 +1122,13 @@
 					$this->loadModel('MotivoInasistenciaDocente');
 					$this->MotivoInasistenciaDocente->create();
 					if ($this->MotivoInasistenciaDocente->save($nuevo_inasistencia_docente)) {
-						$mensaje='Su motivo se ha almacenado con éxito.';
+						$mensaje='Su motivo se ha almacenado con &eacute;xito.';
 						$estado='success';
 					}else{
 						$mensaje='No se ha podido agregar el nuevo motivo.';
 					}
 				}else{
-					$mensaje='Su motivo se ha almacenado con éxito.';
+					$mensaje='Su motivo se ha almacenado con &eacute;xito.';
 				}
 				echo json_encode(array(
 					'status'=>$estado,
@@ -1169,13 +1169,13 @@
 					$this->loadModel('MotivoInasistenciaDocente');
 					$this->MotivoInasistenciaDocente->create(FALSE);
 					if ($this->MotivoInasistenciaDocente->save($update_inasistencia)) {
-						$mensaje='Su motivo de rechazo de clase se ha editado con éxito.';
+						$mensaje='Su motivo de rechazo de clase se ha editado con &eacute;xito.';
 						$estado='success';
 					}else{
-						$mensaje = 'No se ha podido guardar la edición.';
+						$mensaje = 'No se ha podido guardar la edici&oacute;n.';
 					}
 				}else{
-					$mensaje = 'No se ha podido guardar la edición.';
+					$mensaje = 'No se ha podido guardar la edici&oacute;n.';
 				}	
 			}else{
 				$mensaje = 'No se ha encontrado el motivo de inasistecia que se quiere editar.';
@@ -1230,9 +1230,9 @@
 							$tmp_inasistencia_docente=$inasistencia_bd_desactivado['MotivoInasistenciaDocente'];
 						}
 						if ($tmp_inasistencia_docente['ACTIVO'] == 1) {
-							$mensaje = 'Su motivo se ha activado con éxito.';
+							$mensaje = 'Su motivo se ha activado con &eacute;xito.';
 						}else{
-							$mensaje='Su motivo se ha desactivado con éxito.';
+							$mensaje='Su motivo se ha desactivado con &eacute;xito.';
 						}
 						$estado='success';
 					}else{
@@ -1277,13 +1277,13 @@
 					$this->loadModel('MotivoRechazoClase');
 					$this->MotivoRechazoClase->create();
 					if ($this->MotivoRechazoClase->save($nuevo_rechazo_clase)) {
-						$mensaje='Su motivo se ha almacenado con éxito.';
+						$mensaje='Su motivo se ha almacenado con &eacute;xito.';
 						$estado='success';
 					}else{
 						$mensaje='No se ha podido agregar el nuevo motivo.';
 					}
 				}else{
-					$mensaje='Su motivo se ha almacenado con éxito.';
+					$mensaje='Su motivo se ha almacenado con &eacute;xito.';
 				}
 				$_json=json_encode(array('tmp_rechazo_clase'=>$tmp_rechazo_clase,'status'=>$estado,'mensaje'=>$mensaje, 'cantidad_de_motivos'=>$cantidad_de_motivos));echo $_json;
 			}
@@ -1319,13 +1319,13 @@
 					$this->loadModel('MotivoRechazoClase');
 					$this->MotivoRechazoClase->create(FALSE);
 					if ($this->MotivoRechazoClase->save($update_rechazo)) {
-						$mensaje='Su motivo de rechazo de clase se ha editado con éxito.';
+						$mensaje='Su motivo de rechazo de clase se ha editado con &eacute;xito.';
 						$estado='success';
 					}else{
-						$mensaje = 'No se ha podido guardar la edición.';
+						$mensaje = 'No se ha podido guardar la edici&oacute;n.';
 					}
 				}else{
-					$mensaje = 'No se ha podido guardar la edición.';
+					$mensaje = 'No se ha podido guardar la edici&oacute;n.';
 				}	
 			}else{
 				$mensaje = 'No se ha encontrado el motivo de rechazo de clase que se quiere editar.';
@@ -1381,9 +1381,9 @@
 							$tmp_rechazo_clase=$rechazo_bd_desactivado['MotivoRechazoClase'];
 						}
 						if ($tmp_rechazo_clase['ACTIVO'] == 1) {
-							$mensaje = 'Su motivo se ha activado con éxito.';
+							$mensaje = 'Su motivo se ha activado con &eacute;xito.';
 						}else{
-							$mensaje='Su motivo se ha desactivado con éxito.';
+							$mensaje='Su motivo se ha desactivado con &eacute;xito.';
 						}
 						$estado='success';
 					}else{
@@ -1427,13 +1427,13 @@
 					$this->loadModel('MotivoSuspensionClase');
 					$this->MotivoSuspensionClase->create();
 					if ($this->MotivoSuspensionClase->save($nuevo_motivo_suspension)) {
-						$mensaje='Su motivo se ha almacenado con éxito.';
+						$mensaje='Su motivo se ha almacenado con &eacute;xito.';
 						$estado='success';
 					}else{
 						$mensaje='No se ha podido agregar el nuevo motivo.';
 					}
 				}else{
-					$mensaje='Su motivo se ha almacenado con éxito.';
+					$mensaje='Su motivo se ha almacenado con &eacute;xito.';
 				}
 				echo json_encode(array(
 					'status'=>$estado,
@@ -1475,16 +1475,16 @@
 					$this->loadModel('MotivoSuspensionClase');
 					$this->MotivoSuspensionClase->create(FALSE);
 					if ($this->MotivoSuspensionClase->save($update_suspension)) {
-						$mensaje='Su motivo de suspensión se ha editado con éxito.';
+						$mensaje='Su motivo de suspensi&oacute;n se ha editado con &eacute;xito.';
 						$estado='success';
 					}else{
-						$mensaje = 'No se ha podido guardar la edición.';
+						$mensaje = 'No se ha podido guardar la edici&oacute;n.';
 					}
 				}else{
-					$mensaje = 'No se ha podido guardar la edición.';
+					$mensaje = 'No se ha podido guardar la edici&oacute;n.';
 				}	
 			}else{
-				$mensaje = 'No se ha encontrado el motivo de suspensión que se quiere editar.';
+				$mensaje = 'No se ha encontrado el motivo de suspensi&oacute;n que se quiere editar.';
 			}
 			$_json=json_encode(array('status'=>$estado,'mensaje'=>$mensaje));echo $_json;
 		}
@@ -1537,9 +1537,9 @@
 							$tmp_suspension=$suspension_bd_desactivado['MotivoSuspensionClase'];
 						}
 						if ($tmp_suspension['ACTIVO'] == 1) {
-							$mensaje = 'Su motivo se ha activado con éxito.';
+							$mensaje = 'Su motivo se ha activado con &eacute;xito.';
 						}else{
-							$mensaje='Su motivo se ha desactivado con éxito.';
+							$mensaje='Su motivo se ha desactivado con &eacute;xito.';
 						}
 						$estado='success';
 					}else{
@@ -1588,13 +1588,13 @@
 						if (!empty($reforzamiento_bd)) {
 							$tmp_rechazo=$reforzamiento_bd['MotivosRechazoReforzamiento'];
 						}
-						$mensaje='Su motivo se ha almacenado con éxito.';
+						$mensaje='Su motivo se ha almacenado con &eacute;xito.';
 						$estado='success';
 					}else{
 						$mensaje='No se ha podido agregar el nuevo motivo.';
 					}
 				}else{
-					$mensaje='Su motivo se ha almacenado con éxito.';
+					$mensaje='Su motivo se ha almacenado con &eacute;xito.';
 				}
 				echo json_encode(array('status'=>$estado,'mensaje'=>$mensaje));
 			}
@@ -1633,13 +1633,13 @@
 					$this->MotivosRechazoReforzamiento->create(FALSE);
 					if ($this->MotivosRechazoReforzamiento->save($update_rechazo)) {
 						$rechazo_editado=$this->MotivosRechazoReforzamiento->find('first',array('conditions'=>array('ID'=>$update_rechazo['ID'])));
-						$mensaje='Su rechazo se ha editado con éxito.';
+						$mensaje='Su rechazo se ha editado con &eacute;xito.';
 						$estado='success';
 					}else{
-						$mensaje = 'No se ha podido guardar la edición';
+						$mensaje = 'No se ha podido guardar la edici&oacute;n';
 					}
 				}else{
-					$mensaje = 'No se ha podido guardar la edición';
+					$mensaje = 'No se ha podido guardar la edici&oacute;n';
 				}	
 			}else{
 				$mensaje = 'No se ha encoontrado el rechazo que se quiere editar.';
@@ -1696,9 +1696,9 @@
 
 						}
 						if ($tmp_rechazo['ACTIVO'] == 1) {
-							$mensaje = 'Su motivo se ha activado con éxito.';
+							$mensaje = 'Su motivo se ha activado con &eacute;xito.';
 						}else{
-							$mensaje='Su motivo se ha desactivado con éxito.';
+							$mensaje='Su motivo se ha desactivado con &eacute;xito.';
 						}
 						$estado='success';
 					}else{
@@ -1740,13 +1740,13 @@
 					$this->loadModel('MotivoReforzamiento');
 					$this->MotivoReforzamiento->create();
 					if ($this->MotivoReforzamiento->save($nuevo_motivo_reforzamiento)) {
-						$mensaje='Su motivo se ha almacenado con éxito.';
+						$mensaje='Su motivo se ha almacenado con &eacute;xito.';
 						$estado='success';
 					}else{
 						$mensaje='No se ha podido agregar el nuevo motivo.';
 					}
 				}else{
-					$mensaje='Su motivo se ha almacenado con éxito.';
+					$mensaje='Su motivo se ha almacenado con &eacute;xito.';
 				}
 				echo json_encode(array(
 					'status'=>$estado,
@@ -1786,13 +1786,13 @@
 					$this->loadModel('MotivoReforzamiento');
 					$this->MotivoReforzamiento->create(FALSE);
 					if ($this->MotivoReforzamiento->save($update_rechazo)) {
-						$mensaje='Su información se ha editado con éxito.';
+						$mensaje='Su informaci&oacute;n se ha editado con &eacute;xito.';
 						$estado='success';
 					}else{
-						$mensaje = 'No se ha podido guardar la edición';
+						$mensaje = 'No se ha podido guardar la edici&oacute;n';
 					}
 				}else{
-					$mensaje = 'No se ha podido guardar la edición';
+					$mensaje = 'No se ha podido guardar la edici&oacute;n';
 				}	
 			}else{
 				$mensaje = 'No se ha encoontrado el motivo que se quiere editar.';
@@ -1847,9 +1847,9 @@
 							$tmp_reforzamiento=$reforzamiento_bd_desactivado['MotivoReforzamiento'];
 						}
 						if ($tmp_reforzamiento['ACTIVO'] == 1) {
-							$mensaje = 'Su motivo se ha activado con éxito.';
+							$mensaje = 'Su motivo se ha activado con &eacute;xito.';
 						}else{
-							$mensaje='Su motivo se ha desactivado con éxito.';
+							$mensaje='Su motivo se ha desactivado con &eacute;xito.';
 						}
 						$estado='success';
 					}else{
@@ -1884,13 +1884,13 @@
 					$motivo="'".$this->data['Reforzamiento']['MOTIVO']."'";
 					if ($this->MotivoReforzamiento->updateAll(array('MotivoReforzamiento.MOTIVO'=>$motivo),array('MotivoReforzamiento.ID'=>$reforzamiento_id))) {
 						$reforzamiento_editado=$this->MotivoReforzamiento->find('first',array('conditions'=>array('ID'=>$update_reforzamiento['ID'])));
-						$mensaje='Su motivo se ha editado con éxito.';
+						$mensaje='Su motivo se ha editado con &eacute;xito.';
 						$estado=true;
 					}else{
-						$mensaje = 'No se ha podido guardar la edición';
+						$mensaje = 'No se ha podido guardar la edici&oacute;n';
 					}
 				}else{
-					$mensaje = 'No se ha podido guardar la edición(11)';
+					$mensaje = 'No se ha podido guardar la edici&oacute;n(11)';
 				}	
 			}else{
 				$mensaje = 'No se ha encoontrado el reforzamiento que se quiere editar.(11)';

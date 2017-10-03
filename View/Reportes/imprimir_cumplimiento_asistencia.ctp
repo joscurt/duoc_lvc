@@ -40,7 +40,7 @@
 				<tr>
 					<th>&nbsp;</th>
 					<th>Nombre Asignatura</th>
-					<th class="una-linea">Sigla-Sección</th>
+					<th class="una-linea">Sigla-Secci&oacute;n</th>
 					<th class="una-linea">Rut Docente</th>
 					<th>Apellido Paterno</th>
 					<th>Apellido Materno</th>

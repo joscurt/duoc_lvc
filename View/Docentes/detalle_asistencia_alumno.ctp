@@ -11,8 +11,10 @@
 		</label>	
 		<label class="checkbox checkbox-inline" style="left:0 !important;">
 			<input disabled type="checkbox"  value="" name="data[Alumno][uuid]">
-			<i class="input-helper"></i>Alumno Ausente
-		</label>	
+			<i class="input-helper"></i>Alumno Ausente</label>
+		
+<label class="checkbox checkbox-inline" style="left:0 !important;margin-left: -16px;">
+			<i style="font-size: 16px;text-align: center;color: darkcyan;margin-right: 5px;" class="fa fa-exclamation-circle" aria-hidden="true"></i>Alumno Justificado	</label>
 	</div>
 </div>
 <div class="row">
@@ -35,6 +37,9 @@
 						<td class="text-center"><strong><?php echo $value['ProgramacionClase']['MODALIDAD']; ?></strong></td>
 						<td class="text-center">
 							<?php 
+
+
+							#debug($value['Asistencia']['ASISTENCIA']);
 								echo date('H:i',strtotime($value['ProgramacionClase']['HORA_INICIO'])).'-'.
 								date('H:i',strtotime($value['ProgramacionClase']['HORA_FIN'])); 
 							?>
@@ -61,6 +66,10 @@
 									<label class="checkbox checkbox-inline m-r-30">
 										<input type="checkbox" checked="checked" disabled="disabled"><i class="input-helper"></i>
 									</label>
+								<?php elseif( $value['Asistencia']['ASISTENCIA']==2 ): ?>
+									<label class="checkbox checkbox-inline m-r-30">
+									<input type="checkbox" checked="checked" disabled="disabled"><i style="font-size: 20px;text-align: center;margin-right: 30px;color: darkcyan;" class="fa fa-exclamation-circle" aria-hidden="true"></i>
+								</label>
 								<?php endif ?>
 							<?php else: ?>
 								<span class="badge" style="background: #DDD;color:#000;">No Impartida</span>
@@ -75,7 +84,7 @@
 <div class="row" id="leyenda" style="margin-top: 3%;">
 	<div class="col-md-12">
 		<ul>
-			<li>La "Asistencia" considera solo las Clases Regulares de la asignatura sección, descontando las clases suspendidas</li>
+			<li>La "Asistencia" considera solo las Clases Regulares de la asignatura secci&oacute;n, descontando las clases suspendidas</li>
 			<li>La "Asistencia Actual" considera la asistencia del alumno solo a las Clases Regulares en las que se ha registrado la asistencia</li>
 		</ul>
 	</div>

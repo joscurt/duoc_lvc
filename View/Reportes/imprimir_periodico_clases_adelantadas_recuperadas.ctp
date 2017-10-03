@@ -27,7 +27,7 @@
 <table style="border-bottom:1px solid #ccc;">
 	<tr >
 		<td><?php echo $this->Html->image('duocuc.png',array('style'=>'width:150px;')); ?></td>
-		<td><h4 class="titulo">REPORTES PERIÓDICOS DE CLASES ADELANTADAS Y RECUPERADAS (REALIZADAS Y NO REALIZADAS)</h4></td>
+		<td><h4 class="titulo">REPORTES PERI&Oacute;DICOS DE CLASES ADELANTADAS Y RECUPERADAS (REALIZADAS Y NO REALIZADAS)</h4></td>
 	</tr>
 </table>
 <br>
@@ -41,7 +41,7 @@
 					<th>Nº</th>
 					<th>Fecha Clase</th>
 					<th>Nombre Asignatura</th>
-					<th>Sigla-Sección</th>
+					<th>Sigla-Secci&oacute;n</th>
 					<th>Jornada</th>
 					<th>Rut Docente</th>
 					<th>Apellido Paterno</th>

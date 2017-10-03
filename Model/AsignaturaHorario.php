@@ -231,6 +231,98 @@
 			#debug($this->getLastQuery());die;
 			return $asignatura_horario;
 		}
+		public function getAsignaturaHorario($asignatura_horario_uuid=null)
+		{
+			$asignatura_horario = $this->find('all',array(
+				'fields'=>array(
+					'AsignaturaHorario.ID',
+					'AsignaturaHorario.SIGLA_SECCION',
+					'AsignaturaHorario.COD_JORNADA',
+					'AsignaturaHorario.ULTIMO_REGISTRO',
+					'AsignaturaHorario.RI_ENVIADO_A_SAP',
+					'AsignaturaHorario.ASIST_PROMEDIO',
+					'AsignaturaHorario.CLASES_REGISTRADAS',
+					'AsignaturaHorario.COD_PERIODO',
+					'AsignaturaHorario.FECHA_ENVIO_SAP',
+					'AsignaturaHorario.COD_ASIGNATURA_HORARIO',
+					'AsignaturaHorario.COD_SEDE',
+					'AsignaturaHorario.RI_ENABLE',
+					'AsignaturaHorario.TEO_PRA',
+					'AsignaturaHorario.RI_IMPORT',
+					'AsignaturaHorario.SM_OBJID',
+					'Sede.NOMBRE',
+					'Sede.COD_SEDE',
+					'Asignatura.NOMBRE',
+					'Asignatura.SIGLA',
+					'Docente.RUT',
+					'Docente.DV',
+					'Docente.COD_DOCENTE',
+					'Docente.NOMBRE',
+					'Docente.APELLIDO_PAT',
+					'Docente.APELLIDO_MAT',
+					'Docente.CORREO',
+					'Periodo.SEMESTRE',
+					'Periodo.ANHO',
+					'Periodo.COD_PERIODO',
+					'Periodo.FECHA_INICIO',
+					'Periodo.FECHA_FIN',
+					'Periodo.FECHA_INICIO_RI',
+					'Periodo.FECHA_FIN_RI',
+					'DirectorEnvioSap.NOMBRES',
+					'DirectorEnvioSap.APELLIDO_PAT',
+					'DirectorEnvioSap.APELLIDO_MAT',
+				),
+				'joins'=>array(
+					array(
+						'type'=>'LEFT',
+						'table'=>'ASIGNATURAS',
+						'alias'=>'Asignatura',
+						'conditions'=>array(
+							'Asignatura.SIGLA = AsignaturaHorario.SIGLA',
+						)
+					),
+					array(
+						'type'=>'LEFT',
+						'table'=>'LVC_VIEW_SEDES',
+						'alias'=>'Sede',
+						'conditions'=>array(
+							'Sede.COD_SEDE = AsignaturaHorario.COD_SEDE',
+						)
+					),
+					array(
+						'type'=>'LEFT',
+						'table'=>'DIRECTORES',
+						'alias'=>'DirectorEnvioSap',
+						'conditions'=>array(
+							'DirectorEnvioSap.COD = AsignaturaHorario.DIRECTOR_SEND_SAP_ID',
+						)
+					),
+					array(
+						'type'=>'LEFT',
+						'table'=>'PERIODOS',
+						'alias'=>'Periodo',
+						'conditions'=>array(
+							'Periodo.COD_PERIODO = AsignaturaHorario.COD_PERIODO',
+						)
+					),
+					array(
+						'type'=>'LEFT',
+						'table'=>'DOCENTES',
+						'alias'=>'Docente',
+						'conditions'=>array(
+							'Docente.COD_DOCENTE = AsignaturaHorario.COD_DOCENTE',
+						)
+					),
+				),
+				'conditions'=>array(
+					'AsignaturaHorario.COD_ASIGNATURA_HORARIO'=>$asignatura_horario_uuid,
+					'AsignaturaHorario.SIGLA_SECCION IS NOT NULL',
+					'AsignaturaHorario.COD_SEDE IS NOT NULL',
+				),
+			));
+			#debug($this->getLastQuery());die;
+			return $asignatura_horario;
+		}
 		public function actualizarAsignaturaHorario($cod_asignatura_horario=null)
 		{
 			$sql = "
@@ -257,6 +349,7 @@
 
 		public function autocompletarBySiglaSeccion($term=null)	
 		{
+			#debug($term);exit();
 			$sigla_seccion = array();
 			if (!empty($term)) {
 				$term = strtoupper($term);
