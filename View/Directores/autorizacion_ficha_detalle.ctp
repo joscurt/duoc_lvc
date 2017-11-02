@@ -28,9 +28,9 @@
 						<tbody>
 							<tr class="odd">
 								<td><?php echo isset($info_editar_clase['Docente']['RUT']) ? $info_editar_clase['Docente']['RUT'].'-'.$info_editar_clase['Docente']['DV']: ''; ?></td>
-								<td><?php echo isset($info_editar_clase['Docente']['APELLIDO_PAT']) ? utf8_encode($info_editar_clase['Docente']['APELLIDO_PAT']): ''; ?></td>
-								<td><?php echo isset($info_editar_clase['Docente']['APELLIDO_MAT']) ? utf8_encode($info_editar_clase['Docente']['APELLIDO_MAT']): ''; ?></td>
-								<td><?php echo isset($info_editar_clase['Docente']['NOMBRE']) ? utf8_encode($info_editar_clase['Docente']['NOMBRE']): ''; ?></td>
+								<td><?php echo isset($info_editar_clase['Docente']['APELLIDO_PAT']) ? ($info_editar_clase['Docente']['APELLIDO_PAT']): ''; ?></td>
+								<td><?php echo isset($info_editar_clase['Docente']['APELLIDO_MAT']) ? ($info_editar_clase['Docente']['APELLIDO_MAT']): ''; ?></td>
+								<td><?php echo isset($info_editar_clase['Docente']['NOMBRE']) ? ($info_editar_clase['Docente']['NOMBRE']): ''; ?></td>
 							</tr>	
 						</tbody>
 					</table>
@@ -57,7 +57,12 @@
 									-
 									<?php echo isset($info_editar_clase['ProgramacionClase']['HORA_FIN']) ? date('H:i', strtotime($info_editar_clase['ProgramacionClase']['HORA_FIN'])): ''; ?>
 								</td>
-								<td><?php echo !empty($info_editar_clase['SalaReemplazo']['TIPO_SALA']) ? $info_editar_clase['SalaReemplazo']['TIPO_SALA']: $info_editar_clase['Sala']['TIPO_SALA']; ?></td>
+								<td><?php if(!empty($info_editar_clase['SalaReemplazo']['TIPO_SALA'])){
+										echo $info_editar_clase['SalaReemplazo']['TIPO_SALA'];
+								}else{
+									echo $info_editar_clase['Sala']['TIPO_SALA']; 
+								}
+								 ?></td>
 							</tr>	
 						</tbody>
 					</table>
@@ -290,13 +295,13 @@
 	$('.btn-salir').on('click',function(event){	
 		event.preventDefault();
 		swal({
-			title: "<?php echo __('¿Esta seguro que desea salir?'); ?>",   
+			title: "<?php echo utf8_decode( __('¿Esta seguro que desea salir?')); ?>",   
 	        text: "<?php echo __(''); ?>",
 	        type: "warning",
 	        showCancelButton: true, 
 	        cancelButtonText: "<?php echo __('Cancelar'); ?>",   
 	        confirmButtonColor: "#DD6B55",   
-	        confirmButtonText: "S&iacute;, Estoy Seguro!",   
+	        confirmButtonText: "Si, Estoy Seguro!",   
 	        closeOnConfirm: false,
 		},function(){
 			window.location ="<?php echo $this->Html->url(array('action'=>'index')); ?>";

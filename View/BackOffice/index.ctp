@@ -23,9 +23,9 @@
 		'motivo_rechazo_reforzamiento' =>'Motivo Rechazo Reforzamiento',
 		'motivo_recuperar_atraso_retiro' =>'Motivo Recuperar Atraso y Retiro',
 		'motivo_reforzamiento' =>'Motivo Reforzamiento',
-		'motivo_suspension_clase' =>'Motivo Suspensi&oacute;n Clases',
+		'motivo_suspension_clase' =>'Motivo Suspensión Clases',
 		'porcentaje_para_ri' =>'Porcentaje para RI',
-		'tipo_justificacion_legal' =>'Tipo Justificaci&oacute;n Legal',
+		'tipo_justificacion_legal' =>'Tipo Justificación Legal',
 	);
 ?>
 <div class="row">
@@ -44,7 +44,7 @@
 					<select id="select-vista" name="" id="filtro" class="form-control selectpicker" data-live-search="true">
 						<option value="" selected>Seleccionar</option>
 						<?php foreach ($mantenedores as $key => $value): ?>
-							<option value="<?php echo $mantenedores_url[$key]; ?>"><?php echo strtoupper($value); ?></option>
+							<option style="text-transform: uppercase;"value="<?php echo $mantenedores_url[$key]; ?>"><?php echo utf8_decode(strtoupper($value)); ?></option>
 						<?php endforeach ?>
 					</select>
 				</div>  
@@ -260,7 +260,7 @@
         		<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
         	</div>
             <div class="modal-body">
-				¿Seguro que desea eliminar <strong>San Carlos de Apoquindo</strong> > <strong>Escuela de Dise&ntilde;o</strong> > <strong>T&eacute;cnico en Producci&oacute;n Industrial de Vestuario</strong>?
+				&iquest;Seguro que desea eliminar <strong>San Carlos de Apoquindo</strong> > <strong>Escuela de Dise&ntilde;o</strong> > <strong>T&eacute;cnico en Producci&oacute;n Industrial de Vestuario</strong>?
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-danger">Eliminar</button>

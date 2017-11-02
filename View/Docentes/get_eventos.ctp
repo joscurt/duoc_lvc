@@ -93,7 +93,7 @@
 							name="data[Filtro][SEDE]"
 							noSelectedText="Seleccione una sede">
 							<?php foreach ($sedes as $key => $value): ?>
-								<option value="<?php echo $value['Sede']['COD_SEDE']; ?>" selected><?php echo $value['Sede']['NOMBRE']; ?><?php echo isset($value['Sede']['ID_TIPO_SEDE']) && $value['Sede']['ID_TIPO_SEDE'] == '1' ? ' IP' : ' CFT';?></option>
+								<option value="<?php echo $value['Sede']['COD_SEDE']; ?>" selected><?php echo $value['Sede']['NOMBRE']; ?></option>
 							<?php endforeach; ?>
 						</select>
 					</div>
@@ -117,7 +117,7 @@
 				<div class="col-md-2 botonera-horarios" align="right">
 					<a href="#horario_docente" 
 						data-target="#horario_docente" 
-						data-toggle="modal"
+						
 						id="btn-exportar-horario-docente"
 						class="btn btn-success btn-sm btn-block"><i class="fa fa-download"></i>&nbsp;Descargar Horario
 					</a>
@@ -150,7 +150,7 @@
 							<?php if (isset($funcionalidades[5])): ?>
 								<th style="width: 7%;" class="td-app">Bit&aacute;cora Evento</th>
 							<?php endif; ?>
-							<th style="width: 7%;" class="td-app">Nº Clases Registradas</th>
+							<th style="width: 7%;" class="td-app">N&deg; Clases Registradas</th>
 							<th style="width: 7%;" class="td-app">Asistencia Promedio</th>
 							<th style="width: 9%;padding: 14px;" class="td-app">&Uacute;ltimo Registro</th>
 							<?php if (isset($funcionalidades[6])): ?>
@@ -161,7 +161,8 @@
 					<tbody>
 						<?php foreach ($horarios as $key => $horario): ?>
 							<tr>
-								<td class="td-sede" ><?php echo isset($horario['Sede']['ID_TIPO_SEDE']) && $horario['Sede']['ID_TIPO_SEDE'] == '1' ? ' IP' : ' CFT';?> - 
+								<td class="td-sede" >
+								<!-- <?php echo isset($horario['Sede']['ID_TIPO_SEDE']) && $horario['Sede']['ID_TIPO_SEDE'] == '1' ? ' IP' : ' CFT';?> -  -->
 									<?php echo $horario['Sede']['NOMBRE']; ?></td>
 								<td class="td-asignatura"><?php echo $horario['Asignatura']['NOMBRE'].' - ('.$horario['AsignaturaHorario']['TEO_PRA'].')'; ?></td>
 								<td class="td-sigla-seccion"><?php echo $horario['AsignaturaHorario']['SIGLA_SECCION']; ?></td>
@@ -230,8 +231,10 @@
 				notifyUser('Debe seleccionar una sede.','info');
 				return false;
 			}
-			$('#horario_docente .modal-content').empty().html("<div align='center'></div>");
-			$('#horario_docente .modal-content div').html(img_cargando);
+			$('#form-filter-horario').attr("target","_blank");
+			//$('#horario_docente .modal-content').empty().html("<div align='center'></div>");
+			//$('#form-filter-horario').html(img_cargando);
+
 			$('#form-filter-horario').attr('action','<?php echo $this->Html->url(array('action'=>'descargarHorario',$periodo_bd['Periodo']['COD_PERIODO'])); ?>/'+sede_id);
 			$('#form-filter-horario').attr('method','POST');
 			$('#form-filter-horario').submit();

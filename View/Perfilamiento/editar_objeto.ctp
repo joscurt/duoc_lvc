@@ -10,7 +10,7 @@
 				<div class="col-md-12">
 					<div class="form-group">
 						<label for="">Vista:</label>
-						<select 
+						<select disabled
 							data-live-search="true" 
 							name="data[<?php echo $model ?>][VISTA_ID]" 
 							class="selectpicker form-control">

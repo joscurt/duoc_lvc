@@ -56,12 +56,12 @@
 				?>
 				  	<tr>
 					    <td><?php echo $key+1; ?></td>
-					    <td><?php echo $value['Asignatura']['NOMBRE']; ?></td>
-					    <td><?php echo $value['AsignaturaHorario']['SIGLA_SECCION']; ?></td>
+					    <td><?php echo htmlspecialchars($value['Asignatura']['NOMBRE']); ?></td>
+					    <td><?php echo htmlspecialchars($value['AsignaturaHorario']['SIGLA_SECCION']); ?></td>
 					    <td><?php echo $value['Docente']['RUT'].'-'.$value['Docente']['DV']; ?></td>
-					    <td><?php echo utf8_encode($value['Docente']['APELLIDO_PAT']); ?></td>
-					    <td><?php echo utf8_encode($value['Docente']['APELLIDO_MAT']); ?></td>
-					    <td><?php echo utf8_encode($value['Docente']['NOMBRE']); ?></td>
+					    <td><?php echo htmlspecialchars($value['Docente']['APELLIDO_PAT']); ?></td>
+					    <td><?php echo htmlspecialchars($value['Docente']['APELLIDO_MAT']); ?></td>
+					    <td><?php echo htmlspecialchars($value['Docente']['NOMBRE']); ?></td>
 					    <td class="text-center" >
 					    	<?php echo !empty($indicadores)? $indicadores['CLASES_REGULARES']:0; ?>
 					    </td>
@@ -72,7 +72,7 @@
 					    	<?php echo !empty($indicadores)? $indicadores['CLASES_REGISTRADAS']:0; ?>
 					    </td>
 					    <td>
-					    	<?php echo !empty($indicadores)? ($indicadores['CLASES_REGULARES']*$indicadores['CLASES_REGISTRADAS']/100).'%':null; ?>
+					    	<?php echo !empty($indicadores)? round(($indicadores['CLASES_REGISTRADAS']*100/$indicadores['CLASES_REGULARES']),2).'%':null; ?>
 					    </td>
 				  	</tr>
 			  	<?php endforeach; ?>

@@ -59,7 +59,7 @@
 	);
 	$objPHPExcel->setActiveSheetIndex(0);
 	$objPHPExcel->setActiveSheetIndex()->mergeCells('B2:H2');
-	$objPHPExcel->setActiveSheetIndex()->setCellValue('B2', "Hist&oacute;rico Asistencia Curso : ".$asignatura_horario['AsignaturaHorario']['SIGLA_SECCION'].' | '.date('d-m-Y H:i'));
+	$objPHPExcel->setActiveSheetIndex()->setCellValue('B2', "Histórico Asistencia Curso : ".($asignatura_horario['AsignaturaHorario']['SIGLA_SECCION']).' | '.date('d-m-Y H:i'));
 	$objPHPExcel->setActiveSheetIndex()->getStyle("B2:J2")->applyFromArray($style_back_blue);
 	$objPHPExcel->setActiveSheetIndex()->getRowDimension("2")->setRowHeight(50);
 
@@ -77,8 +77,12 @@
 	
     $count=0;
     $fila = 5;
+
+
     foreach ($alumnos as $detalle): 
         $count++;
+    // debug($detalle);
+    // debug($indicadores);
         $objPHPExcel->setActiveSheetIndex()->setCellValue('B'.$fila, $count);
         $objPHPExcel->setActiveSheetIndex()->setCellValue('C'.$fila, $detalle['Alumno']['RUT']);
         $objPHPExcel->setActiveSheetIndex()->setCellValue('D'.$fila, utf8_encode($detalle['Alumno']['APELLIDO_PAT']));
@@ -91,6 +95,9 @@
 		$asistencia_actual = $clases_presente*100/$total_hoy;
 		$asistencia_actual = round($asistencia_actual,1);
 		$asistencia_total = round(($clases_presente*100/$total_clases),1); 
+		if($asistencia_actual>100){
+			$asistencia_actual = 100;
+		}
         $objPHPExcel->setActiveSheetIndex()->setCellValue('I'.$fila, $asistencia_actual);
         $objPHPExcel->setActiveSheetIndex()->setCellValue('J'.$fila, $asistencia_total);
         
@@ -98,6 +105,7 @@
 		$objPHPExcel->setActiveSheetIndex()->getStyle("B5:J".$fila)->applyFromArray($cell_normal);
         $fila++;
     endforeach;
+    // exit();
     $objPHPExcel->setActiveSheetIndex()->getColumnDimension('B')->setWidth(10);
     $objPHPExcel->setActiveSheetIndex()->getColumnDimension('C')->setWidth(20);
     $objPHPExcel->setActiveSheetIndex()->getColumnDimension('D')->setWidth(20);

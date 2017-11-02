@@ -15,7 +15,7 @@
 		<div class="col-md-6">
 			<h4>
 				<strong>Docente:</strong>&nbsp;
-				<?php # utf8_encode
+				<?php # 
 				echo ($docente['Docente']['NOMBRE'].' '. $docente['Docente']['APELLIDO_PAT'].' '. $docente['Docente']['APELLIDO_MAT']); ?>	
 			</h4>
 			<h4>
@@ -61,24 +61,25 @@
 					<?php 
 					$contador=0;
 					$modulos_siguientes = array();
-
-				
-
-					foreach ($horarios_modulos as $key => $horario): 
+			#debug($horarios_modulos);exit();
+				foreach ($horarios_modulos as $key => $horario): 
 						$contador++;
 						$class_tr = $contador%2==0?'odd':'even';
-						 $hora_inicio = $horario['HorarioModulo']['HORA_INICIO']; #*******************
+						$hora_inicio = $horario['HorarioModulo']['HORA_INICIO']; 
+						// debug($programacion_clases);
+						// debug($horario);
+						// debug($key);
+						 #*******************
 						// echo $hora_inicio;
 						?>
 						<tr class="<?php echo $class_tr; ?>" align="center">
 							<td style="vertical-align:middle;"><?php echo $hora_inicio; ?> - <?php echo $horario['HorarioModulo']['HORA_FIN']; ?></td>
 						<?php for ($i=1; $i < 7; $i++): ?>
 							<td style="vertical-align:middle;">
-								<?php 
-								
-								if (isset($programacion_clases[$hora_inicio][$i])):
+							<?php 
+						  if (isset($programacion_clases[$hora_inicio][$i])):
 									echo $programacion_clases[$hora_inicio][$i]['Sede']['NOMBRE'].'<br>'.$programacion_clases[$hora_inicio][$i]['ProgramacionClase']['SIGLA_SECCION'].'<br>'.$programacion_clases[$hora_inicio][$i]['Asignatura']['NOMBRE']
-									#Jos&eacute; Luis Morand&eacute; Solucionado en el model agregue el join para la llamada
+					#Jos&eacute; Luis Morand&eacute; Solucionado en el model agregue el join para la llamada
 					.'<br>'.$programacion_clases[$hora_inicio][$i]['ProgramacionClase']['MODALIDAD'];
 
 					#$a = strtotime('-15 min', strtotime($value['ProgramacionClase']['HORA_INICIO']));
@@ -92,7 +93,7 @@
 							</td>
 						<?php endfor; ?>
 						</tr>	
-					<?php endforeach; ?>
+					<?php endforeach;exit(); ?>
 					<!-- <?php //foreach ($programacion_clases as $horario => $clases): ?>
 					<tr>
 					<td class="td-titulo"><?php #echo $horario; ?></td>

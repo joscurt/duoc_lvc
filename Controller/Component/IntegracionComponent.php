@@ -132,7 +132,7 @@
 									$dia = date('d',strtotime($fecha_inicio_tmp));
 									#OBTENEMOS EL NUMERO DE LA SEMANA
 									$semana=date("W",mktime(0,0,0,$mes,$dia,$anho_tmp));
-									#OBTENEMOS EL D&iacute;A DE LA SEMANA DE LA FECHA DADA
+									#OBTENEMOS EL DÍA DE LA SEMANA DE LA FECHA DADA
 									$dia_semana=date("w",mktime(0,0,0,$mes,$dia,$anho_tmp));
 									#EL 0 EQUIVALE AL DOMINGO...
 									if($dia_semana==0)
@@ -167,7 +167,7 @@
 		}
 
 		/** -------------------------------------------------------------
-		 * M&eacute;todo para procesar los eventos de SAP.
+		 * Método para procesar los eventos de SAP.
 		 * @param: $anho
 		 * @param: $periodo
 		 * @param: $cod_docente
@@ -176,13 +176,13 @@
 		public function refreshEventos($anho=null, $periodo=null, $cod_docente=null)
 		{
 			# -------------------------------------------------------------------
-			# Aqu&iacute; se obtienen los eventos desde SAP.
+			# Aquí se obtienen los eventos desde SAP.
 			$eventos_sap = $this->getEventosSap($anho, $periodo, $cod_docente);
 			$ProgramacionClase = new ProgramacionClase();
 			$AsignaturaHorario = new AsignaturaHorario();
 			$save_programaciones = array();
 
-			# Buscar los registros de ASIGNATURAS_HORARIOS donde el docente y el periodo-a&ntilde;o
+			# Buscar los registros de ASIGNATURAS_HORARIOS donde el docente y el periodo-año
 			$registro = $AsignaturaHorario->find('all', array('conditions'=>array( 
 				'COD_PERIODO' => ($periodo.$anho),
 				'COD_DOCENTE' => $cod_docente
@@ -208,7 +208,7 @@
 					# -------------------------------------------------------------------
 					# Consultar en Oracle tabla "ASIGNATURAS_HORARIOS" con el dato "COD_ASIGNATURA_HORARIO" que biene de SAP.
 					$asignatura_horario_tmp = $AsignaturaHorario->find('first', array('conditions'=>array('COD_ASIGNATURA_HORARIO'=>$asignatura_horario['ASIGNATURA']->COD_ASIGNATURA_HORARIO)));
-					foreach ( $asignatura_horario['ASIGNATURA'] as $key => $value) { $value=utf8_encode($value); }
+					foreach ( $asignatura_horario['ASIGNATURA'] as $key => $value) { $value=($value); }
 
 					# -------------------------------------------------------------------
 					# Si los datos consultados a Oracle respecto a datos de SAP no trae registros, se debe:
@@ -220,7 +220,7 @@
 						$asignatura_horario_insert['MODIFIED']=date('Y-m-d H:i:s');
 						if ( $AsignaturaHorario->save($asignatura_horario_insert) ) {
 							foreach ( $asignatura_horario['EVENTOS'] as $key => $value) {
-								foreach ($value as $k => $v) { $v=utf8_encode($v); }
+								foreach ($value as $k => $v) { $v=($v); }
 								$programacion_clase = $ProgramacionClase->getProgramacionClase($value->COD_PROGRAMACION);
 								if (empty($programacion_clase)) {
 									#CREAR REGISTRO EVENTO;
@@ -228,7 +228,7 @@
 								}
 							}
 						}else{
-							continue; // Pasa a la siguiente iteraci&oacute;n.
+							continue; // Pasa a la siguiente iteración.
 						}
 					}else{
 						$AsignaturaHorario->query("
@@ -238,10 +238,10 @@
 						# -------------------------------------------------------------------
 						# Recorrer los datos de Eventos reportados por SAP.
 						foreach ( $asignatura_horario['EVENTOS'] as $key => $value) {
-							foreach ($value as $k => $v) { $v=utf8_encode($v); }
+							foreach ($value as $k => $v) { $v=($v); }
 
 							# -------------------------------------------------------------------
-							# Consultar a Oracle por la programaci&oacute;n de clase segun reportados por SAP.
+							# Consultar a Oracle por la programación de clase segun reportados por SAP.
 							$programacion_clase = $ProgramacionClase->getProgramacionClase( $value->COD_PROGRAMACION );
 							
 							# -------------------------------------------------------------------
@@ -269,13 +269,13 @@
 		}
 
 		/** -------------------------------------------------------------
-		 * M&eacute;todo para obtener los eventos de SAP.
+		 * Método para obtener los eventos de SAP.
 		 * @param: $anho
 		 * @param: $periodo
 		 * @param: $cod_docente
-		 * Obtiene los datos del docente logueado, obtiene los parametros de conexi&oacute;n
-		 * con el service, solicita la conexi&oacute;n, obtiene la respuesta de SAP.
-		 * Extrae lo que necesita de la respuesta y retorna el resultado que ser&iacute;a:
+		 * Obtiene los datos del docente logueado, obtiene los parametros de conexión
+		 * con el service, solicita la conexión, obtiene la respuesta de SAP.
+		 * Extrae lo que necesita de la respuesta y retorna el resultado que sería:
 		 * Un arreglo con datos o un arreglo vacio.
 		 */
 		public function getEventosSap($anho=null, $periodo=null, $cod_docente=null)
@@ -283,7 +283,7 @@
 			# Obtener los datos del docente.
 			$docente = $this->Session->read('DocenteLogueado');
 
-			# Obtener los parametros de conexi&oacute;n.
+			# Obtener los parametros de conexión.
 			$Parametro = new Parametro();
 			$this->url_mdw = $Parametro->getValorParametro('URL_MDW');
 	        $content_request_http = array(
@@ -298,7 +298,7 @@
 
 			$url = $this->url_mdw.'rest_eventos.json';
 
-			# Conexi&oacute;n al service.
+			# Conexión al service.
 	        $httpSocket = new HttpSocket();
 	        $response = $httpSocket->get($url, $content_request_http);
 	       	#pr($response);exit();
@@ -329,7 +329,7 @@
 			$AsignaturaHorario = new AsignaturaHorario();		
 				
 			# -------------------------------------------------------------------
-			# Aqu&iacute; se obtienen los eventos desde SAP.
+			# Aquí se obtienen los eventos desde SAP.
 			$lista_alumnos_sap = $this->getListadoAsistenciaAlumnosSap($anho, $periodo, $cod_asignatura_horario);
 
 
@@ -412,7 +412,7 @@
 	        return $response_final;
 		}
 
-		#A&ntilde;OS
+		#AÑOS
 		public function refreshAnhosSap()
 		{
 			$anhos_sap = $this->getAnhosSap();

@@ -249,7 +249,7 @@
 					<table class="table table-striped table-bordered">
 						<thead>
 							<tr>
-								<th class="td-app">Nº</th>
+								<th class="td-app">N&deg;</th>
 								<th class="td-app" style="text-align: left">Rut Alumno</th>
 								<th class="td-app" style="text-align: left">Apellido Paterno</th>
 								<th class="td-app" style="text-align: left">Apellido Materno</th>

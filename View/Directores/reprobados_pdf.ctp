@@ -53,7 +53,7 @@
 					<?php $count = 0; foreach ($datos_tabla as $key => $value): $count++; ?>
                         <tr>
                             <td><?php echo $count; ?></td>
-                            <td><?php echo $value['Asignatura']['NOMBRE']; ?></td>
+                            <td><?php echo utf8_encode($value['Asignatura']['NOMBRE']); ?></td>
                             <td><?php echo $value['AsignaturaHorario']['SIGLA_SECCION']; ?></td>
                             <td><?php echo $value['AsignaturaHorario']['COD_JORNADA']; ?></td>
                             <td><?php echo $value['Docente']['RUT'].'-'.$value['Docente']['DV']; ?></td>

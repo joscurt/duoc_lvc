@@ -94,18 +94,18 @@
     	$objPHPExcel->setActiveSheetIndex()->setCellValue('B'.$fila,$count);
 		$objPHPExcel->setActiveSheetIndex()->setCellValue('C'.$fila,!empty($detalle['ProgramacionClase']['FECHA_CLASE'])? date('d-m-Y',strtotime($detalle['ProgramacionClase']['FECHA_CLASE'])):null);
 
-		$objPHPExcel->setActiveSheetIndex()->setCellValue('D'.$fila,$detalle['Asignatura']['NOMBRE']);
+		$objPHPExcel->setActiveSheetIndex()->setCellValue('D'.$fila,utf8_encode($detalle['Asignatura']['NOMBRE']));
 
 		$objPHPExcel->setActiveSheetIndex()->setCellValue('E'.$fila,$detalle['ProgramacionClase']['SIGLA_SECCION']);
 		$objPHPExcel->setActiveSheetIndex()->setCellValue('F'.$fila,$detalle['ProgramacionClase']['COD_JORNADA']);
-		$objPHPExcel->setActiveSheetIndex()->setCellValue('G'.$fila,$detalle['AsignaturaHorario']['TEO_PRA']);
+		$objPHPExcel->setActiveSheetIndex()->setCellValue('G'.$fila,utf8_encode($detalle['AsignaturaHorario']['TEO_PRA']));
 		/*$objPHPExcel->setActiveSheetIndex()->setCellValue('G'.$fila,$detalle['Docente']['RUT'].'-'.$detalle['Docente']['DV']);*/
 		$objPHPExcel->setActiveSheetIndex()->setCellValue('H'.$fila,$detalle['ProgramacionClase']['COD_DOCENTE']);
 		$objPHPExcel->setActiveSheetIndex()->setCellValue('I'.$fila,$detalle['Docente']['RUT'].'-'.$detalle['Docente']['DV']);
-		$objPHPExcel->setActiveSheetIndex()->setCellValue('J'.$fila,$detalle['Docente']['APELLIDO_PAT']);
-		$objPHPExcel->setActiveSheetIndex()->setCellValue('K'.$fila,$detalle['Docente']['APELLIDO_MAT']);
-		$objPHPExcel->setActiveSheetIndex()->setCellValue('L'.$fila,$detalle['Docente']['NOMBRE']);
-		$objPHPExcel->setActiveSheetIndex()->setCellValue('M'.$fila,$detalle['ProgramacionClase']['SALA']);
+		$objPHPExcel->setActiveSheetIndex()->setCellValue('J'.$fila,utf8_encode($detalle['Docente']['APELLIDO_PAT']));
+		$objPHPExcel->setActiveSheetIndex()->setCellValue('K'.$fila,utf8_encode($detalle['Docente']['APELLIDO_MAT']));
+		$objPHPExcel->setActiveSheetIndex()->setCellValue('L'.$fila,utf8_encode($detalle['Docente']['NOMBRE']));
+		$objPHPExcel->setActiveSheetIndex()->setCellValue('M'.$fila,utf8_encode($detalle['ProgramacionClase']['SALA']));
 		$objPHPExcel->setActiveSheetIndex()->setCellValue('N'.$fila,date('H:i',strtotime($detalle['ProgramacionClase']['HORA_INICIO'])).' '.date('H:i',strtotime($detalle['ProgramacionClase']['HORA_FIN'])));
 		$objPHPExcel->setActiveSheetIndex()->setCellValue('O'.$fila,$detalle['ProgramacionClase']['TIPO_EVENTO']);
 		$objPHPExcel->setActiveSheetIndex()->setCellValue('P'.$fila,$detalle['Detalle']['DETALLE']);
@@ -136,7 +136,7 @@
 
 	$objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel2007');
 	header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
-	header('Content-Disposition: attachment;filename="Gesti&oacute;n_Clases '.'.'.date('dmY').'.xlsx"');
+	header('Content-Disposition: attachment;filename="Gestión_Clases '.'.'.date('dmY').'.xlsx"');
 	header('Cache-Control: max-age=0');
 	$objWriter->save('php://output');
 	exit;

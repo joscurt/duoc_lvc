@@ -8,13 +8,13 @@
 			
 		    foreach ($results as $key => $val) {
 		        if (isset($val['Docente']['NOMBRE'])) {
-		            $results[$key]['Docente']['NOMBRE'] = utf8_encode($val['Docente']['NOMBRE']);
+		            $results[$key]['Docente']['NOMBRE'] = ($val['Docente']['NOMBRE']);
 		        }
 		        if (isset($val['Docente']['APELLIDO_PAT'])) {
-		            $results[$key]['Docente']['APELLIDO_PAT'] = utf8_encode($val['Docente']['APELLIDO_PAT']);
+		            $results[$key]['Docente']['APELLIDO_PAT'] = ($val['Docente']['APELLIDO_PAT']);
 		        }
 		        if (isset($val['Docente']['APELLIDO_MAT'])) {
-		            $results[$key]['Docente']['APELLIDO_MAT'] = utf8_encode($val['Docente']['APELLIDO_MAT']);
+		            $results[$key]['Docente']['APELLIDO_MAT'] = ($val['Docente']['APELLIDO_MAT']);
 		        }
 		    }
 		    return $results;
@@ -22,22 +22,26 @@
 
 public function getDocHorario($cod_sede=null,$fecha=null,$hora_inicio=null,$hora_fin=null)
 	{
+			// debug($fecha);
+			// debug($hora_inicio);
+			// debug($hora_fin);
+			// exit();
+
 
 			$db = $this->getDataSource();
 			$sql = $db->fetchAll("SELECT DISTINCT Docente.RUT, Docente.COD_DOCENTE, Docente.USERNAME, Docente.COD_SEDE, Docente.NOMBRE, Docente.APELLIDO_PAT, Docente.APELLIDO_MAT
 			FROM VW_DOCENTES Docente
 			WHERE Docente.COD_SEDE = '".$cod_sede."'
 			AND Docente.COD_DOCENTE NOT IN
-			(SELECT Horario.COD_DOCENTE FROM vw_salas_programacion Horario
+			(SELECT distinct Horario.COD_DOCENTE FROM vw_salas_programacion Horario
 			WHERE Horario.TIPO_EVENTO = 'REGULAR' AND
 			Horario.FECHA_CLASE = '".$fecha."'
 			AND Horario.COD_SEDE = '".$cod_sede."'
 			AND ('".$hora_inicio."' BETWEEN Horario.SOLO_HORA_INICIO and Horario.SOLO_HORA_FIN OR
 			'".$hora_fin."' BETWEEN Horario.SOLO_HORA_INICIO and Horario.SOLO_HORA_FIN)
-			GROUP BY Horario.COD_DOCENTE)");
-
-#debug($this->getLastQuery());
-
+			)");
+			// $a = utf8_encode($sql);
+			// var_dump($a);exit();
 			return $sql;
   			}
 		public function getDocenteConSedesForLogin($username=null)

@@ -60,44 +60,46 @@
 
 	$objPHPExcel->setActiveSheetIndex()->setCellValue('B4',"#");
 	$objPHPExcel->setActiveSheetIndex()->setCellValue('C4',"Nombre Asignatura");
-	$objPHPExcel->setActiveSheetIndex()->setCellValue('D4',"Sigla-Secci&oacute;n");
+	$objPHPExcel->setActiveSheetIndex()->setCellValue('D4',"Sigla-Sección");
 	$objPHPExcel->setActiveSheetIndex()->setCellValue('E4',"Rut Alumno");
 	$objPHPExcel->setActiveSheetIndex()->setCellValue('F4',"Apellido Paterno");
 	$objPHPExcel->setActiveSheetIndex()->setCellValue('G4',"Apellido Materno");
 	$objPHPExcel->setActiveSheetIndex()->setCellValue('H4',"Nombres");
 	$objPHPExcel->setActiveSheetIndex()->setCellValue('I4',"Clases Presente");
 	$objPHPExcel->setActiveSheetIndex()->setCellValue('J4',"Clases Ausente");
-	$objPHPExcel->setActiveSheetIndex()->setCellValue('K4',"Asistencia Actual");
-	$objPHPExcel->setActiveSheetIndex()->setCellValue('L4',"RI");
-	$objPHPExcel->setActiveSheetIndex()->getStyle("B4:L4")->applyFromArray($style_back_blue);
+	$objPHPExcel->setActiveSheetIndex()->setCellValue('K4',"Clases Justificadas");
+	$objPHPExcel->setActiveSheetIndex()->setCellValue('L4',"Asistencia Actual");
+	$objPHPExcel->setActiveSheetIndex()->setCellValue('M4',"RI");
+	$objPHPExcel->setActiveSheetIndex()->getStyle("B4:M4")->applyFromArray($style_back_blue);
 	$objPHPExcel->setActiveSheetIndex()->getRowDimension("4")->setRowHeight(40);
 	
     $count=0;
     $fila = 5;
     	foreach ($registros as $detalle): 
     		$porcentaje = 0;
-			if (isset($indicadores_alumnos[$detalle['AlumnoAsignatura']['SIGLA_SECCION']][$detalle['Alumno']['COD_ALUMNO']])) {
-				$porcentaje = $indicadores_alumnos[$detalle['AlumnoAsignatura']['SIGLA_SECCION']][$detalle['Alumno']['COD_ALUMNO']]['CLASES_PRESENTE']*100/$detalle['AsignaturaHorario']['CLASES_REGISTRADAS'];	
+			if (isset($indicadores_alumnos[$detalle['AlumnoAsignatura']['COD_HORARIO_ASIGNATURA']][$detalle['Alumno']['COD_ALUMNO']])) {
+				$porcentaje = $indicadores_alumnos[$detalle['AlumnoAsignatura']['COD_HORARIO_ASIGNATURA']][$detalle['Alumno']['COD_ALUMNO']]['CLASES_PRESENTE']*100/$detalle['AsignaturaHorario']['CLASES_REGISTRADAS'];	
 			}
 	        $count++;
 	        $objPHPExcel->setActiveSheetIndex()->setCellValue('B'.$fila, $count);
-	        $objPHPExcel->setActiveSheetIndex()->setCellValue('C'.$fila, $detalle['Asignatura']['NOMBRE']);
+	        $objPHPExcel->setActiveSheetIndex()->setCellValue('C'.$fila, utf8_encode($detalle['Asignatura']['NOMBRE']));
 	        $objPHPExcel->setActiveSheetIndex()->setCellValue('D'.$fila, $detalle['AlumnoAsignatura']['SIGLA_SECCION']);
 	        $objPHPExcel->setActiveSheetIndex()->setCellValue('E'.$fila, $detalle['Alumno']['RUT'].'-'.$detalle['Alumno']['DV_RUT']);
-	        $objPHPExcel->setActiveSheetIndex()->setCellValue('F'.$fila, $detalle['Alumno']['APELLIDO_PAT']);
-	       	$objPHPExcel->setActiveSheetIndex()->setCellValue('G'.$fila, $detalle['Alumno']['APELLIDO_MAT']);
-	        $objPHPExcel->setActiveSheetIndex()->setCellValue('H'.$fila, $detalle['Alumno']['NOMBRES']);
-	        $objPHPExcel->setActiveSheetIndex()->setCellValue('I'.$fila, isset($indicadores_alumnos[$detalle['AlumnoAsignatura']['SIGLA_SECCION']][$detalle['Alumno']['COD_ALUMNO']])? $indicadores_alumnos[$detalle['AlumnoAsignatura']['SIGLA_SECCION']][$detalle['Alumno']['COD_ALUMNO']]['CLASES_PRESENTE']:0);
-	        $objPHPExcel->setActiveSheetIndex()->setCellValue('J'.$fila, isset($indicadores_alumnos[$detalle['AlumnoAsignatura']['SIGLA_SECCION']][$detalle['Alumno']['COD_ALUMNO']])? $indicadores_alumnos[$detalle['AlumnoAsignatura']['SIGLA_SECCION']][$detalle['Alumno']['COD_ALUMNO']]['CLASES_AUSENTE']:0);
-	        $objPHPExcel->setActiveSheetIndex()->setCellValue('K'.$fila, number_format($porcentaje,2,',','.').'%');
+	        $objPHPExcel->setActiveSheetIndex()->setCellValue('F'.$fila, utf8_encode($detalle['Alumno']['APELLIDO_PAT']));
+	       	$objPHPExcel->setActiveSheetIndex()->setCellValue('G'.$fila, utf8_encode($detalle['Alumno']['APELLIDO_MAT']));
+	        $objPHPExcel->setActiveSheetIndex()->setCellValue('H'.$fila, utf8_encode($detalle['Alumno']['NOMBRES']));
+	        $objPHPExcel->setActiveSheetIndex()->setCellValue('I'.$fila, isset($indicadores_alumnos[$detalle['AlumnoAsignatura']['COD_HORARIO_ASIGNATURA']][$detalle['Alumno']['COD_ALUMNO']])? $indicadores_alumnos[$detalle['AlumnoAsignatura']['COD_HORARIO_ASIGNATURA']][$detalle['Alumno']['COD_ALUMNO']]['CLASES_PRESENTE']:0);
+	        $objPHPExcel->setActiveSheetIndex()->setCellValue('J'.$fila, isset($indicadores_alumnos[$detalle['AlumnoAsignatura']['COD_HORARIO_ASIGNATURA']][$detalle['Alumno']['COD_ALUMNO']])? $indicadores_alumnos[$detalle['AlumnoAsignatura']['COD_HORARIO_ASIGNATURA']][$detalle['Alumno']['COD_ALUMNO']]['CLASES_AUSENTE']:0);
+	        $objPHPExcel->setActiveSheetIndex()->setCellValue('K'.$fila, isset($indicadores_alumnos[$detalle['AlumnoAsignatura']['COD_HORARIO_ASIGNATURA']][$detalle['Alumno']['COD_ALUMNO']])? $indicadores_alumnos[$detalle['AlumnoAsignatura']['COD_HORARIO_ASIGNATURA']][$detalle['Alumno']['COD_ALUMNO']]['CLASES_JUSTIFICADOS']:0);
+	        $objPHPExcel->setActiveSheetIndex()->setCellValue('L'.$fila, number_format($porcentaje,2,',','.').'%');
 	        #debug($porcentaje);
 	        $check = 'NO';
 			if ($detalle['RI']['RI_DIRECTOR']==1) {
 				$check = 'SI';
 			}
-	        $objPHPExcel->setActiveSheetIndex()->setCellValue('L'.$fila,$check);
+	        $objPHPExcel->setActiveSheetIndex()->setCellValue('M'.$fila,$check);
 	        $objPHPExcel->setActiveSheetIndex()->getRowDimension($fila)->setRowHeight(30);
-			$objPHPExcel->setActiveSheetIndex()->getStyle("B5:L".$fila)->applyFromArray($cell_normal);
+			$objPHPExcel->setActiveSheetIndex()->getStyle("B5:M".$fila)->applyFromArray($cell_normal);
 	        $fila++;
 	    endforeach;  
 	  #Exit();

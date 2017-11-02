@@ -150,7 +150,7 @@
 	$objPHPExcel->setActiveSheetIndex()->getColumnDimension('C')->setWidth(30);
 	$objPHPExcel->setActiveSheetIndex()->getStyle("C6")->applyFromArray($cell_normal);
 
-	$objPHPExcel->setActiveSheetIndex()->setCellValue('D8',"N&uacute;mero Clase");
+	$objPHPExcel->setActiveSheetIndex()->setCellValue('D8',"Número Clase");
 	$objPHPExcel->setActiveSheetIndex()->mergeCells('D8:G8');
 	$objPHPExcel->setActiveSheetIndex()->setCellValue('D9',"Modalidad Clase");
 	$objPHPExcel->setActiveSheetIndex()->mergeCells('D9:G9');
@@ -186,12 +186,15 @@
 	$objPHPExcel->setActiveSheetIndex()->getRowDimension("13")->setRowHeight(30);
 
 	$row = 14;
+	// debug($alumnos);exit();
 	foreach ($alumnos as $key => $value){
+
+
 		$objPHPExcel->setActiveSheetIndex()->setCellValue('B'.$row,$key+1);
 		$objPHPExcel->setActiveSheetIndex()->setCellValue('C'.$row,$value['Alumno']['RUT']);
-		$objPHPExcel->setActiveSheetIndex()->setCellValue('D'.$row,strtoupper(utf8_encode($value['Alumno']['APELLIDO_PAT'])));
-		$objPHPExcel->setActiveSheetIndex()->setCellValue('E'.$row,strtoupper(utf8_encode($value['Alumno']['APELLIDO_MAT'])));
-		$objPHPExcel->setActiveSheetIndex()->setCellValue('F'.$row,strtoupper(utf8_encode($value['Alumno']['NOMBRES'])));
+		$objPHPExcel->setActiveSheetIndex()->setCellValue('D'.$row,utf8_encode($value['Alumno']['APELLIDO_PAT']));
+		$objPHPExcel->setActiveSheetIndex()->setCellValue('E'.$row,utf8_encode($value['Alumno']['APELLIDO_MAT']));
+		$objPHPExcel->setActiveSheetIndex()->setCellValue('F'.$row,utf8_encode($value['Alumno']['NOMBRES']));
 		$clases_presente = isset($indicadores[$value['Alumno']['ID']])?$indicadores[$value['Alumno']['ID']]['CLASES_PRESENTE']:0;
 		$clases_totales = isset($indicadores[$value['Alumno']['ID']])?$indicadores[$value['Alumno']['ID']]['CLASES_IMPARTIDAS']:0;
 		$porcentaje = round($clases_presente*100/$clases_totales);
@@ -237,6 +240,9 @@
 			}elseif($asistencia ==0){
 				$asistencia = 'NO';
 			}
+			elseif($asistencia ==2){
+				$asistencia = 'J';
+			}
 			$objPHPExcel->setActiveSheetIndex()->setCellValue($letras_abecedario[$numero_letra].$nro_fila_alumnos,$asistencia);
 			$objPHPExcel->setActiveSheetIndex()->getStyle($letras_abecedario[$numero_letra].$nro_fila_alumnos)->applyFromArray($cell_normal);
 			$nro_fila_alumnos++;
@@ -273,5 +279,7 @@
 	header('Cache-Control: max-age=0');
 	
 	$objWriter->save('php://output');
+	
+	
 	exit;
 ?>

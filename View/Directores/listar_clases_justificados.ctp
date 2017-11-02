@@ -218,7 +218,7 @@
 										<td>
 											<a 
 												class="btn btn-info btn-sm" 
-												href="<?php echo $this->Html->url(array('action'=>'autorizacionFichaDetalle', $dato['ProgramacionClase']['COD_PROGRAMACION'])); ?>" 
+												href="<?php echo $this->Html->url(array('action'=>'fichaDetalleClaseJustificado', $dato['ProgramacionClase']['COD_PROGRAMACION'])); ?>" 
 												data-toggle="tooltip"
 												title="Editar">
 												<i class="fa fa-pencil-square-o" aria-hidden="true"></i>

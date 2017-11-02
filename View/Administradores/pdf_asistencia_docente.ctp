@@ -39,7 +39,7 @@
 <table>
 	<tr >
 		<td>
-			<label style="border-bottom:1px solid #ccc;">Docente</label>&nbsp;&nbsp;<?php echo !empty($docente)?$docente['Docente']['NOMBRE'].' '.$docente['Docente']['APELLIDO_PAT'].' '.$docente['Docente']['APELLIDO_MAT']:null; ?>
+			<label style="border-bottom:1px solid #ccc;">Docente</label>&nbsp;&nbsp;<?php echo !empty($docente)?utf8_encode($docente['Docente']['NOMBRE']).' '.utf8_encode($docente['Docente']['APELLIDO_PAT']).' '.utf8_encode($docente['Docente']['APELLIDO_MAT']):null; ?>
 		</td>
 		<td>
 			<label style="border-bottom:1px solid #ccc;">Sigla Secci&oacute;n</label>&nbsp;<?php echo $sigla_seccion; ?>

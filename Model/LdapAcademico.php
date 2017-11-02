@@ -8,8 +8,8 @@ class LdapAcademico {
 	var $ds = null;
 
 	function connect($user=null,$pass=null){
-		/*
-		$ldap_response = array(
+		
+	/*	$ldap_response = array(
 			'tipo' => null, #docente o alumno
 			'rut' => null, #null o rut sin digito verificador
 			'status' => '', #success o error
@@ -36,6 +36,9 @@ class LdapAcademico {
 		       	}
 			}else{
 				#docente
+				// debug(ldap_error($this->ds));exit();
+			// 	ldap_set_option($this->ds, LDAP_OPT_PROTOCOL_VERSION, 3);
+			// ldap_set_option($this->ds, LDAP_OPT_REFERRALS, 0);
 				if($r=@ldap_bind($this->ds,"uid=".$user.", ou=Profesores,cn=Users,dc=duoc, dc=cl",$pass)){
 			       	$sradm=ldap_search($this->ds,"ou=Profesores,cn=Users,dc=duoc, dc=cl", "uid=".$user);
 			       	$info = ldap_get_entries($this->ds, $sradm);
@@ -58,7 +61,7 @@ class LdapAcademico {
 						'tipo' => null, #docente o alumno
 						'rut' => null,#rut sin digito verificador
 						'status' => 'error', #success o error
-						'mensaje' => 'Usuario o contrase&ntilde;a incorrectos' #ok o mensaje de error
+						'mensaje' => 'Usuario o contraseña incorrectos' #ok o mensaje de error
 					);	
 				}
 			}
@@ -67,11 +70,11 @@ class LdapAcademico {
 				'tipo' => null, #docente o alumno
 				'rut' => null,#rut sin digito verificador
 				'status' => 'error', #success o error
-				'mensaje' => 'Hubo un error en la conexi&oacute;n, favor intente m&aacute;s tarde' #ok o mensaje de error
+				'mensaje' => 'Hubo un error en la conexión, favor intente más tarde' #ok o mensaje de error
 			);
 		}
-	return $ldap_response;
-	*/
+	return $ldap_response;*/
+	
 	
 	$ldap_response = array(
 			'username' => $user,
@@ -109,7 +112,7 @@ if ($_POST['boton'] == "Conectar")
     }
     else
     {
-                           $msg="No Existe una Conexi&oacute;n Valida";
+                           $msg="No Existe una Conexión Valida";
     }
 }
 */

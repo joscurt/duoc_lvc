@@ -101,14 +101,14 @@
 			<br>
 				<div class="left">
 					<div class="col-md-2 card">
-						<div class="fecha"><i class="fa fa-calendar-o" aria-hidden="true"></i> 12 de Septiembre 2016</div>
+						<div class="fecha"><i class="fa fa-calendar-o" aria-hidden="true"></i> <?php $FechaActual=date('d-M-Y h:i A'); echo $FechaActual; ?></div>
 						<ul class="menu">
 
 							<?php foreach ($funcionalidades as $key => $value) {
 								$action = $value['Funcionalidad']['ACTION'];
 								$controller = $value['Funcionalidad']['CONTROLLER'];
 								if ($value['Funcionalidad']['VISTA_ID'] == $session_data['Vista']['ID'] && $value['Funcionalidad']['ACTIVO'] == 1) {
-														
+
 							?>
 							<li><a href="<?php echo $this->Html->url(array("controller" => "".$controller."","action" => "".$action."")) ?>"><?php echo $value['Funcionalidad']['NOMBRE']; ?></a></li>
 							<?php }} ?>

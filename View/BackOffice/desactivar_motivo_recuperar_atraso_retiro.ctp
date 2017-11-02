@@ -11,7 +11,7 @@
 		<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 	</div>
 	<div class="modal-body">
-		¿Seguro que desea <?php echo $accion; ?> <strong><?php echo !empty($motivo_bd['RecuperarAtrasoRetiro']['MOTIVO']) ? $motivo_bd['RecuperarAtrasoRetiro']['MOTIVO']: ''; ?>?</strong>
+		 	&iquest;Seguro que desea <?php echo $accion; ?> <strong><?php echo !empty($motivo_bd['RecuperarAtrasoRetiro']['MOTIVO']) ? $motivo_bd['RecuperarAtrasoRetiro']['MOTIVO']: ''; ?>&#63;</strong>
 		<input type="hidden" name="data[RecuperarAtrasoRetiro][COD]" value="<?php echo $motivo_bd['RecuperarAtrasoRetiro']['COD']; ?>">
         <input type="hidden" name="data[RecuperarAtrasoRetiro][ACTIVO]" value="<?php echo $active; ?>">
 	</div>

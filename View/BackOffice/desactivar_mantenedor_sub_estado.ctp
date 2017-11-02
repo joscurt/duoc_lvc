@@ -11,7 +11,7 @@
 		<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 	</div>
 	<div class="modal-body">
-		¿Seguro que desea <?php echo $accion; ?> el sub estado <strong><?php echo !empty($sub_estado_bd['SubEstado']['NOMBRE']) ? $sub_estado_bd['SubEstado']['NOMBRE']: ''; ?>?</strong>
+		&iquest;Seguro que desea <?php echo $accion; ?> el sub estado <strong><?php echo !empty($sub_estado_bd['SubEstado']['NOMBRE']) ? $sub_estado_bd['SubEstado']['NOMBRE']: ''; ?>&#63;</strong>
 		<input type="hidden" name="data[SubEstado][COD]" value="<?php echo $sub_estado_bd['SubEstado']['COD']; ?>">
         <input type="hidden" name="data[SubEstado][ACTIVO]" value="<?php echo $active; ?>">
 	</div>

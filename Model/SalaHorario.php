@@ -86,14 +86,16 @@
 				$response_final[$value['C']['ID']]['COD'] = $value['COD'];
 				$response_final[$value['C']['ID']]['SALA'] = $value['SALA'];
 			} */
-
+			#debug($this->getLastQuery());
 
 			#debug($sql);
 			#debug($response);exit();
 			return $response;
      
   			}
-  			public function getDocHorario($cod_sede=null,$fecha=null,$hora_inicio=null,$hora_fin=null)
+
+  				#IGUAL FUNCION EN DOCENTES MODEL
+  			public function getDocHorario_($cod_sede=null,$fecha=null,$hora_inicio=null,$hora_fin=null)
 		{
 
 			$sql = "
@@ -130,7 +132,7 @@
 
 
 			#debug($sql);
-			debug($response);exit();
+			#debug($response);exit();
 			return $response;
      
   			}

@@ -8,7 +8,7 @@
 		'AsignarPermiso'=>$this->Html->url(array('action'=>'asignarPermisos')),
 	);
 	$mantenedores = array(
-		'Administracion' =>'ADMINISTRACI&Oacute;N',
+		//'Administracion' =>'ADMINISTRACI&Oacute;N',
 		'AsignarPermiso'=>'ASIGNAR PERMISOS',
 		'Funcionalidad'=>'MANTENEDOR FUNCIONALIDADES',
 		'Perfil'=>'MANTENEDOR PERFILES',

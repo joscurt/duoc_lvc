@@ -218,6 +218,7 @@ public function listar_clases_justificados($filtro_multiple=null) # vista justif
 						$ordenar
 					);
 				}
+
 			}
 			if (!empty($datos_tabla)) {
 				foreach ($datos_tabla as $key => $dato) {
@@ -306,7 +307,7 @@ public function listar_clases_justificados($filtro_multiple=null) # vista justif
 						$dato_a_mostrar[0]=array('label'=>'NO HAY RESULTADOS','data'=>'','nombre_usuario'=>'');
 						if (!empty($rut_alumno)) {
 							foreach ($rut_alumno as $rut):
-								$label = '('.$rut['Alumno']['RUT'].'-'.$rut['Alumno']['DV_RUT'].') / '.$rut['Alumno']['NOMBRES'].' '.$rut['Alumno']['APELLIDO_PAT'].' '.$rut['Alumno']['APELLIDO_MAT'];
+								$label = utf8_encode('('.$rut['Alumno']['RUT'].'-'.$rut['Alumno']['DV_RUT'].') / '.$rut['Alumno']['NOMBRES'].' '.$rut['Alumno']['APELLIDO_PAT'].' '.$rut['Alumno']['APELLIDO_MAT']);
 								$dato_a_mostrar[]=array(
 									'label'=>$label,
 									'uuid'=>$rut['Alumno']['COD_ALUMNO']
@@ -328,7 +329,7 @@ public function listar_clases_justificados($filtro_multiple=null) # vista justif
 						$dato_a_mostrar[0]=array('label'=>'NO HAY RESULTADOS','data'=>'','nombre_usuario'=>'');
 						if (!empty($rut_docente)) {
 							foreach ($rut_docente as $rut):
-								$label = ('('.$rut['Docente']['RUT'].'-'.$rut['Docente']['DV'].') / '.$rut['Docente']['NOMBRE'].' '.$rut['Docente']['APELLIDO_PAT'].' '.$rut['Docente']['APELLIDO_MAT']);
+								$label = utf8_encode('('.$rut['Docente']['RUT'].'-'.$rut['Docente']['DV'].') / '.$rut['Docente']['NOMBRE'].' '.$rut['Docente']['APELLIDO_PAT'].' '.$rut['Docente']['APELLIDO_MAT']);
 								$dato_a_mostrar[]=array(
 									'label'=>$label,
 									'uuid'=>$rut['Docente']['COD_DOCENTE']
@@ -351,7 +352,7 @@ public function listar_clases_justificados($filtro_multiple=null) # vista justif
 						if (!empty($nombre_docente)) {
 							foreach ($nombre_docente as $docente):
 								$dato_a_mostrar[]=array(
-									'label'=>("(".$docente['Docente']['RUT']."-".$docente['Docente']['DV'].") ".$docente['Docente']['NOMBRE'].' '.$docente['Docente']['APELLIDO_PAT'].' '.$docente['Docente']['APELLIDO_MAT']),
+									'label'=>utf8_encode("(".$docente['Docente']['RUT']."-".$docente['Docente']['DV'].") ".$docente['Docente']['NOMBRE'].' '.$docente['Docente']['APELLIDO_PAT'].' '.$docente['Docente']['APELLIDO_MAT']),
 									'uuid'=>$docente['Docente']['COD_DOCENTE']
 								);
 							endforeach;	
@@ -371,7 +372,7 @@ public function listar_clases_justificados($filtro_multiple=null) # vista justif
 						$dato_a_mostrar[0]=array('label'=>'NO HAY RESULTADOS','data'=>'','nombre_usuario'=>'');
 						if (!empty($id_docente)) {
 							foreach ($id_docente as $id):
-								$label = ('('.$id['Docente']['COD_DOCENTE'].') - '.$id['Docente']['NOMBRE'].' '.$id['Docente']['APELLIDO_PAT'].' '.$id['Docente']['APELLIDO_MAT']);
+								$label = utf8_encode('('.$id['Docente']['COD_DOCENTE'].') - '.$id['Docente']['NOMBRE'].' '.$id['Docente']['APELLIDO_PAT'].' '.$id['Docente']['APELLIDO_MAT']);
 								$dato_a_mostrar[]=array(
 									'label'=>$label,
 									'uuid'=>$id['Docente']['COD_DOCENTE']
@@ -391,7 +392,7 @@ public function listar_clases_justificados($filtro_multiple=null) # vista justif
 						$dato_a_mostrar[0]=array('label'=>'NO HAY RESULTADOS','data'=>'','nombre_usuario'=>'');
 						if (!empty($asignaturas)) {
 							foreach ($asignaturas as $asignatura):
-								$label = ($asignatura['Asignatura']['NOMBRE'].' ( '.$asignatura['Asignatura']['SIGLA'].' )');
+								$label = utf8_encode($asignatura['Asignatura']['NOMBRE'].' ( '.$asignatura['Asignatura']['SIGLA'].' )');
 								$dato_a_mostrar[]=array(
 									'label'=>$label,
 									'uuid'=>$asignatura['Asignatura']['SIGLA']
@@ -423,7 +424,7 @@ public function listar_clases_justificados($filtro_multiple=null) # vista justif
 						}	
 					}
 					break;
-				case 'ProgramacionClase.PERIODO':
+				case 'ProgramacionClase.SEMESTRE':
 					$term = isset($_GET['term'])? $_GET['term']:null;
 					if (!empty($term)) {
 						$this->loadModel('Periodo');
@@ -434,7 +435,7 @@ public function listar_clases_justificados($filtro_multiple=null) # vista justif
 							foreach ($periodos as $periodo):
 								$dato_a_mostrar[]=array(
 									'label'=>$periodo['Periodo']['ANHO']."-".$periodo['Periodo']['SEMESTRE'],
-									'uuid'=>$periodo['Periodo']['COD_PERIODO']
+									'uuid'=>$periodo['Periodo']['SEMESTRE']
 								);
 							endforeach;	
 						}
@@ -597,6 +598,149 @@ public function listar_clases_justificados($filtro_multiple=null) # vista justif
 				'motivos'=>$motivos,
 			));
 		}
+
+		#AUTORIZACION JUSTIFICADOS DETALLE
+		public function autorizacionJustificadosDetalle($cod_programacion=null)
+		{
+			$this->loadModel('MotivoRechazoClase');
+			$motivos = $this->MotivoRechazoClase->find('all');
+			if (!empty($cod_programacion)) {
+				$this->loadModel('ProgramacionClase');
+				$info_editar_clase = $this->ProgramacionClase->getProgramacionClaseFull($cod_programacion);
+			} else {
+				$this->Session->setFlash('No ha sido posible encontrar la clase a editar', 'mensaje-error');
+				$this->redirect(array('action'=>'listarclasesjustificados'));
+			}
+
+			$this->loadModel('ProgramacionClase');
+
+
+			$prog_ade = $this->ProgramacionClase->getProgramacionRecuperar($info_editar_clase['ProgramacionClase']['COD_PROGRAMACION_PADRE']);
+
+
+			#debug($info_editar_clase);exit();
+			#debug($prog_ade);exit();
+			$this->set(array(
+				'prog_ade'=>$prog_ade,
+				'info_editar_clase'=>$info_editar_clase,
+				'motivos'=>$motivos,
+			));
+		}
+
+#autoJustifica
+			public function fichaDetalleClaseJustificado($cod_programacion = null){
+			$this->loadModel('ProgramacionClase');
+			$programacion_clase = $this->ProgramacionClase->getProgramacionClaseFull($cod_programacion);
+
+			if (empty($programacion_clase)) {
+				$this->Session->setFlash('Ha ocurrido un error con el envío de los datos de la programación. Intente nuevamente.','mensaje-info');
+				$this->redirect(array('action'=>'index'));
+			}
+
+			$this->loadModel('AsignaturaHorario');
+			$asignatura_horario = $this->AsignaturaHorario->getAsignaturaHorarioFirst($programacion_clase['ProgramacionClase']['COD_ASIGNATURA_HORARIO']);
+			if (empty($asignatura_horario)) {
+				$this->Session->setFlash('Ha ocurrido un error con el envío de los datos de la asignatura. Intente nuevamente.','mensaje-info');
+				$this->redirect(array('action'=>'index'));
+			}
+			$this->loadModel('AlumnoAsignatura');
+			$this->loadModel('Bitacora');
+			$this->loadModel('LogEvento');
+			$docente_reemplazo = array();
+			if (!empty($programacion_clase['ProgramacionClase']['DOCENTE_REEMPLAZO_ID'])) {
+				$this->loadModel('Docente');
+				$docente_reemplazo  = $this->Docente->getDocente($programacion_clase['ProgramacionClase']['DOCENTE_REEMPLAZO_ID']);
+			}
+			$listado_alumnos=$this->AlumnoAsignatura->getListadoAsistenciaJustificado($asignatura_horario['AsignaturaHorario']['COD_PERIODO'],$asignatura_horario['AsignaturaHorario']['COD_SEDE'],$asignatura_horario['AsignaturaHorario']['COD_ASIGNATURA_HORARIO'],$cod_programacion);
+			if (!empty($listado_alumnos)) {
+				$this->loadModel('Asistencia');
+				foreach ($listado_alumnos as $key => $alumno) {
+					$asistencia = $this->Asistencia->getAsistenciaAlumnoEvento($alumno['Alumno']['ID'],$cod_programacion);
+					$listado_alumnos[$key]['Asistencia']['ID'] = isset($asistencia['Asistencia']['ID'])?$asistencia['Asistencia']['ID']:null;
+					$listado_alumnos[$key]['Asistencia']['ASISTENCIA'] = isset($asistencia['Asistencia']['ASISTENCIA'])?$asistencia['Asistencia']['ASISTENCIA']:null;
+					$listado_alumnos[$key]['Asistencia']['OBSERVACION'] = isset($asistencia['Asistencia']['OBSERVACION'])?$asistencia['Asistencia']['OBSERVACION']:null;
+				}
+			}
+
+
+
+				$prog_ade = $this->ProgramacionClase->getProgramacionAdelantar($programacion_clase['ProgramacionClase']['COD_PROGRAMACION_PADRE']);
+		
+
+
+			#debug($prog_ade);exit();
+			#debug($programacion_clase);exit();
+			$this->set(array(
+				'prog_ade'=> $prog_ade,
+				'asignatura_horario'=>$asignatura_horario,
+				'docente_reemplazo'=>$docente_reemplazo,
+				'listado_alumnos'=>$listado_alumnos,
+				'bitacora'=>$this->Bitacora->getBitacoraClase($cod_programacion),
+				'programacion_clase'=>$programacion_clase,
+				'logs_evento'=>$this->LogEvento->getLogs($cod_programacion),
+			));
+		}
+
+			public function saveAsistenciaFromJustificados($cod_programacion=null) # actualiza autorizacion de justificados director J
+		{
+			$this->autoRender = false;
+			$response = array(
+				'message'=>'Ha ocurrido un error con el envío de los datos. Intente nuevamente.',
+				'status'=>'danger',
+			);
+			if (!empty($cod_programacion)) {
+				$this->loadModel('ProgramacionClase');
+				$programacion_clase = $this->ProgramacionClase->getProgramacionClase($cod_programacion);
+				if (!empty($programacion_clase)) {
+					if (!empty($this->data) && isset($this->data['Asistencia'])) {
+						if (!empty($this->data['Asistencia'])) {
+							$this->loadModel('Asistencia');
+							foreach ($this->data['Asistencia'] as $key => $value) {
+								$asistencia = $this->Asistencia->getAsistenciaAlumnoEvento($value['ID_ALUMNO'],$cod_programacion);
+								#debug($asistencia);
+								if (!empty($asistencia)) {
+									$up_asistencia = array(
+										'ID'=>$asistencia['Asistencia']['ID'],
+										'ASISTENCIA'=>$value['ASISTENCIA'],
+										'AUTORIZA_J' =>$value['ASISTENCIA'],
+									);
+									#debug($up_asistencia);
+									$this->Asistencia->create(false);
+									$this->Asistencia->save($up_asistencia);
+								}else{
+									#NUEVO_REGISTRO;
+									$new_asistencia = array(
+										'COD_PROGRAMACION'=>$cod_programacion,
+										'ID_ALUMNO'=>$value['ID_ALUMNO'],
+										'UUID'=>uniqid(),
+										'SIGLA'=>$programacion_clase['ProgramacionClase']['SIGLA'],
+										'COD_DOCENTE'=>$programacion_clase['ProgramacionClase']['COD_DOCENTE'],
+										'SIGLA_SECCION'=>$programacion_clase['ProgramacionClase']['SIGLA_SECCION'],
+										'ASISTENCIA'=>$value['ASISTENCIA'],
+										#'ASISTENCIA'=>isset($value['ASISTENCIA']) && $value['ASISTENCIA'] == 1? 1:0,
+										'OBSERVACION'=>null,
+										'CREATED'=>date('Y-m-d H:i:s'),
+										'MODIFIED'=>date('Y-m-d H:i:s'),
+									);
+									$this->Asistencia->create(true);
+									$this->Asistencia->save($new_asistencia);
+								}
+							}
+							#debug($this->data);Exit();
+							#FALTA ACTUALIZAR DATOS DE LA CLASE;
+							$this->loadModel('AsignaturaHorario');
+							$retorno = $this->AsignaturaHorario->actualizarAsignaturaHorario($programacion_clase['ProgramacionClase']['COD_ASIGNATURA_HORARIO']);
+							$response['message'] = 'Su información se ha almacenado con éxito.';
+							$response['status'] = 'success';
+						}
+					}
+				}
+			}	
+			echo json_encode($response);
+		}
+
+
+
 		public function autorizacionClaseExcel()
 		{
 			$this->layout = 'excel';
@@ -604,8 +748,11 @@ public function listar_clases_justificados($filtro_multiple=null) # vista justif
 				$autorizaciones_clase = $this->data;
 				// debug($autorizaciones_clase); exit();
 			}
+
+			#debug($autorizaciones_clase);exit();
 			$this->set('autorizaciones_clase',$autorizaciones_clase);
 		}
+
 		public function recuperarClases($filtro_multiple=FALSE) 
 		{
 			$datos_filtro = array();
@@ -638,17 +785,21 @@ public function listar_clases_justificados($filtro_multiple=null) # vista justif
 
 			}
 			$sede_id = $session_data['Sede']['COD_SEDE'];
-			$this->loadModel('ProgramacionClase');	
+
+			$this->loadModel('ProgramacionClase');
 			if ($filtro_multiple) {
 				if (!empty($this->data)) {
 					$datos_filtro = $this->data;
 					$conditions = $this->procesarDatosFiltroMultiple($datos_filtro);
-					$datos_tabla = $this->ProgramacionClase->getDatosTablaRecuperarClaseNewMultiple($conditions,$ordenar);
+					$datos_tabla = $this->ProgramacionClase->getDatosTablaRecuperarClaseNewMultiple($conditions,$ordenar,$sede_id);
 					#debug($datos_tabla);exit();
 				}
 			}else{
 				$datos_tabla = $this->ProgramacionClase->getDatosTablaRecuperarClaseNew($fecha_inicio,$fecha_fin,$sede_id,$tipo_filtro,$valor_filtro,$ordenar);
 			}
+
+			// debug($datos_tabla);exit();
+
 			$this->set(array(
 				'datos_tabla'=>$datos_tabla,
 				'datos_filtro'=>$datos_filtro,
@@ -728,7 +879,7 @@ public function listar_clases_justificados($filtro_multiple=null) # vista justif
 				}else{
 					$this->log("No se pudo enviar el mail al coordinador docente en ".$this->params['controller']."/".$this->params['action'].": NO SE ENCUENTRA FUNCIONARIO : ".$cod_funcionario, 'debug');
 				}
-				$this->Session->setFlash('Autorizaci&oacute;n realizada con &eacute;xito.', 'mensaje-exito');
+				$this->Session->setFlash('Cambio Sub-Estado modificado con &eacute;xito.', 'mensaje-exito');
 				$this->redirect(array('action'=>'recuperarClases'));
 			};
 			$this->Session->setFlash('Ha ocurrido un problema. Intente nuevamente', 'mensaje-info');
@@ -1001,11 +1152,13 @@ public function listar_clases_justificados($filtro_multiple=null) # vista justif
 			}
 			$this->loadModel('ProgramacionClase');
 			$session_data = $this->Session->read('DirectorLogueado');
-			$datos_tabla = $this->ProgramacionClase->getDatosTablaReprobadosNew($fecha_inicio,$fecha_fin,$session_data['Sede']['COD_SEDE'],$tipo_filtro,$valor_filtro,$ordenar);
+			$datos_tabla = $this->ProgramacionClase->getDatosTablaReprobadosNew($session_data['Sede']['COD_SEDE'],$tipo_filtro,$valor_filtro,$ordenar);
 			$this->set(array(
 				'datos_tabla'=>$datos_tabla,
 				'datos_filtro'=>$datos_filtro,
 			));
+
+			#debug($datos_tabla);exit();
 			#exit;
 		}
 		public function reprobadosPdf()
@@ -1031,7 +1184,7 @@ public function listar_clases_justificados($filtro_multiple=null) # vista justif
 			}
 			$this->loadModel('ProgramacionClase');
 			$session_data = $this->Session->read('DirectorLogueado');
-			$datos_tabla = $this->ProgramacionClase->getDatosTablaReprobadosNew($fecha_inicio,$fecha_fin,$session_data['Sede']['COD_SEDE'],$tipo_filtro,$valor_filtro,$ordenar);
+			$datos_tabla = $this->ProgramacionClase->getDatosTablaReprobadosNew($session_data['Sede']['COD_SEDE'],$tipo_filtro,$valor_filtro,$ordenar);
 			$this->Mpdf->init(array('margin_top' => 10,'margin_bottom'=>20,'margin_left'=>10,'margin_right'=>10));
 			$this->Mpdf->setFilename('reprobados.pdf');
 			$this->Mpdf->addPage('L');
@@ -1067,7 +1220,7 @@ public function listar_clases_justificados($filtro_multiple=null) # vista justif
 			}
 			$this->loadModel('ProgramacionClase');
 			$session_data = $this->Session->read('DirectorLogueado');
-			$datos_tabla = $this->ProgramacionClase->getDatosTablaReprobadosNew($fecha_inicio,$fecha_fin,$session_data['Sede']['COD_SEDE'],$tipo_filtro,$valor_filtro,$ordenar);
+			$datos_tabla = $this->ProgramacionClase->getDatosTablaReprobadosNew($session_data['Sede']['COD_SEDE'],$tipo_filtro,$valor_filtro,$ordenar);
 			$this->set(array(
 				'datos_tabla'=>$datos_tabla,
 				'datos_filtro'=>$datos_filtro
@@ -1137,8 +1290,8 @@ public function listar_clases_justificados($filtro_multiple=null) # vista justif
 			$clases_regulares = $this->ProgramacionClase->countClasesRegulares($cod_asignatura_horario);
 			$clases_suspendidas = $this->ProgramacionClase->countClasesSuspendidas($cod_asignatura_horario);
 			$this->loadModel('AlumnoAsignatura');
-			$alumnos = $this->AlumnoAsignatura->getListadoAlumnosSeccionForRI($asignatura_horario['AsignaturaHorario']['SIGLA_SECCION']);
-			$indicadores_alumnos = $this->ProgramacionClase->getIndicadoresAlumno($asignatura_horario['AsignaturaHorario']['SIGLA_SECCION']);
+			$alumnos = $this->AlumnoAsignatura->getListadoAlumnosSeccionForRI($asignatura_horario['AsignaturaHorario']['COD_ASIGNATURA_HORARIO']);
+			$indicadores_alumnos = $this->ProgramacionClase->getIndicadoresAlumno($asignatura_horario['AsignaturaHorario']['COD_ASIGNATURA_HORARIO']);
 			$this->set(array(
 				'alumnos'=>$alumnos,
 				'asignatura_horario'=>$asignatura_horario,
@@ -1168,8 +1321,8 @@ public function listar_clases_justificados($filtro_multiple=null) # vista justif
 			$clases_regulares = $this->ProgramacionClase->countClasesRegulares($cod_asignatura_horario);
 			$clases_suspendidas = $this->ProgramacionClase->countClasesSuspendidas($cod_asignatura_horario);
 			$this->loadModel('AlumnoAsignatura');
-			$alumnos = $this->AlumnoAsignatura->getListadoAlumnosSeccionForRI($asignatura_horario['AsignaturaHorario']['SIGLA_SECCION']);
-			$indicadores_alumnos = $this->ProgramacionClase->getIndicadoresAlumno($asignatura_horario['AsignaturaHorario']['SIGLA_SECCION']);
+			$alumnos = $this->AlumnoAsignatura->getListadoAlumnosSeccionForRI($asignatura_horario['AsignaturaHorario']['COD_ASIGNATURA_HORARIO']);
+			$indicadores_alumnos = $this->ProgramacionClase->getIndicadoresAlumno($asignatura_horario['AsignaturaHorario']['COD_ASIGNATURA_HORARIO']);
 			$this->set(array(
 				'alumnos'=>$alumnos,
 				'asignatura_horario'=>$asignatura_horario,
@@ -1187,6 +1340,7 @@ public function listar_clases_justificados($filtro_multiple=null) # vista justif
 		public function sendRiSap($cod_asignatura_horario=null)
 		{
 			if (!empty($this->data)) {
+
 				if (empty($cod_asignatura_horario)) {
 					$this->Session->setFlash('El parametro de entrada esta vac&iacute;o. Intente nuevamente.', 'mensaje-error');
 					$this->redirect(array('action'=>'reprobados'));
@@ -1201,19 +1355,27 @@ public function listar_clases_justificados($filtro_multiple=null) # vista justif
 					$this->Session->setFlash('Esta secci&oacute;n ya fue enviada a SAP.', 'mensaje-error');
 					$this->redirect(array('action'=>'reprobadoFichaDetalle',$cod_asignatura_horario));
 				}
+				
 				##debug($asignatura_horario);
 				$error = 0;
+				
 				if (isset($this->data['Alumno'])) {
+
 					$this->loadModel('RI');
 					$this->loadModel('Alumno');
 					foreach ($this->data['Alumno'] as $key => $value) {
 						$alumno = $this->Alumno->getAlumnoByCod($value['ID_ALUMNO']);
+						// debug($alumno);exit();
+						// debug($value);exit();
 						if (!empty($alumno)) {
 							$ri_director = 0;
 							$fecha_envio_sap = null;
+										
 							if (isset($value['RI']) && (int)$value['RI']===1) {
 								$ri_director = 1;
+								
 								if ($this->data['borrador']!=1) {
+
 									$fecha_envio_sap = date('Y-m-d H:i:s');
 									$response_sap = $this->Integracion->sendRi(
 										$asignatura_horario['AsignaturaHorario']['SM_OBJID'],
@@ -1221,6 +1383,7 @@ public function listar_clases_justificados($filtro_multiple=null) # vista justif
 										$asignatura_horario['Periodo']['ANHO'],
 										$alumno['Alumno']['RUT'].''.$alumno['Alumno']['DV_RUT']);
 								}
+
 							}
 							$ri = $this->RI->getReprobadoInasistencia($value['ID_ALUMNO'],$cod_asignatura_horario);
 							if (!empty($ri)) {
@@ -1231,8 +1394,9 @@ public function listar_clases_justificados($filtro_multiple=null) # vista justif
 							}
 						}
 					}
+
 					if ($this->data['borrador']!=1) {
-						$asignatura_horario['AsignaturaHorario']['RI_ENVIADO_A_SAP'] = 1;
+					$asignatura_horario['AsignaturaHorario']['RI_ENVIADO_A_SAP'] = 1;
 						$asignatura_horario['AsignaturaHorario']['FECHA_ENVIO_SAP'] = date('Y-m-d H:i:s');
 						$session_data = $this->Session->read('DirectorLogueado');
 						$asignatura_horario['AsignaturaHorario']['DIRECTOR_SEND_SAP_ID'] = $session_data['Director']['COD'];

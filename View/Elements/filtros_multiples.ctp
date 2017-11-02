@@ -284,14 +284,16 @@
 		//event.preventDefault();
 		var fecha_inicio = $('#form-filtro-multiple .fecha-inicio').val();
 		var fecha_termino = $('#form-filtro-multiple .fecha-termino').val();
+		
 		if(!fechaCorrecta(fecha_inicio,fecha_termino)){
 			notifyUser('La fecha de t&eacute;rmino no puede ser menor a la fecha de inicio.','danger');
 			return false;	
 		}
+		
 		<?php if($periodo_required): ?>
 			var periodo = $('#form-filtro-periodo-multiple').val();
 			if(periodo == ''){
-				notifyUser('Debe seleccionar un periodo2.','danger');
+				notifyUser('Debe seleccionar un periodo.','danger');
 				return false;	
 			}
 		<?php endif; ?>

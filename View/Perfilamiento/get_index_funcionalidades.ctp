@@ -61,10 +61,10 @@
 		<?php endif ?>
 	</div>
 	<div class="col-md-12">
-		<a 
+		<!-- <a 
 			send-ajax="true"
 			type-response="html"
 			href="<?php echo $this->Html->url(array('action'=>'agregarObjeto',$model)); ?>" 
-			class="btn btn-success"><i class="fa fa-plus"></i>&nbsp;Agregar</a>
+			class="btn btn-success"><i class="fa fa-plus"></i>&nbsp;Agregar</a> -->
 	</div>
 </div>

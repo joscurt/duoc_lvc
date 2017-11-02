@@ -22,6 +22,7 @@
 						<option value="<?php echo $this->Html->url(array('action'=>'cambiarSala',$programacion_clase['ProgramacionClase']['COD_PROGRAMACION'])); ?>">CAMBIAR SALA</option>
 						<option value="<?php echo $this->Html->url(array('action'=>'inasistenciaDocente',$programacion_clase['ProgramacionClase']['COD_PROGRAMACION'])); ?>">INASISTENCIA DOCENTE</option>
 						<option value="<?php echo $this->Html->url(array('action'=>'justificacionLegal',$programacion_clase['ProgramacionClase']['COD_PROGRAMACION'])); ?>">JUSTIFICACI&Oacute;N LEGAL</option>
+				
 
 						<?php 
 						if($programacion_clase['EstadoProgramacion']['ID'] == 3 && ($programacion_clase['Detalle']['ID'] == 4 || $programacion_clase['Detalle']['ID'] == 1 || $programacion_clase['Detalle']['ID'] == 5) ){?>
@@ -61,15 +62,15 @@
 					<tbody>
 						<tr class="odd">
 							<td><?php echo $programacion_clase['Docente']['RUT'].'-'.$programacion_clase['Docente']['DV']; ?></td>
-							<td><?php echo utf8_encode($programacion_clase['Docente']['APELLIDO_PAT']); ?></td>
-							<td><?php echo utf8_encode($programacion_clase['Docente']['APELLIDO_MAT']); ?></td>
-							<td><?php echo utf8_encode($programacion_clase['Docente']['NOMBRE']); ?></td>
+							<td><?php echo ($programacion_clase['Docente']['APELLIDO_PAT']); ?></td>
+							<td><?php echo ($programacion_clase['Docente']['APELLIDO_MAT']); ?></td>
+							<td><?php echo ($programacion_clase['Docente']['NOMBRE']); ?></td>
 							<?php if (!empty($docente_reemplazo)): ?>
 								<td>
 									<?php 
-										echo utf8_encode($docente_reemplazo['Docente']['NOMBRE']).' '.
-											utf8_encode($docente_reemplazo['Docente']['APELLIDO_PAT']).' '.
-											utf8_encode($docente_reemplazo['Docente']['APELLIDO_MAT']).' <br>'.
+										echo ($docente_reemplazo['Docente']['NOMBRE']).' '.
+											($docente_reemplazo['Docente']['APELLIDO_PAT']).' '.
+											($docente_reemplazo['Docente']['APELLIDO_MAT']).' <br>'.
 											$docente_reemplazo['Docente']['RUT'].'-'.$docente_reemplazo['Docente']['DV'];
 									?>	
 								</td>
@@ -104,7 +105,7 @@
 							<td><?php echo date('H:i',strtotime($programacion_clase['ProgramacionClase']['HORA_INICIO'])).' a '.date('H:i',strtotime($programacion_clase['ProgramacionClase']['HORA_FIN'])); ?></td>
 							<td><?php echo $programacion_clase['Sala']['TIPO_SALA']; ?></td>
 							<?php if (!empty($programacion_clase['ProgramacionClase']['SALA_REEMPLAZO'])): ?>
-								<td><?php echo  $programacion_clase['SalaReemplazo']['TIPO_SALA']; ?></td>
+								<td><?php echo  $programacion_clase['ProgramacionClase']['SALA_REEMPLAZO']; ?></td>
 							<?php endif ?>
 							<!--<td><?php echo $programacion_clase['ProgramacionClase']['TIPO_EVENTO']; ?></td> -->
 						</tr>	
@@ -125,7 +126,9 @@
 							<td><?php
 							if(isset($programacion_clase['ProgramacionClase']['COD_PROGRAMACION_PADRE'])){
 								echo date('d-m-Y',strtotime($prog_ade['ProgramacionClase']['FECHA_CLASE']));
+								// ECHO "hola";
 							}else{
+								// ECHO "hola";
 								echo date('d-m-Y',strtotime($programacion_clase['ProgramacionClase']['FECHA_CLASE']));
 							}
 							 ?></td>
@@ -335,7 +338,7 @@
 				type: 'POST',
 				dataType: 'html',
 			}).fail(function(error_reader) {
-				notifyUser('Ha ocurrido un error inesperado. Intente m&aacute;s tarde.','info');
+				notifyUser('Ha ocurrido un error inesperado. Intente más tarde.','info');
 				$('#modal-editar').modal('hide');
 			}).always(function(view) {
 				$('#modal-editar .modal-content').html(view);
@@ -354,7 +357,7 @@
 			dataType: 'json',
 			data: elemento_submit.serialize(),
 		}).fail(function(error_reader) {
-			notifyUser('Ha ocurrido un error inesperado. Intente m&aacute;s tarde.','info');
+			notifyUser('Ha ocurrido un error inesperado. Intente más tarde.','info');
 			$('#modal-editar').modal('hide');
 		}).always(function(response) {
 			notifyUser(response.message,response.status);
@@ -363,18 +366,17 @@
 	});
 	$('body').on('click','.salir-modal-editar',function(){
 		swal({
-            title: "<?php echo __('Â¿Est&aacute; seguro de salir sin guardar?'); ?>",   
+            title: "<?php echo __('?Está seguro de salir sin guardar ?'); ?>",   
             text: "<?php echo __(''); ?>",
             type: "warning",
             showCancelButton: true, 
             cancelButtonText: "<?php echo __('Cancelar'); ?>",   
             confirmButtonColor: "#DD6B55",   
-            confirmButtonText: "S&iacute;, estoy seguro!",   
+            confirmButtonText: "Sí, estoy seguro!",   
             closeOnConfirm: true 
         }, function(){
         	$('#modal-editar').modal('hide');
-        	//swal("Completado!", "Eliminado con &eacute;xito.", "success"); 
-        });
+         });
 	});
 </script>
 

@@ -137,8 +137,8 @@
 					<thead>
 						<tr>
 							<th></th>
-							<th style="background: #34495e; color:#fff; text-align: center;">Nº Clases Realizadas</th>
-							<th style="background: #34495e; color:#fff; text-align: center;">Nº Clases Programadas</th>
+							<th style="background: #34495e; color:#fff; text-align: center;">N&deg; Clases Realizadas</th>
+							<th style="background: #34495e; color:#fff; text-align: center;">N&deg; Clases Programadas</th>
 							<th style="background: #34495e; color:#fff; text-align: center;">% de Avance</th>
 							<th style="background: #34495e; color:#fff; text-align: center;">% Asistencia Promedio</th>
 						</tr>

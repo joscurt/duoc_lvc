@@ -67,9 +67,9 @@
 					<tbody>
 						<tr class="odd">
 							<td><?php echo $programacion_clase['Docente']['RUT'].'-'.$programacion_clase['Docente']['DV']; ?></td>
-							<td><?php echo utf8_encode($programacion_clase['Docente']['APELLIDO_PAT']); ?></td>
-							<td><?php echo utf8_encode($programacion_clase['Docente']['APELLIDO_MAT']); ?></td>
-							<td><?php echo utf8_encode($programacion_clase['Docente']['NOMBRE']); ?></td>
+							<td><?php echo ($programacion_clase['Docente']['APELLIDO_PAT']); ?></td>
+							<td><?php echo ($programacion_clase['Docente']['APELLIDO_MAT']); ?></td>
+							<td><?php echo ($programacion_clase['Docente']['NOMBRE']); ?></td>
 							<?php if (!empty($docente_reemplazo)): ?>
 								<td>
 									<?php 

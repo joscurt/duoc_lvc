@@ -27,7 +27,7 @@
 <table style="border-bottom:1px solid #ccc;">
 	<tr >
 		<td><img src="img/duocuc.png" style="width:150px;" alt=""></td>
-		<td><h2 class="titulo">CURSO  <?php echo $asignatura_horario['AsignaturaHorario']['SIGLA_SECCION'].' | '.date('d-m-Y H:i');?></h2></td>
+		<td><h2 class="titulo">CURSO  <?php echo ($asignatura_horario['AsignaturaHorario']['SIGLA_SECCION']).' | '.date('d-m-Y H:i');?></h2></td>
 	</tr>
 </table><br>
 <div class="row">
@@ -56,7 +56,7 @@
 						<td colspan="4" class="td-app" style="text-align: center;border-right: 1px solid #ddd !important;border-left: 1px solid #ddd !important;border-bottom: 1px solid #ddd !important;">Fecha Registro de Asistencia</td>
 					</tr>
 					<tr>
-						<th class="td-app" style="border-right: 1px solid #ddd !important;">Nº</th>
+						<th class="td-app" style="border-right: 1px solid #ddd !important;">N&deg;</th>
 						<th class="td-app" style="text-align: center; border-right: 1px solid #ddd !important;">Rut Alumno</th>
 						<th class="td-app" style="text-align: center; border-right: 1px solid #ddd !important;">Nombre</th>
 						<th class="td-app" style="text-align: center; border-right: 1px solid #ddd !important;">A. Paterno</th>
@@ -74,10 +74,10 @@
 								<a 
 									style="cursor: pointer; " 
 									data-dd="<?php echo $value['Alumno']['ID']; ?>"
-									class="alumno_active"><?php echo strtoupper($value['Alumno']['NOMBRES']); ?></a>
+									class="alumno_active"><?php echo strtoupper(htmlentities($value['Alumno']['NOMBRES'])); ?></a>
 							</td>
-							<td ><?php echo strtoupper($value['Alumno']['APELLIDO_PAT']); ?></td>
-							<td ><?php echo strtoupper($value['Alumno']['APELLIDO_MAT']); ?></td>
+							<td ><?php echo strtoupper(htmlentities($value['Alumno']['APELLIDO_PAT'])); ?></td>
+							<td ><?php echo strtoupper(htmlentities($value['Alumno']['APELLIDO_MAT'])); ?></td>
 							<?php 
 								$clases_presente = isset($indicadores[$value['Alumno']['ID']])?$indicadores[$value['Alumno']['ID']]['CLASES_PRESENTE']:0;
 								$clases_totales = isset($indicadores[$value['Alumno']['ID']])?$indicadores[$value['Alumno']['ID']]['CLASES_IMPARTIDAS']:0;

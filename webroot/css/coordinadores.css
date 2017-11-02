@@ -1,3 +1,15 @@
+#contenedor-calendario-semanas  .td-titulo, #contenedor-calendario-semanas  .th-titulo {
+    width: 80px !important;
+    padding-left: 5px !important;
+}
+#contenedor-calendario-semanas td {
+    border: 1px solid #ddd !important;
+}
+#contenedor-calendario-semanas th {
+    text-align: center !important;
+    border: 1px solid #ddd !important;
+}
+
 /*HEADER*/
 #header {
 	height: 90px !important;
@@ -66,7 +78,14 @@ table {
 	border-collapse: collapse; 
 	border-spacing: 0;
 }
-
+#contenedor-calendario-semanas table.table thead tr th {
+    background-color: #fff !important;
+    color: #333 !important;
+    font-weight: 500 !important;
+}
+#contenedor-calendario-semanas .td-valor, #contenedor-calendario-semanas .th-dias {
+    width: 100px;
+}
 table.table thead tr th {
     background-color: #092C50 !important;
     color: #FFF !important;

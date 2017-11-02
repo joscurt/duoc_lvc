@@ -68,7 +68,7 @@
 							<td><?php echo !empty($programacion_clase['ProgramacionClase']['FECHA_REGISTRAR_ASISTENCIA']) ? date('d-m-Y', strtotime($programacion_clase['ProgramacionClase']['FECHA_REGISTRAR_ASISTENCIA'])) : ''; ?></td>
 							<td><?php echo $programacion_clase['ProgramacionClase']['MODALIDAD']; ?></td>
 							<td><?php echo date('H:i', strtotime($programacion_clase['ProgramacionClase']['HORA_INICIO'])).' - '.date('H:i', strtotime($programacion_clase['ProgramacionClase']['HORA_FIN'])) ?></td>
-							<td><?php echo utf8_encode($programacion_clase['Docente']['NOMBRE'].' '.$programacion_clase['Docente']['APELLIDO_PAT'].' '.$programacion_clase['Docente']['APELLIDO_MAT']); ?></td>
+							<td><?php echo ($programacion_clase['Docente']['NOMBRE'].' '.$programacion_clase['Docente']['APELLIDO_PAT'].' '.$programacion_clase['Docente']['APELLIDO_MAT']); ?></td>
 							<td><?php echo $programacion_clase['ProgramacionClase']['TIPO_EVENTO']; ?></td>
 							<td><?php echo $detalle['Bitacora']['DESCRIPCION']; ?></td>
 							<td><?php echo date('d-m-Y H:i', strtotime($detalle['Bitacora']['CREATED'])); ?></td>

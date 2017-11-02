@@ -2,7 +2,9 @@
 	<h4>Listado Docentes</h4>
 	<h6 class="subtitle"><?php echo count($docentes);?> de <?php echo count($docentes); ?> Docentes con tope</h6>
 </div>
-
+<<?php 
+#debug($this->getLastQuery());exit();
+?>
 <div class="col-md-12">
 	<table class="table table-striped" >
 		<thead >

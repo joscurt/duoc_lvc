@@ -63,7 +63,7 @@
 									#debug($porcentaje);exit();
 
 								?>
-								<td style="font-weight: bold; color:<?php echo $porcentaje<75?'red':null; ?>;"><?php echo $porcentaje.'%'; ?></td>
+								<td style="font-weight: bold; color:<?php echo $porcentaje<75?'red':null; ?>;"><?php echo ($porcentaje>100) ? '100' : $porcentaje ; ?>%</td>
 							</tr>
 						<?php endforeach; ?>
 					</tbody>
@@ -252,6 +252,7 @@
 				id="btn-exportar-pdf"
 				class="btn btn-sm btn-default" 
 				href="#"
+				target="_blank"
 				><i  style="color:red;" class="fa fa-file-pdf-o"></i>&nbsp;EXPORTAR A PDF</a>	
 		</div>
 	</div>

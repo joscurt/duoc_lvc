@@ -6,6 +6,8 @@
 
 		public function index()
 		{
+			//$a = $this->Session->read('BackOfficeLogueado');
+			//debug($a);exit();
 		}
 		//MANTENEDOR RI
 		public function reprobadoInasistencia()
@@ -45,7 +47,6 @@
 			$this->loadModel('Carrera');
 			$carreras = $this->Carrera->getCarrerasByEscuela($cod_escuela);
 			echo "<option></option>";
-			echo "<option value='ALL'>TODAS</option>";
 			foreach ($carreras as $key => $value) {
 				echo '<option value="'.$value['Carrera']['COD_PLAN'].'">'.$value['Carrera']['COD_PLAN'].' - '.$value['Carrera']['NOMBRE'].'</option>';
 			}
@@ -199,7 +200,7 @@
 				$sub_estado_form = isset($this->data['SubEstado']['NOMBRE'])?$this->data['SubEstado']['NOMBRE']:null;
 				if (!empty($sub_estado_form)) {
 					$nuevo_sub_estado = array(
-						'NOMBRE'=>$sub_estado_form,
+						'NOMBRE'=>strtoupper($sub_estado_form),
 						'COD'=>uniqid(),
 						'ACTIVO'=>0,
 						'CREATED'=>date('Y-m-d H:i:s'),
@@ -516,7 +517,7 @@
 				$estado_form = $this->data['Estado']['NOMBRE'];
 				if (!empty($estado_form)) {
 					$nuevo_estado = array(
-						'NOMBRE'=>$estado_form,
+						'NOMBRE'=>strtoupper($estado_form),
 						'COD'=>uniqid(),
 						'ACTIVO'=>0,
 						'CREATED'=>date('Y-m-d H:i:s'),
@@ -826,7 +827,7 @@
 				$detalle = isset($this->data['Detalle']['DETALLE'])?$this->data['Detalle']['DETALLE']:null;
 				if (!empty($detalle)) {
 					$nuevo_detalle = array(
-						'DETALLE'=>$detalle,
+						'DETALLE'=>strtoupper($detalle),
 						'COD'=>uniqid(),
 						'ACTIVO'=>0,
 						'CREATED'=>date('Y-m-d H:i:s'),
@@ -1169,7 +1170,7 @@
 					$this->loadModel('MotivoInasistenciaDocente');
 					$this->MotivoInasistenciaDocente->create(FALSE);
 					if ($this->MotivoInasistenciaDocente->save($update_inasistencia)) {
-						$mensaje='Su motivo de rechazo de clase se ha editado con &eacute;xito.';
+						$mensaje='Su motivo de Inasistencia se ha editado con &eacute;xito.';
 						$estado='success';
 					}else{
 						$mensaje = 'No se ha podido guardar la edici&oacute;n.';

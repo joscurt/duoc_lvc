@@ -65,7 +65,7 @@
 
 			$this->Mpdf->init(array('format' => 'A4-L','margin_top' => 10,'margin_bottom'=>20));
 			$this->Mpdf->setFilename('horario_docente.pdf');
-			$this->Mpdf->SetHTMLFooter('<div align="right">P&aacute;gina {PAGENO} de {nb}</div>');
+			$this->Mpdf->SetHTMLFooter('<div align="right">Página {PAGENO} de {nb}</div>');
 			$this->Mpdf->setOutput('A');
 		}
 
@@ -226,19 +226,19 @@
 			    			$this->RI_IM->save($data);
 			    			}
 					}else{
-						$this->Session->setFlash('No se ha insertado el n&uacute;mero de Clases Registradas <b>"'.$clases_registradas.'"<b> de la fila "'.$i.'" es inv&aacute;lido. Intente nuevamente.','mensaje-error');
+						$this->Session->setFlash('No se ha insertado el número de Clases Registradas <b>"'.$clases_registradas.'"<b> de la fila "'.$i.'" es inválido. Intente nuevamente.','mensaje-error');
 									$this->redirect(array('controller' => 'Docentes','action' => 'reprobadoInacistenciaImport/'.$cod_asignatura_horario.'' ));
 					}
 				}else{
-				$this->Session->setFlash('No se ha insertado el n&uacute;mero de Clases Presentes <b>"'.$clases_presente.'"<b> de la fila "'.$i.'" es inv&aacute;lido. Intente nuevamente.','mensaje-error');
+				$this->Session->setFlash('No se ha insertado el número de Clases Presentes <b>"'.$clases_presente.'"<b> de la fila "'.$i.'" es inválido. Intente nuevamente.','mensaje-error');
 				$this->redirect(array('controller' => 'Docentes','action' => 'reprobadoInacistenciaImport/'.$cod_asignatura_horario.'' ));
 			}
 				}else{
-				$this->Session->setFlash('Los datos del Excel est&aacute;n erroneos o son de otra Secci&oacute;n. Intente nuevamente.','mensaje-error');
+				$this->Session->setFlash('Los datos del Excel están erroneos o son de otra Sección. Intente nuevamente.','mensaje-error');
 					$this->redirect(array('controller' => 'Docentes','action' => 'reprobadoInacistencia/'.$cod_asignatura_horario.'' ));
 			}
 		}else{
-				$this->Session->setFlash('&eacute;ste Rut no Pertenece a la Secci&oacute;n  <b>"'.$rut.'"<b> de la fila "'.$i.'" es inv&aacute;lido. Intente nuevamente.','mensaje-error');
+				$this->Session->setFlash('Éste Rut no Pertenece a la Sección  <b>"'.$rut.'"<b> de la fila "'.$i.'" es inválido. Intente nuevamente.','mensaje-error');
 				$this->redirect(array('controller' => 'Docentes','action' => 'reprobadoInacistenciaImport/'.$cod_asignatura_horario.'' ));
 			}
 
@@ -340,7 +340,7 @@
 			$this->Mpdf->setFilename('reprobados_inasistencia_'.$asignatura_horario['Asignatura']['NOMBRE'].'.pdf');
 			$this->Mpdf->addPage('L');
 			$this->Mpdf->setOutput('a');
-			$footer = '<div align="right">P&aacute;gina {PAGENO} de {nb}</div>';
+			$footer = '<div align="right">Página {PAGENO} de {nb}</div>';
 			$this->Mpdf->SetHTMLFooter($footer);
 		}
 
@@ -400,7 +400,8 @@
 			$this->loadModel('ProgramacionClase');
 			$docente = $this->Session->read('DocenteLogueado');
 			$programacion_clase = $this->ProgramacionClase->getProgramacionClase($cod_programacion);
-			$response = array('status'=>'success','message'=>'Bitacora registrada con &eacute;xito.');
+			
+			$response = array('status'=>'success','message'=>'Bitacora registrada con éxito. '.$this->data['Bitacora']['comentarios']);
 			if (!empty($this->data) && !empty($cod_programacion)) {
 				$new_bitacora = array(
 					'COD'=>uniqid(),
@@ -411,11 +412,16 @@
 					'CREATED'=>date('Y-m-d H:i:s'),
 					'MODIFIED'=>date('Y-m-d H:i:s'),
 				);
+				#print_r($new_bitacora);exit();
 				$this->loadModel('Bitacora');
 				$this->Bitacora->create();
 				if(!$this->Bitacora->save($new_bitacora)){
-					$response = array('status'=>'danger','message'=>'Error en el almacenamiento de los datos. Intente m&aacute;s tarde.');
-				};
+					$response = array('status'=>'danger','message'=>'Error en el almacenamiento de los datos. Intente más tarde.');
+				}else
+				{
+					$response = array('status'=>'success','message'=>'Bitacora registrada con éxito.');
+			
+				}
 			}
 			echo json_encode($response);
 		}
@@ -448,7 +454,10 @@
 				
 
 				$this->loadModel('AlumnoAsignatura');
-				$alumnos = $this->AlumnoAsignatura->getListadoAsistencia($asignatura_horario['AsignaturaHorario']['COD_PERIODO'],$asignatura_horario['AsignaturaHorario']['COD_SEDE'],$asignatura_horario['AsignaturaHorario']['COD_ASIGNATURA_HORARIO']);
+
+				//Linea de codigo que saque $asignatura_horario['AsignaturaHorario']['COD_SEDE'],
+
+				$alumnos = $this->AlumnoAsignatura->getListadoAsistenciaReg($asignatura_horario['AsignaturaHorario']['COD_PERIODO'],$asignatura_horario['AsignaturaHorario']['COD_ASIGNATURA_HORARIO']);
 				#debug($programacion_clase);exit();
 				if (!empty($alumnos)) {
 					$this->loadModel('Asistencia');
@@ -524,7 +533,7 @@
 										'OBSERVACION'=>isset($value['observacion'])? $value['observacion']:null,
 									);
 									if(!$this->Asistencia->save($up_asistencia)){
-										$error++;
+										#$error++;
 									};
 								}
 							}else{
@@ -536,7 +545,7 @@
 									'OBSERVACION'=>isset($value['observacion'])? $value['observacion']:null,
 								);
 								if(!$this->Asistencia->save($up_asistencia)){ 
-									$error++;
+									#$error++;
 								};
 							}
 						}else{
@@ -576,16 +585,18 @@
 			$sedes='';
 			$programacion_clases=$semana=array();
 
-			# Obtener la informaci&oacute;n del docente.
+			# Obtener la información del docente.
 			$docente = $this->Session->read('DocenteLogueado');
 
-			# Obtener la informaci&oacute;n del periodo.
-			if (!empty($cod_periodo)) {
+			# Obtener la información del periodo.
+			if (!empty($cod_periodo))
+			{
+				
 				$periodo = $this->Periodo->getPeriodo($cod_periodo);
 			}else{
 				exit();
 			}
-
+			#debug($periodo);exit();
 			# Obtener el id de la sede.
 			if (isset($this->data['Filtro']['SEDE']) && !empty($this->data['Filtro']['SEDE'])) {
 				$sedes = $this->data['Filtro']['SEDE'];
@@ -595,9 +606,10 @@
 
 			#debug($semana_id);
 			#debug($flecha);
+
 			if (!empty($semana_id) && !empty($flecha)) {
 				$semana_bkp=$semana=$this->Semana->findById($semana_id);
-				#debug($semana);
+
 				if ($flecha == 'next-week') {
 					$nro_semana=$semana['Semana']['NUMERO_SEMANA']+1;
 					$semana = $this->Semana->getSemanaByNumero($periodo['Periodo']['ANHO'], $periodo['Periodo']['SEMESTRE'], $nro_semana);
@@ -647,9 +659,12 @@
 
 		public function getEventos($periodo=null) 
 		{
+
+
+			// debug($periodo);exit();
 			$horarios=$periodos=$periodo_bd=$sedes=$semanas=array();
 			# -------------------------------------------------------------------
-			# Cargar el docente de la sesi&oacute;n.
+			# Cargar el docente de la sesión.
 			$docente = $this->Session->read('DocenteLogueado');
 			if(empty($docente)) {
 				$this->redirect(array('controller'=>'login','action'=>'logoutDocente'));
@@ -727,7 +742,7 @@
 							}
 						}
 						echo json_encode(array(
-							'message'=>'La informaci&oacute;n se ha almacenado con &eacute;xito.',
+							'message'=>'La información se ha almacenado con éxito.',
 							'status'=>'success'
 						));
 					}else{
@@ -813,7 +828,7 @@
 				}
 				
 				if($this->ProgramacionClase->save($up_programacion)){
-					$response = array('status'=>'success','mensaje'=>'Clase iniciada con &eacute;xito');
+					$response = array('status'=>'success','mensaje'=>'Clase iniciada con éxito');
 					$this->actualizarDatosAsignaturaHorario($programacion['ProgramacionClase']['COD_ASIGNATURA_HORARIO']);
 				};
 
@@ -826,7 +841,7 @@
 			$this->autoRender = false;
 			$this->loadModel('ProgramacionClase');
 			$programacion = $this->ProgramacionClase->find('first',array('conditions'=>array('COD_PROGRAMACION'=>$cod_programacion)));
-			$response = array('status'=>'danger','mensaje'=>'Ha ocurrido un error inesperado. Intente m&aacute;s tarde.');
+			$response = array('status'=>'danger','mensaje'=>'Ha ocurrido un error inesperado. Intente más tarde.');
 			if (!empty($programacion)) {
 				$up_programacion = array(
 					'ProgramacionClase'=>array(
@@ -837,7 +852,7 @@
 				);
 				if($this->ProgramacionClase->save($up_programacion)){
 					$this->actualizarDatosAsignaturaHorario($programacion['ProgramacionClase']['COD_ASIGNATURA_HORARIO']);
-					$response = array('status'=>'success','mensaje'=>'Clase finalizada con &eacute;xito');
+					$response = array('status'=>'success','mensaje'=>'Clase finalizada con éxito');
 				};
 			}
 			echo json_encode($response);
@@ -880,7 +895,7 @@
 						}
 					}#exit();
 					if ($error>0) {
-						$this->Session->setFlash('Algunos datos han quedado erroneos, verifique la informaci&oacute;n y vuelva a guardar.','mensaje-info');
+						$this->Session->setFlash('Algunos datos han quedado erroneos, verifique la información y vuelva a guardar.','mensaje-info');
 						$this->redirect(array('action'=>'reprobadoInacistencia',$cod_asignatura_horario));
 					}else{
 						$up_asignatura_horario = array(
@@ -894,7 +909,7 @@
 						$this->redirect(array('controller' => 'Docentes','action' => 'getEventos/',$asignatura_horario['AsignaturaHorario']['COD_PERIODO']));
 					}
 				}else{
-					$this->Session->setFlash('Ha ocurrido un error inesperado. Intente m&aacute;s tarde.','mensaje-error');
+					$this->Session->setFlash('Ha ocurrido un error inesperado. Intente más tarde.','mensaje-error');
 					$this->redirect(array('action'=>'reprobadoInacistencia',$cod_asignatura_horario));
 				}
 			}
@@ -935,7 +950,7 @@
 						}
 					}
 					if ($error>0) {
-						$this->Session->setFlash('Algunos datos han quedado erroneos, verifique la informaci&oacute;n y vuelva a guardar.','mensaje-info');
+						$this->Session->setFlash('Algunos datos han quedado erroneos, verifique la información y vuelva a guardar.','mensaje-info');
 						$this->redirect(array('action'=>'reprobadoInacistencia',$cod_asignatura_horario));
 					}else{
 						$up_asignatura_horario = array(
@@ -947,7 +962,7 @@
 						$this->redirect(array('action'=>'reprobadoInacistencia',$cod_asignatura_horario));
 					}
 				}else{
-					$this->Session->setFlash('Ha ocurrido un error inesperado. Intente m&aacute;s tarde.','mensaje-error');
+					$this->Session->setFlash('Ha ocurrido un error inesperado. Intente más tarde.','mensaje-error');
 					$this->redirect(array('action'=>'reprobadoInacistencia',$cod_asignatura_horario));
 				}
 			}
@@ -1015,7 +1030,7 @@
 				$this->Session->setFlash('Los datos enviados no coinciden. Intente nuevamente.','mensaje-error');
 				$this->redirect(array('action'=>'getEventos'));
 			}
-			$alumnos = $this->AlumnoAsignatura->getListadoAlumnosSeccion($asignatura_horario['AsignaturaHorario']['COD_ASIGNATURA_HORARIO']);
+			$alumnos = $this->AlumnoAsignatura->getListadoAsistenciaReg($asignatura_horario['AsignaturaHorario']['COD_PERIODO'],$asignatura_horario['AsignaturaHorario']['COD_ASIGNATURA_HORARIO']);
 			$this->set(array(
 				'asignatura_horario'=>$asignatura_horario,
 				'alumnos'=>$alumnos
@@ -1045,7 +1060,7 @@
 			$this->Mpdf->setFilename('historico_asistencia_por_alumno.pdf');
 			$this->Mpdf->addPage('L');
 			$this->Mpdf->setOutput('A');
-			$footer = '<div align="right">P&aacute;gina {PAGENO} de {nb}</div>';
+			$footer = '<div align="right">Página {PAGENO} de {nb}</div>';
 			$this->Mpdf->SetHTMLFooter($footer);	
 		}
 
@@ -1060,10 +1075,10 @@
 				$this->redirect(array('action'=>'getEventos'));
 			}
 			$this->loadModel('AlumnoAsignatura');
-			$alumnos = $this->AlumnoAsignatura->getListadoAlumnosSeccion($asignatura_horario_uuid);
+			$alumnos = $this->AlumnoAsignatura->getListadoAsistenciaReg($asignatura_horario['AsignaturaHorario']['COD_PERIODO'],$asignatura_horario_uuid);
 			$this->loadModel('ProgramacionClase');
-			$total_clases = $this->ProgramacionClase->find('count',array('conditions'=>array('SIGLA_SECCION'=>$asignatura_horario['AsignaturaHorario']['SIGLA_SECCION'])));
-			$indicadores = $this->ProgramacionClase->getIndicadoresAlumno($asignatura_horario['AsignaturaHorario']['SIGLA_SECCION']);
+			$total_clases = $this->ProgramacionClase->find('count',array('conditions'=>array('COD_ASIGNATURA_HORARIO'=>$asignatura_horario['AsignaturaHorario']['COD_ASIGNATURA_HORARIO'])));
+			$indicadores = $this->ProgramacionClase->getIndicadoresAlumno($asignatura_horario['AsignaturaHorario']['COD_ASIGNATURA_HORARIO']);
 			$this->set(array(
 				'asignatura_horario'=>$asignatura_horario,
 				'alumnos'=>$alumnos,
@@ -1074,10 +1089,31 @@
 			$this->Mpdf->setFilename('historico_asistencia_por_curso.pdf');
 			$this->Mpdf->addPage('L');
 			$this->Mpdf->setOutput('A');
-			$footer = '<div align="right">P&aacute;gina {PAGENO} de {nb}</div>';
+			$footer = '<div align="right">Página {PAGENO} de {nb}</div>';
 			$this->Mpdf->SetHTMLFooter($footer);	
 		}
-
+public function historicoAsistenciaCursoExcel($asignatura_horario_uuid=null)
+		{
+			$this->layout = 'ajax';
+			$this->loadModel('AsignaturaHorario');
+			$asignatura_horario = $this->AsignaturaHorario->getAsignaturaHorarioFirst($asignatura_horario_uuid);
+			$docente = $this->Session->read('DocenteLogueado');
+			if (empty($asignatura_horario)) {
+				$this->Session->setFlash('Los datos enviados no coinciden. Intente nuevamente.','mensaje-error');
+				$this->redirect(array('action'=>'getEventos'));
+			}
+			$this->loadModel('AlumnoAsignatura');
+			$alumnos = $this->AlumnoAsignatura->getListadoAsistenciaReg($asignatura_horario['AsignaturaHorario']['COD_PERIODO'],$asignatura_horario['AsignaturaHorario']['COD_ASIGNATURA_HORARIO']);
+			$this->loadModel('ProgramacionClase');
+			$total_clases = $this->ProgramacionClase->find('count',array('conditions'=>array('COD_ASIGNATURA_HORARIO'=>$asignatura_horario['AsignaturaHorario']['COD_ASIGNATURA_HORARIO'])));
+			$indicadores = $this->ProgramacionClase->getIndicadoresAlumno($asignatura_horario['AsignaturaHorario']['COD_ASIGNATURA_HORARIO']);
+			$this->set(array(
+				'asignatura_horario'=>$asignatura_horario,
+				'alumnos'=>$alumnos,
+				'indicadores'=>$indicadores,
+				'total_clases'=>$total_clases
+			));
+		}	
 		public function historicoAsistenciaTodoExcel($asignatura_horario_uuid=null)
 		{
 			$this->layout = 'excel';
@@ -1089,9 +1125,13 @@
 				$this->redirect(array('action'=>'historicoAsistencia',$asignatura_horario_uuid));
 			}
 			$this->loadModel('AlumnoAsignatura');
-			$alumnos = $this->AlumnoAsignatura->getListadoAsistencia($asignatura_horario['AsignaturaHorario']['SIGLA_SECCION'],$asignatura_horario['AsignaturaHorario']['COD_PERIODO'],$asignatura_horario['AsignaturaHorario']['COD_SEDE']);
+			$alumnos = $this->AlumnoAsignatura->getListadoAsistenciaReg($asignatura_horario['AsignaturaHorario']['COD_PERIODO'],$asignatura_horario['AsignaturaHorario']['COD_ASIGNATURA_HORARIO']);
+
+			// debug($alumnos);exit();
 			$this->loadModel('ProgramacionClase');
 			$programacion_clases = $this->ProgramacionClase->getProgramacionByAsignaturaHorarioFull($asignatura_horario_uuid);
+
+			// debug($programacion_clases);exit();
 			if (!empty($alumnos)) {
 				$this->loadModel('Asistencia');
 				foreach ($alumnos as $key => $alumno) {
@@ -1102,7 +1142,7 @@
 				}
 			}
 			$this->loadModel('ProgramacionClase');
-			$indicadores = $this->ProgramacionClase->getIndicadoresAlumno($asignatura_horario['AsignaturaHorario']['SIGLA_SECCION']);
+			$indicadores = $this->ProgramacionClase->getIndicadoresAlumno($asignatura_horario['AsignaturaHorario']['COD_ASIGNATURA_HORARIO']);
 			$puntero_tabla_hitorico_todo = $this->ProgramacionClase->getIndicadoresAlumnoForHistorico($asignatura_horario['AsignaturaHorario']['COD_ASIGNATURA_HORARIO']);
 			$this->set(array(
 				'asignatura_horario'=>$asignatura_horario,
@@ -1119,11 +1159,11 @@
 			$asignatura_horario = $this->AsignaturaHorario->getAsignaturaHorarioFirst($asignatura_horario_uuid);
 			$docente = $this->Session->read('DocenteLogueado');
 			if (empty($asignatura_horario)) {
-				echo '<script>notifyUser("Ha ocurrido un error inesperado. Intente m&aacute;s tarde.","danger"); </script>';
+				echo '<script>notifyUser("Ha ocurrido un error inesperado. Intente más tarde.","danger"); </script>';
 				exit();
 			}
 			$this->loadModel('AlumnoAsignatura');
-			$alumnos = $this->AlumnoAsignatura->getListadoAsistencia($asignatura_horario['AsignaturaHorario']['SIGLA_SECCION'],$asignatura_horario['AsignaturaHorario']['COD_PERIODO'],$asignatura_horario['AsignaturaHorario']['COD_SEDE']);
+			$alumnos = $this->AlumnoAsignatura->getListadoAsistenciaReg($asignatura_horario['AsignaturaHorario']['COD_PERIODO'],$asignatura_horario['AsignaturaHorario']['COD_ASIGNATURA_HORARIO']);
 			$this->loadModel('ProgramacionClase');
 			$programacion_clases = $this->ProgramacionClase->getProgramacionByAsignaturaHorarioFull($asignatura_horario_uuid);
 			if (!empty($alumnos)) {
@@ -1136,7 +1176,7 @@
 				}
 			}
 			$this->loadModel('ProgramacionClase');
-			$indicadores = $this->ProgramacionClase->getIndicadoresAlumno($asignatura_horario['AsignaturaHorario']['SIGLA_SECCION']);
+			$indicadores = $this->ProgramacionClase->getIndicadoresAlumno($asignatura_horario['AsignaturaHorario']['COD_ASIGNATURA_HORARIO']);
 			$puntero_tabla_hitorico_todo = $this->ProgramacionClase->getIndicadoresAlumnoForHistorico($asignatura_horario['AsignaturaHorario']['COD_ASIGNATURA_HORARIO']);
 			$this->set(array(
 				'asignatura_horario'=>$asignatura_horario,
@@ -1148,32 +1188,11 @@
 			$this->Mpdf->setFilename('historico_asistencia_por_curso.pdf');
 			$this->Mpdf->addPage('L');
 			$this->Mpdf->setOutput('A');
-			$footer = '<div align="right">P&aacute;gina {PAGENO} de {nb}</div>';
+			$footer = '<div align="right">Página {PAGENO} de {nb}</div>';
 			$this->Mpdf->SetHTMLFooter($footer);	
 		}
 
-		public function historicoAsistenciaCursoExcel($asignatura_horario_uuid=null)
-		{
-			$this->layout = 'ajax';
-			$this->loadModel('AsignaturaHorario');
-			$asignatura_horario = $this->AsignaturaHorario->getAsignaturaHorarioFirst($asignatura_horario_uuid);
-			$docente = $this->Session->read('DocenteLogueado');
-			if (empty($asignatura_horario)) {
-				$this->Session->setFlash('Los datos enviados no coinciden. Intente nuevamente.','mensaje-error');
-				$this->redirect(array('action'=>'getEventos'));
-			}
-			$this->loadModel('AlumnoAsignatura');
-			$alumnos = $this->AlumnoAsignatura->getListadoAlumnosSeccion($asignatura_horario['AsignaturaHorario']['COD_ASIGNATURA_HORARIO']);
-			$this->loadModel('ProgramacionClase');
-			$total_clases = $this->ProgramacionClase->find('count',array('conditions'=>array('SIGLA_SECCION'=>$asignatura_horario['AsignaturaHorario']['SIGLA_SECCION'])));
-			$indicadores = $this->ProgramacionClase->getIndicadoresAlumno($asignatura_horario['AsignaturaHorario']['SIGLA_SECCION']);
-			$this->set(array(
-				'asignatura_horario'=>$asignatura_horario,
-				'alumnos'=>$alumnos,
-				'indicadores'=>$indicadores,
-				'total_clases'=>$total_clases
-			));
-		}	
+		
 
 		public function historicoAsistenciaExcel($asignatura_horario_uuid=null,$cod_alumno=null)
 		{
@@ -1187,6 +1206,8 @@
 			}
 			$this->loadModel('ProgramacionClase');
 			$programacion_clases = $this->ProgramacionClase->getProgramacionByAlumnoAsignatura($asignatura_horario['AsignaturaHorario']['COD_ASIGNATURA_HORARIO'],$cod_alumno);
+
+			// debug($programacion_clases);exit();
 			$this->loadModel('Alumno');
 			$alumno = $this->Alumno->find('first',array('conditions'=>array('ID'=>$cod_alumno)));
 			$this->set(array(
@@ -1204,11 +1225,12 @@
 			$asignatura_horario = $this->AsignaturaHorario->getAsignaturaHorarioFirst($asignatura_horario_uuid);
 			$docente = $this->Session->read('DocenteLogueado');
 			if (empty($asignatura_horario)) {
-				echo '<script>notifyUser("Ha ocurrido un error inesperado. Intente m&aacute;s tarde.","danger"); </script>';
+				echo '<script>notifyUser("Ha ocurrido un error inesperado. Intente más tarde.","danger"); </script>';
 				exit();
 			}
+			
 			$this->loadModel('AlumnoAsignatura');
-			$alumnos = $this->AlumnoAsignatura->getListadoAsistencia($asignatura_horario['AsignaturaHorario']['COD_PERIODO'],$asignatura_horario['AsignaturaHorario']['COD_SEDE'],$asignatura_horario_uuid);
+			$alumnos = $this->AlumnoAsignatura->getListadoAsistenciaReg($asignatura_horario['AsignaturaHorario']['COD_PERIODO'],$asignatura_horario_uuid);
 			$this->loadModel('ProgramacionClase');
 			$programacion_clases = $this->ProgramacionClase->getProgramacionByAsignaturaHorarioFull($asignatura_horario_uuid);
 			if (!empty($alumnos)) {
@@ -1238,7 +1260,7 @@
 			$asignatura_horario = $this->AsignaturaHorario->getAsignaturaHorarioFirst($asignatura_horario_uuid);
 			$docente = $this->Session->read('DocenteLogueado');
 			if (empty($asignatura_horario)) {
-				echo '<script>notifyUser("Ha ocurrido un error inesperado. Intente m&aacute;s tarde.","danger"); </script>';
+				echo '<script>notifyUser("Ha ocurrido un error inesperado. Intente más tarde.","danger"); </script>';
 				exit();
 			}
 			$this->loadModel('ProgramacionClase');
@@ -1259,11 +1281,14 @@
 			$asignatura_horario = $this->AsignaturaHorario->getAsignaturaHorarioFirst($asignatura_horario_uuid);
 			$docente = $this->Session->read('DocenteLogueado');
 			if (empty($asignatura_horario)) {
-				echo '<script>notifyUser("Ha ocurrido un error inesperado. Intente m&aacute;s tarde.","danger"); </script>';
+				echo '<script>notifyUser("Ha ocurrido un error inesperado. Intente más tarde.","danger"); </script>';
 				exit();
 			}
 			$this->loadModel('AlumnoAsignatura');
-			$alumnos = $this->AlumnoAsignatura->getListadoAlumnosSeccion($asignatura_horario['AsignaturaHorario']['COD_ASIGNATURA_HORARIO']);
+			//$a = $asignatura_horario['AsignaturaHorario']['COD_SEDE'];
+			//debug($a);exit();
+
+			$alumnos = $this->AlumnoAsignatura->getListadoAsistenciaReg($asignatura_horario['AsignaturaHorario']['COD_PERIODO'],$asignatura_horario['AsignaturaHorario']['COD_ASIGNATURA_HORARIO']);
 			$this->loadModel('ProgramacionClase');
 			$total_clases = $this->ProgramacionClase->find('count',array('conditions'=>array('COD_ASIGNATURA_HORARIO'=>$asignatura_horario['AsignaturaHorario']['COD_ASIGNATURA_HORARIO'])));
 			$indicadores = $this->ProgramacionClase->getIndicadoresAlumno($asignatura_horario['AsignaturaHorario']['COD_ASIGNATURA_HORARIO']);
@@ -1357,7 +1382,7 @@
 			}
 			$this->Mpdf->init(array('format' => 'A4-L','margin_top' => 20,'margin_bottom'=>20));
 			$this->Mpdf->setFilename('botacora_detalle.pdf');
-			$this->Mpdf->SetHTMLFooter('<div align="right">P&aacute;gina {PAGENO} de {nb}</div>');
+			$this->Mpdf->SetHTMLFooter('<div align="right">Página {PAGENO} de {nb}</div>');
 			$this->Mpdf->setOutput('A');
 		}
 
@@ -1385,10 +1410,10 @@
 				));
 				$this->layout = null;
 				$this->Mpdf->init(array('margin_top' => 20,'margin_bottom'=>20,'margin_left'=>10,'margin_right'=>10));
-				$this->Mpdf->setFilename('Bit&aacute;cora'.$asignatura_horario['Asignatura']['NOMBRE'].'.pdf');
+				$this->Mpdf->setFilename('Bitácora'.$asignatura_horario['Asignatura']['NOMBRE'].'.pdf');
 				$this->Mpdf->addPage('L');
 				$this->Mpdf->setOutput('a');
-				$footer = '<div align="right">P&aacute;gina {PAGENO} de {nb}</div>';
+				$footer = '<div align="right">Página {PAGENO} de {nb}</div>';
 				$this->Mpdf->SetHTMLFooter($footer);
 			}
 		}

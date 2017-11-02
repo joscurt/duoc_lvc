@@ -2,7 +2,7 @@
 	id="form-bitacora-send"
 	action="<?php echo $this->Html->url(array('action'=>'saveBitacora',$programacion_clase['ProgramacionClase']['COD_PROGRAMACION'])); ?>">
 	<div class="modal-header">
-		<h4 class="modal-title">Bit&aacute;cora Clase <?php echo $programacion_clase['ProgramacionClase']['SIGLA_SECCION']; ?>(T) - <?php echo $programacion_clase['Asignatura']['NOMBRE']; ?></h4>
+		<h4 class="modal-title">Bit&aacute;cora Clase <?php echo $programacion_clase['ProgramacionClase']['SIGLA_SECCION']; ?>-<?php echo $programacion_clase['ProgramacionClase']['MODALIDAD']; ?> - <?php echo $programacion_clase['Asignatura']['NOMBRE']; ?></h4>
 	</div>
 	<div class="modal-body">
 		<div class="form-group" style="max-height: 500px;overflow: auto;">

@@ -13,7 +13,7 @@
 						<option value="<?php echo $this->Html->url(array('action'=>'login')); ?>">DOCENTE</option>
 						<option value="<?php echo $this->Html->url(array('action'=>'loginBackOffice')); ?>">BACKOFFICE</option>
 						<option value="<?php echo $this->Html->url(array('action'=>'loginCoordinador')); ?>">COORDINADOR DOCENTE</option>
-
+<!-- <option value="<?php echo $this->Html->url(array('action'=>'login')); ?>">DOCENTE</option> -->
 						<option value="<?php echo $this->Html->url(array('action'=>'loginDirector')); ?>">DIRECTORES</option>
 					</select>
 				</div>
@@ -58,7 +58,7 @@
 			style="background: #34495e;border: 2px solid #ddd;" 
 			class="btn btn-login btn-danger btn-float">
 			<i style="color: #FCA60A;" class="md md-arrow-forward"></i></button>
-			<span><strong>Versi&oacute;n QA 3 - Fecha:14/09/2017</strong></span>
+			<span><strong>Versi&oacute;n - Fecha:31/10/2017</strong></span>
 	</div>
 </form>
 <script>

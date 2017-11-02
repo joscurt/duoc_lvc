@@ -79,7 +79,7 @@
         $objPHPExcel->setActiveSheetIndex()->setCellValue('D'.$fila, !empty($detalle['ProgramacionClase']['FECHA_REGISTRAR_ASISTENCIA'])?date('d-m-Y', strtotime($detalle['ProgramacionClase']['FECHA_REGISTRAR_ASISTENCIA'])):null);
         $objPHPExcel->setActiveSheetIndex()->setCellValue('E'.$fila, $detalle['ProgramacionClase']['MODALIDAD']);
         $objPHPExcel->setActiveSheetIndex()->setCellValue('F'.$fila, !empty($detalle['ProgramacionClase']['HORA_INICIO'])?date('H:i', strtotime($detalle['ProgramacionClase']['HORA_INICIO'])).' - '.date('H:i', strtotime($detalle['ProgramacionClase']['HORA_FIN'])):null);
-       	$objPHPExcel->setActiveSheetIndex()->setCellValue('G'.$fila, utf8_encode($detalle['Docente']['NOMBRE'].' '.$detalle['Docente']['APELLIDO_PAT'].' '.$detalle['Docente']['APELLIDO_MAT']));
+       	$objPHPExcel->setActiveSheetIndex()->setCellValue('G'.$fila, ($detalle['Docente']['NOMBRE'].' '.$detalle['Docente']['APELLIDO_PAT'].' '.$detalle['Docente']['APELLIDO_MAT']));
         $objPHPExcel->setActiveSheetIndex()->setCellValue('H'.$fila, $detalle['ProgramacionClase']['TIPO_EVENTO']);
         $objPHPExcel->setActiveSheetIndex()->setCellValue('I'.$fila, $detalle['bitacora']==true ? 'S&iacute;': 'No');
         $objPHPExcel->setActiveSheetIndex()->setCellValue('J'.$fila, 'Bit&aacute;cora Docente');

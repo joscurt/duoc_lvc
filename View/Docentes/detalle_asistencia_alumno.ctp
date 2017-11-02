@@ -46,7 +46,7 @@
 						</td>
 						<td class="text-left">
 							<?php 
-								echo utf8_encode($value['Docente']['NOMBRE'].' '.
+								echo ($value['Docente']['NOMBRE'].' '.
 								$value['Docente']['APELLIDO_PAT'].' '.
 								$value['Docente']['APELLIDO_MAT']); 
 							?>	
@@ -95,8 +95,7 @@
 			href="<?php echo $this->Html->url(array('action'=>'getEventos',$asignatura_horario['AsignaturaHorario']['COD_PERIODO'])) ?>"
 			><i class="fa fa-arrow-left"></i>&nbsp;Volver a Eventos</a>
 		<a class="btn btn-sm btn-default" 
-			href="<?php echo $this->Html->url(array('action'=>'historicoAsistenciaPDF',$value['ProgramacionClase']['COD_ASIGNATURA_HORARIO'],$alumno['Alumno']['ID'])); ?>"
-			><i  style="color:red;" class="fa fa-file-pdf-o"></i>&nbsp;EXPORTAR A PDF</a>
+			href="<?php echo $this->Html->url(array('action'=>'historicoAsistenciaPDF',$value['ProgramacionClase']['COD_ASIGNATURA_HORARIO'],$alumno['Alumno']['ID'])); ?>" target="_blank"><i  style="color:red;" class="fa fa-file-pdf-o"></i>&nbsp;EXPORTAR A PDF</a>
 		<a class="btn btn-sm btn-default" 
 			href="<?php echo $this->Html->url(array('action'=>'historicoAsistenciaExcel',$value['ProgramacionClase']['COD_ASIGNATURA_HORARIO'],$alumno['Alumno']['ID'])); ?>"
 			><i  style="color:green;" class="fa fa-file-excel-o"></i>&nbsp;EXPORTAR A EXCEL</a>	

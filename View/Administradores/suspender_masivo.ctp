@@ -125,7 +125,7 @@
 		<table class="table table-hover table-striped" >
 			<thead>
 				<tr>
-					<th class="td-app">Nº</th>
+					<th class="td-app">N&deg;</th>
 					<th class="td-app">Sede</th>
 					<th class="td-app">Jornada</th>
 					<th class="td-app">Carrera</th>

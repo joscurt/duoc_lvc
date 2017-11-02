@@ -151,6 +151,12 @@
         var fecha = $('#input-datetimepicker-fecha-clase').val();
         var hora_inicio = $('#select-hora-inicio').val();
         var hora_fin = $('#select-hora-fin').val();
+
+        var parametros = {
+            fecha : $('#input-datetimepicker-fecha-clase').val(),
+            hora_inicio : $('#select-hora-inicio').val(),
+            hora_fin : $('#select-hora-fin').val()
+                }
        /* $.ajax({
                 url: '<?php echo $this->Html->url(array('action'=>'listaDocentesConTope',$programacion_clase['ProgramacionClase']['COD_PROGRAMACION'])); ?>',
                 type: 'POST',
@@ -163,12 +169,15 @@
             $('#content-lista-docentes').empty();
             var elemento_click = $(this);
             elemento_click.html("<i class='fa fa-cog fa-spin'></i>");
-            $('#content-lista-docentes').load("<?php echo $this->Html->url(array('action'=>'listaDocentesConTope',$programacion_clase['ProgramacionClase']['COD_PROGRAMACION'])); ?>",function(){
+            $('#content-lista-docentes').load("<?php echo $this->Html->url(array('action'=>'listaDocentesConTope',$programacion_clase['ProgramacionClase']['COD_PROGRAMACION'])); ?>?fecha="+ $('#input-date-fecha-programada').val()+"&hora_inicio="+$('#select-hora-inicio').val()+"&hora_fin="+$('#select-hora-fin').val()
+                ,function(){
                 var fecha = $('#input-datetimepicker-fecha-clase').val();
                 var hora_inicio = $('#select-hora-inicio').val();
                 var hora_fin = $('#select-hora-fin').val();
                 elemento_click.html("TOPE HORARIO DOCENTES");
-            });
+            }
+            );
+            //?&fecha="+ $('#input-date-fecha-programada').val())
         
     });
 //=====================================================================================================================
@@ -196,6 +205,7 @@
                 $.ajax({
                     url: '<?php echo $this->Html->url(array('action'=>'getDocDisponiblesByHorarioProg')); ?>',
                     type: 'POST',
+                    contentType: 'application/x-www-form-urlencoded;charset=utf-8',
                     dataType: 'json',
                     data:{fecha:fecha,hora_inicio:hora_inicio,hora_fin:hora_fin},
                 }).fail(function() {

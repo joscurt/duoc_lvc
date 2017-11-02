@@ -11,7 +11,7 @@
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
     </div>
     <div class="modal-body">
-        ¿Seguro que desea <?php echo $accion ?> <strong><?php echo $rechazo_bd['MotivosRechazoReforzamiento']['MOTIVO']; ?>?</strong>
+        &iquest;Seguro que desea <?php echo $accion ?> <strong><?php echo $rechazo_bd['MotivosRechazoReforzamiento']['MOTIVO']; ?>&#63;</strong>
         <input type="hidden" name="data[Rechazo][COD]" value="<?php echo $rechazo_bd['MotivosRechazoReforzamiento']['COD']; ?>">
         <input type="hidden" name="data[Rechazo][ACTIVO]" value="<?php echo $active; ?>">
     </div>

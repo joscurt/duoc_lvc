@@ -308,7 +308,7 @@
 	            showCancelButton: true, 
 	            cancelButtonText: "<?php echo __('Cancelar'); ?>",   
 	            confirmButtonColor: "#DD6B55",   
-	            confirmButtonText: "S&iacute;, Estoy Seguro!",   
+	            confirmButtonText: "Si, Estoy Seguro!",   
 	            closeOnConfirm: false,
 	        }, function(){
 	        	form.append('<input name="data[borrador]" type="hidden" value="0" /> ');

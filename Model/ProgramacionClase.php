@@ -177,7 +177,7 @@
 				LEFT JOIN DOCENTES Docente ON (ProgramacionClase.COD_DOCENTE = Docente.COD_DOCENTE)
 				LEFT JOIN ESTADOS EstadoProgramacion ON (ProgramacionClase.ESTADO_PROGRAMACION_ID = EstadoProgramacion.ID)
 				LEFT JOIN LVC_VIEW_SALAS Sala ON (ProgramacionClase.SALA = Sala.COD_SALA)
-				WHERE ProgramacionClase.COD_SEDE = '".$cod_sede."'
+				WHERE EstadoProgramacion.ID = 2 AND ProgramacionClase.COD_SEDE = '".$cod_sede."'
 				".$where_and." 
 				".$ordenar;
 			$response = $this->query($sql);
@@ -294,12 +294,17 @@
 			}
 			$conditions['Semana.ANHO'] = $anho;
 			$conditions['Semana.SEMESTRE'] = $semestre;
-			$semanas = $Semana->find('all',array('conditions'=>$conditions));
+			$order = 'Semana.ID';
+
+			$semanas = $Semana->find('all',array('conditions'=>$conditions,'order'=>$order));
+
+			// debug($semanas);exit();
 			$resultado_final = array();
 			foreach ($semanas as $key => $value) {
 				$resultado_final[$value['Semana']['ID']]['Horarios'] =  $this->getCargaHorarioDocente($sedes,$cod_docente,$value['Semana']['FECHA_INICIO'],$value['Semana']['FECHA_FIN']);
 				$resultado_final[$value['Semana']['ID']]['Semana'] = $value['Semana'];
 			}
+
 			return $resultado_final;
 		}
 
@@ -334,6 +339,7 @@
 					".$sedes_string."
 				ORDER BY TO_CHAR(ProgramacionClase.HORA_INICIO,'HH24:MI') ";
 			$response = $this->query($sql);
+			#debug($response);exit();
 			$response_final = array();
 			foreach ($response as $key => $value) {
 				$hora_inicio = date('H:i',strtotime($value['ProgramacionClase']['HORA_INICIO']));
@@ -361,7 +367,15 @@
 				)
 			));
 		}
+		#Cuenta alumnos justificados por el profesor.
+		public function countClasesJustificadas($cod_asignatura_horario=null){
+			$sql = $this->find("count", array(
+				'conditions'=>array(
 
+					)
+				));
+
+		}
 		# ------------------------------------------------------------------------------------------
 		public function countClasesRegulares($cod_asignatura_horario=null)
 		{
@@ -441,16 +455,8 @@
 		public function getIndicadoresAlumno($cod_asignatura_horario=null)
 		{
 			$sql = "
-
-				SELECT
-			    clases_impartidas,
-			     total_clases_all clases_presente,
-			    clases_ausente,		   
-			    A.ID_ALUMNO
-			FROM
-			    vw_asistencia_final A
-			    WHERE
-			    A.COD_HORARIO_ASIGNATURA = '".$cod_asignatura_horario."'
+			SELECT clases_impartidas, total_clases_all clases_presente, clases_ausente, clases_justificados, A.ID_ALUMNO
+			FROM vw_asistencia_final A WHERE A.COD_HORARIO_ASIGNATURA = '".$cod_asignatura_horario."'
 
 			";
 
@@ -460,6 +466,7 @@
 				$response_final[$value['A']['ID_ALUMNO']]['CLASES_AUSENTE'] = $value['0']['clases_ausente'];
 				$response_final[$value['A']['ID_ALUMNO']]['CLASES_PRESENTE'] = $value['0']['clases_presente'];
 				$response_final[$value['A']['ID_ALUMNO']]['CLASES_IMPARTIDAS'] = $value['0']['clases_impartidas'];
+				$response_final[$value['A']['ID_ALUMNO']]['CLASES_JUSTIFICADOS'] = $value['0']['clases_justificados'];
 				$response_final[$value['A']['ID_ALUMNO']]['COD_ALUMNO'] = $value['A']['ID_ALUMNO'];
 			}
 			#debug($response);exit();
@@ -492,6 +499,10 @@
 		# ------------------------------------------------------------------------------------------
 		public function getProgramacionByAsignaturaHorario($cod_docente=null,$cod_sede=null,$cod_asignatura_horario=null,$fecha_desde=null,$fecha_hasta=null)
 		{
+
+			#debug($fecha_desde);
+			#debug($fecha_hasta);
+			// exit();
 			$fecha_desde = 'TO_DATE(\''.$fecha_desde.'\')';
 			$fecha_hasta = 'TO_DATE(\''.$fecha_hasta.'\')';
 			$result = $this->find('all',array(
@@ -569,7 +580,7 @@
 						'table'=>'LVC_VIEW_SALAS',
 						'alias'=>'SalaReemplazo',
 						'conditions'=>array(
-							'SalaReemplazo.ID = ProgramacionClase.SALA_REEMPLAZO'
+							'SalaReemplazo.COD_SALA = ProgramacionClase.SALA_REEMPLAZO'
 						)
 					),
 				),
@@ -819,8 +830,7 @@
 				'conditions'=>$condiciones,
 				'order'=>$order,
 			));
-			#debug($filtro);
-			#debug($this->getLastQuery());exit();
+			#debug($this->getLastQuery());
 			return $clases;
 		}
 
@@ -995,7 +1005,7 @@
 
 		}
 		public function getProgramacionAdelantar($cod_programacion=null){
-
+		// debug($cod_programacion);exit();
 			$result = $this->find('first', array(
 				'fields'=>array(
 					'ProgramacionClase.ID',
@@ -1005,7 +1015,7 @@
 					'ProgramacionClase.COD_PROGRAMACION_PADRE'
 					),
 				'conditions'=>array(
-							'ProgramacionClase.COD_PROGRAMACION_PADRE'=>$cod_programacion
+							'ProgramacionClase.COD_PROGRAMACION'=>$cod_programacion
 						),
 				'order'=>'ProgramacionClase.ID DESC',
 				));
@@ -1667,6 +1677,7 @@
 		# -esta es la grilla de autorizar clase-----------------------------------------------------------------------------------------
 		public function getDatosTablaAutorizacionClaseNew($fecha_desde=null, $fecha_hasta=null, $sede_id=null,$filtro=null,$filtro_value = null,$ordenar=null) 
 		{
+
 			if (!empty($fecha_desde) && !empty($fecha_hasta)) {
 				$fecha_desde = "TO_DATE('".$fecha_desde."')";
 				$fecha_hasta = "TO_DATE('".$fecha_hasta."')";
@@ -1780,7 +1791,7 @@
 						'table'=>'LVC_VIEW_SALAS',
 						'alias'=>'SalaReemplazo',
 						'conditions'=>array(
-							'SalaReemplazo.ID = ProgramacionClase.SALA_REEMPLAZO'
+							'SalaReemplazo.COD_SALA = ProgramacionClase.SALA_REEMPLAZO'
 						)
 					),
 					array(
@@ -1803,7 +1814,7 @@
 
 
 
-		# -esta es la grilla de autorizar JUSTIFICADOS-----------------------------------------------------------------------------------------
+		# -esta es la grilla de autorizar JUSTIFICADOS , MUESTRA CLASES CON JUSTIFICADOS AL IRECTOR , QUE AUN NO ESTEN AUTORIZADOS -----------------------------------------------------------------------------------------
 		public function getDatosTablaAutorizacionJustificados($fecha_desde=null, $fecha_hasta=null, $sede_id=null,$filtro=null,$filtro_value = null,$ordenar=null) 
 		{
 			if (!empty($fecha_desde) && !empty($fecha_hasta)) {
@@ -1842,7 +1853,7 @@
 			$clases_jornada = $this->find('all', array(
 				'conditions'=>$conditions,
 				'fields'=>array(
-					'ProgramacionClase.ID',
+					'DISTINCT ProgramacionClase.ID',
 					'ProgramacionClase.COD_DOCENTE',
 					'ProgramacionClase.HORA_INICIO',
 					'ProgramacionClase.HORA_FIN',
@@ -1935,7 +1946,7 @@
 						'table'=>'VW_CLASES_JUSTIFICADO',
 						'alias'=>'Justificados',
 						'conditions'=>array(
-							'Justificados.COD_PROGRAMACION = ProgramacionClase.COD_PROGRAMACION'
+						'Justificados.COD_PROGRAMACION = ProgramacionClase.COD_PROGRAMACION'
 						)
 					)
 				),
@@ -2024,17 +2035,22 @@
 		{
 			#debug($filtro_value);exit();
 			if (!empty($fecha_desde) && !empty($fecha_hasta)) {
-				$fecha_desde = "TO_DATE('".$fecha_desde."')";
-				$fecha_hasta = "TO_DATE('".$fecha_hasta."')";
+				$fecha_desde = "TO_DATE('".$fecha_desde."','YYYY-MM-DD')";
+				$fecha_hasta = "TO_DATE('".$fecha_hasta."','YYYY-MM-DD')";
 				$conditions = array(
 					'ProgramacionClase.FECHA_CLASE BETWEEN '.$fecha_desde.' AND '.$fecha_hasta,
+					//$filtro=>$filtro_value,
 					'Detalle.ID'=>array(3,4,5),
+					'Estado.ID'=> 2,
+					//'SubEstado.ID'=> 5,  
 					'ProgramacionClase.COD_SEDE'=>$sede_id
 				);
-				$conditions['OR']=array('ProgramacionClase.SUB_ESTADO_PROGRAMACION_ID'=>'7','ProgramacionClase.WF_ESTADO_ID'=>'5');
+				//$conditions['OR']=array('ProgramacionClase.SUB_ESTADO_PROGRAMACION_ID'=>'7','ProgramacionClase.WF_ESTADO_ID'=>'5');
 			}else{
 				$conditions = array(
 					'Detalle.ID'=>array(3,4,5),
+					//'SubEstado.ID'=> 5,  
+					'Estado.ID'=> 2, 
 					'ProgramacionClase.COD_SEDE'=>$sede_id,
 				);
 				$conditions['OR']=array('ProgramacionClase.SUB_ESTADO_PROGRAMACION_ID'=>'7','ProgramacionClase.WF_ESTADO_ID'=>'5');
@@ -2050,11 +2066,16 @@
 				$conditions['ProgramacionClase.DETALLE_ID'] = $filtro_value;
 			}elseif(!empty($filtro)){
 				$conditions[$filtro] = $filtro_value;
+				#DEBUG($conditions[$filtro]);exit();
+
 			}
 			$clases_jornadas = $this->find('all', array(
 				'conditions'=>$conditions,
 				'fields'=>array(
 					'DISTINCT ProgramacionClase.COD_PROGRAMACION',
+					'ProgramacionClase.WF_ESTADO_ID',
+					'ProgramacionClase.ID',
+					'ProgramacionClase.DETALLE_ID',
 					'ProgramacionClase.COD_DOCENTE',
 					'ProgramacionClase.HORA_INICIO',
 					'ProgramacionClase.HORA_FIN',
@@ -2070,6 +2091,7 @@
 					'Docente.APELLIDO_MAT',
 					'Docente.RUT',
 					'Docente.DV',
+					'Estado.NOMBRE',
 					'Detalle.DETALLE',
 					'SubEstado.NOMBRE',
 					'Sala.TIPO_SALA',
@@ -2082,6 +2104,14 @@
 						'alias'=>'Docente',
 						'conditions'=>array(
 							'ProgramacionClase.COD_DOCENTE = Docente.COD_DOCENTE'
+						)
+					),
+					array(
+						'type'=>'LEFT',
+						'table'=>'ESTADOS',
+						'alias'=>'Estado',
+						'conditions'=>array(
+							'Estado.ID = ProgramacionClase.ESTADO_PROGRAMACION_ID'
 						)
 					),
 					array(
@@ -2133,30 +2163,40 @@
 						)
 					)
 				),
+				//'conditions'=>$condiciones,
 				'order'=>$ordenar
 			));
-			#debug($this->getLastQuery());exit();
+			// var_dump($clases_jornadas);exit();
+			# debug($this->getLastQuery());exit();
 			return $clases_jornadas;
 		}
 
 		# ------------------------------------------------------------------------------------------
-		public function getDatosTablaRecuperarClaseNewMultiple($conditions=array(),$ordenar=null) 
+		public function getDatosTablaRecuperarClaseNewMultiple($conditions=array(),$ordenar=null,$sede_id=null) 
 		{
 
-			#debug($conditions);exit();
+			// 
+		
+			if(isset($conditions['ProgramacionClase.SIGLA_SECCION'])){
 			$c = $conditions['ProgramacionClase.SIGLA_SECCION'];
 			$pattern = '/\- \([0-9]+\.[0-9]+\)$/m';
 			$vehiculo=preg_replace('/( [\s\S]+)/', '', $c);
-			#$vehiculo=trim($vehiculo);
 
-			#debug($vehiculo);exit();
-			if(isset($conditions['ProgramacionClase.SIGLA_SECCION'])){
 				$conditions['ProgramacionClase.SIGLA_SECCION']=$vehiculo;
-			}/*else{
+			}
+			/*else{
 				$conditions['ProgramacionClase.SIGLA_SECCION']=null;
 			}*/
-			$conditions['Detalle.ID']=array(3,4,5);
-			$conditions['ProgramacionClase.SUB_ESTADO_PROGRAMACION_ID']=7;
+
+			$conditions['AND'] = array(
+				'Detalle.ID'=> array(3,4,5),
+				'Estado.ID' => 2,
+				'ProgramacionClase.COD_SEDE'=> $sede_id,
+
+					);
+			// debug($conditions);exit();
+			// $conditions['Detalle.ID']=array(3,4,5);
+			#$conditions['ProgramacionClase.SUB_ESTADO_PROGRAMACION_ID']=7;
 			$clases_jornada = $this->find('all', array(
 				'conditions'=>$conditions,
 				'fields'=>array(
@@ -2177,6 +2217,7 @@
 					'Docente.RUT',
 					'Docente.DV',
 					'Detalle.DETALLE',
+					'Estado.NOMBRE',
 					'Sala.TIPO_SALA',
 					'SubEstado.NOMBRE',
 					'SalaReemplazo.TIPO_SALA'
@@ -2188,6 +2229,14 @@
 						'alias'=>'Docente',
 						'conditions'=>array(
 							'ProgramacionClase.COD_DOCENTE = Docente.COD_DOCENTE'
+						)
+					),
+					array(
+						'type'=>'LEFT',
+						'table'=>'ESTADOS',
+						'alias'=>'Estado',
+						'conditions'=>array(
+							'Estado.ID = ProgramacionClase.ESTADO_PROGRAMACION_ID'
 						)
 					),
 					array(
@@ -2219,7 +2268,7 @@
 						'table'=>'LVC_VIEW_SALAS',
 						'alias'=>'SalaReemplazo',
 						'conditions'=>array(
-							'SalaReemplazo.ID = ProgramacionClase.SALA_REEMPLAZO'
+							'SalaReemplazo.COD_SALA = ProgramacionClase.SALA_REEMPLAZO'
 						)
 					),
 					array(
@@ -2482,6 +2531,8 @@
 		{
 			$conditions = array(
 				'ProgramacionClase.COD_SEDE'=>$sede_id,
+				'AsignaturaHorario.CLASES_REGISTRADAS >'=> 0,
+				'AsignaturaHorario.CLASES_REGISTRADAS IS NOT NULL',
 				);
 			if (in_array($filtro, array('Docente.RUT','Docente.NOMBRE','Docente.COD_FUNCIONARIO'))) {
 				unset($conditions[$filtro]);
@@ -2542,7 +2593,8 @@
 						)
 					),
 				),
-				'order'=>$ordenar
+				'order'=>$ordenar,
+				'limit'=>100,
 			));	
 			#debug($this->getLastQuery());exit();
 			$response = array();
@@ -2882,8 +2934,6 @@
 			return $result;
 		}
 
-
-
 		public function getIdTopeHorarioDocente($cod_sede=null,$sigla_seccion=null,$cod_periodo=null,$anho=null,$semestre=null,$hora_inicio=null,$hora_fin=null,$programacion_id=null,$fecha=null)
 		{
 
@@ -2897,6 +2947,8 @@
 				AND ProgramacionClase.ANHO = '".$anho."'
 				AND ProgramacionClase.ID != '".$programacion_id."'
 				AND ProgramacionClase.COD_SEDE = '".$cod_sede."'
+				AND ProgramacionClase.FECHA_CLASE = '".$fecha."'
+				
 				AND (
 					ProgramacionClase.HORA_INICIO BETWEEN TO_DATE(
 						'".$hora_inicio."',
@@ -2945,10 +2997,10 @@
 					AND TO_DATE(
 						'".$hora_fin."',
 						'YYYY-MM-DD HH24:MI:SS'
-					)					
+					)
 				)
 			";
-	
+
 			$result = $this->query($sql);
 			#debug($this->getLastQuery());
 			return $result;
@@ -2964,15 +3016,17 @@
 		# ------------------------------------------------------------------------------------------
 		#REPORTES
 		#REPORTE 1 C.D.
-		public function getNominaClasesRecuperarAdelantar($fecha_desde=null,$fecha_hasta=null,$cod_docente=null,$nombre_asignatura=null,$order=null)
+		public function getNominaClasesRecuperarAdelantar($fecha_desde=null,$fecha_hasta=null,$cod_docente=null,$nombre_asignatura=null,$order=null, $cod_sede=null)
 		{
+			#debug($fecha_desde);exit();	
+
 			$fecha_desde = "TO_DATE('".$fecha_desde."','YYYY-MM-DD')";
 			$fecha_hasta = "TO_DATE('".$fecha_hasta."','YYYY-MM-DD')";
 
 			$condiciones = array(
 				'ProgramacionClase.FECHA_CLASE BETWEEN '.$fecha_desde.' AND '.$fecha_hasta,
-				'ProgramacionClase.SUB_ESTADO_PROGRAMACION_ID'=>array('5','8')
-				#'ProgramacionClase.COD_SEDE' => $cod_sede
+				'ProgramacionClase.SUB_ESTADO_PROGRAMACION_ID'=>array('5','8'),
+				'ProgramacionClase.COD_SEDE' => $cod_sede,
 			);
 			if(!empty($cod_docente))
 				$condiciones['ProgramacionClase.COD_DOCENTE'] = $cod_docente;
@@ -3086,17 +3140,18 @@
 				'conditions'=>$condiciones,
 				'order'=>$order,
 			));
-			#debug($this->getLastQuery());
+			debug($this->getLastQuery());
 			return $clases;
 		}
 
 		# ------------------------------------------------------------------------------------------
 		#REPORTE 2 C.D.
-		public function getNominaClasesProgramadas($fecha_desde=null,$cod_docente=null,$nombre_asignatura=null,$order=null)
+		public function getNominaClasesProgramadas($fecha_desde=null,$cod_docente=null,$nombre_asignatura=null,$order=null,$cod_sede=null)
 		{
 			$fecha_desde = "TO_DATE('".$fecha_desde."','YYYY-MM-DD')";
 			$condiciones = array(
 				'ProgramacionClase.FECHA_CLASE = '.$fecha_desde,
+				'ProgramacionClase.COD_SEDE = '.$cod_sede,
 			);
 			if(!empty($cod_docente))
 				$condiciones['ProgramacionClase.COD_DOCENTE'] = $cod_docente;
@@ -3342,13 +3397,14 @@
 
 		# ------------------------------------------------------------------------------------------
 		#REPORTE 4 C.D.
-		public function getPeriodicoClasesAdelantadasRecuperadas($fecha_desde=null,$fecha_hasta=null,$cod_docente=null,$nombre_asignatura=null,$order=null)
+		public function getPeriodicoClasesAdelantadasRecuperadas($fecha_desde=null,$fecha_hasta=null,$cod_docente=null,$nombre_asignatura=null,$order=null,$cod_sed=null)
 		{
 			$fecha_desde = "TO_DATE('".$fecha_desde."','YYYY-MM-DD')";
 			$fecha_hasta = "TO_DATE('".$fecha_hasta."','YYYY-MM-DD')";
 			$condiciones = array(
 				'ProgramacionClase.FECHA_CLASE BETWEEN '.$fecha_desde.' AND '.$fecha_hasta,
 				"ProgramacionClase.SUB_ESTADO_PROGRAMACION_ID IN ('6','9')",
+				'ProgramacionClase.COD_SEDE' => $cod_sed,
 			);
 			if(!empty($cod_docente))
 				$condiciones['ProgramacionClase.COD_DOCENTE'] = $cod_docente;
@@ -3468,7 +3524,7 @@
 
 		# ------------------------------------------------------------------------------------------
 		#REPORTE 5 C.D.
-		public function getPresenciaDocente($fecha_desde=null,$fecha_hasta=null,$hora_inicio=null,$hora_fin=null,$cod_docente=null,$order=null)
+		public function getPresenciaDocente($fecha_desde=null,$fecha_hasta=null,$hora_inicio=null,$hora_fin=null,$cod_docente=null,$order=null,$cod_sede=null)
 		{
 			$hora_inicio = $fecha_desde.' '.$hora_inicio;
 			$hora_fin = $fecha_hasta.' '.$hora_fin;
@@ -3478,6 +3534,7 @@
 				'ProgramacionClase.FECHA_CLASE BETWEEN '.$fecha_desde.' AND '.$fecha_hasta,
 				"ProgramacionClase.HORA_INICIO >= TO_DATE('".$hora_inicio."','YYYY-MM-DD HH24:MI')",
 				"ProgramacionClase.HORA_FIN <= TO_DATE('".$hora_fin."','YYYY-MM-DD HH24:MI')",
+				'ProgramacionClase.COD_SEDE' => $cod_sede,
 
 			);
 			if(!empty($cod_docente))

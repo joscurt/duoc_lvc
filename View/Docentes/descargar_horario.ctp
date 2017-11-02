@@ -36,7 +36,7 @@ $page = 0;
 				<h4>
 					<strong>Docente:</strong>&nbsp;
 					<?php 
-						echo ($docente['Docente']['NOMBRE'].' '.
+						echo utf8_encode($docente['Docente']['NOMBRE'].' '.
 						$docente['Docente']['APELLIDO_PAT'].' '.
 						$docente['Docente']['APELLIDO_MAT']); 
 					?>
@@ -65,7 +65,7 @@ $page = 0;
 				<th class="th-dias">Miercoles</th>
 				<th class="th-dias">Jueves</th>
 				<th class="th-dias">Viernes</th>
-				<th class="th-dias">Sabado</th>
+				<th class="th-dias">S&aacute;bado</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -88,7 +88,7 @@ $page = 0;
 					    			echo $value['Horarios'][$hora_inicio][$i]['Sede']['NOMBRE'].' <br> '.
 					    			$value['Horarios'][$hora_inicio][$i]['ProgramacionClase']['SIGLA_SECCION'].' <br> '.
 					    			$value['Horarios'][$hora_inicio][$i]['Asignatura']['NOMBRE'].' <br> '.
-					    			$value['Horarios'][$hora_inicio][$i]['ProgramacionClase']['MODALIDAD'];
+					    			htmlentities($value['Horarios'][$hora_inicio][$i]['ProgramacionClase']['MODALIDAD']);
 					    		endif;
 					    	?>
 					    </td>

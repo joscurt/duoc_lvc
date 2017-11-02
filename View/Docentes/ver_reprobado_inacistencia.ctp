@@ -80,14 +80,14 @@
 									</label>
 								</td>
 								<td class="text-center"><?php echo strtoupper($value['Alumno']['RUT']); ?></td>
-								<td class="text-left"><?php echo utf8_encode(strtoupper($value['Alumno']['APELLIDO_PAT'])); ?></td>
-								<td class="text-left"><?php echo utf8_encode(strtoupper($value['Alumno']['APELLIDO_MAT'])); ?></td>
+								<td class="text-left"><?php echo (strtoupper($value['Alumno']['APELLIDO_PAT'])); ?></td>
+								<td class="text-left"><?php echo (strtoupper($value['Alumno']['APELLIDO_MAT'])); ?></td>
 								<td class="text-left"><?php echo strtoupper($value['Alumno']['NOMBRES']); ?></td>
 								<td class="text-center" ><?php echo isset($indicadores_alumnos[$value['Alumno']['COD_ALUMNO']])? $indicadores_alumnos[$value['Alumno']['COD_ALUMNO']]['CLASES_PRESENTE']:0; ?></td>
 								<td class="text-center" ><?php echo isset($indicadores_alumnos[$value['Alumno']['COD_ALUMNO']])? $indicadores_alumnos[$value['Alumno']['COD_ALUMNO']]['CLASES_AUSENTE']:0; ?></td>
 								<td class="text-center <?php echo $porcentaje < $porcentaje_minimo_ri  ? 'td-danger' : ''; ?>" >
 									<?php 
-										echo round($porcentaje,2).'%';
+											echo ($porcentaje > 100) ? '100%' : round($porcentaje,2).'%';
 									?>
 								</td>
 								<td class="text-left">
@@ -115,7 +115,7 @@
 			<div class="col-md-12" align="center">
 				<a href="<?php echo $this->Html->url(array('action'=>'getEventos',$asignatura_horario['AsignaturaHorario']['COD_PERIODO'])); ?>" class="btn btn-default waves-effect waves-float"><i class="fa fa-arrow-left"></i>&nbsp;Volver</a>
 				<a class="btn btn-sm btn-default" href="<?php echo $this->Html->url(array('action'=>'reprobadoInasistenciaExcel',$asignatura_horario['AsignaturaHorario']['COD_ASIGNATURA_HORARIO'])); ?>"><i  style="color:green;" class="fa fa-file-excel-o"></i>&nbsp;EXPORTAR A EXCEL</a>
-				<a class="btn btn-sm btn-default" href="<?php echo $this->Html->url(array('action'=>'reprobadoInasistenciaPdf',$asignatura_horario['AsignaturaHorario']['COD_ASIGNATURA_HORARIO'])); ?>"><i  style="color:red;" class="fa fa-file-pdf-o"></i>&nbsp;EXPORTAR A PDF</a>
+				<a class="btn btn-sm btn-default" href="<?php echo $this->Html->url(array('action'=>'reprobadoInasistenciaPdf',$asignatura_horario['AsignaturaHorario']['COD_ASIGNATURA_HORARIO'])); ?>" target="_blank"><i  style="color:red;" class="fa fa-file-pdf-o"></i>&nbsp;EXPORTAR A PDF</a>
 			</div>
 		</div>
 	</div>

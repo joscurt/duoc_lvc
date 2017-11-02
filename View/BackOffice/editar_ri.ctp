@@ -10,7 +10,7 @@
 				<div class="form-group">
 					<label for="">Sede</label>
 					<select name="data[sede]" class="form-control select-picker" data-live-search="true">
-						<option <?php echo $bo_ri['BoRi']['COD_SEDE']=='ALL'?'selected="selected"':null; ?> value="ALL">TODAS</option>
+						<!-- <option <?php echo $bo_ri['BoRi']['COD_SEDE']=='ALL'?'selected="selected"':null; ?> value="ALL">TODAS</option> -->
 						<?php foreach ($sedes as $key => $value): ?>
 							<option 
 								<?php echo $bo_ri['BoRi']['COD_SEDE']==$value['Sede']['COD_SEDE']?'selected="selected"':null; ?>
@@ -23,7 +23,7 @@
 				<div class="form-group">
 					<label for="">Escuela</label>
 					<select name="data[escuela]" class="form-control select-picker select-escuelas" data-live-search="true">
-						<option <?php echo $bo_ri['BoRi']['COD_ESCUELA']=='ALL'?'selected="selected"':null; ?> value="ALL">TODAS</option>
+						<!--<option <?php echo $bo_ri['BoRi']['COD_ESCUELA']=='ALL'?'selected="selected"':null; ?> value="ALL">TODAS</option> -->
 						<?php foreach ($escuelas as $key => $value): ?>
 							<option 
 								<?php echo $bo_ri['BoRi']['COD_ESCUELA']==$key?'selected="selected"':null; ?>
@@ -36,7 +36,7 @@
 				<div class="form-group">
 					<label for="">Carrera</label>
 					<select name="data[carrera]" class="form-control select-picker select-carrera" data-live-search="true">
-						<option <?php echo $bo_ri['BoRi']['COD_CARRERA']=='ALL'?'selected="selected"':null; ?> value="ALL">TODAS</option>
+						<!-- <option <?php echo $bo_ri['BoRi']['COD_CARRERA']=='ALL'?'selected="selected"':null; ?> value="ALL">TODAS</option> -->
 						<?php foreach ($carreras as $key => $value): ?>
 							<option 
 								<?php echo $bo_ri['BoRi']['COD_CARRERA']==$value['Carrera']['COD_PLAN']?'selected="selected"':null; ?>

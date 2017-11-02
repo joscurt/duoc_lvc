@@ -35,20 +35,30 @@
                     </label>
                 </div>
         		<div class="form-group" id="contenedor-select-docente-reemplazo" style="display:none;">
-                    <label for="select-docente-reemplazo">Nombre Docente:</label>
-                    <select 
+                    <label for="select-docente-reemplazo" class="cargando-hidden-docentes">Nombre Docente:</label>
+                       <div id="div-docente-alternativo">
+                            <select 
                         name="data[LogEvento][DOCENTE_REEMPLAZO]" 
                         id="select-docente-reemplazo" 
                         class="form-control selectpicker" 
                         data-live-search="true">
-                        <option value="">Seleccionar</option>
-                        <?php foreach ($docentes as $key => $value): ?>
-                            <option value="<?php echo $value['Docente']['COD_DOCENTE'];; ?>">
-                            <?php echo $value['Docente']['NOMBRE'].' '.$value['Docente']['APELLIDO_PAT'].' '.$value['Docente']['APELLIDO_MAT']; ?>
+                                <option value=""></option>
+<!--                                 <?php foreach ($docentes as $key => $docente): ?>
+                                    <option value="<?php echo $docente['Docente']['COD_DOCENTE']; ?>">
+                                        <?php echo $docente['Docente']['NOMBRE'].' '.$docente['Docente']['APELLIDO_PAT'].' '.$docente['Docente']['APELLIDO_MAT'];  ?>
+                                    </option>
+                                <?php endforeach ?> -->
+                            </select>
+                            <label class="indicador-docentes"></label>
+                        </div>
+                        <div id="div-docente-titular" style="display:none;">
+                            <input type="text" name="data[ProgramacionClase][DOCENTE]" id="input-nombre-docente" class="form-control" />
+                            <input type="hidden" name="data[ProgramacionClase][COD_DOCENTE]" id="input-hidden-cod-docente" value="" />
+                            <input type="hidden" value="<?php echo $programacion_clase['ProgramacionClase']['FECHA_CLASE']; ?>" id="input-date-fecha-programada">
+                            <input type="hidden" value="<?php echo $programacion_clase['ProgramacionClase']['HORA_INICIO']; ?>"" id="select-hora-inicio">
+                            <input type="hidden" value="<?php echo $programacion_clase['ProgramacionClase']['HORA_FIN']; ?>" id="select-hora-fin">
+                        </div>
 
-                            </option>
-                        <?php endforeach ?>
-                    </select>
                 </div>
         	</div>
         </div>
@@ -63,11 +73,47 @@
     $('#checkbox-reemplazo-docente').on('change', function(event) {
         if ($(this).is(':checked')) {
             $('#contenedor-select-docente-reemplazo').show();
+            completarDocentes();
         }else{
             $('#contenedor-select-docente-reemplazo').hide();
         }
     });
 
+    var completarDocentes = function () {
+        fecha = $('#input-date-fecha-programada').val();
+        hora_inicio = $('#select-hora-inicio').val();
+        hora_fin = $('#select-hora-fin').val();
+        if (fecha != '') {
+            if (hora_inicio != '') {
+                $('label.cargando-hidden-docentes span').html("<i class='fa fa-cog fa-spin'></i>").show();
+                $.ajax({
+                    url: '<?php echo $this->Html->url(array('action'=>'getDocDisponiblesByHorarioProg')); ?>',
+                    type: 'POST',
+                    contentType: 'application/x-www-form-urlencoded;charset=utf-8',
+                    dataType: 'json',
+                    data:{fecha:fecha,hora_inicio:hora_inicio,hora_fin:hora_fin},
+                }).fail(function() {
+                    notifyUser('Ha ocurrido un error inesperado. Intente nuevamente.','danger');
+                }).always(function(response) {
+                    if(response.status=='success'){
+                        $('#select-docente-reemplazo').empty().append("<option value=''></option>");
+                        $.each(response.data,function(index, el) {
+                            $('#select-docente-reemplazo').append("<option value='"+response.data[index]["Docente"].COD_DOCENTE+"'>"+response.data[index]["Docente"].RUT+' - '+response.data[index]["Docente"].NOMBRE+' '+response.data[index]["Docente"].APELLIDO_PAT+' '+response.data[index]["Docente"].APELLIDO_MAT+"</option>").prop('disabled',false);
+                            $('#select-docente-reemplazo').selectpicker('refresh');
+                        });
+                        $('label.cargando-hidden-docentes span').hide();
+                        $('label.indicador-docentes').html('Se han encontrado '+response.data.length+' Docentes disponibles.').show();
+                    }else{
+                        notifyUser(response.message,response.status);
+                    }
+                });
+            }else{
+                notifyUser('Seleccione una hora de inicio','info');
+            }
+        }else{
+            notifyUser('Seleccione una fecha del calendario','info');
+        }
+    }
     $(function(){
         $("#dataForm").submit(function( event ) {
             var error='';

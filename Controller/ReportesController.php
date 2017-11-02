@@ -15,6 +15,8 @@
 		{
 			$datos_filtro = $registros = array();
 			$ordenar = '';
+			$sed = $this->Session->read('CoordinadorLogueado');
+
 			if (!empty($this->data)) {
 				$datos_filtro = $this->data;
 				$cod_docente = $nombre_asignatura = $fecha_desde = $fecha_hasta = '';
@@ -35,9 +37,9 @@
 				}
 				#$cod_sede = '79';
 				$this->loadModel('ProgramacionClase');
-				$registros = $this->ProgramacionClase->getNominaClasesRecuperarAdelantar($fecha_desde,$fecha_hasta,$cod_docente,$nombre_asignatura,$ordenar);
-				#debug($this->ProgramacionClase->getLastQuery());
-				#exit();
+				$registros = $this->ProgramacionClase->getNominaClasesRecuperarAdelantar($fecha_desde,$fecha_hasta,$cod_docente,$nombre_asignatura,$ordenar,$sed['Sede']['COD_SEDE']);
+				
+				#debug($registros);exit();
 			}
 			$this->set(array(
 				'registros'=>$registros,
@@ -49,6 +51,8 @@
 		{
 			$datos_filtro = $registros = array();
 			$ordenar = '';
+			$sed = $this->Session->read("CoordinadorLogueado");
+
 			if (!empty($this->data)) {
 				$datos_filtro = $this->data;
 				$cod_docente = $nombre_asignatura = $fecha_desde = $fecha_hasta = '';
@@ -68,7 +72,7 @@
 					$ordenar = $datos_filtro['ordenar'];
 				}
 				$this->loadModel('ProgramacionClase');
-				$registros = $this->ProgramacionClase->getNominaClasesRecuperarAdelantar($fecha_desde,$fecha_hasta,$cod_docente,$nombre_asignatura,$ordenar);
+				$registros = $this->ProgramacionClase->getNominaClasesRecuperarAdelantar($fecha_desde,$fecha_hasta,$cod_docente,$nombre_asignatura,$ordenar,$sed['Sede']['COD_SEDE']);
 			}
 			$this->set(array(
 				'registros'=>$registros,
@@ -79,6 +83,7 @@
 			$this->layout = 'imprimir';
 			$datos_filtro = $registros = array();
 			$ordenar = '';
+			$sed = $this->Session->read('CoordinadorLogueado');
 			if (!empty($this->data)) {
 				$datos_filtro = $this->data;
 				$cod_docente = $nombre_asignatura = $fecha_desde = $fecha_hasta = '';
@@ -98,7 +103,7 @@
 					$ordenar = $datos_filtro['ordenar'];
 				}
 				$this->loadModel('ProgramacionClase');
-				$registros = $this->ProgramacionClase->getNominaClasesRecuperarAdelantar($fecha_desde,$fecha_hasta,$cod_docente,$nombre_asignatura,$ordenar);
+				$registros = $this->ProgramacionClase->getNominaClasesRecuperarAdelantar($fecha_desde,$fecha_hasta,$cod_docente,$nombre_asignatura,$ordenar,$sed['Sede']['COD_SEDE']);
 			}
 			$this->set(array(
 				'registros'=>$registros,
@@ -107,6 +112,7 @@
 		public function pdfNominaClasesRecuperarAdelantar() 
 		{
 			$datos_filtro = $registros = array();
+			$sed = $this->Session->read('CoordinadorLogueado');
 			$ordenar = '';
 			if (!empty($this->data)) {
 				$datos_filtro = $this->data;
@@ -126,9 +132,9 @@
 				if (isset($datos_filtro['ordenar']) && !empty($datos_filtro['ordenar'])) {
 					$ordenar = $datos_filtro['ordenar'];
 				}
-				$cod_sede = $session_data['Sede']['COD_SEDE'];
+				#$cod_sede = $session_data['Sede']['COD_SEDE'];
 				$this->loadModel('ProgramacionClase');
-				$registros = $this->ProgramacionClase->getNominaClasesRecuperarAdelantar($fecha_desde,$fecha_hasta,$cod_docente,$nombre_asignatura,$ordenar);
+				$registros = $this->ProgramacionClase->getNominaClasesRecuperarAdelantar($fecha_desde,$fecha_hasta,$cod_docente,$nombre_asignatura,$ordenar,$sed['Sede']['COD_SEDE']);
 			}
 			$this->Mpdf->init(array('margin_top' => 10,'margin_bottom'=>20,'margin_left'=>10,'margin_right'=>10));
 			$this->Mpdf->setFilename('reporte_'.date('dmY_Hi').'.pdf');
@@ -139,6 +145,7 @@
 			$this->set(array(
 				'registros'=>$registros,
 			));
+			#debug($registros);exit();
 		}
 
 		#REPORTE 2 COORDINADOR DOCENTE;
@@ -148,6 +155,7 @@
 		public function grillaNominaClasesProgramadas() 
 		{
 			$datos_filtro = $registros = array();
+			$sed = $this->Session->read('CoordinadorLogueado');
 			$ordenar = '';
 			if (!empty($this->data)) {
 				$datos_filtro = $this->data;
@@ -164,10 +172,11 @@
 				if (isset($datos_filtro['ordenar']) && !empty($datos_filtro['ordenar'])) {
 					$ordenar = $datos_filtro['ordenar'];
 				}
+
 				$this->loadModel('ProgramacionClase');
-				$registros = $this->ProgramacionClase->getNominaClasesProgramadas($fecha_desde,$cod_docente,$nombre_asignatura,$ordenar);
-				#debug($this->ProgramacionClase->getLastQuery());
-				#exit();
+				$registros = $this->ProgramacionClase->getNominaClasesProgramadas($fecha_desde,$cod_docente,$nombre_asignatura,$ordenar,$sed['Sede']['COD_SEDE']);
+				// debug($this->ProgramacionClase->getLastQuery());
+				// exit();
 			}
 			$this->set(array(
 				'registros'=>$registros,
@@ -178,6 +187,7 @@
 		public function excelNominaClasesProgramadas() 
 		{
 			$datos_filtro = $registros = array();
+			$sed = $this->Session->read('CoordinadorLogueado');
 			$ordenar = '';
 			if (!empty($this->data)) {
 				$datos_filtro = $this->data;
@@ -195,7 +205,7 @@
 					$ordenar = $datos_filtro['ordenar'];
 				}
 				$this->loadModel('ProgramacionClase');
-				$registros = $this->ProgramacionClase->getNominaClasesProgramadas($fecha_desde,$cod_docente,$nombre_asignatura,$ordenar);
+				$registros = $this->ProgramacionClase->getNominaClasesProgramadas($fecha_desde,$cod_docente,$nombre_asignatura,$ordenar,$sed['Sede']['COD_SEDE']);
 			}
 			$this->set(array(
 				'registros'=>$registros,
@@ -205,6 +215,7 @@
 		{
 			$this->layout = 'imprimir';
 			$datos_filtro = $registros = array();
+			$sed = $this->Session->read('CoordinadorLogueado');
 			$ordenar = '';
 			if (!empty($this->data)) {
 				$datos_filtro = $this->data;
@@ -222,7 +233,7 @@
 					$ordenar = $datos_filtro['ordenar'];
 				}
 				$this->loadModel('ProgramacionClase');
-				$registros = $this->ProgramacionClase->getNominaClasesProgramadas($fecha_desde,$cod_docente,$nombre_asignatura,$ordenar);
+				$registros = $this->ProgramacionClase->getNominaClasesProgramadas($fecha_desde,$cod_docente,$nombre_asignatura,$ordenar,$sed['Sede']['COD_SEDE']);
 			}
 			$this->set(array(
 				'registros'=>$registros,
@@ -231,6 +242,7 @@
 		public function pdfNominaClasesProgramadas() 
 		{
 			$datos_filtro = $registros = array();
+			$sed = $this->Session->read('CoordinadorLogueado');
 			$ordenar = '';
 			if (!empty($this->data)) {
 				$datos_filtro = $this->data;
@@ -248,7 +260,7 @@
 					$ordenar = $datos_filtro['ordenar'];
 				}
 				$this->loadModel('ProgramacionClase');
-				$registros = $this->ProgramacionClase->getNominaClasesProgramadas($fecha_desde,$cod_docente,$nombre_asignatura,$ordenar);
+				$registros = $this->ProgramacionClase->getNominaClasesProgramadas($fecha_desde,$cod_docente,$nombre_asignatura,$ordenar,$sed['Sede']['COD_SEDE']);
 			}
 			$this->Mpdf->init(array('margin_top' => 10,'margin_bottom'=>20,'margin_left'=>10,'margin_right'=>10));
 			$this->Mpdf->setFilename('reporte_'.date('dmY_Hi').'.pdf');
@@ -268,6 +280,7 @@
 		public function grillaPeriodicoClasesProgramadas() 
 		{
 			$datos_filtro = $registros = array();
+			$sed = $this->Session->read('CoordinadorLogueado');
 			$ordenar = '';
 			if (!empty($this->data)) {
 				$datos_filtro = $this->data;
@@ -288,7 +301,7 @@
 					$ordenar = $datos_filtro['ordenar'];
 				}
 				$this->loadModel('ProgramacionClase');
-				$registros = $this->ProgramacionClase->getPeriodicoClasesProgramadas($fecha_desde,$fecha_hasta,$cod_docente,$nombre_asignatura,$ordenar);
+				$registros = $this->ProgramacionClase->getPeriodicoClasesProgramadas($fecha_desde,$fecha_hasta,$cod_docente,$nombre_asignatura,$ordenar,$sed['Sede']['COD_SEDE']);
 				#debug($this->ProgramacionClase->getLastQuery());
 				#exit();
 			}
@@ -301,6 +314,7 @@
 		public function excelPeriodicoClasesProgramadas() 
 		{
 			$datos_filtro = $registros = array();
+			$sed = $this->Session->read('CoordinadorLogueado');
 			$ordenar = '';
 			if (!empty($this->data)) {
 				$datos_filtro = $this->data;
@@ -321,7 +335,7 @@
 					$ordenar = $datos_filtro['ordenar'];
 				}
 				$this->loadModel('ProgramacionClase');
-				$registros = $this->ProgramacionClase->getPeriodicoClasesProgramadas($fecha_desde,$fecha_hasta,$cod_docente,$nombre_asignatura,$ordenar);
+				$registros = $this->ProgramacionClase->getPeriodicoClasesProgramadas($fecha_desde,$fecha_hasta,$cod_docente,$nombre_asignatura,$ordenar,$sed['Sede']['COD_SEDE']);
 			}
 			$this->set(array(
 				'registros'=>$registros,
@@ -331,6 +345,7 @@
 		{
 			$this->layout = 'imprimir';
 			$datos_filtro = $registros = array();
+			$sed = $this->Session->read('CoordinadorLogueado');
 			$ordenar = '';
 			if (!empty($this->data)) {
 				$datos_filtro = $this->data;
@@ -351,7 +366,7 @@
 					$ordenar = $datos_filtro['ordenar'];
 				}
 				$this->loadModel('ProgramacionClase');
-				$registros = $this->ProgramacionClase->getPeriodicoClasesProgramadas($fecha_desde,$fecha_hasta,$cod_docente,$nombre_asignatura,$ordenar);
+				$registros = $this->ProgramacionClase->getPeriodicoClasesProgramadas($fecha_desde,$fecha_hasta,$cod_docente,$nombre_asignatura,$ordenar,$sed['Sede']['COD_SEDE']);
 			}
 			$this->set(array(
 				'registros'=>$registros,
@@ -360,6 +375,7 @@
 		public function pdfPeriodicoClasesProgramadas() 
 		{
 			$datos_filtro = $registros = array();
+			$sed = $this->Session->read('CoordinadorLogueado');
 			$ordenar = '';
 			if (!empty($this->data)) {
 				$datos_filtro = $this->data;
@@ -380,7 +396,7 @@
 					$ordenar = $datos_filtro['ordenar'];
 				}
 				$this->loadModel('ProgramacionClase');
-				$registros = $this->ProgramacionClase->getPeriodicoClasesProgramadas($fecha_desde,$fecha_hasta,$cod_docente,$nombre_asignatura,$ordenar);
+				$registros = $this->ProgramacionClase->getPeriodicoClasesProgramadas($fecha_desde,$fecha_hasta,$cod_docente,$nombre_asignatura,$ordenar,$sed['Sede']['COD_SEDE']);
 			}
 			$this->Mpdf->init(array('margin_top' => 10,'margin_bottom'=>20,'margin_left'=>10,'margin_right'=>10));
 			$this->Mpdf->setFilename('reporte_'.date('dmY_Hi').'.pdf');
@@ -400,6 +416,7 @@
 		public function grillaPeriodicoClasesAdelantadasRecuperadas() 
 		{
 			$datos_filtro = $registros = array();
+			$sed = $this->Session->read('CoordinadorLogueado');
 			$ordenar = '';
 			if (!empty($this->data)) {
 				$datos_filtro = $this->data;
@@ -420,7 +437,7 @@
 					$ordenar = $datos_filtro['ordenar'];
 				}
 				$this->loadModel('ProgramacionClase');
-				$registros = $this->ProgramacionClase->getPeriodicoClasesAdelantadasRecuperadas($fecha_desde,$fecha_hasta,$cod_docente,$nombre_asignatura,$ordenar);
+				$registros = $this->ProgramacionClase->getPeriodicoClasesAdelantadasRecuperadas($fecha_desde,$fecha_hasta,$cod_docente,$nombre_asignatura,$ordenar,$sed['Sede']['COD_SEDE']);
 				#debug($this->ProgramacionClase->getLastQuery());
 				#exit();
 			}
@@ -433,6 +450,7 @@
 		public function excelPeriodicoClasesAdelantadasRecuperadas() 
 		{
 			$datos_filtro = $registros = array();
+			$sed = $this->Session->read('CoordinadorLogueado');
 			$ordenar = '';
 			if (!empty($this->data)) {
 				$datos_filtro = $this->data;
@@ -453,7 +471,7 @@
 					$ordenar = $datos_filtro['ordenar'];
 				}
 				$this->loadModel('ProgramacionClase');
-				$registros = $this->ProgramacionClase->getPeriodicoClasesAdelantadasRecuperadas($fecha_desde,$fecha_hasta,$cod_docente,$nombre_asignatura,$ordenar);
+				$registros = $this->ProgramacionClase->getPeriodicoClasesAdelantadasRecuperadas($fecha_desde,$fecha_hasta,$cod_docente,$nombre_asignatura,$ordenar,$sed['Sede']['COD_SEDE']);
 			}
 			$this->set(array(
 				'registros'=>$registros,
@@ -463,6 +481,7 @@
 		{
 			$this->layout = 'imprimir';
 			$datos_filtro = $registros = array();
+			$sed = $this->Session->read('CoordinadorLogueado');
 			$ordenar = '';
 			if (!empty($this->data)) {
 				$datos_filtro = $this->data;
@@ -483,7 +502,7 @@
 					$ordenar = $datos_filtro['ordenar'];
 				}
 				$this->loadModel('ProgramacionClase');
-				$registros = $this->ProgramacionClase->getPeriodicoClasesAdelantadasRecuperadas($fecha_desde,$fecha_hasta,$cod_docente,$nombre_asignatura,$ordenar);
+				$registros = $this->ProgramacionClase->getPeriodicoClasesAdelantadasRecuperadas($fecha_desde,$fecha_hasta,$cod_docente,$nombre_asignatura,$ordenar,$sed['Sede']['COD_SEDE']);
 			}
 			$this->set(array(
 				'registros'=>$registros,
@@ -492,6 +511,7 @@
 		public function pdfPeriodicoClasesAdelantadasRecuperadas() 
 		{
 			$datos_filtro = $registros = array();
+			$sed = $this->Session->read('CoordinadorLogueado');
 			$ordenar = '';
 			if (!empty($this->data)) {
 				$datos_filtro = $this->data;
@@ -512,7 +532,7 @@
 					$ordenar = $datos_filtro['ordenar'];
 				}
 				$this->loadModel('ProgramacionClase');
-				$registros = $this->ProgramacionClase->getPeriodicoClasesAdelantadasRecuperadas($fecha_desde,$fecha_hasta,$cod_docente,$nombre_asignatura,$ordenar);
+				$registros = $this->ProgramacionClase->getPeriodicoClasesAdelantadasRecuperadas($fecha_desde,$fecha_hasta,$cod_docente,$nombre_asignatura,$ordenar,$sed['Sede']['COD_SEDE']);
 			}
 			$this->Mpdf->init(array('margin_top' => 10,'margin_bottom'=>20,'margin_left'=>10,'margin_right'=>10));
 			$this->Mpdf->setFilename('reporte_'.date('dmY_Hi').'.pdf');
@@ -537,6 +557,7 @@
 		public function grillaPresenciaDocente() 
 		{
 			$datos_filtro = $registros = array();
+			$sed = $this->Session->read('CoordinadorLogueado');
 			$ordenar = '';
 			if (!empty($this->data)) {
 				$datos_filtro = $this->data;
@@ -561,7 +582,7 @@
 				}
 				#debug($this->data);#exit();
 				$this->loadModel('ProgramacionClase');
-				$registros = $this->ProgramacionClase->getPresenciaDocente($fecha_desde,$fecha_hasta,$hora_inicio,$hora_fin,$cod_docente,$ordenar);
+				$registros = $this->ProgramacionClase->getPresenciaDocente($fecha_desde,$fecha_hasta,$hora_inicio,$hora_fin,$cod_docente,$ordenar,$sed['Sede']['COD_SEDE']);
 			}
 			#debug($registros);
 			$this->set(array(
@@ -573,6 +594,7 @@
 		public function excelPresenciaDocente() 
 		{
 			$datos_filtro = $registros = array();
+			$sed = $this->Session->read('CoordinadorLogueado');
 			$ordenar = '';
 			if (!empty($this->data)) {
 				$datos_filtro = $this->data;
@@ -596,7 +618,7 @@
 					$ordenar = $datos_filtro['ordenar'];
 				}
 				$this->loadModel('ProgramacionClase');
-				$registros = $this->ProgramacionClase->getPresenciaDocente($fecha_desde,$fecha_hasta,$hora_inicio,$hora_fin,$cod_docente,$ordenar);
+				$registros = $this->ProgramacionClase->getPresenciaDocente($fecha_desde,$fecha_hasta,$hora_inicio,$hora_fin,$cod_docente,$ordenar,$sed['Sede']['COD_SEDE']);
 			}
 			$this->set(array(
 				'registros'=>$registros,
@@ -606,6 +628,7 @@
 		{
 			$this->layout = 'imprimir';
 			$datos_filtro = $registros = array();
+			$sed = $this->Session->read('CoordinadorLogueado');
 			$ordenar = '';
 			if (!empty($this->data)) {
 				$datos_filtro = $this->data;
@@ -629,7 +652,7 @@
 					$ordenar = $datos_filtro['ordenar'];
 				}
 				$this->loadModel('ProgramacionClase');
-				$registros = $this->ProgramacionClase->getPresenciaDocente($fecha_desde,$fecha_hasta,$hora_inicio,$hora_fin,$cod_docente,$ordenar);
+				$registros = $this->ProgramacionClase->getPresenciaDocente($fecha_desde,$fecha_hasta,$hora_inicio,$hora_fin,$cod_docente,$ordenar,$sed['Sede']['COD_SEDE']);
 			}
 			$this->set(array(
 				'registros'=>$registros,
@@ -638,6 +661,7 @@
 		public function pdfPresenciaDocente() 
 		{
 			$datos_filtro = $registros = array();
+			$sed = $this->Session->read('CoordinadorLogueado');
 			$ordenar = '';
 			if (!empty($this->data)) {
 				$datos_filtro = $this->data;
@@ -661,7 +685,7 @@
 					$ordenar = $datos_filtro['ordenar'];
 				}
 				$this->loadModel('ProgramacionClase');
-				$registros = $this->ProgramacionClase->getPresenciaDocente($fecha_desde,$fecha_hasta,$hora_inicio,$hora_fin,$cod_docente,$ordenar);
+				$registros = $this->ProgramacionClase->getPresenciaDocente($fecha_desde,$fecha_hasta,$hora_inicio,$hora_fin,$cod_docente,$ordenar,$sed['Sede']['COD_SEDE']);
 			}
 			$this->Mpdf->init(array('margin_top' => 10,'margin_bottom'=>20,'margin_left'=>10,'margin_right'=>10));
 			$this->Mpdf->setFilename('reporte_'.date('dmY_Hi').'.pdf');
@@ -674,9 +698,6 @@
 			));
 		}
 
-
-
-
 		#REPORTE 1 DIRECTOR;
 		public function reporteTasaAsistencia() 
 		{
@@ -685,7 +706,21 @@
 			$periodos = $this->Periodo->getPeriodosByAnho($this->Parametro->getValorParametro('ANHO_ACTUAL'));
 			$this->set('periodos',$periodos);
 		}
-		public function grillaTasaAsistencia() 
+		public function reporteTasaAsistenciaSolo() 
+		{
+			$this->loadModel('Periodo');
+			$this->loadModel('Parametro');
+			$periodos = $this->Periodo->getPeriodosByAnho($this->Parametro->getValorParametro('ANHO_ACTUAL'));
+			$this->set('periodos',$periodos);
+		}
+		public function reporteTasaAsistenciaRi() 
+		{
+			$this->loadModel('Periodo');
+			$this->loadModel('Parametro');
+			$periodos = $this->Periodo->getPeriodosByAnho($this->Parametro->getValorParametro('ANHO_ACTUAL'));
+			$this->set('periodos',$periodos);
+		}
+		public function grillaTasaAsistenciaRi() 
 		{
 			$indicadores_alumnos = $datos_filtro = $registros = array();
 			$ordenar = '';
@@ -738,6 +773,113 @@
 				'datos_filtro'=>$datos_filtro,
 			));
 		}
+		public function grillaTasaAsistenciaSolo() 
+		{
+			$indicadores_alumnos = $datos_filtro = $registros = array();
+			$ordenar = '';
+
+			if (!empty($this->data)) {
+				$datos_filtro = $this->data;
+				#debug($datos_filtro);#exit();
+				if (isset($datos_filtro['Filtro']['periodo']) && !empty($datos_filtro['Filtro']['periodo'])) {
+					$this->loadModel('Periodo');
+					$periodo = $this->Periodo->getPeriodo($datos_filtro['Filtro']['periodo']);
+					if (!empty($periodo)) {
+						$ordenar = $cod_alumno = $sigla_seccion='';
+						if (isset($datos_filtro['Filtro']['alumno_rut']) && !empty($datos_filtro['Filtro']['alumno_rut']) || (isset($datos_filtro['Filtro']['alumno_nombre']) && !empty($datos_filtro['Filtro']['alumno_nombre']))) {
+							$cod_alumno = $datos_filtro['Filtro']['valor_alumno'];
+						}
+						if (isset($datos_filtro['Filtro']['sigla_seccion']) && !empty($datos_filtro['Filtro']['sigla_seccion'])) {
+							$sigla_seccion = $datos_filtro['Filtro']['sigla_seccion'];
+						}
+						if (isset($datos_filtro['ordenar']) && !empty($datos_filtro['ordenar'])) {
+							$ordenar = $datos_filtro['ordenar'];
+						}
+						$this->loadModel('AlumnoAsignatura');
+						$registros = $this->AlumnoAsignatura->getTasaAsistencia($periodo['Periodo']['COD_PERIODO'],$cod_alumno,$sigla_seccion,$ordenar);
+						#debug($registros);exit();
+						$siglas_secciones = array();
+
+						foreach ($registros as $key => $value) {
+							$siglas_secciones[$value['AlumnoAsignatura']['COD_HORARIO_ASIGNATURA']] = $value['AlumnoAsignatura']['COD_HORARIO_ASIGNATURA'];
+							
+						}
+
+						if (!empty($siglas_secciones)) {
+							$this->loadModel('ProgramacionClase');
+							foreach ($siglas_secciones as $value) {
+								
+								$indicadores_alumnos[$value] = $this->ProgramacionClase->getIndicadoresAlumno($value);
+								$this->loadModel('AsignaturaHorario');
+								$asignatura_horario[$value] = $this->AsignaturaHorario->getAsignaturaHorario($value);
+								
+							}	
+						}
+												
+					}
+				}
+			}
+			$this->set(array(
+				'registros'=>$registros,
+				'ordenar'=>$ordenar,
+				'indicadores_alumnos'=>$indicadores_alumnos,
+				'datos_filtro'=>$datos_filtro,
+			));
+		}
+		public function grillaTasaAsistencia() 
+		{
+			$indicadores_alumnos = $datos_filtro = $registros = array();
+			$ordenar = '';
+
+			if (!empty($this->data)) {
+				$datos_filtro = $this->data;
+				#debug($datos_filtro);#exit();
+				if (isset($datos_filtro['Filtro']['periodo']) && !empty($datos_filtro['Filtro']['periodo'])) {
+					$this->loadModel('Periodo');
+					$periodo = $this->Periodo->getPeriodo($datos_filtro['Filtro']['periodo']);
+					if (!empty($periodo)) {
+						$ordenar = $cod_alumno = $sigla_seccion='';
+						if (isset($datos_filtro['Filtro']['alumno_rut']) && !empty($datos_filtro['Filtro']['alumno_rut']) || (isset($datos_filtro['Filtro']['alumno_nombre']) && !empty($datos_filtro['Filtro']['alumno_nombre']))) {
+							$cod_alumno = $datos_filtro['Filtro']['valor_alumno'];
+						}
+						if (isset($datos_filtro['Filtro']['sigla_seccion']) && !empty($datos_filtro['Filtro']['sigla_seccion'])) {
+							$sigla_seccion = $datos_filtro['Filtro']['sigla_seccion'];
+						}
+						if (isset($datos_filtro['ordenar']) && !empty($datos_filtro['ordenar'])) {
+							$ordenar = $datos_filtro['ordenar'];
+						}
+						$this->loadModel('AlumnoAsignatura');
+						$registros = $this->AlumnoAsignatura->getTasaAsistencia($periodo['Periodo']['COD_PERIODO'],$cod_alumno,$sigla_seccion,$ordenar);
+						#debug($registros);exit();
+						$siglas_secciones = array();
+
+						foreach ($registros as $key => $value) {
+							$siglas_secciones[$value['AlumnoAsignatura']['COD_HORARIO_ASIGNATURA']] = $value['AlumnoAsignatura']['COD_HORARIO_ASIGNATURA'];
+							
+						}
+
+						if (!empty($siglas_secciones)) {
+							$this->loadModel('ProgramacionClase');
+							foreach ($siglas_secciones as $value) {
+								
+								$indicadores_alumnos[$value] = $this->ProgramacionClase->getIndicadoresAlumno($value);
+								$this->loadModel('AsignaturaHorario');
+								$asignatura_horario[$value] = $this->AsignaturaHorario->getAsignaturaHorario($value);
+								
+							}	
+						}
+												
+					}
+				}
+			}
+			#debug($indicadores_alumnos);exit();
+			$this->set(array(
+				'registros'=>$registros,
+				'ordenar'=>$ordenar,
+				'indicadores_alumnos'=>$indicadores_alumnos,
+				'datos_filtro'=>$datos_filtro,
+			));
+		}
 		public function excelTasaAsistencia()
 		{
 			
@@ -764,7 +906,99 @@
 						$registros = $this->AlumnoAsignatura->getTasaAsistencia($periodo['Periodo']['COD_PERIODO'],$cod_alumno,$sigla_seccion,$ordenar);
 						$siglas_secciones = array();
 						foreach ($registros as $key => $value) {
-							$siglas_secciones[$value['AlumnoAsignatura']['SIGLA_SECCION']] = $value['AlumnoAsignatura']['SIGLA_SECCION'];
+							$siglas_secciones[$value['AlumnoAsignatura']['COD_HORARIO_ASIGNATURA']] = $value['AlumnoAsignatura']['COD_HORARIO_ASIGNATURA'];
+						}
+						if (!empty($siglas_secciones)) {
+							$this->loadModel('ProgramacionClase');
+							foreach ($siglas_secciones as $value) {
+								$indicadores_alumnos[$value] = $this->ProgramacionClase->getIndicadoresAlumno($value);	
+							}	
+						}
+						#debug($registros);
+						#exit();
+					}
+				}
+			}
+			$this->set(array(
+				'registros'=>$registros,
+				'ordenar'=>$ordenar,
+				'indicadores_alumnos'=>$indicadores_alumnos,
+				'datos_filtro'=>$datos_filtro,
+			));
+		}
+		public function excelTasaAsistenciaSolo()
+		{
+			
+			$indicadores_alumnos = $datos_filtro = $registros = array();
+			$ordenar = '';
+			if (!empty($this->data)) {
+				$datos_filtro = $this->data;
+				#debug($datos_filtro);#exit();
+				if (isset($datos_filtro['Filtro']['periodo']) && !empty($datos_filtro['Filtro']['periodo'])) {
+					$this->loadModel('Periodo');
+					$periodo = $this->Periodo->getPeriodo($datos_filtro['Filtro']['periodo']);
+					if (!empty($periodo)) {
+						$ordenar = $cod_alumno = $sigla_seccion='';
+						if (isset($datos_filtro['Filtro']['alumno_rut']) && !empty($datos_filtro['Filtro']['alumno_rut']) || (isset($datos_filtro['Filtro']['alumno_nombre']) && !empty($datos_filtro['Filtro']['alumno_nombre']))) {
+							$cod_alumno = $datos_filtro['Filtro']['valor_alumno'];
+						}
+						if (isset($datos_filtro['Filtro']['sigla_seccion']) && !empty($datos_filtro['Filtro']['sigla_seccion'])) {
+							$sigla_seccion = $datos_filtro['Filtro']['sigla_seccion'];
+						}
+						if (isset($datos_filtro['ordenar']) && !empty($datos_filtro['ordenar'])) {
+							$ordenar = $datos_filtro['ordenar'];
+						}
+						$this->loadModel('AlumnoAsignatura');
+						$registros = $this->AlumnoAsignatura->getTasaAsistencia($periodo['Periodo']['COD_PERIODO'],$cod_alumno,$sigla_seccion,$ordenar);
+						$siglas_secciones = array();
+						foreach ($registros as $key => $value) {
+							$siglas_secciones[$value['AlumnoAsignatura']['COD_HORARIO_ASIGNATURA']] = $value['AlumnoAsignatura']['COD_HORARIO_ASIGNATURA'];
+						}
+						if (!empty($siglas_secciones)) {
+							$this->loadModel('ProgramacionClase');
+							foreach ($siglas_secciones as $value) {
+								$indicadores_alumnos[$value] = $this->ProgramacionClase->getIndicadoresAlumno($value);	
+							}	
+						}
+						#debug($registros);
+						#exit();
+					}
+				}
+			}
+			$this->set(array(
+				'registros'=>$registros,
+				'ordenar'=>$ordenar,
+				'indicadores_alumnos'=>$indicadores_alumnos,
+				'datos_filtro'=>$datos_filtro,
+			));
+		}
+		public function excelTasaAsistenciaRi()
+		{
+			
+			$indicadores_alumnos = $datos_filtro = $registros = array();
+			$ordenar = '';
+			if (!empty($this->data)) {
+				$datos_filtro = $this->data;
+				#debug($datos_filtro);#exit();
+				if (isset($datos_filtro['Filtro']['periodo']) && !empty($datos_filtro['Filtro']['periodo'])) {
+					$this->loadModel('Periodo');
+					$periodo = $this->Periodo->getPeriodo($datos_filtro['Filtro']['periodo']);
+					if (!empty($periodo)) {
+						$ordenar = $cod_alumno = $sigla_seccion='';
+						if (isset($datos_filtro['Filtro']['alumno_rut']) && !empty($datos_filtro['Filtro']['alumno_rut']) || (isset($datos_filtro['Filtro']['alumno_nombre']) && !empty($datos_filtro['Filtro']['alumno_nombre']))) {
+							$cod_alumno = $datos_filtro['Filtro']['valor_alumno'];
+						}
+						if (isset($datos_filtro['Filtro']['sigla_seccion']) && !empty($datos_filtro['Filtro']['sigla_seccion'])) {
+							$sigla_seccion = $datos_filtro['Filtro']['sigla_seccion'];
+						}
+						if (isset($datos_filtro['ordenar']) && !empty($datos_filtro['ordenar'])) {
+							$ordenar = $datos_filtro['ordenar'];
+						}
+						$this->loadModel('AlumnoAsignatura');
+						$registros = $this->AlumnoAsignatura->getTasaAsistencia($periodo['Periodo']['COD_PERIODO'],$cod_alumno,$sigla_seccion,$ordenar);
+						$siglas_secciones = array();
+						foreach ($registros as $key => $value) {
+							$siglas_secciones[$value['AlumnoAsignatura']['COD_HORARIO_ASIGNATURA']] = $value['AlumnoAsignatura']['COD_HORARIO_ASIGNATURA'];
 						}
 						if (!empty($siglas_secciones)) {
 							$this->loadModel('ProgramacionClase');
@@ -786,7 +1020,7 @@
 		}
 		public function pdfTasaAsistencia() 
 		{
-			
+
 			$this->Mpdf->init(array('margin_top' => 10,'margin_bottom'=>20,'margin_left'=>10,'margin_right'=>10));
 			$this->Mpdf->setFilename('reporte_'.date('dmY_Hi').'.pdf');
 			$this->Mpdf->addPage('L');
@@ -816,7 +1050,113 @@
 						$registros = $this->AlumnoAsignatura->getTasaAsistencia($periodo['Periodo']['COD_PERIODO'],$cod_alumno,$sigla_seccion,$ordenar);
 						$siglas_secciones = array();
 						foreach ($registros as $key => $value) {
-							$siglas_secciones[$value['AlumnoAsignatura']['SIGLA_SECCION']] = $value['AlumnoAsignatura']['SIGLA_SECCION'];
+							$siglas_secciones[$value['AlumnoAsignatura']['COD_HORARIO_ASIGNATURA']] = $value['AlumnoAsignatura']['COD_HORARIO_ASIGNATURA'];
+						}
+						if (!empty($siglas_secciones)) {
+							$this->loadModel('ProgramacionClase');
+							foreach ($siglas_secciones as $value) {
+								$indicadores_alumnos[$value] = $this->ProgramacionClase->getIndicadoresAlumno($value);	
+							}	
+						}
+						#debug($registros);
+						#exit();
+					}
+				}
+			}
+			$this->set(array(
+				'registros'=>$registros,
+				'ordenar'=>$ordenar,
+				'indicadores_alumnos'=>$indicadores_alumnos,
+				'datos_filtro'=>$datos_filtro,
+			));
+		}
+		public function pdfTasaAsistenciaRi() 
+		{
+
+			$this->Mpdf->init(array('margin_top' => 10,'margin_bottom'=>20,'margin_left'=>10,'margin_right'=>10));
+			$this->Mpdf->setFilename('reporte_'.date('dmY_Hi').'.pdf');
+			$this->Mpdf->addPage('L');
+			$this->Mpdf->setOutput('D');
+			$footer = '<div align="right">P&aacute;gina {PAGENO} de {nb}</div>';
+			$this->Mpdf->SetHTMLFooter($footer);
+			$indicadores_alumnos = $datos_filtro = $registros = array();
+			$ordenar = '';
+			if (!empty($this->data)) {
+				$datos_filtro = $this->data;
+				#debug($datos_filtro);#exit();
+				if (isset($datos_filtro['Filtro']['periodo']) && !empty($datos_filtro['Filtro']['periodo'])) {
+					$this->loadModel('Periodo');
+					$periodo = $this->Periodo->getPeriodo($datos_filtro['Filtro']['periodo']);
+					if (!empty($periodo)) {
+						$ordenar = $cod_alumno = $sigla_seccion='';
+						if (isset($datos_filtro['Filtro']['alumno_rut']) && !empty($datos_filtro['Filtro']['alumno_rut']) || (isset($datos_filtro['Filtro']['alumno_nombre']) && !empty($datos_filtro['Filtro']['alumno_nombre']))) {
+							$cod_alumno = $datos_filtro['Filtro']['valor_alumno'];
+						}
+						if (isset($datos_filtro['Filtro']['sigla_seccion']) && !empty($datos_filtro['Filtro']['sigla_seccion'])) {
+							$sigla_seccion = $datos_filtro['Filtro']['sigla_seccion'];
+						}
+						if (isset($datos_filtro['ordenar']) && !empty($datos_filtro['ordenar'])) {
+							$ordenar = $datos_filtro['ordenar'];
+						}
+						$this->loadModel('AlumnoAsignatura');
+						$registros = $this->AlumnoAsignatura->getTasaAsistencia($periodo['Periodo']['COD_PERIODO'],$cod_alumno,$sigla_seccion,$ordenar);
+						$siglas_secciones = array();
+						foreach ($registros as $key => $value) {
+							$siglas_secciones[$value['AlumnoAsignatura']['COD_HORARIO_ASIGNATURA']] = $value['AlumnoAsignatura']['COD_HORARIO_ASIGNATURA'];
+						}
+						if (!empty($siglas_secciones)) {
+							$this->loadModel('ProgramacionClase');
+							foreach ($siglas_secciones as $value) {
+								$indicadores_alumnos[$value] = $this->ProgramacionClase->getIndicadoresAlumno($value);	
+							}	
+						}
+						#debug($registros);
+						#exit();
+					}
+				}
+			}
+			$this->set(array(
+				'registros'=>$registros,
+				'ordenar'=>$ordenar,
+				'indicadores_alumnos'=>$indicadores_alumnos,
+				'datos_filtro'=>$datos_filtro,
+			));
+		}
+		public function pdfTasaAsistenciaSolo() 
+		{
+
+			$this->Mpdf->init(array('margin_top' => 10,'margin_bottom'=>20,'margin_left'=>10,'margin_right'=>10));
+			$this->Mpdf->setFilename('reporte_'.date('dmY_Hi').'.pdf');
+			$this->Mpdf->addPage('L');
+			$this->Mpdf->setOutput('D');
+			$footer = '<div align="right">P&aacute;gina {PAGENO} de {nb}</div>';
+			$this->Mpdf->SetHTMLFooter($footer);
+			$indicadores_alumnos = $datos_filtro = $registros = array();
+			$ordenar = '';
+			if (!empty($this->data)) {
+				$datos_filtro = $this->data;
+				#debug($datos_filtro);#exit();
+				if (isset($datos_filtro['Filtro']['periodo']) && !empty($datos_filtro['Filtro']['periodo'])) {
+					$this->loadModel('Periodo');
+					$periodo = $this->Periodo->getPeriodo($datos_filtro['Filtro']['periodo']);
+					if (!empty($periodo)) {
+						$ordenar = $cod_alumno = $sigla_seccion='';
+						if (isset($datos_filtro['Filtro']['alumno_rut']) && !empty($datos_filtro['Filtro']['alumno_rut']) || (isset($datos_filtro['Filtro']['alumno_nombre']) && !empty($datos_filtro['Filtro']['alumno_nombre']))) {
+							$cod_alumno = $datos_filtro['Filtro']['valor_alumno'];
+						}
+						if (isset($datos_filtro['Filtro']['sigla_seccion']) && !empty($datos_filtro['Filtro']['sigla_seccion'])) {
+							$sigla_seccion = $datos_filtro['Filtro']['sigla_seccion'];
+						}
+						if (isset($datos_filtro['ordenar']) && !empty($datos_filtro['ordenar'])) {
+							$ordenar = $datos_filtro['ordenar'];
+						}
+						$this->loadModel('AlumnoAsignatura');
+						#debug($sigla_seccion);exit();
+						$registros = $this->AlumnoAsignatura->getTasaAsistencia($periodo['Periodo']['COD_PERIODO'],$cod_alumno,$sigla_seccion,$ordenar);
+
+						$siglas_secciones = array();
+						foreach ($registros as $key => $value) {
+							$siglas_secciones[$value['AlumnoAsignatura']['COD_HORARIO_ASIGNATURA']] = $value['AlumnoAsignatura']['COD_HORARIO_ASIGNATURA'];
 						}
 						if (!empty($siglas_secciones)) {
 							$this->loadModel('ProgramacionClase');
@@ -862,7 +1202,7 @@
 						$registros = $this->AlumnoAsignatura->getTasaAsistencia($periodo['Periodo']['COD_PERIODO'],$cod_alumno,$sigla_seccion,$ordenar);
 						$siglas_secciones = array();
 						foreach ($registros as $key => $value) {
-							$siglas_secciones[$value['AlumnoAsignatura']['SIGLA_SECCION']] = $value['AlumnoAsignatura']['SIGLA_SECCION'];
+							$siglas_secciones[$value['AlumnoAsignatura']['COD_HORARIO_ASIGNATURA']] = $value['AlumnoAsignatura']['COD_HORARIO_ASIGNATURA'];
 						}
 						if (!empty($siglas_secciones)) {
 							$this->loadModel('ProgramacionClase');
@@ -883,6 +1223,99 @@
 			));
 		}
 
+
+		public function imprimirTasaAsistenciaSolo()
+		{
+			$this->layout = 'imprimir';
+			$indicadores_alumnos = $datos_filtro = $registros = array();
+			$ordenar = '';
+			if (!empty($this->data)) {
+				$datos_filtro = $this->data;
+				#debug($datos_filtro);#exit();
+				if (isset($datos_filtro['Filtro']['periodo']) && !empty($datos_filtro['Filtro']['periodo'])) {
+					$this->loadModel('Periodo');
+					$periodo = $this->Periodo->getPeriodo($datos_filtro['Filtro']['periodo']);
+					if (!empty($periodo)) {
+						$ordenar = $cod_alumno = $sigla_seccion='';
+						if (isset($datos_filtro['Filtro']['alumno_rut']) && !empty($datos_filtro['Filtro']['alumno_rut']) || (isset($datos_filtro['Filtro']['alumno_nombre']) && !empty($datos_filtro['Filtro']['alumno_nombre']))) {
+							$cod_alumno = $datos_filtro['Filtro']['valor_alumno'];
+						}
+						if (isset($datos_filtro['Filtro']['sigla_seccion']) && !empty($datos_filtro['Filtro']['sigla_seccion'])) {
+							$sigla_seccion = $datos_filtro['Filtro']['sigla_seccion'];
+						}
+						if (isset($datos_filtro['ordenar']) && !empty($datos_filtro['ordenar'])) {
+							$ordenar = $datos_filtro['ordenar'];
+						}
+						$this->loadModel('AlumnoAsignatura');
+						$registros = $this->AlumnoAsignatura->getTasaAsistencia($periodo['Periodo']['COD_PERIODO'],$cod_alumno,$sigla_seccion,$ordenar);
+						$siglas_secciones = array();
+						foreach ($registros as $key => $value) {
+							$siglas_secciones[$value['AlumnoAsignatura']['COD_HORARIO_ASIGNATURA']] = $value['AlumnoAsignatura']['COD_HORARIO_ASIGNATURA'];
+						}
+						if (!empty($siglas_secciones)) {
+							$this->loadModel('ProgramacionClase');
+							foreach ($siglas_secciones as $value) {
+								$indicadores_alumnos[$value] = $this->ProgramacionClase->getIndicadoresAlumno($value);	
+							}	
+						}
+						#debug($registros);
+						#exit();
+					}
+				}
+			}
+			$this->set(array(
+				'registros'=>$registros,
+				'ordenar'=>$ordenar,
+				'indicadores_alumnos'=>$indicadores_alumnos,
+				'datos_filtro'=>$datos_filtro,
+			));
+		}
+		public function imprimirTasaAsistenciaRi()
+		{
+			$this->layout = 'imprimir';
+			$indicadores_alumnos = $datos_filtro = $registros = array();
+			$ordenar = '';
+			if (!empty($this->data)) {
+				$datos_filtro = $this->data;
+				#debug($datos_filtro);#exit();
+				if (isset($datos_filtro['Filtro']['periodo']) && !empty($datos_filtro['Filtro']['periodo'])) {
+					$this->loadModel('Periodo');
+					$periodo = $this->Periodo->getPeriodo($datos_filtro['Filtro']['periodo']);
+					if (!empty($periodo)) {
+						$ordenar = $cod_alumno = $sigla_seccion='';
+						if (isset($datos_filtro['Filtro']['alumno_rut']) && !empty($datos_filtro['Filtro']['alumno_rut']) || (isset($datos_filtro['Filtro']['alumno_nombre']) && !empty($datos_filtro['Filtro']['alumno_nombre']))) {
+							$cod_alumno = $datos_filtro['Filtro']['valor_alumno'];
+						}
+						if (isset($datos_filtro['Filtro']['sigla_seccion']) && !empty($datos_filtro['Filtro']['sigla_seccion'])) {
+							$sigla_seccion = $datos_filtro['Filtro']['sigla_seccion'];
+						}
+						if (isset($datos_filtro['ordenar']) && !empty($datos_filtro['ordenar'])) {
+							$ordenar = $datos_filtro['ordenar'];
+						}
+						$this->loadModel('AlumnoAsignatura');
+						$registros = $this->AlumnoAsignatura->getTasaAsistencia($periodo['Periodo']['COD_PERIODO'],$cod_alumno,$sigla_seccion,$ordenar);
+						$siglas_secciones = array();
+						foreach ($registros as $key => $value) {
+							$siglas_secciones[$value['AlumnoAsignatura']['COD_HORARIO_ASIGNATURA']] = $value['AlumnoAsignatura']['COD_HORARIO_ASIGNATURA'];
+						}
+						if (!empty($siglas_secciones)) {
+							$this->loadModel('ProgramacionClase');
+							foreach ($siglas_secciones as $value) {
+								$indicadores_alumnos[$value] = $this->ProgramacionClase->getIndicadoresAlumno($value);	
+							}	
+						}
+						#debug($registros);
+						#exit();
+					}
+				}
+			}
+			$this->set(array(
+				'registros'=>$registros,
+				'ordenar'=>$ordenar,
+				'indicadores_alumnos'=>$indicadores_alumnos,
+				'datos_filtro'=>$datos_filtro,
+			));
+		}
 		#REPORTE 1 DIRECTOR;
 		public function reporteCumplimientoAsistencia() 
 		{
@@ -939,6 +1372,8 @@
 		{
 			$this->layout = null;
 			$indicadores_sigla_seccion = $datos_filtro = $registros = array();
+			$session = $this->Session->read('DirectorLogueado');
+			#debug($session);exit();
 			$ordenar = 'Asignatura.NOMBRE';
 			if (!empty($this->data)) {
 				$datos_filtro = $this->data;
@@ -957,6 +1392,10 @@
 						if (isset($datos_filtro['ordenar']) && !empty($datos_filtro['ordenar'])) {
 							$ordenar = $datos_filtro['ordenar'];
 						}
+
+						// debug($datos_filtro);exit();
+
+
 						$this->loadModel('AsignaturaHorario');
 						$registros = $this->AsignaturaHorario->getCumplimientoAsistencia($periodo['Periodo']['COD_PERIODO'],$cod_docente,$sigla_seccion,$ordenar);
 						if (!empty($registros)) {

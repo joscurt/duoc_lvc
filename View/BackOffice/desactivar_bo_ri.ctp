@@ -11,7 +11,7 @@
 		<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 	</div>
 	<div class="modal-body">
-		¿Seguro que desea <?php echo $accion; ?>  el registro?</strong>
+		&iquest;Seguro que desea <?php echo $accion; ?>  el registro&#63;</strong>
 		<input type="hidden" name="data[BoRi][COD]" value="<?php echo $bo_ri['BoRi']['COD']; ?>">
         <input type="hidden" name="data[BoRi][ACTIVO]" value="<?php echo $active; ?>">
 	</div>

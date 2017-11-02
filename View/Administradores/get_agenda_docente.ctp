@@ -15,11 +15,38 @@
 					</span>
 				</h2>
 			</div>
+	<div  style="padding: 2px 26px;"  class="row card-padding">
+		<div class="col-md-6">
+			<h4>
+				<strong>Docente:</strong>&nbsp;
+				<?php # 
+				echo ($docente['Docente']['NOMBRE'].' '. $docente['Docente']['APELLIDO_PAT'].' '. $docente['Docente']['APELLIDO_MAT']); ?>	
+			</h4>
+			<h4>
+				<strong>Correo:</strong>&nbsp;
+				<?php echo $docente['Docente']['CORREO']; ?>
+			</h4>
+		</div>
+		<div class="col-md-6">
+			<h4  class="pull-right">
+				<?php echo date('d-m-Y') ?> a las <?php echo date('H:i'); ?> horas
+			</h4>
+		</div>
+
+<div class="col-md-12">
+	<h3 style="float:left;">
+				<?php if( isset($semana['Semana']) ): ?>
+					Horario <?php echo date('d-m-Y',strtotime($semana['Semana']['FECHA_INICIO'])).' / '.date('d-m-Y',strtotime($semana['Semana']['FECHA_FIN'])); ?>
+				<?php endif; ?>
+			</h3><br>
+			</div>
+	</div>
+
 			<div class="card-body card-padding" style="padding-top: 0px;">
 				<div class="row">
 					<div class="col-md-12">
 						<div class="paginador-semanas">
-							<a href="#move-week" data-action="left" title="Semana Anterior"><i class="fa fa-arrow-left" aria-hidden="true"></i></a>
+						<a style="float: left;margin-top: 12px;" class="btn btn-default btn-sm btn-info btn-control-horario" data-action="left" href="#move-week">&nbsp;Anterior</a>
 							<div class="botones-semanas">
 								<?php 
 									
@@ -65,19 +92,19 @@
 									</a>
 								<?php endforeach; ?>
 							</div>
-							<a href="#move-week" data-action="right" title="Semana Siguiente"><i class="fa fa-arrow-right" aria-hidden="true"></i></a>
+							<a style="float: right;margin-top: -40px;" data-action="right" class="btn btn-default btn-sm btn-info btn-control-horario" href="#move-week">Siguiente&nbsp;</a>
 						</div>
 						<div class="content-tablas" id="contenedor-calendario-semanas">
-							<table border="0" cellpadding="0" cellspacing="0" class="table table-striped big size-7 borde disponibilidadSala">
+							<table border="0" cellpadding="0" cellspacing="0" class="table table-hover table-striped disponibilidadSala">
 								<thead>
 									<tr>
-										<th style="text-align:center">Semana</th>
-										<th style="text-align:center">Lunes</th>
-										<th style="text-align:center">Martes</th>
-										<th style="text-align:center">Mi&eacute;rcoles</th>
-										<th style="text-align:center">Jueves</th>
-										<th style="text-align:center">Viernes</th>
-										<th style="text-align:center">S&aacute;bado</th>
+										<th class="th-titulo" style="text-align:center">Horario</th>
+										<th class="th-dias" style="text-align:center">Lunes</th>
+										<th class="th-dias" style="text-align:center">Martes</th>
+										<th class="th-dias" style="text-align:center">Mi&eacute;rcoles</th>
+										<th class="th-dias" style="text-align:center">Jueves</th>
+										<th class="th-dias" style="text-align:center">Viernes</th>
+										<th class="th-dias" style="text-align:center">S&aacute;bado</th>
 									</tr>
 								</thead>
 							  	<tbody>

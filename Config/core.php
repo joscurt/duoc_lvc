@@ -220,12 +220,19 @@
  * the cake shell command: cake schema create Sessions
  */
  Configure::write('Session.save', 'cake');
- 	Configure::write('Session', array(
-		'defaults' => 'cake',
-		
-	));
-	Configure::write('Session.timeout', '120');
+ /*	Configure::write('Session', array(
+	 	'defaults' => 'cake',
+	 ));*/
+	#Configure::write('Session.timeout', '15');
 
+
+Configure::write('Session', array(
+    'defaults' => 'database',
+    'timeout' => 500, // La Sesión Terminar en 15min.
+    'cookieTimeout' => 1440, // La Sesión de cookie. 
+    'checkAgent' => false,
+    'autoRegenerate' => true, // Resetea la Sesión.
+));
 /**
  * A random string used in security hashing methods.
  */

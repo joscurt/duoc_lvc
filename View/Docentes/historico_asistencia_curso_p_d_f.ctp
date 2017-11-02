@@ -27,13 +27,13 @@
 <table style="border-bottom:1px solid #ccc;">
 	<tr >
 		<td><img src="img/duocuc.png" style="width:150px;" alt=""></td>
-		<td><h2 class="titulo">CURSO  <?php echo $asignatura_horario['AsignaturaHorario']['SIGLA_SECCION'].' | '.date('d-m-Y H:i');?></h2></td>
+		<td><h2 class="titulo">CURSO  <?php echo htmlentities($asignatura_horario['AsignaturaHorario']['SIGLA_SECCION']).' | '.date('d-m-Y H:i');?></h2></td>
 	</tr>
 </table><br>
 <table class="table table-striped table-bordered">
 		<thead>
 			<tr>
-				<th class="td-app text-center">Nº</th>
+				<th class="td-app text-center">N°</th>
 				<th class="td-app text-center">Rut Alumno</th>
 				<th class="td-app text-left">Apellido Paterno</th>
 				<th class="td-app text-left">Apellido Materno</th>
@@ -48,7 +48,7 @@
 			<?php foreach ($alumnos as $key => $value): ?>
 				<tr>
 					<td class="text-center"><?php echo $key +1;?></td>
-					<td class="text-center"><?php echo strtoupper($value['Alumno']['RUT']); ?></td>
+					<td class="text-center"><?php echo strtoupper(($value['Alumno']['RUT'])); ?></td>
 					<td class="text-left"><?php echo strtoupper(utf8_encode($value['Alumno']['APELLIDO_PAT'])); ?></td>
 					<td class="text-left"><?php echo strtoupper(utf8_encode($value['Alumno']['APELLIDO_MAT'])); ?></td>
 					<td class="text-left">

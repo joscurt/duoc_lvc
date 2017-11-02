@@ -27,7 +27,7 @@
 <table style="border-bottom:1px solid #ccc;">
 	<tr >
 		<td><img src="img/duocuc.png" style="width:150px;" alt=""></td>
-		<td><h2 class="titulo">ASISTENCIA <?php echo utf8_encode($alumno['Alumno']['NOMBRES'].' '. $alumno['Alumno']['APELLIDO_PAT'].' '. $alumno['Alumno']['APELLIDO_MAT']) .' | '.date('d-m-Y H:i');?></h2></td>
+		<td><h2 class="titulo">ASISTENCIA <?php echo htmlentities($alumno['Alumno']['NOMBRES'].' '. $alumno['Alumno']['APELLIDO_PAT'].' '. $alumno['Alumno']['APELLIDO_MAT']) .' | '.date('d-m-Y H:i');?></h2></td>
 	</tr>
 </table><br>
 <table class="table table-hover table-striped">
@@ -45,7 +45,7 @@
 		<?php foreach ($programacion_clases as $key => $value): ?>
 			<tr>
 				<td class="text-center"><?php echo date('d-m-Y',strtotime($value['ProgramacionClase']['FECHA_CLASE'])); ?></td>
-				<td class="text-center"><strong><?php echo $value['ProgramacionClase']['MODALIDAD']; ?></strong></td>
+				<td class="text-center"><strong><?php echo htmlentities($value['ProgramacionClase']['MODALIDAD']); ?></strong></td>
 				<td class="text-center">
 					<?php 
 						echo date('H:i',strtotime($value['ProgramacionClase']['HORA_INICIO'])).'-'.
@@ -54,13 +54,13 @@
 				</td>
 				<td class="text-left">
 					<?php 
-						echo utf8_encode($value['Docente']['NOMBRE'].' '.
+						echo htmlentities($value['Docente']['NOMBRE'].' '.
 						$value['Docente']['APELLIDO_PAT'].' '.
 						$value['Docente']['APELLIDO_MAT']); 
 					?>	
 				</td>
 				<td class="text-center">
-					<span class="" ><?php echo $value['ProgramacionClase']['TIPO_EVENTO']; ?></span>
+					<span class="" ><?php echo htmlentities($value['ProgramacionClase']['TIPO_EVENTO']); ?></span>
 				</td>
 				<td class="text-center">
 					<?php if ($value['ProgramacionClase']['WF_ESTADO_ID']>2): ?>

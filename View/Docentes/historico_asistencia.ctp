@@ -107,7 +107,7 @@
 									<select id="select-change-alumno" class="form-control selectpicker" data-live-search="true">
 										<option value="">SELECCIONE ALUMNO</option>
 										<?php foreach ($alumnos as $key => $value): ?>
-											<option value="<?php echo $value['Alumno']['ID']; ?>" ><?php echo utf8_encode($value['Alumno']['RUT'].'-'.$value['Alumno']['DV_RUT'].' / '.$value['Alumno']['APELLIDO_PAT'].' '.$value['Alumno']['APELLIDO_MAT'].' '.$value['Alumno']['NOMBRES']); ?></option>
+											<option value="<?php echo $value['Alumno']['ID']; ?>" ><?php echo ($value['Alumno']['RUT'].'-'.$value['Alumno']['DV_RUT'].' / '.$value['Alumno']['APELLIDO_PAT'].' '.$value['Alumno']['APELLIDO_MAT'].' '.$value['Alumno']['NOMBRES']); ?></option>
 										<?php endforeach ?>
 									</select>
 								</div>

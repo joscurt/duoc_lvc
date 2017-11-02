@@ -61,14 +61,14 @@
 						<tr>
 							<td><?php echo $key+1; ?></td>
 							<td><?php echo date('d-m-Y', strtotime($detalle['ProgramacionClase']['FECHA_CLASE'])); ?></td>
-							<td><?php echo $detalle['Asignatura']['NOMBRE']; ?></td>
+							<td><?php echo htmlspecialchars($detalle['Asignatura']['NOMBRE']); ?></td>
 							<td><?php echo $detalle['ProgramacionClase']['SIGLA_SECCION']; ?></td>
 							<td><?php echo $detalle['ProgramacionClase']['COD_JORNADA']=='D'?'Diurna':'Vespertina'; ?></td>
 							<td><?php echo $detalle['Docente']['RUT'].'-'.$detalle['Docente']['DV']; ?></td>
-							<td><?php echo $detalle['Docente']['APELLIDO_PAT']; ?></td>
-							<td><?php echo $detalle['Docente']['APELLIDO_MAT']; ?></td>
-							<td><?php echo $detalle['Docente']['NOMBRE'] ?></td>
-							<td><?php echo !empty($detalle['Sala']['TIPO_SALA'])?$detalle['Sala']['TIPO_SALA']:$detalle['SalaReemplazo']['TIPO_SALA']; ?></td>
+							<td><?php echo htmlspecialchars($detalle['Docente']['APELLIDO_PAT']); ?></td>
+							<td><?php echo htmlspecialchars($detalle['Docente']['APELLIDO_MAT']); ?></td>
+							<td><?php echo htmlspecialchars($detalle['Docente']['NOMBRE']); ?></td>
+							<td><?php echo !empty($detalle['Sala']['TIPO_SALA'])?utf8_encode($detalle['Sala']['TIPO_SALA']):utf8_encode($detalle['SalaReemplazo']['TIPO_SALA']); ?></td>
 							<td><?php echo date('H:i', strtotime($detalle['ProgramacionClase']['HORA_INICIO'])).' a '.date('H:i', strtotime($detalle['ProgramacionClase']['HORA_FIN'])); ?></td>
 							<td><?php echo $detalle['ProgramacionClase']['TIPO_EVENTO']; ?></td>
 							<td><?php echo $detalle['Detalle']['DETALLE']; ?></td>

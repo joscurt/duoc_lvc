@@ -224,42 +224,42 @@
 	});
 
 	//Boton tope Horario Docentes ========================================================================================
-	$('#btn-tope_docentes').on('click',function(event){
-		if (completarSalas(true)) {
-			  event.preventDefault();
-		var fecha = $('#input-datetimepicker-fecha-clase').val();
-		var hora_inicio = $('#select-hora-inicio').val();
-		var hora_fin = $('#select-hora-fin').val();
-		$('#content-lista-docentes').empty();
-			var elemento_click = $(this);
-			elemento_click.html("<i class='fa fa-cog fa-spin'></i>");
-			$('#content-lista-docentes').load("<?php echo $this->Html->url(array('action'=>'listaDocentesConTope',$programacion_clase['ProgramacionClase']['COD_PROGRAMACION'])); ?>",function(){
-				var fecha = $('#input-datetimepicker-fecha-clase').val();
-				var hora_inicio = $('#select-hora-inicio').val();
-				var hora_fin = $('#select-hora-fin').val();
-				$.ajax({
-				url: '<?php echo $this->Html->url(array('action'=>'listaDocentesConTope',$programacion_clase['ProgramacionClase']['COD_PROGRAMACION'])); ?>',
-				type: 'POST',
-				dataType: 'json',
-				data:{fecha:fecha,hora_inicio:hora_inicio,hora_fin:hora_fin}
-					})
-/*				.always(function(response) {
-						if(response.status=='success'){
-							$('#content-lista-docentes').empty().append("<option value=''></option>");
-							$.each(response.data,function(index, el) {
-								$('#content-lista-docentes').append("<option value='"+response.data[index]["A"].ID+"'>"+response.data[index]["A"].CORREO+"</option>").prop('disabled',false);
-							});
-							$('#result-count-salas').html('Se encontraron '+response.data.length+' salas disponibles' );
-							$('label.cargando-hidden-salas span').hide();
-						}else{
-							notifyUser(response.message,response.status);
-						}
-						});*/
-				elemento_click.html("TOPE HORARIO DOCENTES");
-			});
-		}
-	});
+    $('#btn-tope_docentes').on('click',function(event){
+        
+        event.preventDefault();
+        var fecha = $('#input-datetimepicker-fecha-clase').val();
+        var hora_inicio = $('#select-hora-inicio').val();
+        var hora_fin = $('#select-hora-fin').val();
 
+        var parametros = {
+            fecha : $('#input-datetimepicker-fecha-clase').val(),
+            hora_inicio : $('#select-hora-inicio').val(),
+            hora_fin : $('#select-hora-fin').val()
+                }
+       /* $.ajax({
+                url: '<?php echo $this->Html->url(array('action'=>'listaDocentesConTope',$programacion_clase['ProgramacionClase']['COD_PROGRAMACION'])); ?>',
+                type: 'POST',
+                dataType: 'json',
+                data:{fecha:fecha,hora_inicio:hora_inicio,hora_fin:hora_fin},
+                success: function () {
+                 alert('Estamos');
+                                    }
+                    })*/
+            $('#content-lista-docentes').empty();
+            var elemento_click = $(this);
+            elemento_click.html("<i class='fa fa-cog fa-spin'></i>");
+            $('#content-lista-docentes').load("<?php echo $this->Html->url(array('action'=>'listaDocentesConTope',$programacion_clase['ProgramacionClase']['COD_PROGRAMACION'])); ?>?fecha="+ $('#input-datetimepicker-fecha-clase').val()+"&hora_inicio="+$('#select-hora-inicio').val()+"&hora_fin="+$('#select-hora-fin').val()
+                ,function(){
+                var fecha = $('#input-datetimepicker-fecha-clase').val();
+                var hora_inicio = $('#select-hora-inicio').val();
+                var hora_fin = $('#select-hora-fin').val();
+                elemento_click.html("TOPE HORARIO DOCENTES");
+            }
+            );
+            //?&fecha="+ $('#input-date-fecha-programada').val())
+        
+    });
+//=====================================================================================================================
 
 	$('#select-hora-fin').on('change', function(event) {
 		if ($('#select-hora-inicio').val() == '') {
@@ -360,52 +360,52 @@
 		}
 		return false;
 	}
-	var completarDocentes = function (sobrecarga) {
-		fecha = $('#input-datetimepicker-fecha-clase').val();
-		hora_inicio = $('#select-hora-inicio').val();
-		hora_fin = $('#select-hora-fin').val();
-		$('.content-detalle-labels').show();
-		if (fecha != '') {
-			if (hora_inicio != '') {
-				if (hora_fin != '') {
-					if (sobrecarga === true) {
-						return true;
-					}
-					$('label.cargando-hidden-salas span').html("<i class='fa fa-cog fa-spin'></i>").show();
-					$('#result-count-salas').empty();
-					$.ajax({
-						url: '<?php echo $this->Html->url(array('action'=>'listaDocentesConTope')); ?>',
-						type: 'POST',
-						dataType: 'json',
-						data:{fecha:fecha,hora_inicio:hora_inicio,hora_fin:hora_fin},
-					})
-					.fail(function() {
-						notifyUser('Ha ocurrido un error inesperado. Intente nuevamente.','danger');
-					})
-					.always(function(response) {
-						if(response.status=='success'){
-							$('#select-sala').empty().append("<option value=''></option>");
-							$.each(response.data,function(index, el) {
-								$('#select-sala').append("<option value='"+response.data[index][0].COD+"'>"+response.data[index][0].NOMBRE_SALA+"</option>").prop('disabled',false);
-							});
-							$('#select-sala').selectpicker('refresh');
-							$('#result-count-salas').html('Se encontraron '+response.data.length+' salas disponibles' );
-							$('label.cargando-hidden-salas span').hide();
-						}else{
-							notifyUser(response.message,response.status);
-						}
-					});
-				}else{
-					notifyUser('Seleccione una hora de fin','info');
-				}				
-			}else{
-				notifyUser('Seleccione una hora de inicio','info');
-			}
-		}else{
-			notifyUser('Seleccione una fecha del calendario','info');
-		}
-		return false;
-	}
+	// var completarDocentes = function (sobrecarga) {
+	// 	fecha = $('#input-datetimepicker-fecha-clase').val();
+	// 	hora_inicio = $('#select-hora-inicio').val();
+	// 	hora_fin = $('#select-hora-fin').val();
+	// 	$('.content-detalle-labels').show();
+	// 	if (fecha != '') {
+	// 		if (hora_inicio != '') {
+	// 			if (hora_fin != '') {
+	// 				if (sobrecarga === true) {
+	// 					return true;
+	// 				}
+	// 				$('label.cargando-hidden-salas span').html("<i class='fa fa-cog fa-spin'></i>").show();
+	// 				$('#result-count-salas').empty();
+	// 				$.ajax({
+	// 					url: '<?php echo $this->Html->url(array('action'=>'listaDocentesConTope')); ?>',
+	// 					type: 'POST',
+	// 					dataType: 'json',
+	// 					data:{fecha:fecha,hora_inicio:hora_inicio,hora_fin:hora_fin},
+	// 				})
+	// 				.fail(function() {
+	// 					notifyUser('Ha ocurrido un error inesperado. Intente nuevamente.','danger');
+	// 				})
+	// 				.always(function(response) {
+	// 					if(response.status=='success'){
+	// 						$('#select-sala').empty().append("<option value=''></option>");
+	// 						$.each(response.data,function(index, el) {
+	// 							$('#select-sala').append("<option value='"+response.data[index][0].COD+"'>"+response.data[index][0].NOMBRE_SALA+"</option>").prop('disabled',false);
+	// 						});
+	// 						$('#select-sala').selectpicker('refresh');
+	// 						$('#result-count-salas').html('Se encontraron '+response.data.length+' salas disponibles' );
+	// 						$('label.cargando-hidden-salas span').hide();
+	// 					}else{
+	// 						notifyUser(response.message,response.status);
+	// 					}
+	// 				});
+	// 			}else{
+	// 				notifyUser('Seleccione una hora de fin','info');
+	// 			}				
+	// 		}else{
+	// 			notifyUser('Seleccione una hora de inicio','info');
+	// 		}
+	// 	}else{
+	// 		notifyUser('Seleccione una fecha del calendario','info');
+	// 	}
+	// 	return false;
+	// }
 	$('#link-salir-sin-guardar').on('click', function(event) {
 		event.preventDefault();
 		elemento_click = $(this);

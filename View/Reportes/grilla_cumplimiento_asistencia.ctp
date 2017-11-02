@@ -45,9 +45,9 @@
 					    <td><?php echo $value['Asignatura']['NOMBRE']; ?></td>
 					    <td><?php echo $value['AsignaturaHorario']['SIGLA_SECCION']; ?></td>
 					    <td><?php echo $value['Docente']['RUT'].'-'.$value['Docente']['DV']; ?></td>
-					    <td><?php echo utf8_encode ($value['Docente']['APELLIDO_PAT']); ?></td>
-					    <td><?php echo utf8_encode ($value['Docente']['APELLIDO_MAT']); ?></td>
-					    <td><?php echo utf8_encode ($value['Docente']['NOMBRE']); ?></td>
+					    <td><?php echo  ($value['Docente']['APELLIDO_PAT']); ?></td>
+					    <td><?php echo  ($value['Docente']['APELLIDO_MAT']); ?></td>
+					    <td><?php echo  ($value['Docente']['NOMBRE']); ?></td>
 					    <td class="text-center" >
 					    	<?php echo !empty($indicadores)? $indicadores['CLASES_REGULARES']:0; ?>
 					    </td>

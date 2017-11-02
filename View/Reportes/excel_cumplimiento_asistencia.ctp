@@ -74,7 +74,12 @@
 	
     $count=0;
     $fila = 5;
+    #debug($registros);
+    // debug($indicadores_sigla_seccion);
+    // exit();
+
 	foreach ($registros as $detalle): 
+		
 		$indicadores = isset($indicadores_sigla_seccion[$detalle['AsignaturaHorario']['COD_ASIGNATURA_HORARIO']])?$indicadores_sigla_seccion[$detalle['AsignaturaHorario']['COD_ASIGNATURA_HORARIO']]:array();
 		$count++;
         $objPHPExcel->setActiveSheetIndex()->setCellValue('B'.$fila, $count);
@@ -87,7 +92,7 @@
         $objPHPExcel->setActiveSheetIndex()->setCellValue('I'.$fila, !empty($indicadores)? $indicadores['CLASES_REGULARES']:0);
         $objPHPExcel->setActiveSheetIndex()->setCellValue('J'.$fila, !empty($indicadores)? $indicadores['CLASES_SUSPENDIDAS']:0);
         $objPHPExcel->setActiveSheetIndex()->setCellValue('K'.$fila, !empty($indicadores)? $indicadores['CLASES_REGISTRADAS']:0);
-        $objPHPExcel->setActiveSheetIndex()->setCellValue('L'.$fila,!empty($indicadores)? ($indicadores['CLASES_REGULARES']*$indicadores['CLASES_REGISTRADAS']/100).'%':null);
+        $objPHPExcel->setActiveSheetIndex()->setCellValue('L'.$fila,!empty($indicadores)? round(($indicadores['CLASES_REGISTRADAS']*100/$indicadores['CLASES_REGULARES']),2).'%':null);
         $objPHPExcel->setActiveSheetIndex()->getRowDimension($fila)->setRowHeight(30);
 		$objPHPExcel->setActiveSheetIndex()->getStyle("B5:L".$fila)->applyFromArray($cell_normal);
         $fila++;

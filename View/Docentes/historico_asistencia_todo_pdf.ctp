@@ -96,7 +96,7 @@
 						<?php endforeach ?>
 					</tr>
 					<tr>
-						<th class="td-app" style="border-right: 1px solid #ddd !important;">Nº</th>
+						<th class="td-app" style="border-right: 1px solid #ddd !important;">N&deg;</th>
 						<th class="td-app" style="text-align: center; border-right: 1px solid #ddd !important;">Rut Alumno</th>
 						<th class="td-app" style="text-align: center; border-right: 1px solid #ddd !important;">A. Paterno</th>
 						<th class="td-app" style="text-align: center; border-right: 1px solid #ddd !important;">A. Materno</th>
@@ -129,10 +129,10 @@
 							style="height: 40px;">
 							<td ><?php echo $key+1; ?></td>
 							<td ><?php echo $alumno['Alumno']['RUT'] ?></td>
-							<td ><?php echo strtoupper($alumno['Alumno']['APELLIDO_PAT']); ?></td>
-							<td ><?php echo strtoupper($alumno['Alumno']['APELLIDO_MAT']); ?></td>
+							<td ><?php echo utf8_encode(strtoupper($alumno['Alumno']['APELLIDO_PAT'])); ?></td>
+							<td ><?php echo utf8_encode(strtoupper($alumno['Alumno']['APELLIDO_MAT'])); ?></td>
 							<td >
-								<?php echo strtoupper($alumno['Alumno']['NOMBRES']); ?>
+								<?php echo utf8_encode(strtoupper($alumno['Alumno']['NOMBRES'])); ?>
 							</td>
 							<?php 
 								$clases_presente = isset($indicadores[$alumno['Alumno']['ID']])?$indicadores[$alumno['Alumno']['ID']]['CLASES_PRESENTE']:0;
@@ -173,7 +173,10 @@
 												$asistencia = 'x';
 											}elseif($asistencia ==0){
 												$asistencia = '';
-											}											
+											}elseif($asistencia ==2){
+												$asistencia = 'J';
+											}
+
 											echo '<td class="rotar" style=" text-align: center; border-right: 1px solid #ddd !important;border-left: 1px solid #ddd !important;">'.$asistencia.'</td>';
 										}
 									}else{
@@ -185,6 +188,9 @@
 											$asistencia = 'x';
 										}elseif($asistencia ==0){
 											$asistencia = '';
+										}
+										elseif($asistencia ==2){
+											$asistencia = 'J';
 										}
 										echo '<td class="rotar" style=" text-align: center; border-right: 1px solid #ddd !important;border-left: 1px solid #ddd !important;">'.$asistencia.'</td>';
 									}

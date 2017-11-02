@@ -22,7 +22,7 @@
 		'ProgramacionClase.detalle'=>'Detalle',
 		'ProgramacionClase.ESTADO_PROGRAMACION_ID' => 'Estado',
 		#'ProgramacionClase.estado'=>'Estado',
-		'ProgramacionClase.sub_estado'=>'Sub-Estado',
+		#'ProgramacionClase.sub_estado'=>'Sub-Estado',
 	);
 	$datos_filtro = null;
 
@@ -124,7 +124,7 @@
 		})
 		.fail(function() {
 
-			notifyUser('Ha ocurridosssss un error inesperado. Intente m&aacute;s tarde.','danger');
+			notifyUser('Ha ocurrido un error inesperado. Intente m&aacute;s tarde.','danger');
 			
 		//notifyUser('Ha ocurrido un error inesperado. Intente m&aacute;s tarde.' + error ,'danger');
         //console.log("Post error: " + error);

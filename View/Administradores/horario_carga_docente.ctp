@@ -176,9 +176,8 @@
 	var imagen_cargando = loadImage('<?php echo $this->Html->image('loading.gif'); ?>');
 	var id_semana = undefined;
 	function refrescarCalendario(elemento_click){
-		if ($('#hidden-uuid-docente').val() != '') {
-			$('#contenedor-calendario').html('<div align="center"></div>');
-			$('#contenedor-calendario div').html(imagen_cargando);
+		if ($('#hidden-uuid-docente').val() != '' ) {
+			
 			var periodo_id = $('#select-periodo').val();
 			if(id_semana == undefined){
 				id_semana = $('#select-semanas').val();
@@ -186,12 +185,20 @@
 					id_semana=null;
 				}
 			}
-			if(periodo_id == undefined){
-				periodo_id = $('#select-periodo').val();
-				if(periodo_id == undefined || periodo_id == 0) {
+			if(periodo_id == undefined || periodo_id == 0 || periodo_id == ''){
+			/*	periodo_id = $('#select-periodo').val();
+				if(periodo_id == undefined || periodo_id == 0 || periodo_id == '') {
 					periodo_id='';
-				}
+			*/	notifyUser('Debe seleccionar periodo a consultar', 'info');
+			
+				return false;
 			}
+			else
+			{
+			$('#contenedor-calendario').html('<div align="center"></div>');
+			$('#contenedor-calendario div').html(imagen_cargando);
+			
+			
 			$.ajax({
 				url: '<?php echo $this->Html->url(array('action'=>'getAgendaDocente')); ?>'+'/'+$('#hidden-uuid-docente').val()+'/'+filtro+'/'+id_semana+'/'+periodo_id,
 				type: 'POST',
@@ -206,6 +213,7 @@
 				$('span#nombre-docente-text').show();
 				$('.content-calendar').show();
 			});
+			}
 		}else{
 			notifyUser('Es necesario ingresar al menos un campo de b&uacute;squeda referente a la informaci&oacute;n del docente', 'info');
 		}

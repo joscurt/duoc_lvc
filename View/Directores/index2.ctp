@@ -188,7 +188,7 @@
 											<input 
 												type="hidden" 
 												name="data[Excel][<?php echo $count ?>][modalidad]" 
-												value="<?php echo isset($dato['AsignaturaHorario']['TEO_PRA']) ? utf8_encode($dato['AsignaturaHorario']['TEO_PRA']) : '';?>">		
+												value="<?php echo isset($dato['AsignaturaHorario']['TEO_PRA']) ? ($dato['AsignaturaHorario']['TEO_PRA']) : '';?>">		
 											</input>
 											<?php echo isset($dato['AsignaturaHorario']['TEO_PRA']) ? $dato['AsignaturaHorario']['TEO_PRA']: ''; ?>
 										</td>

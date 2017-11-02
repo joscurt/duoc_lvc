@@ -21,7 +21,7 @@
 						<select name="data[escuela]" class="form-control select-picker" data-live-search="true">
 							<option value=""></option>
 							<?php foreach ($escuelas as $key => $value): ?>
-								<option value="<?php echo $key; ?>"><?php echo strtoupper($value); ?></option>
+								<option style="text-transform: uppercase;" value="<?php echo $key; ?>"><?php echo utf8_decode(strtoupper($value)); ?></option>
 							<?php endforeach ?>
 						</select>
 					</div>

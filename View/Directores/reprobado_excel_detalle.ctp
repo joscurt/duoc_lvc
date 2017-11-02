@@ -89,9 +89,9 @@
 		}
 		$objPHPExcel->setActiveSheetIndex()->setCellValue('B'.$fila, $checkbox);
 		$objPHPExcel->setActiveSheetIndex()->setCellValue('C'.$fila, strtoupper($value['Alumno']['RUT']));
-		$objPHPExcel->setActiveSheetIndex()->setCellValue('D'.$fila, utf8_encode(strtoupper($value['Alumno']['APELLIDO_PAT'])));
-		$objPHPExcel->setActiveSheetIndex()->setCellValue('E'.$fila, utf8_encode(strtoupper($value['Alumno']['APELLIDO_MAT'])));
-		$objPHPExcel->setActiveSheetIndex()->setCellValue('F'.$fila, utf8_encode(strtoupper($value['Alumno']['NOMBRES'])));
+		$objPHPExcel->setActiveSheetIndex()->setCellValue('D'.$fila, (strtoupper($value['Alumno']['APELLIDO_PAT'])));
+		$objPHPExcel->setActiveSheetIndex()->setCellValue('E'.$fila, (strtoupper($value['Alumno']['APELLIDO_MAT'])));
+		$objPHPExcel->setActiveSheetIndex()->setCellValue('F'.$fila, (strtoupper($value['Alumno']['NOMBRES'])));
 		$objPHPExcel->setActiveSheetIndex()->setCellValue('G'.$fila, isset($indicadores_alumnos[$value['Alumno']['COD_ALUMNO']])? $indicadores_alumnos[$value['Alumno']['COD_ALUMNO']]['CLASES_PRESENTE']:0);
 		$objPHPExcel->setActiveSheetIndex()->setCellValue('H'.$fila, isset($indicadores_alumnos[$value['Alumno']['COD_ALUMNO']])? $indicadores_alumnos[$value['Alumno']['COD_ALUMNO']]['CLASES_AUSENTE']:0);
 		$objPHPExcel->setActiveSheetIndex()->setCellValue('I'.$fila, round($porcentaje,2).'%');

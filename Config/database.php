@@ -1,8 +1,8 @@
 <?php
 
-# Versi&oacute;n original.
+# Versión original.
 class DATABASE_CONFIG {
-	public $default = array(
+	/*public $default = array(
 		'datasource' => 'Database/Oracle',
 		'driver'=>'oracle',
 		'connect'=>'oci_pconnect',
@@ -14,12 +14,12 @@ class DATABASE_CONFIG {
 		'prefix' => '',
 		'schema'=>'LIBROVIRTUALCLASES',
 		'owner'=>'LIBROVIRTUALCLASES'
-		/*'encoding' => 'utf8' */
+		'encoding' => 'utf8' 
 	);
 	/**/
 
-	# Versi&oacute;n copia.
-	/*public $default = array(
+	# Versión copia.
+	public $default = array(
 		'datasource' => 'Database/Oracle',
 		'driver'=>'oracle',
 		'connect'=>'oci_pconnect',
@@ -34,7 +34,7 @@ class DATABASE_CONFIG {
 		'encoding' => 'utf8'
 	);
 	
-	# Versi&oacute;n copia.
+	# Versión copia.
 	/*public $default = array(
 		'datasource' => 'Database/Oracle',
 		'driver'=>'oracle',

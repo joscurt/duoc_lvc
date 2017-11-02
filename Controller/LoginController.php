@@ -21,10 +21,11 @@
 				{
 					#Verifica si los datos del usuario vienen por el formulario, osea POST, y aqui autentica LDAP									
 					if($info["method"]=="POST"){
+						// debug($data['User']['username']);exit();
 						# INTEGRACION CON LA CLASE LDAP	
 						$this->loadModel('LdapAcademico');
 						$ldap_response = $this->LdapAcademico->connect(strtoupper($data['User']['username']),$data['User']['password']);
-						$ldap_response = Array('status'=>'success');
+						#$ldap_response = Array('status'=>'success');
 						#FIN LDAP
 					}else{
 						#Si entra por aqui, es porque los datos vienen de la URL, por lo tanto no autentica LDAP
@@ -138,7 +139,7 @@ die('datos');*/
 		public function logoutCoordinador()
 		{
 			$this->Session->destroy();
-			$this->Session->setFlash('Sesi&oacute;n finalizada.','mensaje-exito');
+			$this->Session->setFlash('Sesión finalizada.','mensaje-exito');
 			$this->redirect('/admin');
 		}
 
@@ -146,7 +147,7 @@ die('datos');*/
 		public function logoutDocente()
 		{
 			$this->Session->destroy();
-			$this->Session->setFlash('Sesi&oacute;n finalizada.','mensaje-exito');
+			$this->Session->setFlash('Sesión finalizada.','mensaje-exito');
 			$this->redirect('/');
 		}
 
@@ -187,7 +188,7 @@ die('datos');*/
 		public function logoutDirector()
 		{
 			$this->Session->destroy();
-			$this->Session->setFlash('Sesi&oacute;n finalizada.','mensaje-exito');
+			$this->Session->setFlash('Sesión finalizada.','mensaje-exito');
 			$this->redirect('/directores');
 		}
 
@@ -211,6 +212,7 @@ die('datos');*/
 						$acceso_backoffice = $this->AccesoBackOffice->getAccessFull(strtoupper($form_data['User']['username']));
 						if (!empty($acceso_backoffice)) {
 							$this->Session->write('BackOfficeLogueado',$acceso_backoffice);
+							#debug($acceso_backoffice);exit();
 							$this->redirect(array('controller'=>'BackOffice','action'=>'index'));
 						}else{
 							$this->Session->setFlash('Sus credenciales no han sido cargadas a la plataforma LVC. Contactese con el administrador.','mensaje-error');
@@ -229,7 +231,7 @@ die('datos');*/
 		public function logoutBackOffice()
 		{
 			$this->Session->destroy();
-			$this->Session->setFlash('Sesi&oacute;n finalizada.','mensaje-exito');
+			$this->Session->setFlash('Sesión finalizada.','mensaje-exito');
 			$this->redirect('/bo');
 		}
 

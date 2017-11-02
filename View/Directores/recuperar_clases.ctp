@@ -20,7 +20,7 @@
         'ProgramacionClase.PERIODO'=>'Periodo',
         'ProgramacionClase.COD_JORNADA'=>'Jornada',
         'ProgramacionClase.detalle'=>'Detalle',
-        'ProgramacionClase.sub_estado'=>'Sub-Estado',
+        // 'ProgramacionClase.Sub_estado'=>'Sub-Estado',
     );
     $display_card_multiple = isset($filtro_multiple) && $filtro_multiple == 1 ? '':'display:none;';
     $display_card_simple = empty($display_card_multiple)? 'display:none;':'';
@@ -63,7 +63,21 @@
         ?>
     </div>
 </div>
-<?php if (isset($datos_tabla) && !empty($datos_tabla)): ?>
+<?php if (!isset($datos_tabla) && empty($datos_tabla)): 
+
+
+?>
+    <div class="card">
+        <div class="card-body card-padding">
+            <div class="row">
+                <div class="col-md-12">
+                    <label for="">*No se han encontrado registros.</label>
+                </div>
+            </div>
+        </div>
+    </div>
+<?php else: ?>
+     <form action="<?php echo $this->Html->url(array('action'=>'recuperarClasesExcel')) ?>" method="post" id="form-recuperar-clases-exportables" target="_blank">
     <div class="card">
         <div class="card-header">
             <div class="row">
@@ -90,40 +104,53 @@
                 </div>  
             </div>
         </div>
-        <div class="card-body card-padding">
-            <form action="<?php echo $this->Html->url(array('action'=>'recuperarClasesExcel')) ?>" method="post" id="form-recuperar-clases-exportables" target="_blank">
+            <div class="card-body card-padding">
                 <div class="row">
                     <div class="col-md-12">
                         <table class="table table-striped" border="0" cellpadding="0" cellspacing="0" >
                             <thead>
                                 <tr>
-                                    <th>#</th>
+                                    <th>
+                                        <div class="checkbox m-b-15">
+                                            <label>
+                                                <input id="check-all" type="checkbox" value="">
+                                                <i class="input-helper"></i>
+                                            </label>
+                                        </div>
+                                    </th>
                                     <th class="una-linea">Fecha</th>
                                     <th>Nombre Asignatura</th>
                                     <th class="una-linea">Sigla-Secci&oacute;n</th>
                                     <th>Jornada</th>
+                                    <th>Modalidad</th>
                                     <th class="una-linea">Rut docente</th>
                                     <th>Apellido Paterno</th>
                                     <th>Apellido Materno</th>
                                     <th>Nombres</th>
                                     <th>Sala</th>
                                     <th>Horario</th>
-                                    <th>Tipo</th>
-                                    <th>Detalle</th>
+                                    <th>Estado</th>
+                                    <th>Sub-Estado</th>
                                     <th>Editar</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <?php $count = 0; foreach ($datos_tabla as $key => $dato): $count++;?>
-                                    <tr class="odd">
+                                <?php 
+                                   $count = 0; foreach ($datos_tabla as $key => $dato): $count++; ?>
+                                    <tr class="odd" <?php echo isset($dato['ProgramacionClase']['TOPE_HORARIO']) ? 'style="background-color: #b7b7b7 !important; "' : ''; ?>>
                                         <td>
-                                            <?php echo $key+1 ?>
+                                            <div class="checkbox m-b-15">
+                                                <label>
+                                                    <input class="check-clase" name="data[Autorizacion][<?php echo $count ?>][cod_asigntura_seleccionada]" type="checkbox" value="<?php echo $dato['ProgramacionClase']['COD_PROGRAMACION']; ?>">
+                                                    <i class="input-helper"></i>
+                                                </label>
+                                            </div>
                                         </td>
                                         <td>
                                             <input 
                                                 type="hidden" 
-                                                name="data[Excel][<?php echo $count ?>][FECHA_CLASE]" 
-                                                value="<?php echo isset($dato['ProgramacionClase']['FECHA_CLASE']) ? date('d-m-Y', strtotime($dato['ProgramacionClase']['FECHA_CLASE'])) : ''; ?>">
+                                                name="data[Excel][<?php echo $count ?>][fechaClase]" 
+                                                value="<?php echo isset($dato['ProgramacionClase']['FECHA_CLASE']) ? date('d-m-Y', strtotime($dato['ProgramacionClase']['FECHA_CLASE'])): '';?>">       
                                             </input>
                                             <?php 
                                                 echo isset($dato['ProgramacionClase']['FECHA_CLASE'])
@@ -132,20 +159,21 @@
                                         </td>
                                         <td>
                                             <input 
-                                                type="hidden"
-                                                name="data[Excel][<?php echo $count ?>][NOMBRE_ASIGNATURA]"
-                                                value="<?php echo isset($dato['Asignatura']['NOMBRE']) ? $dato['Asignatura']['NOMBRE']: ''; ?>">
+                                                type="hidden" 
+                                                name="data[Excel][<?php echo $count ?>][nombreAsignatura]" 
+                                                value="<?php echo isset($dato['Asignatura']['NOMBRE']) ? $dato['Asignatura']['NOMBRE'] : '';?>">        
                                             </input>
                                             <?php 
                                                 echo isset($dato['Asignatura']['NOMBRE']) 
                                                 ? $dato['Asignatura']['NOMBRE']: ''; 
+                                                #echo($dato['ProgramacionClase']['ID']);
                                             ?>
                                         </td>
                                         <td>
                                             <input 
-                                                type="hidden"
-                                                name="data[Excel][<?php echo $count ?>][SIGLA_SECCION]"
-                                                value="<?php echo isset($dato['ProgramacionClase']['SIGLA_SECCION']) ? $dato['ProgramacionClase']['SIGLA_SECCION']: ''; ?>">
+                                                type="hidden" 
+                                                name="data[Excel][<?php echo $count ?>][siglaSeccion]" 
+                                                value="<?php echo isset($dato['ProgramacionClase']['SIGLA_SECCION']) ? $dato['ProgramacionClase']['SIGLA_SECCION'] : '';?>">        
                                             </input>
                                             <?php 
                                                 echo isset($dato['ProgramacionClase']['SIGLA_SECCION']) 
@@ -154,97 +182,102 @@
                                         </td>
                                         <td>
                                             <input 
-                                                type="hidden"
-                                                name="data[Excel][<?php echo $count ?>][COD_JORNADA]"
-                                                value="<?php echo $dato['ProgramacionClase']['COD_JORNADA']; ?>">
+                                                type="hidden" 
+                                                name="data[Excel][<?php echo $count ?>][jornada]" 
+                                                value="<?php echo isset($dato['ProgramacionClase']['COD_JORNADA']) && $dato['ProgramacionClase']['COD_JORNADA'] == 'D' ? 'Diurno' : 'Vespertino';?>">       
                                             </input>
-                                            <?php if (!empty($dato['ProgramacionClase']['COD_JORNADA'])): ?>
-                                                <?php echo $dato['ProgramacionClase']['COD_JORNADA'] == 'D' ? 'Diurno':''; ?>
-                                                <?php echo $dato['ProgramacionClase']['COD_JORNADA'] == 'V' ? 'Vespertino':''; ?>
-                                            <?php endif ?>
+                                            <?php echo $dato['ProgramacionClase']['COD_JORNADA'] == 'D' ? 'Diurno' : 'Vespertino'; ?>
                                         </td>
                                         <td>
                                             <input 
-                                                type="hidden"
-                                                name="data[Excel][<?php echo $count ?>][RUT]"
-                                                value="<?php echo isset($dato['Docente']['RUT']) ? $dato['Docente']['RUT'].'-'.$dato['Docente']['DV']: ''; ?>">
-                                            </input>    
+                                                type="hidden" 
+                                                name="data[Excel][<?php echo $count ?>][modalidad]" 
+                                                value="<?php echo isset($dato['AsignaturaHorario']['TEO_PRA']) ? ($dato['AsignaturaHorario']['TEO_PRA']) : '';?>">      
+                                            </input>
+                                            <?php echo isset($dato['AsignaturaHorario']['TEO_PRA']) ? $dato['AsignaturaHorario']['TEO_PRA']: ''; ?>
+                                        </td>
+                                        <td>
+                                            <input 
+                                                type="hidden" 
+                                                name="data[Excel][<?php echo $count ?>][rutDocente]" 
+                                                value="<?php echo isset($dato['Docente']['RUT']) ? $dato['Docente']['RUT'].'-'.$dato['Docente']['DV'] : '';?>">     
+                                            </input>
                                             <?php echo isset($dato['Docente']['RUT']) ? $dato['Docente']['RUT'].'-'.$dato['Docente']['DV']: ''; ?>
                                         </td>
                                         <td>
                                             <input 
-                                                type="hidden"
-                                                name="data[Excel][<?php echo $count ?>][APELLIDO_PAT]"
-                                                value="<?php echo isset($dato['Docente']['APELLIDO_PAT']) ? $dato['Docente']['APELLIDO_PAT']: ''; ?>">
-                                            </input>    
+                                                type="hidden" 
+                                                name="data[Excel][<?php echo $count ?>][apellidoPat]" 
+                                                value="<?php echo isset($dato['Docente']['APELLIDO_PAT']) ? $dato['Docente']['APELLIDO_PAT'] : '';?>">      
+                                            </input>
                                             <?php echo isset($dato['Docente']['APELLIDO_PAT']) ? $dato['Docente']['APELLIDO_PAT']: ''; ?>
                                         </td>
                                         <td>
                                             <input 
-                                                type="hidden"
-                                                name="data[Excel][<?php echo $count ?>][APELLIDO_MAT]"
-                                                value="<?php echo isset($dato['Docente']['APELLIDO_MAT']) ? $dato['Docente']['APELLIDO_MAT']: ''; ?>">
-                                            </input> 
+                                                type="hidden" 
+                                                name="data[Excel][<?php echo $count ?>][apellidoMat]" 
+                                                value="<?php echo isset($dato['Docente']['APELLIDO_MAT']) ? $dato['Docente']['APELLIDO_MAT'] : '';?>">      
+                                            </input>    
                                             <?php echo isset($dato['Docente']['APELLIDO_MAT']) ? $dato['Docente']['APELLIDO_MAT']: ''; ?>
                                         </td>
                                         <td>
                                             <input 
-                                                type="hidden"
-                                                name="data[Excel][<?php echo $count ?>][NOMBRE_DOCENTE]"
-                                                value="<?php echo isset($dato['Docente']['NOMBRE']) ? $dato['Docente']['NOMBRE']: ''; ?>">
-                                            </input>     
+                                                type="hidden" 
+                                                name="data[Excel][<?php echo $count ?>][nombreDocente]" 
+                                                value="<?php echo isset($dato['Docente']['NOMBRE']) ? $dato['Docente']['NOMBRE'] : '';?>">      
+                                            </input>
                                             <?php echo isset($dato['Docente']['NOMBRE']) ? $dato['Docente']['NOMBRE']: ''; ?>
                                         </td>
                                         <td>
                                             <input 
-                                                type="hidden"
-                                                name="data[Excel][<?php echo $count ?>][SALA]"
-                                                value="<?php echo !empty($dato['SalaReemplazo']['TIPO_SALA']) ? $dato['SalaReemplazo']['TIPO_SALA']:$dato['Sala']['TIPO_SALA']; ?>">
-                                            </input>         
-                                            <?php echo !empty($dato['SalaReemplazo']['TIPO_SALA']) ? $dato['SalaReemplazo']['TIPO_SALA']:$dato['Sala']['TIPO_SALA']; ?>
-                                        </td>
+                                                type="hidden" 
+                                                name="data[Excel][<?php echo $count ?>][sala]" 
+                                                value="<?php echo isset($dato['ProgramacionClase']['SALA']) ? $dato['ProgramacionClase']['SALA'] : '';?>">      
+                                            </input>
+                                            <?php echo !empty($dato['Sala']['TIPO_SALA']) ? $dato['Sala']['TIPO_SALA']:$dato['SalaReemplazo']['TIPO_SALA']; ?></td>
                                         <td>
                                             <input 
-                                                type="hidden"
-                                                name="data[Excel][<?php echo $count ?>][HORA_INICIO]"
-                                                value="<?php echo isset($dato['ProgramacionClase']['HORA_INICIO']) ? $dato['ProgramacionClase']['HORA_INICIO'] : ''; ?>">
+                                                type="hidden" 
+                                                name="data[Excel][<?php echo $count ?>][horaInicio]" 
+                                                value="<?php echo isset($dato['ProgramacionClase']['HORA_INICIO']) ? date('H:i',strtotime($dato['ProgramacionClase']['HORA_INICIO'])) : '';?>">     
                                             </input>
-                                            <input 
-                                                type="hidden"
-                                                name="data[Excel][<?php echo $count ?>][HORA_FIN]"
-                                                value="<?php echo isset($dato['ProgramacionClase']['HORA_FIN']) ? $dato['ProgramacionClase']['HORA_FIN'] : ''; ?>">
-                                            </input> 
                                             <?php 
                                                 echo isset($dato['ProgramacionClase']['HORA_INICIO']) 
                                                 ? date('H:i',strtotime($dato['ProgramacionClase']['HORA_INICIO'])): ''; 
                                             ?>
                                             -
+                                            <input 
+                                                type="hidden" 
+                                                name="data[Excel][<?php echo $count ?>][horaFin]" 
+                                                value="<?php echo isset($dato['ProgramacionClase']['HORA_FIN']) ? date('H:i',strtotime($dato['ProgramacionClase']['HORA_FIN'])) : '';?>">       
+                                            </input>
                                             <?php 
                                                 echo isset($dato['ProgramacionClase']['HORA_FIN']) 
                                                 ? date('H:i', strtotime($dato['ProgramacionClase']['HORA_FIN'])): ''; 
                                             ?>
                                         </td>
+
                                         <td>
                                             <input 
-                                                type="hidden"
-                                                name="data[Excel][<?php echo $count ?>][TIPO_EVENTO]"
-                                                value="<?php echo isset($dato['ProgramacionClase']['TIPO_EVENTO']) ? $dato['ProgramacionClase']['TIPO_EVENTO']: ''; ?>">
-                                            </input>    
-                                            <?php 
-                                            echo isset($dato['ProgramacionClase']['TIPO_EVENTO']) ? $dato['ProgramacionClase']['TIPO_EVENTO']: ''; ?>
+                                                type="hidden" 
+                                                name="data[Excel][<?php echo $count ?>][Estado]" 
+                                                value="<?php echo isset($dato['Estado']['NOMBRE']) ? $dato['Estado']['NOMBRE'] : '';?>">        
+                                            </input>
+                                            <?php echo isset($dato['Estado']['NOMBRE']) ? $dato['Estado']['NOMBRE']: ''; ?>
                                         </td>
                                         <td>
                                             <input 
-                                                type="hidden"
-                                                name="data[Excel][<?php echo $count ?>][DETALLE]"
-                                                value="<?php echo isset($dato['Detalle']['DETALLE']) ? $dato['Detalle']['DETALLE']: ''; ?>">
+                                                type="hidden" 
+                                                name="data[Excel][<?php echo $count ?>][subEstado]" 
+                                                value="<?php echo isset($dato['SubEstado']['NOMBRE']) ? $dato['SubEstado']['NOMBRE'] : '';?>">      
                                             </input>        
-                                            <?php echo isset($dato['Detalle']['DETALLE']) ? $dato['Detalle']['DETALLE']: ''; ?>
+                                            <?php echo isset($dato['SubEstado']['NOMBRE']) ? $dato['SubEstado']['NOMBRE']: $dato['Detalle']['DETALLE']; ?>
                                         </td>
                                         <td>
-                                            <a
+                                            <a 
                                                 class="btn btn-info btn-sm" 
-                                                href="<?php echo $this->Html->url(array('action'=>'editarRecuperacionClase', $dato['ProgramacionClase']['COD_PROGRAMACION'])); ?>" 
+                                                href="<?php echo $this->Html->url(array('action'=>'autorizacionFichaDetalle', $dato['ProgramacionClase']['COD_PROGRAMACION'])); ?>" 
+                                                data-toggle="tooltip"
                                                 title="Editar">
                                                 <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
                                             </a>
@@ -257,25 +290,24 @@
                 </div>
                 <div class="row">
                     <div class="col-md-12">
-                        <button id="submit_excel" type="submit" class="btn btn-success"><i class="fa fa-file-excel-o"></i>&nbsp;Exportar Excel</button>
-                        <a id="submit_pdf" class="btn btn-success"><i class="fa fa-file-pdf-o"></i>&nbsp;Exportar PDF</a> 
-                        <a id="submit_imprimir" class="btn btn-success"><i class="fa fa-print"></i>&nbsp;Imprimir</a>
+                        <?php $tope_horario = false; ?>
+                        <?php foreach ($datos_tabla as $key => $value): ?>
+                            <?php if (isset($value['ProgramacionClase']['TOPE_HORARIO']) == 'true' && !$tope_horario): ?>
+                                <?php $tope_horario = true; ?>
+                            <?php endif ?>
+                        <?php endforeach ?>
+                        <?php if ($tope_horario): ?>
+                            <a class="btn btn-success " validate-select="true" data-toggle="modal" data-target="#autorizar_clase">Autorizar Clase</a> 
+                        <?php else: ?>
+                            <a class="btn btn-success autorizar-clase" validate-select="true" data-toggle="modal" data-target="#">Autorizar Clase</a>
+                        <?php endif ?>
+                        <button type="submit" class="btn btn-success"><i class="fa fa-file-excel-o"></i>&nbsp;Exportar Excel</button>
                     </div>
-                </div>
-            </form>       
-        </div>
-    </div>
-<?php else: ?>
-    <div class="card">
-        <div class="card-body card-padding">
-            <div class="row">
-                <div class="col-md-12">
-                    <label for="">*No se han encontrado registros.</label>
                 </div>
             </div>
         </div>
-    </div>
-<?php endif; ?>
+    </form>
+<?php endif ?>
 <script>
     $('#select-order').on('change', function(event) {
         event.preventDefault();

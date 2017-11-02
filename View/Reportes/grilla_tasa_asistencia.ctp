@@ -25,12 +25,14 @@
 					<th>&nbsp;</th>
 					<th>Nombre Asignatura</th>
 					<th class="una-linea">Sigla-Secci&oacute;n</th>
+					<th class="una-linea">Modalidad</th>
 					<th class="una-linea">Rut Alumno</th>
 					<th>Apellido Paterno</th>
 					<th>Apellido Materno</th>
 					<th>Nombres</th>
 					<th class="clases_presente">Clases Presente</th>
 					<th class="clases_ausente">Clases Ausente</th>
+					<th class="clases_justificadas">Clases Justificadas</th>
 					<th class="asistencia_promedio">Asistencia Actual</th>
 					<th>RI</th>
 				</tr>
@@ -49,20 +51,23 @@
 					    <td><?php echo $key+1; ?></td>
 					    <td><?php echo $value['Asignatura']['NOMBRE']; ?></td>
 					    <td><?php echo $value['AlumnoAsignatura']['SIGLA_SECCION']; ?></td>
+					    <td><?php echo $value['AsignaturaHorario']['TEO_PRA']; ?></td>
 					    <td><?php echo $value['Alumno']['RUT'].'-'.$value['Alumno']['DV_RUT']; ?></td>
-					    <td><?php echo utf8_encode($value['Alumno']['APELLIDO_PAT']); ?></td>
-					    <td><?php echo utf8_encode($value['Alumno']['APELLIDO_MAT']); ?></td>
-					    <td><?php echo utf8_encode($value['Alumno']['NOMBRES']); ?></td>
+					    <td><?php echo $value['Alumno']['APELLIDO_PAT']; ?></td>
+					    <td><?php echo $value['Alumno']['APELLIDO_MAT']; ?></td>
+					    <td><?php echo $value['Alumno']['NOMBRES']; ?></td>
 					    <td class="text-center" >
 
-					    	<?php echo isset($indicadores_alumnos[$value['Alumno']['COD_ALUMNO']])? $indicadores_alumnos[$value['Alumno']['COD_ALUMNO']]['CLASES_PRESENTE']:0; ?>
-
+					    	<!-- <?php 
+					    	
+					    	echo isset($indicadores_alumnos[$value['Alumno']['COD_ALUMNO']])? $indicadores_alumnos[$value['Alumno']['COD_ALUMNO']]['CLASES_PRESENTE']:0; ?>
+ -->
 					    	<?php echo isset($indicadores_alumnos[$value['AlumnoAsignatura']['COD_HORARIO_ASIGNATURA']][$value['Alumno']['COD_ALUMNO']])? $indicadores_alumnos[$value['AlumnoAsignatura']['COD_HORARIO_ASIGNATURA']][$value['Alumno']['COD_ALUMNO']]['CLASES_PRESENTE']:0; ?>
 					    		
 					    </td>
 						
 						<td class="text-center" ><?php echo isset($indicadores_alumnos[$value['AlumnoAsignatura']['COD_HORARIO_ASIGNATURA']][$value['Alumno']['COD_ALUMNO']])? $indicadores_alumnos[$value['AlumnoAsignatura']['COD_HORARIO_ASIGNATURA']][$value['Alumno']['COD_ALUMNO']]['CLASES_AUSENTE']:0; ?></td>
-					    
+					    <td><?php echo isset($indicadores_alumnos[$value['AlumnoAsignatura']['COD_HORARIO_ASIGNATURA']][$value['Alumno']['COD_ALUMNO']])? $indicadores_alumnos[$value['AlumnoAsignatura']['COD_HORARIO_ASIGNATURA']][$value['Alumno']['COD_ALUMNO']]['CLASES_JUSTIFICADOS']:0; ?></td>
 					    <td><?php echo round($porcentaje,2).'%'; ?></td>
 					    
 					    <td>

@@ -93,7 +93,7 @@
 			<br>
 				<div class="left">
 					<div class="col-md-2 card">
-						<div class="fecha"><i class="fa fa-calendar-o" aria-hidden="true"></i> <?php $FechaActual=date('d-m-Y h:i A'); echo $FechaActual; ?></div>
+						<div class="fecha"><i class="fa fa-calendar-o" aria-hidden="true"></i> <?php $FechaActual=date('d-M-Y h:i A'); echo $FechaActual; ?></div>
 						<ul class="menu">
 
 

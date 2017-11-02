@@ -112,9 +112,9 @@
                                     <td><?php echo $value['AsignaturaHorario']['SIGLA_SECCION']; ?></td>
                                     <td><?php echo $value['AsignaturaHorario']['COD_JORNADA']; ?></td>
                                     <td><?php echo $value['Docente']['RUT'].'-'.$value['Docente']['DV']; ?></td>
-                                    <td><?php echo utf8_encode($value['Docente']['APELLIDO_PAT']); ?></td>
-                                    <td><?php echo utf8_encode($value['Docente']['APELLIDO_MAT']); ?></td>
-                                    <td><?php echo utf8_encode($value['Docente']['NOMBRE']); ?></td>
+                                    <td><?php echo ($value['Docente']['APELLIDO_PAT']); ?></td>
+                                    <td><?php echo ($value['Docente']['APELLIDO_MAT']); ?></td>
+                                    <td><?php echo ($value['Docente']['NOMBRE']); ?></td>
                                     <td><?php echo $value['AsignaturaHorario']['CLASES_REGISTRADAS']; ?></td>
                                     <td><?php echo (float)$value['AsignaturaHorario']['ASIST_PROMEDIO'].'%'; ?></td>
                                     <td align="center">

@@ -3,7 +3,7 @@
 	<table class="table table-striped table-bordered">
 		<thead>
 			<tr>
-				<th class="td-app text-center">Nº</th>
+				<th class="td-app text-center">N&deg;</th>
 				<th class="td-app text-center">Rut Alumno</th>
 				<th class="td-app text-left">Apellido Paterno</th>
 				<th class="td-app text-left">Apellido Materno</th>
@@ -19,13 +19,13 @@
 				<tr>
 					<td class="text-center"><?php echo $key +1;?></td>
 					<td class="text-center"><?php echo strtoupper($value['Alumno']['RUT']); ?></td>
-					<td class="text-left"><?php echo strtoupper(utf8_encode($value['Alumno']['APELLIDO_PAT'])); ?></td>
-					<td class="text-left"><?php echo strtoupper(utf8_encode($value['Alumno']['APELLIDO_MAT'])); ?></td>
+					<td class="text-left"><?php echo strtoupper(($value['Alumno']['APELLIDO_PAT'])); ?></td>
+					<td class="text-left"><?php echo strtoupper(($value['Alumno']['APELLIDO_MAT'])); ?></td>
 					<td class="text-left">
 						<a 
 							style="cursor: pointer; " 
 							data-dd="<?php echo $value['Alumno']['ID']; ?>"
-							class="alumno_active"><?php echo strtoupper(utf8_encode($value['Alumno']['NOMBRES'])); ?></a>
+							class="alumno_active"><?php echo strtoupper(($value['Alumno']['NOMBRES'])); ?></a>
 					</td>
 					<td  class="text-center"><?php echo isset($indicadores[$value['Alumno']['ID']])?$indicadores[$value['Alumno']['ID']]['CLASES_PRESENTE']:0; ?></td>
 					<td  class="text-center"><?php echo isset($indicadores[$value['Alumno']['ID']])?$indicadores[$value['Alumno']['ID']]['CLASES_AUSENTE']:0; ?></td>
@@ -35,7 +35,7 @@
 						$asistencia_actual = $clases_presente*100/$total_hoy;
 						$asistencia_actual = round($asistencia_actual,1);
 					?>
-					<td  class="text-center" <?php echo ($asistencia_actual < 70)? 'style="color:red;"' : null; ?> ><?php echo $asistencia_actual; ?>%</td>
+					<td  class="text-center" <?php echo ($asistencia_actual < 70)? 'style="color:red;"' : null; ?> ><?php echo ($asistencia_actual>100) ? '100' : $asistencia_actual ; ?>%</td>
 					<?php 
 						$asistencia_total = round(($clases_presente*100/$total_clases),1); 
 						#echo $total_clases;
@@ -63,7 +63,8 @@
 			<a
 				id="btn-exportar-pdf"
 				class="btn btn-sm btn-default" 
-				href="#"
+				href=""
+				target="_blank"
 				><i  style="color:red;" class="fa fa-file-pdf-o"></i>&nbsp;EXPORTAR A PDF</a>
 			<a
 				id="btn-exportar-excel" 

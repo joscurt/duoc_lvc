@@ -40,7 +40,7 @@
         var hora_inicio = '<?php echo date("H:i",strtotime($programacion_clase["ProgramacionClase"]["HORA_INICIO"])) ?>';
         var hora_fin = '<?php echo date("H:i",strtotime($programacion_clase["ProgramacionClase"]["HORA_FIN"])) ?>';
         $.ajax({
-            url: '<?php echo $this->Html->url(array('action'=>'getSalasDisponiblesByHorario')); ?>',
+            url: '<?php echo $this->Html->url(array('action'=>'getSalasDisponiblesByHorarioProg')); ?>',
             type: 'POST',
             dataType: 'json',
             data:{fecha:fecha,hora_inicio:hora_inicio,hora_fin:hora_fin},
@@ -52,7 +52,7 @@
             if(response.status=='success'){
                 $('#select-cambio-sala-reemplazo').empty().append("<option value=''></option>");
                 $.each(response.data,function(index, el) {
-                    $('#select-cambio-sala-reemplazo').append("<option value='"+el.ID+"'>"+el.NOMBRE+"</option>").prop('disabled',false);
+                    $('#select-cambio-sala-reemplazo').append("<option value='"+response.data[index]["C"].COD+"'>"+response.data[index]["C"].SALA+"</option>").prop('disabled',false);
                 });
                 if (response.data.length == 0) {
                     $('.informacion-response').html('no hay salas disponibles para el horario de la clase.');

@@ -51,7 +51,7 @@
 	</div>
 	<div class="col-md-2">
 		<div class="form-group">
-			<label for="">Buscar: <span title="Se desplegar&aacute; un listado de opciones coincidentes con su b&uacute;squeda. Debe seleccionar una." data-toggle="tooltip"><i class="fa fa-info-circle"></i></span></label>
+			<label for="">Buscar: <span title="See desplegar&aacute; un listado de opciones coincidentes con su b&uacute;squeda. Debe seleccionar una." data-toggle="tooltip"><i class="fa fa-info-circle"></i></span></label>
 			<input name="data[Filtro][autocomplete]" 
 				id="buscar-tipo" 
 				class="form-control" 

@@ -63,7 +63,7 @@
 			id="form-asistencia-alumnos"
 			action="<?php echo $this->Html->url(array('action'=>'saveAsistenciaAlumnos',$programacion_clase['ProgramacionClase']['COD_PROGRAMACION'])); ?>" 
 			method="POST">
-			<table class="table table-striped table-hover" id="table-eventos" >
+			<table class="table table-striped" id="table-eventos" >
 				<thead>
 					<tr>
 					<th class="td-app"><strong>N&deg;</strong></th>
@@ -89,9 +89,9 @@
 							<?php endif; ?>
 							<td class="text-center"><?php echo $key +1;?></td>
 							<td><?php echo $alumno['Alumno']['RUT'];?></td>
-							<td class="text-left"><?php echo utf8_encode(strtoupper($alumno['Alumno']['APELLIDO_PAT'])); ?></td>
-							<td class="text-left"><?php echo utf8_encode(strtoupper($alumno['Alumno']['APELLIDO_MAT'])); ?></td>
-							<td class="text-left"><?php echo utf8_encode(strtoupper($alumno['Alumno']['NOMBRES'])); ?></td>
+							<td class="text-left"><?php echo (strtoupper($alumno['Alumno']['APELLIDO_PAT'])); ?></td>
+							<td class="text-left"><?php echo (strtoupper($alumno['Alumno']['APELLIDO_MAT'])); ?></td>
+							<td class="text-left"><?php echo (strtoupper($alumno['Alumno']['NOMBRES'])); ?></td>
 
 							
 
@@ -101,6 +101,7 @@
 					
 
 <!-- =================================== ASISTENCIA CHECKBOX ======================================-->
+
               <td class="text-center">
 
               	<!-- AUSENTE ================================ -->
@@ -113,7 +114,17 @@
                    
                     <?php endif; ?>
 
-                    name="data[Asistencia][<?php echo $alumno['Alumno']['ID']; ?>][presente]"><i class="input-helper"></i>Ausente
+                    name="data[Asistencia][<?php echo $alumno['Alumno']['ID']; ?>][presente]"
+
+                      <?php if ($alumno['Asistencia']['ASISTENCIA'] == 1) { ?>
+                      <?php $dif=round((strtotime(date('Y-m-d H:i:s')) - strtotime($programacion_clase['ProgramacionClase']['HORA_INICIO']))/3600,2);
+                      if ($dif>48)
+							{ # bloquea los presentes despues de 48 horas para que no pueda editar ?>
+								disabled
+						<?php	}}
+                       ?>
+
+                    ><i class="input-helper"></i>Ausente
                   </label>
 
                 <!-- PRESENTE ================================ -->
@@ -122,13 +133,23 @@
 
                      <?php if (!empty($alumno['Asistencia']['ID'])): ?>
                       <?php if ($alumno['Asistencia']['ASISTENCIA'] == 1): ?>
+                     
                         checked="checked"
                       <?php endif; ?>
                     <?php else: ?>
                       checked="checked"
                     <?php endif; ?>
 
-                    name="data[Asistencia][<?php echo $alumno['Alumno']['ID']; ?>][presente]"><i class="input-helper"></i>Presente
+                    name="data[Asistencia][<?php echo $alumno['Alumno']['ID']; ?>][presente]"
+
+                     <?php $dif=round((strtotime(date('Y-m-d H:i:s')) - strtotime($programacion_clase['ProgramacionClase']['HORA_INICIO']))/3600,2);
+                      if ($dif>48)
+							{ # bloquea los presentes despues de 48 horas para que no pueda editar ?>
+								disabled
+						<?php	}
+                       ?>
+
+                    ><i class="input-helper"></i>Presente
                   </label>
 
                 <!-- JUSTIFICADO ================================ -->
@@ -142,7 +163,17 @@
                   
                     <?php endif; ?>
 
-                    name="data[Asistencia][<?php echo $alumno['Alumno']['ID']; ?>][presente]"><i class="input-helper"></i> Justificado
+                    name="data[Asistencia][<?php echo $alumno['Alumno']['ID']; ?>][presente]"
+
+                       <?php if ($alumno['Asistencia']['ASISTENCIA'] == 1) { ?>
+                      <?php $dif=round((strtotime(date('Y-m-d H:i:s')) - strtotime($programacion_clase['ProgramacionClase']['HORA_INICIO']))/3600,2);
+                      if ($dif>48)
+							{ # bloquea los presentes despues de 48 horas para que no pueda editar ?>
+								disabled
+						<?php	}}
+                       ?>
+
+                    ><i class="input-helper"></i> Justificado
               	  </label>
           
               </td>

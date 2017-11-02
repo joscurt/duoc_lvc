@@ -8,7 +8,7 @@
 				<th class="td-app">Tipo</th>
 				<th class="td-app">Detalle</th>
 				<th class="td-app">Estado</th>
-				<th>ID</th>
+				<!--<th>ID</th> -->
 				<!-- <th>horaactual</th> -->
 				<th class="td-app">Sub Estado</th>
 				<th class="td-app">Fecha Clase</th>
@@ -33,8 +33,8 @@
 					<td><?php echo $value['ProgramacionClase']['TIPO_EVENTO']; ?></td>
 					<td><?php echo $value['Detalle']['DETALLE']; ?></td>
 					<td><?php echo $value['Estado']['NOMBRE']; ?></td>
-					<td><?php  echo $value['ProgramacionClase']['ID']; ?></td>
-					<!-- <td><?php # echo $FechaActual; ?></td> -->
+					<!-- <td><?php  echo $value['ProgramacionClase']['ID']; ?></td>
+					<td><?php # echo $FechaActual; ?></td> -->
 					<td><?php echo $value['SubEstado']['NOMBRE']; ?></td>
 					<td><?php echo date('d-m-Y',strtotime($value['ProgramacionClase']['FECHA_CLASE'])); ?></td>
 					<td>
@@ -44,11 +44,9 @@
 							}
 						?>
 					</td>
-
-
 					<td> <!-- BOTON DE ACCION DE UNA CLASE CON CONDICIONES VARIAS |||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||| -->
 
-						<?php 
+						<?php
 						# Autorizacion Pendiente DO008
 						if ($value['ProgramacionClase']['SUB_ESTADO_PROGRAMACION_ID']=='1') {
 
@@ -60,26 +58,25 @@
 
 						#||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||||
 						//if (!empty($value['ProgramacionClase']['WF_ESTADO_ID']))
-						//{ 
+						//{
 							if (!empty($value['ProgramacionClase']['FECHA_CLASE']))
 							{
-								
+
 								$dif=round((strtotime(date('Y-m-d H:i:s')) - strtotime($value['ProgramacionClase']['HORA_INICIO']))/3600,2);
 								#echo $dif;
 							if ($dif<48)
 							{ # Boton permite registrar editar clase
 
-							if ($value['ProgramacionClase']['ESTADO_PROGRAMACION_ID'] == 3 or $value['ProgramacionClase']['ESTADO_PROGRAMACION_ID'] == 1) 
-							{ 
-						
+							if ($value['ProgramacionClase']['ESTADO_PROGRAMACION_ID'] == 3 or $value['ProgramacionClase']['ESTADO_PROGRAMACION_ID'] == 1)
+							{
+
 									$a = strtotime('-15 min', strtotime($value['ProgramacionClase']['HORA_INICIO']));
 									$b = date('d-m-Y H:i:s', $a);
 									$c = strtotime($FechaActual);
 									$d = date('d-m-Y H:i:s',$c);
 									$e = time();
-									$f = strtotime('d-m-Y H:i:s', $e);		
-										
-																
+									$f = strtotime('d-m-Y H:i:s', $e);
+
 									if ($a < $c){
 
 										if ($dif<24)
@@ -87,16 +84,14 @@
 
 										echo '<a href="#" class="btn btn-sm btn-success boton-editar" data="'.$value['ProgramacionClase']['COD_PROGRAMACION'].'"><i class="fa fa-plus"></i></a>';
 										}
-										else 
+										else
 										{
-
+												#EDITA CLASE DESPUES DE 24 HORAS HASTA LAS 48
 										echo '<a href="#" class="btn btn-sm btn-info boton-editar" data="'.$value['ProgramacionClase']['COD_PROGRAMACION'].'"><i class="fa fa-edit"></i></a>';
-										
 										}
 
 									}
-
-										else{ 
+										else{
 											$horainicio = strtotime($value['ProgramacionClase']['HORA_INICIO']);
 											$f = strtotime('-15 min', strtotime($value['ProgramacionClase']['HORA_INICIO']));
 											$format_hora_inicio = date('H:i', $horainicio);
@@ -106,17 +101,22 @@
 											<a href="#" class="btn btn-sm btn-danger" onclick="swal('Clase puede ser iniciada solo 15 minutos antes de Hora programada (<?php echo $format_hora_inicio; ?> del <?php echo $format_dia_inicio; ?>)')" data=""><i class="fa fa-hourglass-half"></i></a>
 									<?php	}
 
-								} else { ?> 
+								} else { ?>
+
+								<!-- Limbo revisar porque queda como editable entre -->
 
 								<a href="#" class="btn btn-sm btn-info boton-editar " data="'.$value['ProgramacionClase']['COD_PROGRAMACION'].'"><i class="fa fa-edit"></i></a>
 
 								<?php
-								}}  
-								else { # Boton no permite registrar editar clase DEPUES DE 48 HORAS
+								}
+							}
+								else { # permite editar siempre despues de 48 horas -> antes era Boton no permite registrar editar clase DEPUES DE 48 HORAS -- 05-10-2017 MP
 
 									if ($value['ProgramacionClase']['ESTADO_PROGRAMACION_ID'] == 1) { ?> <!-- REVISA SI LA CLASE FUE INICIADA Y FINALIZADA -->
 
-									<a href="#" onclick="alert('Clase Finalizada, Ya Realizada')" class="btn btn-sm btn-success"><i class="fa fa-check"></i></a>
+									<?php echo '<a href="#" class="btn btn-sm btn-info boton-editar" data="'.$value['ProgramacionClase']['COD_PROGRAMACION'].'"><i class="fa fa-edit"></i></a>'; ?>
+
+									<!-- ANTERIOR A LAS 48 HR NO PERMITIA EDITAR <a href="#" onclick="alert('Clase Finalizada, Ya Realizada')" class="btn btn-sm btn-success"><i class="fa fa-check"></i></a> -->
 
 									<?php } else { ?> <!-- MUESTRA BOTON QUE INDICA CLASE FUERA DE TIEMPO BLOQUEADA -->
 
@@ -125,13 +125,13 @@
 							<?php }}
 							}
 							else
-							{ 
-				
+							{
+
 						# ***********************************************
 						# ID - DO001
 						# Luis Adan Castillo 11-07-2017
 						# Se cambia para que se bloquee el icono cuando la fecha es mayo a la actual
-						
+
 						/*  #Valores que Existian antes
 						$datetime1 = new DateTime(date('Y-m-d'));
 						$datetime2 = new DateTime(date('Y-m-d',strtotime($value['ProgramacionClase']['FECHA_CLASE'])));
@@ -144,7 +144,6 @@
 								#echo '<a href="#" class="btn btn-sm btn-success boton-editar disabled"><i class="fa fa-calendar-times-o"></i></a>';
 								echo '<a href="#" id="M001" class="btn btn-sm btn-warning"><i class="fa fa-clock-o"></i></a>';
 							}
-							
 							else
 							{
 								if  ($value['ProgramacionClase']['ESTADO_PROGRAMACION_ID']=='2')
@@ -167,8 +166,6 @@
 							//echo "Fecha Actual del servidor - ".$d;
 							//echo $b;
 							//echo $d;
-							
-														
 							if ($a < $c){
 
 								echo '<a href="#" class="btn btn-sm btn-success boton-editar" data="'.$value['ProgramacionClase']['COD_PROGRAMACION'].'"><i class="fa fa-plus"></i></a>';

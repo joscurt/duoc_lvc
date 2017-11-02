@@ -87,8 +87,16 @@
 							value="ALL">TODAS</option>
 						<?php foreach ($sedes as $key => $value): ?>
 							<option 
-								<?php echo isset($permiso[$model]['COD_SEDE']) && $permiso[$model]['COD_SEDE']==$value['Sede']['COD_SEDE']?'selected="selected"':null; ?>
-								value="<?php echo $value['Sede']['COD_SEDE']; ?>"><?php echo $value['Sede']['NOMBRE']; ?></option>
+								<?php echo isset($permiso[$model]['COD_SEDE']) && $permiso[$model]['COD_SEDE']==$value['Sede']['COD_SEDE']?'selected="selected"':null; 
+								//echo $value['Sede']['TIPO_SEDE'];
+								?>
+								value="<?php echo $value['Sede']['COD_SEDE']; ?>"><?php echo $value['Sede']['NOMBRE']; ?>(<?php if($value['Sede']['ID_TIPO_SEDE']==1){
+									echo "IP";
+								}else {
+									echo "CFT";
+								}
+
+								 ?>)</option>
 						<?php endforeach ?>
 					</select>
 				</div>

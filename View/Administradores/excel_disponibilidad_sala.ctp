@@ -60,7 +60,7 @@
 		)
 	);
 	$objPHPExcel->setActiveSheetIndex()->mergeCells('B2:D2');
-	$objPHPExcel->setActiveSheetIndex()->setCellValue('B2', "Sala: ".utf8_encode($sala['Sala']['TIPO_SALA']));
+	$objPHPExcel->setActiveSheetIndex()->setCellValue('B2', "Sala: ".($sala['Sala']['TIPO_SALA']));
 	$objPHPExcel->setActiveSheetIndex()->getStyle("B2:H2")->applyFromArray($style_back_blue);
 	$objPHPExcel->setActiveSheetIndex()->mergeCells('E2:H2');
 	$fecha_desde = date('d-m-Y',strtotime($semana['Semana']['FECHA_INICIO']));
@@ -71,10 +71,10 @@
 	$objPHPExcel->setActiveSheetIndex()->setCellValue('B4',"Semana");
 	$objPHPExcel->setActiveSheetIndex()->setCellValue('C4',"Lunes");
 	$objPHPExcel->setActiveSheetIndex()->setCellValue('D4',"Martes");
-	$objPHPExcel->setActiveSheetIndex()->setCellValue('E4',"Mi&eacute;rcoles");
+	$objPHPExcel->setActiveSheetIndex()->setCellValue('E4',utf8_encode("Miércoles"));
 	$objPHPExcel->setActiveSheetIndex()->setCellValue('F4',"Jueves");
 	$objPHPExcel->setActiveSheetIndex()->setCellValue('G4',"Viernes");
-	$objPHPExcel->setActiveSheetIndex()->setCellValue('H4',"S&aacute;bado");
+	$objPHPExcel->setActiveSheetIndex()->setCellValue('H4',utf8_encode("Sábado"));
 	$objPHPExcel->setActiveSheetIndex()->getStyle("B4:H4")->applyFromArray($style_back_blue);
 	$objPHPExcel->setActiveSheetIndex()->getRowDimension("4")->setRowHeight(40);
 	
@@ -89,7 +89,8 @@
     		if (isset($programacion_clases[$hora_inicio][$i])):
     			$valor_tmp = $programacion_clases[$hora_inicio][$i]['ProgramacionClase']['SIGLA_SECCION'].'  ';
     			$valor_tmp .= $programacion_clases[$hora_inicio][$i]['Asignatura']['NOMBRE'];
-    			$objPHPExcel->setActiveSheetIndex()->setCellValue($letras_abecedario[$numero_letra].$fila, $valor_tmp);
+				# 10-10-2017 Luis Castillo Se agrega utf8_encode para codificacion de excel 
+    			$objPHPExcel->setActiveSheetIndex()->setCellValue($letras_abecedario[$numero_letra].$fila,utf8_encode($valor_tmp));
     		endif;
     		$numero_letra++;
 		endfor;

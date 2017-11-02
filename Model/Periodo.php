@@ -14,7 +14,7 @@
 	    |-------------------------------------------------------------------------------------------
 	    | @Metodo: getPeriodos.
 	    | @return: array
-	    | @Descipci&oacute;n: Retorna un arreglo con los periodos filtrados por el a&ntilde;o actual.
+	    | @Descipción: Retorna un arreglo con los periodos filtrados por el año actual.
 	    */
 		public function getPeriodos()
 		{

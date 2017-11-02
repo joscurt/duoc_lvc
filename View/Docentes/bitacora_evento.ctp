@@ -47,7 +47,7 @@
 							</td>
 							<td class="text-center"><?php echo strtoupper($clase['ProgramacionClase']['MODALIDAD']);?></td>
 							<td class="text-center"><?php echo date('H:i',strtotime($clase['ProgramacionClase']['HORA_INICIO'])).'-'.date('H:i',strtotime($clase['ProgramacionClase']['HORA_FIN']));?></td>
-							<td class="text-left"><?php echo utf8_encode($clase['Docente']['NOMBRE'].' '.$clase['Docente']['APELLIDO_PAT'].' '.$clase['Docente']['APELLIDO_MAT']);?></td>
+							<td class="text-left"><?php echo ($clase['Docente']['NOMBRE'].' '.$clase['Docente']['APELLIDO_PAT'].' '.$clase['Docente']['APELLIDO_MAT']);?></td>
 							<td class="text-center"><?php echo strtoupper($clase['ProgramacionClase']['TIPO_EVENTO']); ?></td>
 							<td class="text-center content-icon" >
 								<?php 
@@ -89,7 +89,7 @@
 <div class="card" >
 	<div class="card-body card-padding" align="center">
 		<a class="btn btn-sm btn-info" href="<?php echo $this->Html->url(array('action'=>'getEventos',$asignatura_horario['AsignaturaHorario']['COD_PERIODO'])) ?>"><i class="fa fa-arrow-left"></i>&nbsp;Volver a Eventos</a>
-		<a id="btn-exportar-pdf" class="btn btn-sm btn-default" href="#"><i  style="color:red;"class="fa fa-file-pdf-o"></i>&nbsp;EXPORTAR A PDF</a>	
+		<a id="btn-exportar-pdf" class="btn btn-sm btn-default" href="#" target="_blank"><i  style="color:red;"class="fa fa-file-pdf-o"></i>&nbsp;EXPORTAR A PDF</a>	
 		<a id="btn-exportar-excel" class="btn btn-sm btn-default" href="#"><i style="color:green;" class="fa fa-file-excel-o"></i>&nbsp;EXPORTAR A EXCEL</a>
 	</div>
 </div>

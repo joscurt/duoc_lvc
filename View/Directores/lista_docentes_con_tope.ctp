@@ -19,8 +19,8 @@
 			<?php foreach($docentes as $key => $docente){ ?>
 				<tr>
 					<td style="text-align: center;"><?php echo $docente['A']['RUT'].'-'.$docente['A']['DV']; ?></td>
-					<td style="text-align: center;"><?php echo utf8_encode($docente['A']['NOMBRE']); ?></td>
-					<td style="text-align: center;"><?php echo utf8_encode($docente['A']['APELLIDO_PAT']).' '.utf8_encode($docente['A']['APELLIDO_MAT']); ?></td>
+					<td style="text-align: center;"><?php echo ($docente['A']['NOMBRE']); ?></td>
+					<td style="text-align: center;"><?php echo ($docente['A']['APELLIDO_PAT']).' '.($docente['A']['APELLIDO_MAT']); ?></td>
 					<td style="text-align: center;"><?php echo $docente['A']['CORREO']; ?></td>
 					<td style="text-align: center;"><?php echo $docente['A']['ID'] ?></td>
 

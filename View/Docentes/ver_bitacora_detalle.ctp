@@ -4,7 +4,7 @@
 	}
 </style>
 <div class="modal-header">
-	<h4 class="modal-title">Bit&aacute;cora Clase <?php echo $programacion_clase['ProgramacionClase']['SIGLA_SECCION']; ?>(T) - <?php echo $programacion_clase['Asignatura']['NOMBRE']; ?></h4>
+	<h4 class="modal-title">Bit&aacute;cora Clase <?php echo $programacion_clase['ProgramacionClase']['SIGLA_SECCION']." (".$programacion_clase['ProgramacionClase']['MODALIDAD'].") - ".$programacion_clase['Asignatura']['NOMBRE']; ?></h4>
 </div>
 <form 
 	id="form-bitacora-send"

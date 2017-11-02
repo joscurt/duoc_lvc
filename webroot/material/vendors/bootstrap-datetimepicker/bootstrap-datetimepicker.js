@@ -1662,7 +1662,7 @@
     $.fn.datetimepicker.defaults = {
         format: false,
         dayViewHeaderFormat: 'MMMM YYYY',
-        extraFormats: false,
+        extraFormats: true,
         stepping: 1,
         minDate: false,
         maxDate: false,
@@ -1686,6 +1686,7 @@
         sideBySide: false,
         daysOfWeekDisabled: [],
         calendarWeeks: false,
+        extraFormats:true,
         viewMode: 'days',
         toolbarPlacement: 'default',
         showTodayButton: true,

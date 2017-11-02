@@ -129,7 +129,7 @@
 									<th>Nombres</th>
 									<th>Sala</th>
 									<th>Horario</th>
-									<th>Estado</th>
+									<th>Detalle</th>
 									<th>Sub-Estado</th>
 									<th>Editar</th>
 								</tr>
@@ -191,7 +191,7 @@
 											<input 
 												type="hidden" 
 												name="data[Excel][<?php echo $count ?>][modalidad]" 
-												value="<?php echo isset($dato['AsignaturaHorario']['TEO_PRA']) ? utf8_encode($dato['AsignaturaHorario']['TEO_PRA']) : '';?>">		
+												value="<?php echo isset($dato['AsignaturaHorario']['TEO_PRA']) ? ($dato['AsignaturaHorario']['TEO_PRA']) : '';?>">		
 											</input>
 											<?php echo isset($dato['AsignaturaHorario']['TEO_PRA']) ? $dato['AsignaturaHorario']['TEO_PRA']: ''; ?>
 										</td>
@@ -258,10 +258,10 @@
 										<td>
 											<input 
 												type="hidden" 
-												name="data[Excel][<?php echo $count ?>][Estado]" 
-												value="<?php echo isset($dato['Estado']['NOMBRE']) ? $dato['Estado']['NOMBRE'] : '';?>">		
+												name="data[Excel][<?php echo $count ?>][Detalle]" 
+												value="<?php echo isset($dato['Detalle']['DETALLE']) ? $dato['Detalle']['DETALLE'] : '';?>">		
 											</input>
-											<?php echo isset($dato['Estado']['NOMBRE']) ? $dato['Estado']['NOMBRE']: ''; ?>
+											<?php echo isset($dato['Detalle']['DETALLE']) ? $dato['Detalle']['DETALLE']: ''; ?>
 										</td>
 										<td>
 											<input 

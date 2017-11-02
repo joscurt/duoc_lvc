@@ -54,7 +54,7 @@
 		)
 	);
 	$objPHPExcel->setActiveSheetIndex()->mergeCells('B2:P2');
-	$objPHPExcel->setActiveSheetIndex()->setCellValue('B2', "REPORTES PERI&Oacute;DICOS DE CLASES PROGRAMADAS (REALIZADAS Y NO REALIZADAS): ". " FECHA: ".date('d-m-Y') . " HORA: ".date('H:i'));
+	$objPHPExcel->setActiveSheetIndex()->setCellValue('B2', "REPORTES PERIÓDICOS DE CLASES PROGRAMADAS (REALIZADAS Y NO REALIZADAS): ". " FECHA: ".date('d-m-Y') . " HORA: ".date('H:i'));
 	$objPHPExcel->setActiveSheetIndex()->getStyle("B2:P2")->applyFromArray($style_back_blue);
 	$objPHPExcel->setActiveSheetIndex()->getRowDimension("2")->setRowHeight(50);
 
@@ -82,14 +82,14 @@
 	        $count++;
 	        $objPHPExcel->setActiveSheetIndex()->setCellValue('B'.$fila, $count);
 	        $objPHPExcel->setActiveSheetIndex()->setCellValue('C'.$fila, date('d-m-Y', strtotime($detalle['ProgramacionClase']['FECHA_CLASE'])));
-	        $objPHPExcel->setActiveSheetIndex()->setCellValue('D'.$fila, $detalle['Asignatura']['NOMBRE']);
+	        $objPHPExcel->setActiveSheetIndex()->setCellValue('D'.$fila, utf8_encode($detalle['Asignatura']['NOMBRE']));
 	        $objPHPExcel->setActiveSheetIndex()->setCellValue('E'.$fila, $detalle['ProgramacionClase']['SIGLA_SECCION']);
 	        $objPHPExcel->setActiveSheetIndex()->setCellValue('F'.$fila, isset($detalle['ProgramacionClase']['COD_JORNADA']) && $detalle['ProgramacionClase']['COD_JORNADA']=='D' ? 'Diurno' : 'Vespertino');
 	       	$objPHPExcel->setActiveSheetIndex()->setCellValue('G'.$fila, $detalle['Docente']['RUT'].'-'.$detalle['Docente']['DV']);
 	        $objPHPExcel->setActiveSheetIndex()->setCellValue('H'.$fila, $detalle['Docente']['APELLIDO_PAT']);
 	        $objPHPExcel->setActiveSheetIndex()->setCellValue('I'.$fila, $detalle['Docente']['APELLIDO_MAT']);
-	        $objPHPExcel->setActiveSheetIndex()->setCellValue('J'.$fila, $detalle['Docente']['NOMBRE']);
-	        $objPHPExcel->setActiveSheetIndex()->setCellValue('K'.$fila, !empty($detalle['Sala']['TIPO_SALA'])?$detalle['Sala']['TIPO_SALA']:$detalle['SalaReemplazo']['TIPO_SALA']);
+	        $objPHPExcel->setActiveSheetIndex()->setCellValue('J'.$fila, utf8_encode($detalle['Docente']['NOMBRE']));
+	        $objPHPExcel->setActiveSheetIndex()->setCellValue('K'.$fila, !empty($detalle['Sala']['TIPO_SALA'])?utf8_encode($detalle['Sala']['TIPO_SALA']):utf8_encode($detalle['SalaReemplazo']['TIPO_SALA']));
 	        $objPHPExcel->setActiveSheetIndex()->setCellValue('L'.$fila, date('H:i', strtotime($detalle['ProgramacionClase']['HORA_INICIO'])).'-'.date('H:i', strtotime($detalle['ProgramacionClase']['HORA_FIN'])));
 	        $objPHPExcel->setActiveSheetIndex()->setCellValue('M'.$fila, $detalle['ProgramacionClase']['TIPO_EVENTO']);
 	        $objPHPExcel->setActiveSheetIndex()->setCellValue('N'.$fila, $detalle['Detalle']['DETALLE']);

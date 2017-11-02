@@ -34,7 +34,7 @@
 		<td>
 			<h2 
 				class="titulo">
-					HORARIO: &nbsp;</strong><?php echo $sala['Sala']['TIPO_SALA']; ?> | 
+					HORARIO: &nbsp;</strong><?php echo utf8_encode($sala['Sala']['TIPO_SALA']); ?> | 
 					Semana&nbsp;</strong><?php echo $semana['Semana']['NUMERO_SEMANA'].' '.
 						$fecha_desde .' A '.$fecha_fin; ?>
 			</h2>
@@ -70,10 +70,10 @@
 			    		<td style="vertical-align:middle;width:16%!important"><?php echo $hora_inicio; ?> - <?php echo $horario['HorarioModulo']['HORA_FIN']; ?></td>
 					    <?php for ($i=1; $i < 7; $i++): ?>
 					    	<td style="vertical-align:middle;width:16%!important">
-						    	<?php 
+						    	<?php # 10-10-2017 Luis Castillo Se agrega htmllentities para codificacion de PDF 
 						    		if (isset($programacion_clases[$hora_inicio][$i])):
 						    			echo $programacion_clases[$hora_inicio][$i]['ProgramacionClase']['SIGLA_SECCION'].' <br> '.
-						    			$programacion_clases[$hora_inicio][$i]['Asignatura']['NOMBRE'];
+						    			htmlentities($programacion_clases[$hora_inicio][$i]['Asignatura']['NOMBRE']);
 						    		endif;
 						    	?>
 						    </td>

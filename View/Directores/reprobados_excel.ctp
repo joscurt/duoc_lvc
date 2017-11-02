@@ -60,7 +60,7 @@
 
 	$objPHPExcel->setActiveSheetIndex()->setCellValue('C4',"#");
 	$objPHPExcel->setActiveSheetIndex()->setCellValue('D4',"Nombre Asignatura");
-	$objPHPExcel->setActiveSheetIndex()->setCellValue('E4',"Sigla-Secci&oacute;n");
+	$objPHPExcel->setActiveSheetIndex()->setCellValue('E4',"Sigla-Sección");
 	$objPHPExcel->setActiveSheetIndex()->setCellValue('F4',"Jornada");
 	$objPHPExcel->setActiveSheetIndex()->setCellValue('G4',"Rut Docente");
 	$objPHPExcel->setActiveSheetIndex()->setCellValue('H4',"Apellido Paterno");
@@ -73,10 +73,11 @@
 	
     $count=0;
     $fila = 5;
+    // debug($datos_tabla);exit();
     foreach ($datos_tabla as $detalle): 
         $count++;
         $objPHPExcel->setActiveSheetIndex()->setCellValue('C'.$fila, $count);
-        $objPHPExcel->setActiveSheetIndex()->setCellValue('D'.$fila, $detalle['Asignatura']['NOMBRE']);
+        $objPHPExcel->setActiveSheetIndex()->setCellValue('D'.$fila, utf8_encode($detalle['Asignatura']['NOMBRE']));
         $objPHPExcel->setActiveSheetIndex()->setCellValue('E'.$fila, $detalle['AsignaturaHorario']['SIGLA_SECCION']);
         $objPHPExcel->setActiveSheetIndex()->setCellValue('F'.$fila, $detalle['AsignaturaHorario']['COD_JORNADA']);
         $objPHPExcel->setActiveSheetIndex()->setCellValue('G'.$fila, $detalle['Docente']['RUT'].'-'.$detalle['Docente']['DV']);

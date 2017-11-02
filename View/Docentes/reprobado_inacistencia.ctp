@@ -121,8 +121,9 @@
 										# CALCULO EL PORCENTAJE DE ASISTENCIA DEL ALUMNO ================================================================================
 										$porcentaje = 0;
 										if (isset($indicadores_alumnos[$value['Alumno']['COD_ALUMNO']])) {
-											if($clases_regulares_registradas<0) # 02-10-2017 Luis Adan Agrega esta validacion debido que daba error por division de cero
-												$porcentaje = $indicadores_alumnos[$value['Alumno']['COD_ALUMNO']]['CLASES_PRESENTE']*100/$clases_regulares_registradas;	
+											if($clases_regulares_registradas>0){ 
+											#02-10-2017 Luis Adan Agrega esta validacion debido que daba error por division de cero
+												$porcentaje = $indicadores_alumnos[$value['Alumno']['COD_ALUMNO']]['CLASES_PRESENTE']*100/$clases_regulares_registradas;	}
 										}  # ============================================================================================================================
 
 										$color = ($porcentaje < $porcentaje_minimo_ri)?'red':'inherit';
@@ -154,7 +155,7 @@
 			<td class="text-center" ><?php echo isset($indicadores_alumnos[$value['Alumno']['COD_ALUMNO']])? $indicadores_alumnos[$value['Alumno']['COD_ALUMNO']]['CLASES_AUSENTE']:0; ?></td>
 										<td class="text-center <?php echo $porcentaje < $porcentaje_minimo_ri  ? 'td-danger' : ''; ?>" >
 											<?php 
-												echo round($porcentaje,2).'%';
+												echo ($porcentaje > 100) ? '100%' : round($porcentaje,2).'%';
 											?>
 										</td>
 										<td class="text-left">
@@ -209,10 +210,10 @@
 					echo "<a id='btn-alert' class='btn btn-warning waves-effect btn-sm waves-float' ><i class='fa fa-clock-o' aria-hidden='true'></i>&nbsp;Enviar RI a Director de Carrera</a>";
 						} ?>
 
-					<a class="btn btn-primary" style="background-color:#1F7244;" data-toggle="modal" href="#myModal2">
+<!-- 					<a class="btn btn-primary" style="background-color:#1F7244;" data-toggle="modal" href="#myModal2">
 				     <i class="fa fa-file-excel-o" aria-hidden="true"></i>&nbsp;Importar Excel de Alumnos
 				  
-				    </a>
+				    </a> -->
 
 						<!--<a class='btn btn-warning waves-effect btn-sm waves-float' href="<?php echo $this->Html->url(array('controller'=>'Docentes','action'=>'reprobadoInacistenciaImport',$asignatura_horario['AsignaturaHorario']['COD_ASIGNATURA_HORARIO'])) ?>"><i class='fa fa-send' aria-hidden='true'></i>&nbsp;Import Excel</a>-->
 

@@ -8,8 +8,8 @@ class LdapAdministrativo {
 	var $ds = null;
 
 	function connect($user=null, $pass=null){
-		/*
-		$ldap_response = array(
+		
+	/*$ldap_response = array(
 			'username' => null, #null o rut sin digito verificador
 			'status' => '', #success o error
 			'mensaje' => '' #ok o mensaje de error
@@ -48,8 +48,8 @@ class LdapAdministrativo {
 				'mensaje' => 'Hubo un error en la conexi&oacute;n, favor intente m&aacute;s tarde' #ok o mensaje de error
 			);
 		}
-		return $ldap_response;
-		*/
+		return $ldap_response;*/
+		
 		$ldap_response = array(
 			'username' => $user,
 			'status' => 'success',

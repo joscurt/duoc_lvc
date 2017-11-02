@@ -68,9 +68,9 @@
                                 <?php endif ?>	
 							</td>
 							<td><?php echo $detalle['RUT'].'-'.$detalle['DV']; ?></td>
-							<td><?php echo $detalle['APELLIDO_PAT']; ?></td>
-							<td><?php echo $detalle['APELLIDO_MAT']; ?></td>
-							<td><?php echo $detalle['NOMBRE_DOCENTE'] ?></td>
+							<td><?php echo utf8_encode($detalle['APELLIDO_PAT']); ?></td>
+							<td><?php echo utf8_encode($detalle['APELLIDO_MAT']); ?></td>
+							<td><?php echo utf8_encode($detalle['NOMBRE_DOCENTE']); ?></td>
 							<td><?php echo $detalle['SALA']; ?></td>
 							<td><?php echo date('H:m', strtotime($detalle['HORA_INICIO'])).' - '.date('H:m', strtotime($detalle['HORA_FIN'])); ?></td>
 							<td><?php echo $detalle['TIPO_EVENTO']; ?></td>

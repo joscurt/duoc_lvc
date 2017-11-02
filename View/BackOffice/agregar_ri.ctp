@@ -4,7 +4,7 @@
 		<h4 style="border-bottom: 1px solid #0c253d; padding-bottom: 5px;" class="modal-title">Ingreso de Porcenta RI</h4>
 	</div>
 	<br>
-	<div class="modal-body">
+	<div class="modal-body" style="overflow-y: inherit; ">
 		<div class="row">
 			
 			<div class="col-md-12">
@@ -13,7 +13,7 @@
 					<select name="data[escuela]" class="form-control select-picker select-escuelas" data-live-search="true">
 						<option value=""></option>
 						<?php foreach ($escuelas as $key => $value): ?>
-							<option value="<?php echo $key; ?>"><?php echo strtoupper($value); ?></option>
+							<option style="text-transform: uppercase;" value="<?php echo $key; ?>"><?php echo utf8_decode(strtoupper($value)); ?></option>
 						<?php endforeach ?>
 					</select>
 				</div>

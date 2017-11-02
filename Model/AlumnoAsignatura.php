@@ -46,7 +46,7 @@
 
 
 
-		public function getListadoAlumnosSeccion($cod_asignatura_horario=null)
+		public function getListadoAlumnosSeccion($cod_asignatura_horario=null,$cod_sede=null)
 		{
 			$result = $this->find('all',array(
 				'fields'=>array(
@@ -81,6 +81,8 @@
 				'conditions'=>array(
 					'AlumnoAsignatura.COD_HORARIO_ASIGNATURA'=>$cod_asignatura_horario,
 					'AlumnoAsignatura.ESTADO_ALUMNO' =>1,
+					'AlumnoAsignatura.COD_SEDE'=>$cod_sede,
+
 				),
 				'order'=>'Alumno.APELLIDO_PAT'
 			));
@@ -140,6 +142,7 @@
 					#'AlumnoAsignatura.SIGLA_SECCION'=>$cod_asignatura_horario,
 					'AlumnoAsignatura.ESTADO_ALUMNO' =>1,
 					'AlumnoAsignatura.COD_HORARIO_ASIGNATURA'=>$cod_asignatura_horario,
+
 				),
 				'order'=>'Alumno.APELLIDO_PAT'
 			));
@@ -193,6 +196,115 @@
 			#debug($this->getLastQuery());exit();
 			return $result;
 		}
+	public function getListadoAsistenciaReg($cod_periodo=null,$cod_asignatura_horario=null)
+		{
+			$result = $this->find('all',array(
+				'fields'=>array(
+					'Alumno.RUT',
+					'Alumno.NOMBRES',
+					'Alumno.APELLIDO_PAT',
+					'Alumno.COD_ALUMNO',
+					'Alumno.APELLIDO_MAT',
+					'Alumno.DV_RUT',
+					'Alumno.CORREO_PERSONAL',
+					'Alumno.ID',
+					'Carrera.COD_PLAN',
+					'Carrera.NOMBRE',
+				),
+				'joins'=>array(
+					array(
+						'type'=>'INNER',
+						'table'=>'ALUMNOS',
+						'alias'=>'Alumno',
+						'conditions'=>array(
+						'Alumno.COD_ALUMNO = AlumnoAsignatura.ID_ALUMNO'
+						)
+					),
+					array(
+						'type'=>'left',
+						'table'=>'LVC_VIEW_PLANES',
+						'alias'=>'Carrera',
+						'conditions'=>array(
+						'AlumnoAsignatura.COD_PLAN = Carrera.COD_PLAN'
+						)
+					),
+				),
+				'conditions'=>array(
+					#'AlumnoAsignatura.SIGLA_SECCION'=>$sigla_seccion,
+					'AlumnoAsignatura.COD_PERIODO'=>$cod_periodo,
+					// 'AlumnoAsignatura.COD_SEDE'=>$cod_sede,
+					'AlumnoAsignatura.ESTADO_SAP'=>1,
+					'AlumnoAsignatura.ESTADO_ALUMNO' =>1,
+					'AlumnoAsignatura.COD_HORARIO_ASIGNATURA'=>$cod_asignatura_horario,
+				),
+				'order'=>'Alumno.APELLIDO_PAT',
+			));
+			#debug($result);exit();
+			#debug($this->getLastQuery());exit();
+			return $result;
+		}
+
+		public function getListadoAsistenciaJustificado($cod_periodo=null,$cod_sede=null,$cod_asignatura_horario=null,$cod_programacion=null) #Justificados listado
+		{
+			$result = $this->find('all',array(
+				'fields'=>array(
+					'DISTINCT Alumno.RUT',
+					'Alumno.NOMBRES',
+					'Alumno.APELLIDO_PAT',
+					'Alumno.COD_ALUMNO',
+					'Alumno.APELLIDO_MAT',
+					'Alumno.DV_RUT',
+					'Alumno.CORREO_PERSONAL',
+					'Alumno.ID',
+					'Carrera.COD_PLAN',
+					'Carrera.NOMBRE',
+					'Asistencias.ASISTENCIA',
+					
+				),
+				'joins'=>array(
+					array(
+						'type'=>'INNER',
+						'table'=>'ALUMNOS',
+						'alias'=>'Alumno',
+						'conditions'=>array(
+						'Alumno.COD_ALUMNO = AlumnoAsignatura.ID_ALUMNO'
+						)
+					),
+					array(
+						'type'=>'LEFT',
+						'table'=>'ASISTENCIAS',
+						'alias'=>'Asistencias',
+						'conditions'=>array(
+						'AlumnoAsignatura.ID_ALUMNO = Asistencias.ID_ALUMNO'
+						)
+					),
+					array(
+						'type'=>'left',
+						'table'=>'LVC_VIEW_PLANES',
+						'alias'=>'Carrera',
+						'conditions'=>array(
+						'AlumnoAsignatura.COD_PLAN = Carrera.COD_PLAN'
+						)
+					),
+				),
+				'conditions'=>array(
+					'AlumnoAsignatura.COD_PERIODO'=>$cod_periodo,
+					'AlumnoAsignatura.COD_SEDE'=>$cod_sede,
+				
+					'AlumnoAsignatura.ESTADO_ALUMNO' =>1,
+					'AlumnoAsignatura.COD_HORARIO_ASIGNATURA'=>$cod_asignatura_horario,
+					'Asistencias.ASISTENCIA' => 2,
+					'Asistencias.COD_PROGRAMACION' => $cod_programacion,
+					'Asistencias.AUTORIZA_J'=>1,
+					
+					
+				),
+				'order'=>'Alumno.APELLIDO_PAT',
+			));
+			#debug($result);exit();
+			#debug($this->getLastQuery());exit();
+			return $result;
+		}
 
 		public function getFirst($cod_alumno=null,$asignatura_horario=null)
 		{
@@ -206,6 +318,13 @@
 
 		public function getTasaAsistencia($cod_periodo=null,$cod_alumno =null,$sigla_seccion=null,$ordenar=null)
 		{
+
+			$regex = "/([a-zA-Z0-9_]*)/";
+    		preg_match_all($regex, $sigla_seccion, $matches);
+
+
+			$sigla_seccion=preg_replace('/( [\s\S]+)/', '', $sigla_seccion);
+
 			if (empty($ordenar)) {
 				$ordenar = 'Alumno.RUT';
 			}
@@ -215,6 +334,9 @@
 			}
 			if (!empty($sigla_seccion)) {
 				$conditions['AlumnoAsignatura.SIGLA_SECCION']=$sigla_seccion;
+			}
+				if (!empty($sigla_seccion)) {
+				$conditions['AsignaturaHorario.TEO_PRA']=$matches[1][5];
 			}
 			$result = $this->find('all',array(
 				'fields'=>array(
@@ -239,6 +361,7 @@
 					'AlumnoAsignatura.SIGLA_SECCION',
 					'AlumnoAsignatura.COD_HORARIO_ASIGNATURA',
 					'AsignaturaHorario.CLASES_REGISTRADAS',
+					'AsignaturaHorario.TEO_PRA',
 				),
 				'joins'=>array(
 					array(

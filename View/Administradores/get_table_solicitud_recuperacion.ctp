@@ -47,7 +47,7 @@
 						<thead>
 							<tr>
 								<th>&nbsp;</th>
-								<th>ID</th>
+								<!-- <th>ID</th> -->
 								<th>Fecha</th>
 								<th>Nombre Asignatura</th>
 								<th>Sigla-Secci&oacute;n</th>
@@ -72,7 +72,7 @@
 					  		?>
 					  			<tr class="">
 								    <td><?php echo $contador ?></td>
-								    <td><?php echo $value['ProgramacionClase']['ID']; ?></td>
+								    <!-- <td><?php echo $value['ProgramacionClase']['ID']; ?></td> -->
 								    <td>
 								    	<?php echo !empty($value['ProgramacionClase']['FECHA_CLASE'])? date('d-m-Y',strtotime($value['ProgramacionClase']['FECHA_CLASE'])):null;  ?>
 								    </td>
@@ -80,9 +80,9 @@
 								    <td><?php echo $value['ProgramacionClase']['SIGLA_SECCION']; ?></td>
 								    <td><?php echo $value['ProgramacionClase']['COD_JORNADA']; ?></td>
 								    <td><?php echo $value['Docente']['RUT'].'-'.$value['Docente']['DV']; ?></td>
-								    <td><?php echo utf8_encode($value['Docente']['APELLIDO_PAT']); ?></td>
-								    <td><?php echo utf8_encode($value['Docente']['APELLIDO_MAT']); ?></td>
-								    <td><?php echo utf8_encode($value['Docente']['NOMBRE']); ?></td>
+								    <td><?php echo ($value['Docente']['APELLIDO_PAT']); ?></td>
+								    <td><?php echo ($value['Docente']['APELLIDO_MAT']); ?></td>
+								    <td><?php echo ($value['Docente']['NOMBRE']); ?></td>
 								    <td><?php echo !empty($value['SalaReemplazo']['TIPO_SALA'])?$value['SalaReemplazo']['TIPO_SALA']:$value['Sala']['TIPO_SALA']; ?></td>
 								    <td><?php echo date('H:i',strtotime($value['ProgramacionClase']['HORA_INICIO'])).' '.date('H:i',strtotime($value['ProgramacionClase']['HORA_FIN'])); ?></td>
 								    <td><?php echo $value['ProgramacionClase']['TIPO_EVENTO']; ?></td>

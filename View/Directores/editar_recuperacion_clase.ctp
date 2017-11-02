@@ -122,13 +122,13 @@
 			$text= '';
 		?>
 		swal({
-            title: "<?php echo __('¿Est&aacute; seguro?'); ?>",   
+            title: "<?php echo __('¿Está seguro?'); ?>",   
             text: "<?php echo __($text); ?>",
             type: "warning",
             showCancelButton: true, 
             cancelButtonText: "<?php echo __('Cancelar'); ?>",   
             confirmButtonColor: "#DD6B55",   
-            confirmButtonText: "S&iacute;, estoy seguro!",   
+            confirmButtonText: "Sí, estoy seguro!",   
             closeOnConfirm: false 
         }, function(){
         	window.location="<?php echo $this->Html->url(array('action'=>'cambioEstadoRecuperacionClase',$info_editar_recuperacion['ProgramacionClase']['COD_PROGRAMACION'])); ?>"

@@ -29,6 +29,8 @@
 					<select id="select-tipo-de-reporte" name="" class="form-control selectpicker">
 						<option value="" selected>Seleccionar</option>
 						<option value="<?php echo $this->Html->url(array('controller'=>'reportes','action'=>'reporteTasaAsistencia')); ?>">Tasa de Asistencia y RI del Alumno</option>
+						<option value="<?php echo $this->Html->url(array('controller'=>'reportes','action'=>'reporteTasaAsistenciaSolo')); ?>">Tasa de Asistencia</option>
+						<option value="<?php echo $this->Html->url(array('controller'=>'reportes','action'=>'reporteTasaAsistenciaRi')); ?>">RI del Alumno</option>
 						<option value="<?php echo $this->Html->url(array('controller'=>'reportes','action'=>'reporteCumplimientoAsistencia')); ?>">Cumplimiento de Registro de Asistencia Docente</option>
 					</select>
 				</div>

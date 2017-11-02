@@ -33,7 +33,7 @@
 				));
 			return $result;
 		}
-		public function getAlumnoByCod_($cod_alumno=null)
+		public function getAlumnoByCod($cod_alumno=null)
 		{
 			return $this->find('first',array('conditions'=>array('COD_ALUMNO'=>$cod_alumno)));
 		}
@@ -66,7 +66,7 @@
 				$term = strtoupper($term);
 				$rut_alumno = $this->find('all',array(
 					'fields'=>array(
-						'Alumno.rut',
+						'DISTINCT Alumno.rut',
 						'Alumno.dv_rut',
 						'Alumno.cod_alumno',
 						'Alumno.NOMBRES',

@@ -17,7 +17,12 @@
 							<input type="hidden" value="<?php echo $filtro; ?>" name="data[Filtro][filtro]" />
 						<?php endif; ?>
 						<?php if(!empty($valor_filtros)): ?>
-							<input type="hidden" value="<?php echo $valor_filtros ?>" name="data[Filtro][value]" />
+							<input type="hidden" value="<?php echo $valor_filtros; ?>" name="data[Filtro][value]" />
+						<?php endif; ?>
+                        	<?php # 10-10-2017 agregado por Luis Castillo Para que permita ordenar 
+							
+							if(!empty($tipo_fitrar)): ?>
+							<input type="hidden" value="<?php echo $tipo_fitrar; ?>" name="data[Filtro][tipo_fitrar]" />
 						<?php endif; ?>
 						<div class="form-group">
 							<select name="data[Filtro][ordenar]" id="select-order" class="form-control selectpicker" data-live-search="true">
@@ -26,8 +31,8 @@
 								<option value="Docente.APELLIDO_PAT" <?php echo $ordenar == 'Docente.APELLIDO_PAT' ? 'selected="selected"':''; ?> >Apellido Paterno docente</option>
 								<option value="Docente.APELLIDO_MAT" <?php echo $ordenar == 'Docente.APELLIDO_MAT' ? 'selected="selected"':''; ?>>Apellido Materno docente</option>
 								<option value="Docente.NOMBRE" <?php echo $ordenar == 'Docente.NOMBRE' ? 'selected="selected"':''; ?>>Nombre docente</option>
-								<option value="Docente.COD_DOCENTE" <?php echo $ordenar == 'Docente.COD_DOCENTE' ? 'selected="selected"':''; ?>>ID docente</option>
-								<option value="Asignatura.NOMBRE" <?php echo $ordenar == 'Asignatura.NOMBRE' ? 'selected="selected"':''; ?>>Nombre asignatura</option>
+							<!--	<option value="Docente.COD_DOCENTE" <?php //echo $ordenar == 'Docente.COD_DOCENTE' ? 'selected="selected"':''; ?>>ID docente</option>
+							-->	<option value="Asignatura.NOMBRE" <?php echo $ordenar == 'Asignatura.NOMBRE' ? 'selected="selected"':''; ?>>Nombre asignatura</option>
 								<option value="ProgramacionClase.SIGLA_SECCION" <?php echo $ordenar == 'ProgramacionClase.SIGLA_SECCION' ? 'selected="selected"':''; ?> >Sigla - Secci&oacute;n</option>
 								<option value="ProgramacionClase.ANHO,ProgramacionClase.SEMESTRE"<?php echo $ordenar == 'ProgramacionClase.ANHO,ProgramacionClase.SEMESTRE' ? 'selected="selected"':''; ?> >Periodo</option>
 								<option value="ProgramacionClase.COD_JORNADA" <?php echo $ordenar == 'ProgramacionClase.COD_JORNADA' ? 'selected="selected"':''; ?>>Jornada</option>
@@ -69,8 +74,7 @@
 								<th>Estado</th>
 								<th>Sub-Estado</th>
 								<th>Editar</th>
-								<th>ID</th>
-							</tr>
+									<!-- </tr> -->
 						</thead>
 					  	<tbody>
 						  	<?php 
@@ -132,7 +136,7 @@
 								    		><i class="fa fa-pencil-square-o" aria-hidden="true"></i>
 								    	</a>
 								    </td>
-								    <td><?php echo $clase['ProgramacionClase']['ID']; ?></td>
+								    <!-- <td><?php echo $clase['ProgramacionClase']['ID']; ?></td> -->
 							  	</tr>
 						  	<?php endforeach; ?>
 					  	</tbody>

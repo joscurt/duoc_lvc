@@ -61,7 +61,7 @@ include '../Vendor/phpexcel/Classes/PHPExcel/IOFactory.php';
 			$inicio_real = strtotime( substr($this->data['inicio_programado'], 0, 10).' '.$this->data['inicio_real'].':00' );
 			$fin_real = strtotime( substr($this->data['fin_programado'], 0, 10).' '.$this->data['fin_real'].':00' );
 			if ($inicio_real>=$fin_real) {
-				$msjError = 'No se puede realizar el cambio por que la fecha inicial: ('.$this->data['inicio_real'].') es mayor &oacute; igual a la final ('.$this->data['fin_real'].').';
+				$msjError = 'No se puede realizar el cambio por que la fecha inicial: ('.$this->data['inicio_real'].') es mayor ó igual a la final ('.$this->data['fin_real'].').';
 			}
 			$inicio_programado = strtotime( $this->data['inicio_programado'] );
 			$fin_programado = strtotime( $this->data['fin_programado'] );
@@ -116,7 +116,7 @@ include '../Vendor/phpexcel/Classes/PHPExcel/IOFactory.php';
 			$this->loadModel('ProgramacionClase');
 			$this->loadModel('MotivoSuspensionClase');
 
-			#debug($this->data);exit();
+		#	debug($this->data);#exit();
 			# Filtrar los datos.
 			if( isset($this->data) and !empty($this->data['Filtro']['tipo_fitrar']) ){
 				# Limpiar los datos filtrados.
@@ -133,11 +133,14 @@ include '../Vendor/phpexcel/Classes/PHPExcel/IOFactory.php';
 						$filtro = ($filtro == 'ProgramacionClase.detalle') ? 'ProgramacionClase.detalle_id' : $filtro;
 						$valor_filtros = $datos['value'];
 						
-						#debug($$filtro);exit();
+					#	debug($filtro);exit();
 					}
 				}elseif( $datos['tipo_fitrar']=='multiple'){
+					
+			#	debug($this->data);	
 					$multiple_filtro = $this->procesarDatosFiltroMultiple($this->data);
 				}
+				#debug($multiple_filtro);
 				$ordenar = isset($datos['ordenar']) ? $datos['ordenar'] : 'ProgramacionClase.FECHA_CLASE';
 				$clases = $this->ProgramacionClase->getProgramacionByCoordinadorSede(
 					$session_data['Sede']['COD_SEDE'],
@@ -176,7 +179,7 @@ include '../Vendor/phpexcel/Classes/PHPExcel/IOFactory.php';
 			#'autocomplete' => $autocomplete,
 			'value' => $valor_filtros
 			));
-			#debug($data);exit();
+		#	debug($data);exit();
 
 			$session_data = $this->Session->read('CoordinadorLogueado');
 			$datos=$clases=$multiple_filtro=$salas_reemplazo_list=array();
@@ -335,15 +338,15 @@ include '../Vendor/phpexcel/Classes/PHPExcel/IOFactory.php';
 			$conditions['ProgramacionClase.COD_SEDE'] = $session_data['Sede']['COD_SEDE'];
 
 
-			// if ((!empty($datos_filtro['Filtro']['rut'])) || (!empty($datos_filtro['Filtro']['nombre_docente'])) || (!empty($datos_filtro['Filtro']['id_docente'])) ) {
-			// 	if (isset($datos_filtro['Filtro']['value_docente']) && !empty($datos_filtro['Filtro']['value_docente'])) {
-			// 		$conditions['Docente.COD_DOCENTE'] = $datos_filtro['Filtro']['value_docente'];
-			// 	}
-			// }else{
-			// 	if (isset($conditions['Docente.COD_DOCENTE'])) {
-			// 		unset($conditions['Docente.COD_DOCENTE']);
-			// 	}
-			//}
+			 if ((!empty($datos_filtro['Filtro']['rut'])) || (!empty($datos_filtro['Filtro']['nombre_docente'])) || (!empty($datos_filtro['Filtro']['id_docente'])) ) {
+			 	if (isset($datos_filtro['Filtro']['value_docente']) && !empty($datos_filtro['Filtro']['value_docente'])) {
+			 		$conditions['Docente.COD_DOCENTE'] = $datos_filtro['Filtro']['value_docente'];
+			 	}
+			 }else{
+			 	if (isset($conditions['Docente.COD_DOCENTE'])) {
+			 		unset($conditions['Docente.COD_DOCENTE']);
+			 	}
+			}
 
 			$fecha_hasta = date('Y-m-d',strtotime($datos_filtro['Filtro']['fecha_fin']));
 			if ( !empty($fecha_desde) and !empty($fecha_hasta) ) {
@@ -437,21 +440,30 @@ include '../Vendor/phpexcel/Classes/PHPExcel/IOFactory.php';
 				'count_topes'=>$count_topes,
 			));
 		}
-		public function listaDocentesConTope($cod_programacion=null){
+		public function listaDocentesConTope($cod_programacion=null,$fecha=null,$hora_inicio=null,$hora_fin=null)
+		{
 
-			#$this->autoRender = false;
-			$this->layout = 'ajax';
+			  $this->layout = 'ajax';
+			  $fecha = $_GET['fecha'];
+			  $hora_inicio = $_GET['hora_inicio'];
+			  $hora_fin = $_GET['hora_fin'];
+			
+			$newformat = date('Y-m-d',strtotime($fecha));
+			$newformat2 = date('h:i:s',strtotime($hora_inicio));
+			$newformat3 = date('h:i:s',strtotime($hora_fin));
+
+
+			$hora_inicio = $newformat." ".$newformat2;
+			$hora_fin = $newformat." ".$newformat3;
+			 // debug($newformat);
+			 // debug($newformat2);
+			//  debug($hora_inicio);
+			//  debug($hora_fin);
+			// // exit();
 			$this->loadModel('ProgramacionClase');
 			$programacion_clase = $this->ProgramacionClase->getProgramacionClase($cod_programacion);
-			/*if (isset($this->data['hora_inicio'])) {
-				$a = $this->data['hora_inicio'];
-				$b = $this->data['hora_fin'];
-				$c = $this->data['fecha'];
-				$hora_ini = date('Y-m-d',strtotime($c))." ".date('h:i:s',strtotime($a));
-				$hora_fin = date('Y-m-d',strtotime($c))." ".date('h:i:s',strtotime($b));
-				#var_dump($hora_fin);
-			}*/
-			#var_dump($programacion_clase['ProgramacionClase']['HORA_INICIO']);exit();
+			// $hora_inicio = date('Y-m-d',strtotime($fecha)." ".date('h:i',strtotime($hora_inicio)));
+			// $hora_fin = date('Y-m-d',strtotime($fecha)." ".date('h:i',strtotime($hora_fin)));
 
 			$docentes = Array();
 
@@ -460,7 +472,7 @@ include '../Vendor/phpexcel/Classes/PHPExcel/IOFactory.php';
 				$this->loadModel('Docente');
 				$session_data = $this->Session->read('CoordinadorLogueado');
 				$periodo = $this->Periodo->getPeriodoByAnhoSemestre($programacion_clase['ProgramacionClase']['ANHO'],$programacion_clase['ProgramacionClase']['SEMESTRE']);
-				#debug($periodo);exit();
+
 				if (!empty($periodo)) {
 					$docentes = $this->ProgramacionClase->getIdTopeHorarioDocente(
 						$session_data['Sede']['COD_SEDE'],
@@ -468,20 +480,19 @@ include '../Vendor/phpexcel/Classes/PHPExcel/IOFactory.php';
 							$periodo['Periodo']['COD_PERIODO'],
 							$programacion_clase['ProgramacionClase']['ANHO'],
 							$programacion_clase['ProgramacionClase']['SEMESTRE'],
-							//$hora_ini,
-							//$hora_fin,
-							$programacion_clase['ProgramacionClase']['HORA_INICIO'],
-							$programacion_clase['ProgramacionClase']['HORA_FIN'],
-							$programacion_clase['ProgramacionClase']['ID']
+							$hora_inicio,
+							$hora_fin,
+							// $programacion_clase['ProgramacionClase']['HORA_INICIO'],
+							// $programacion_clase['ProgramacionClase']['HORA_FIN'],
+							$programacion_clase['ProgramacionClase']['ID'],
+							$newformat
 						);
 					
 				}
-				#echo json_encode(array('data'=>$docentes,'status'=>'success'));
-
+				// echo json_encode(array('data'=>$docentes,'status'=>'success'));
 			}
 			$this->set(array(
 				'docentes'=>$docentes
-		//		'count_topes'=>$count_topes,
 			));
 		}
 
@@ -500,7 +511,7 @@ include '../Vendor/phpexcel/Classes/PHPExcel/IOFactory.php';
 			$this->autoRender=false;
 			if (!empty($this->data) && !empty($cod_programacion)) {
 				if(!isset($this->data['ProgramacionClase'])){
-					$this->Session->setFlash('Est&aacute; intentando acceder de una manera erronea. Intente nuevamente.','mensaje-error');
+					$this->Session->setFlash('Está intentando acceder de una manera erronea. Intente nuevamente.','mensaje-error');
 					$this->redirect(array('action'=>'crearSolicitudRecuperacion',$cod_programacion));
 				}
 				#debug($this->data);#Exit();
@@ -523,10 +534,10 @@ include '../Vendor/phpexcel/Classes/PHPExcel/IOFactory.php';
 					$this->redirect(array('action'=>'solicitudRecuperacion'));
 				}
 				if (empty($this->data['ProgramacionClase']['FECHA_CLASE'])) {
-					$this->Session->setFlash('La fecha2 de la clase no puede quedar vac&iacute;a. Intente nuevamente.','mensaje-error');
+					$this->Session->setFlash('La fecha2 de la clase no puede quedar vacía. Intente nuevamente.','mensaje-error');
 					$this->redirect(array('action'=>'solicitudRecuperacionTopeHorario',$cod_programacion));
 				}
-				/* CD005 JLMorand&eacute; */			
+				/* CD005 JLMorandé */			
 				$new_cod_programacion = uniqid();
 				$new_programacion_clase = array(
 					#'ID'=> $programacion_clase['ProgramacionClase']['ID'],
@@ -539,6 +550,7 @@ include '../Vendor/phpexcel/Classes/PHPExcel/IOFactory.php';
 					'MOTIVO_SOLICITUD_RECUPERA_ID'=>$this->data['ProgramacionClase']['MOTIVO_ID'],
 					'OBS_SOLICITUD_RECUPERACION'=>$this->data['ProgramacionClase']['OBS_SOLICITUD_RECUPERACION'],
 					'TIPO_EVENTO'=>'NO REGULAR',
+					'COD_JORNADA'=>$programacion_clase['ProgramacionClase']['COD_JORNADA'],
 					'SIGLA_SECCION'=>$programacion_clase['ProgramacionClase']['SIGLA_SECCION'],
 					'SUB_ESTADO_PROGRAMACION_ID'=>1,
 					'COORDINADOR_CREATED_ID'=>$session_data['CoordinadorDocente']['COD_FUNCIONARIO'],
@@ -569,7 +581,7 @@ include '../Vendor/phpexcel/Classes/PHPExcel/IOFactory.php';
 							$Email->emailFormat('html');
 							$Email->to(array($programacion_clase['Docente']['CORREO']));
 							$Email->helpers(array('Html'));
-							$Email->subject('Solicitud de Recuperaci&oacute;n de una clase Autorizada / Sigla-Secci&oacute;n '.$programacion_clase['ProgramacionClase']['SIGLA_SECCION']);
+							$Email->subject('Solicitud de Recuperación de una clase Autorizada / Sigla-Sección '.$programacion_clase['ProgramacionClase']['SIGLA_SECCION']);
 							$Email->from('lvc@duoc.cl');
 							$Email->viewVars(array('clase' => $programacion_clase,'sede'=>$session_data['Sede']));
 							$Email->template('solicitud_recuperacion_docente');
@@ -587,7 +599,7 @@ include '../Vendor/phpexcel/Classes/PHPExcel/IOFactory.php';
 					$Email->emailFormat('html');
 					$Email->to(array($session_data['CoordinadorDocente']['CORREO']));
 					$Email->helpers(array('Html'));
-					$Email->subject('Solicitud de Recuperaci&oacute;n de una clase Autorizada / Sigla-Secci&oacute;n '.$programacion_clase['ProgramacionClase']['SIGLA_SECCION']);
+					$Email->subject('Solicitud de Recuperación de una clase Autorizada / Sigla-Sección '.$programacion_clase['ProgramacionClase']['SIGLA_SECCION']);
 					$Email->from('lvc@duoc.cl');
 					$Email->viewVars(array('clase' => $programacion_clase,'coordinador' => $session_data['CoordinadorDocente'],'sede'=>$session_data['Sede']));
 					$Email->template('solicitud_recuperacion_coordinador_docente');
@@ -603,7 +615,7 @@ include '../Vendor/phpexcel/Classes/PHPExcel/IOFactory.php';
 							$Email->emailFormat('html');
 							$Email->to(array($director['Director']['CORREO']));
 							$Email->helpers(array('Html'));
-							$Email->subject('Solicitud de Recuperaci&oacute;n de una clase Autorizada / Sigla-Secci&oacute;n '.$programacion_clase['ProgramacionClase']['SIGLA_SECCION']);
+							$Email->subject('Solicitud de Recuperación de una clase Autorizada / Sigla-Sección '.$programacion_clase['ProgramacionClase']['SIGLA_SECCION']);
 							$Email->from('lvc@duoc.cl');
 							$Email->viewVars(array('clase' => $programacion_clase,'director'=>$director['Director'],'sede'=>$session_data['Sede']));
 							$Email->template('solicitud_recuperacion_director');
@@ -615,10 +627,10 @@ include '../Vendor/phpexcel/Classes/PHPExcel/IOFactory.php';
 						}
 					}
 				}
-				$this->Session->setFlash('Se ha creado la solicitud con &eacute;xito y se ha notificado conforme al proceso.','mensaje-exito');
+				$this->Session->setFlash('Se ha creado la solicitud con éxito y se ha notificado conforme al proceso.','mensaje-exito');
 				$this->redirect(array('action'=>'solicitudRecuperacion'));
 			}
-			$this->Session->setFlash('Ha ocurrido un error con el env&iacute;o de los datos. Intente nuevamente.','mensaje-error');
+			$this->Session->setFlash('Ha ocurrido un error con el envío de los datos. Intente nuevamente.','mensaje-error');
 			$this->redirect(array('action'=>'solicitudRecuperacion'));
 		}
 
@@ -698,7 +710,8 @@ include '../Vendor/phpexcel/Classes/PHPExcel/IOFactory.php';
 			$docentes = $this->Docente->getDocHorario($cod_sede,$fecha,$hora_inicio,$hora_fin);
 			#var_dump($docentes);exit();
 			//$salas = $this->Integracion->getSalasDisponiblesSede($session_data['Sede']['CODIGO_SAP'],$fecha,$hora_inicio,$hora_fin);
-
+			// $a = utf8_encode($docentes);
+			// debug($a);exit();
 			#var_dump($salas);exit();
 			echo json_encode(array('data'=>$docentes,'status'=>'success'));
 		}
@@ -707,7 +720,7 @@ include '../Vendor/phpexcel/Classes/PHPExcel/IOFactory.php';
 		{
 			$this->autoRender = false;
 			$response = array(
-				'message'=>'Ha ocurrido un error con el env&iacute;o de los datos. Intente nuevamente.',
+				'message'=>'Ha ocurrido un error con el envío de los datos. Intente nuevamente.',
 				'status'=>'danger',
 			);
 			if (!empty($sigla_seccion)) {
@@ -718,9 +731,9 @@ include '../Vendor/phpexcel/Classes/PHPExcel/IOFactory.php';
 					$response['message'] = $docente_titular['message'];
 					$response['status'] = $docente_titular['status'];
 					if (isset($docente_titular['data']['Docente']['NOMBRE'])) {
-						$docente_titular['data']['Docente']['NOMBRE'] = utf8_encode($docente_titular['data']['Docente']['NOMBRE']);
-						$docente_titular['data']['Docente']['APELLIDO_PAT'] = utf8_encode($docente_titular['data']['Docente']['APELLIDO_PAT']);
-						$docente_titular['data']['Docente']['APELLIDO_MAT'] = utf8_encode($docente_titular['data']['Docente']['APELLIDO_MAT']);
+						$docente_titular['data']['Docente']['NOMBRE'] = ($docente_titular['data']['Docente']['NOMBRE']);
+						$docente_titular['data']['Docente']['APELLIDO_PAT'] = ($docente_titular['data']['Docente']['APELLIDO_PAT']);
+						$docente_titular['data']['Docente']['APELLIDO_MAT'] = ($docente_titular['data']['Docente']['APELLIDO_MAT']);
 					}
 					$response['data'] = $docente_titular['data'];
 				}
@@ -732,7 +745,7 @@ include '../Vendor/phpexcel/Classes/PHPExcel/IOFactory.php';
 		{
 			$this->autoRender = false;
 			$response = array(
-				'message'=>'Ha ocurrido un error con el env&iacute;o de los datos. Intente nuevamente.',
+				'message'=>'Ha ocurrido un error con el envío de los datos. Intente nuevamente.',
 				'status'=>'danger',
 			);
 			if (!empty($cod_programacion)) {
@@ -775,7 +788,7 @@ include '../Vendor/phpexcel/Classes/PHPExcel/IOFactory.php';
 							#FALTA ACTUALIZAR DATOS DE LA CLASE;
 							$this->loadModel('AsignaturaHorario');
 							$retorno = $this->AsignaturaHorario->actualizarAsignaturaHorario($programacion_clase['ProgramacionClase']['COD_ASIGNATURA_HORARIO']);
-							$response['message'] = 'Su informaci&oacute;n se ha almacenado con &eacute;xito.';
+							$response['message'] = 'Su información se ha almacenado con éxito.';
 							$response['status'] = 'success';
 						}
 					}
@@ -869,7 +882,7 @@ include '../Vendor/phpexcel/Classes/PHPExcel/IOFactory.php';
 							$form_data['HORA_INICIO'] = $form_data['FECHA_CLASE'].' '.$form_data['HORA_INICIO'];
 							$form_data['HORA_FIN'] = $form_data['FECHA_CLASE'].' '.$form_data['HORA_FIN'];
 							$form_data['REFORZAMIENTO'] = 1;
-							#LOS REFORZAMIENTOS DEBEN QUEDAR CON : (POR DEFINICI&oacute;N DEL DOCUMENTO FUNCIONAL)
+							#LOS REFORZAMIENTOS DEBEN QUEDAR CON : (POR DEFINICIÓN DEL DOCUMENTO FUNCIONAL)
 								#TIPO_EVENTO = 'NO REGULAR';
 								#SUB_ESTADO_PROGRAMACION_ID = 1 AUTORIZACION PENDIENTE;
 								#DETALLE_ID 7 = REFORZAMIENTO;
@@ -933,7 +946,7 @@ include '../Vendor/phpexcel/Classes/PHPExcel/IOFactory.php';
 								}else{
 									$this->log("No se pudo enviar el mail al docente en ".$this->params['controller']."/".$this->params['action'].":<serialize>" . serialize($Email)."</serialize>", 'debug');
 								}
-								$this->Session->setFlash('Reforzamiento creado con &eacute;xito.','mensaje-exito');
+								$this->Session->setFlash('Reforzamiento creado con éxito.','mensaje-exito');
 								$this->redirect(array('action'=>'crearReforzamiento'));
 							}else{
 								$this->Session->setFlash('No ha seleccionado un docente valido.','mensaje-info');
@@ -946,7 +959,7 @@ include '../Vendor/phpexcel/Classes/PHPExcel/IOFactory.php';
 						$this->Session->setFlash($asignatura_horario['message'],'mensaje-error');
 					}
 				}else{
-					$this->Session->setFlash('El campo sigla secci&oacute;n no puede quedar vac&iacute;o','mensaje-info');
+					$this->Session->setFlash('El campo sigla sección no puede quedar vacío','mensaje-info');
 				}
 			}
 			$this->loadModel('Docente');
@@ -1107,7 +1120,7 @@ include '../Vendor/phpexcel/Classes/PHPExcel/IOFactory.php';
 			$this->Mpdf->setFilename('planilla_'.date('d-m-Y').'.pdf');
 			$this->Mpdf->addPage('L');
 			$this->Mpdf->setOutput('a');
-			$footer = '<div align="right">P&aacute;gina {PAGENO} de {nb}</div>';
+			$footer = '<div align="right">Página {PAGENO} de {nb}</div>';
 			$this->Mpdf->SetHTMLFooter($footer);
 		}
 
@@ -1215,7 +1228,7 @@ include '../Vendor/phpexcel/Classes/PHPExcel/IOFactory.php';
 			$this->Mpdf->setFilename('planilla_'.date('d-m-Y').'.pdf');
 			$this->Mpdf->addPage('L');
 			$this->Mpdf->setOutput('a');
-			$footer = '<div align="right">P&aacute;gina {PAGENO} de {nb}</div>';
+			$footer = '<div align="right">Página {PAGENO} de {nb}</div>';
 			$this->Mpdf->SetHTMLFooter($footer);
 		}
 
@@ -1483,7 +1496,7 @@ include '../Vendor/phpexcel/Classes/PHPExcel/IOFactory.php';
 			$this->Mpdf->setFilename('planilla_'.date('d-m-Y').'.pdf');
 			$this->Mpdf->addPage('L');
 			$this->Mpdf->setOutput('a');
-			$footer = '<div align="right">P&aacute;gina {PAGENO} de {nb}</div>';
+			$footer = '<div align="right">Página {PAGENO} de {nb}</div>';
 			$this->Mpdf->SetHTMLFooter($footer);
 		}
 
@@ -1504,7 +1517,36 @@ include '../Vendor/phpexcel/Classes/PHPExcel/IOFactory.php';
 			$this->layout = null;
 			$this->loadModel('ProgramacionClase');
 			$session_data = $this->Session->read('CoordinadorLogueado');
-			$programacion_clases = $this->ProgramacionClase->getSolicitudRecuperacion($session_data['Sede']['COD_SEDE']);
+
+			$fecha_inicio = $fecha_fin = $tipo_filtro = $valor_filtro = null;
+			if (!empty($this->data)) {
+				$datos_filtro = $this->data;
+				#debug($datos_filtro);exit();
+				if (!empty($datos_filtro['Filtro']['fecha_inicio'])) {
+					$fecha_inicio = date('Y-m-d',strtotime($datos_filtro['Filtro']['fecha_inicio']));
+				}else{
+					$fecha_inicio = date('Y-m-d');
+				}
+				if (!empty($datos_filtro['Filtro']['fecha_fin'])) {
+					$fecha_fin = date('Y-m-d',strtotime($datos_filtro['Filtro']['fecha_fin']));
+				}else{
+					$fecha_fin = date('Y-m-d');
+				}
+				if (isset($datos_filtro['ordenar'])) {
+					$ordenar = $datos_filtro['ordenar'];
+				}
+				if (!empty($datos_filtro['Filtro']['filtro']) && !empty($datos_filtro['Filtro']['value'])) {
+					$valor_filtro = $datos_filtro['Filtro']['value'];
+					$tipo_filtro = $datos_filtro['Filtro']['filtro'];
+				}
+				$tipo_filtro = in_array($tipo_filtro, array('Docente.RUT','Docente.NOMBRE','Docente.COD_FUNCIONARIO')) ? 'Docente.COD_DOCENTE': $tipo_filtro;
+				$tipo_filtro = ($tipo_filtro == 'Asignatura.NOMBRE') ? 'Asignatura.SIGLA' : $tipo_filtro;
+				$tipo_filtro = ($tipo_filtro == 'ProgramacionClase.detalle') ? 'ProgramacionClase.detalle_id' : $tipo_filtro;
+
+			}
+
+			$programacion_clases = $this->ProgramacionClase->getSolicitudRecuperacion($session_data['Sede']['COD_SEDE'],$fecha_inicio,$fecha_fin);
+			#debug($programacion_clases);exit();
 			$this->set(array(
 				'programacion_clases'=>$programacion_clases,
 				'datos_filtro'=>$this->data,
@@ -1512,14 +1554,14 @@ include '../Vendor/phpexcel/Classes/PHPExcel/IOFactory.php';
 		}
 
 		# --------------------------------------------------------------------------------------
-		# Guardar un nuevo cambio de horario en la programaci&oacute;n de la clase.
+		# Guardar un nuevo cambio de horario en la programación de la clase.
 		public function saveCambioHorario($cod_programacion=null)
 		{
 			$this->autoRender = false;
 			$this->loadModel('ProgramacionClase');
 			$session_data = $this->Session->read('CoordinadorLogueado');
 			# --------------------------------------------------------------------
-			# Validar la informaci&oacute;n inicial de la programaci&oacute;n.
+			# Validar la información inicial de la programación.
 			$prClase = $this->ProgramacionClase->getProgramacionClase($cod_programacion);
 			if (empty($prClase)) {
 				$this->Session->setFlash('Ha ocurrido un error inesperado. Intente nuevamente.','mensaje-info');
@@ -1527,14 +1569,14 @@ include '../Vendor/phpexcel/Classes/PHPExcel/IOFactory.php';
 			}
 
 			# --------------------------------------------------------------------
-			# Si la informaci&oacute;n inicial de la programaci&oacute;n y la informaci&oacute;n del formulario entonces:
+			# Si la información inicial de la programación y la información del formulario entonces:
 			if (!empty($this->data['Horario']['FECHA_INICIO_PROGRAMACION']) && !empty($this->data['Horario']['FECHA_FINALIZADA_PROGRAMACION'])) {
 				$ini=substr($prClase['ProgramacionClase']['HORA_INICIO'], 0, 10).' '.$this->data['Horario']['FECHA_INICIO_PROGRAMACION'].':00';
 				$fin=substr($prClase['ProgramacionClase']['HORA_FIN'], 0, 10).' '.$this->data['Horario']['FECHA_FINALIZADA_PROGRAMACION'].':00';
 				$ini=strtotime($ini);
 				$fin=strtotime($fin);
 				if ($ini>=$fin) {
-					$this->Session->setFlash('No se puede realizar el cambio por que la fecha inicial: ('.$this->data['Horario']['FECHA_INICIO_PROGRAMACION'].') es mayor &oacute; igual a la final ('.$this->data['Horario']['FECHA_FINALIZADA_PROGRAMACION'].').','mensaje-info');
+					$this->Session->setFlash('No se puede realizar el cambio por que la fecha inicial: ('.$this->data['Horario']['FECHA_INICIO_PROGRAMACION'].') es mayor ó igual a la final ('.$this->data['Horario']['FECHA_FINALIZADA_PROGRAMACION'].').','mensaje-info');
 					$this->redirect(array('action'=>'asistenciaDocente'));
 				}else{
 					# --------------------------------------------------------------------
@@ -1577,7 +1619,7 @@ include '../Vendor/phpexcel/Classes/PHPExcel/IOFactory.php';
 						}
 					}
 					# --------------------------------------------------------------------
-					# Actualizar la programaci&oacute;n de la clase.
+					# Actualizar la programación de la clase.
 					if ($this->ProgramacionClase->save($update)) {
 						$new_log_evento = array(
 							'COD_PROGRAMACION'=>$prClase['ProgramacionClase']['COD_PROGRAMACION'],
@@ -1593,13 +1635,13 @@ include '../Vendor/phpexcel/Classes/PHPExcel/IOFactory.php';
 						$this->loadModel('LogEvento');
 						$this->LogEvento->create();
 						if ($this->LogEvento->save($new_log_evento)) {
-							$this->Session->setFlash('Su informaci&oacute;n se ha almacenado con &eacute;xito.','mensaje-exito');
+							$this->Session->setFlash('Su información se ha almacenado con éxito.','mensaje-exito');
 							$this->redirect(array('action'=>'fichaAsistenciaDocenteDetalle',$cod_programacion));
 						}
 					}
 				}
 			}else{
-				$this->Session->setFlash('Ha ocurrido un error con el env&iacute;o de los datos. Intente nuevamente.','mensaje-info');
+				$this->Session->setFlash('Ha ocurrido un error con el envío de los datos. Intente nuevamente.','mensaje-info');
 				$this->redirect(array('action'=>'fichaAsistenciaDocenteDetalle',$cod_programacion));	
 			}
 		}
@@ -1733,12 +1775,12 @@ include '../Vendor/phpexcel/Classes/PHPExcel/IOFactory.php';
 						}else{
 							$this->log("No se pudo enviar el mail a el/los director(es) en ".$this->params['controller']."/".$this->params['action'].": LA QUERY ".serialize($this->Director->getLastQuery())." RETORNO VACIO.", 'debug');
 						}
-						$this->Session->setFlash('Su informaci&oacute;n se ha almacenado con &eacute;xito.','mensaje-exito');
+						$this->Session->setFlash('Su información se ha almacenado con éxito.','mensaje-exito');
 						$this->redirect(array('action'=>'fichaAsistenciaDocenteDetalle',$cod_programacion));
 					}
 				}
 			}
-			$this->Session->setFlash('Ha ocurrido un error con el env&iacute;o de los datos. Intente nuevamente.','mensaje-info');
+			$this->Session->setFlash('Ha ocurrido un error con el envío de los datos. Intente nuevamente.','mensaje-info');
 			$this->redirect(array('action'=>'fichaAsistenciaDocenteDetalle',$cod_programacion));
 		}
 		
@@ -1760,7 +1802,9 @@ include '../Vendor/phpexcel/Classes/PHPExcel/IOFactory.php';
 						'SALA_REEMPLAZO'=>$form_data['ProgramacionClase']['SALA_REEMPLAZO'],
 					);
 					$this->loadModel('Sala');
-					$sala = $this->Sala->findById($form_data['ProgramacionClase']['SALA_REEMPLAZO']);
+					$sala = $this->Sala->getSala($form_data['ProgramacionClase']['SALA_REEMPLAZO']);
+
+					#debug($sala);exit();
 					if (!empty($sala)) {
 						if ($this->ProgramacionClase->save($up_programacion_clase)) {
 							$new_log_evento = array(
@@ -1803,7 +1847,7 @@ include '../Vendor/phpexcel/Classes/PHPExcel/IOFactory.php';
 								if ($Email->send()) {
 									
 								}
-								$this->Session->setFlash('Informaci&oacute;n grabada con &eacute;xito.','mensaje-exito');
+								$this->Session->setFlash('Información grabada con éxito.','mensaje-exito');
 								$this->redirect(array('action'=>'fichaDetalleClase',$cod_programacion));
 							}
 						}
@@ -1817,7 +1861,41 @@ include '../Vendor/phpexcel/Classes/PHPExcel/IOFactory.php';
 				}
 			}
 			$this->loadModel('Sala');
-			$salas = $this->Sala->getSalasDisponible($session_data['Sede']['COD_SEDE'],$programacion_clase['ProgramacionClase']['HORA_INICIO'],$programacion_clase['ProgramacionClase']['HORA_FIN']);
+// $this->autoRender = false;
+// 			#debug($this->data);exit();
+// 			#$fecha = new DateTime('2017-08-17');
+// 			$fecha = isset($this->data['fecha'])?$this->data['fecha']:null;
+// 			$hora_inicio = isset($this->data['hora_inicio'])?$this->data['hora_inicio']:null;
+// 			#$hora_inicio  = date('h:i:s', $hora_inicio);
+// 			$hora_fin = isset($this->data['hora_fin'])?$this->data['hora_fin']:null;
+// 			$this->loadModel('Sala');
+// 			$session_data = $this->Session->read('CoordinadorLogueado');
+// 			$cod_sede =  $session_data['Sede']['COD_SEDE'];
+// 			#$fecha = '2017-08-07';
+// 			#$hora_inicio = '08:01';
+// 			#$hora_fin = '10:15';
+// 			$fecha = date("Y-m-d", strtotime($fecha));
+// 			$hora_inicio = date("h:i:s", strtotime($hora_inicio));
+// 			$hora_fin = date("h:i:s", strtotime($hora_fin));
+
+// 			#$fecha = date_format($fecha, 'Y-m-d');
+// 			#debug($hora_inicio);exit();
+// 			//$fecha = str_replace('-', '/',$fecha);
+// 			#var_dump($fecha);exit();
+// 			$this->loadModel('SalaHorario');
+// 			$salas = $this->SalaHorario->getSalasHorario($cod_sede,$fecha,$hora_inicio,$hora_fin);
+
+			$fecha = $programacion_clase['ProgramacionClase']['FECHA_CLASE'];
+			$fecha = date("Y-m-d", strtotime($fecha));
+			#var_dump($fecha);exit();
+			$hora_inicio = $programacion_clase['ProgramacionClase']['HORA_INICIO'];
+			$hora_inicio = date("h:i:s", strtotime($hora_inicio));
+			$hora_fin = $programacion_clase['ProgramacionClase']['HORA_FIN'];
+			$hora_fin = date("h:i:s", strtotime($hora_fin));
+
+
+			$this->loadModel('SalaHorario');
+			$salas = $this->SalaHorario->getSalasHorario($session_data['Sede']['COD_SEDE'],$fecha,$hora_inicio,$hora_fin);
 			$this->set(array(
 				'programacion_clase'=>$programacion_clase,
 				'salas'=>$salas,
@@ -1845,7 +1923,7 @@ include '../Vendor/phpexcel/Classes/PHPExcel/IOFactory.php';
 				}
 				if (!empty($this->data['LogEvento']['REEMPLAZO_DOCENTE'])) {
 					if (empty($this->data['LogEvento']['DOCENTE_REEMPLAZO'])) {
-						$error.='Se requieren selecci&oacute;n del docente.<br>';
+						$error.='Se requieren selección del docente.<br>';
 					}
 				}
 				if ( empty($error) ) {
@@ -1915,7 +1993,7 @@ include '../Vendor/phpexcel/Classes/PHPExcel/IOFactory.php';
 													$Email->emailFormat('html');
 													$Email->to($value['Alumno']['CORREO_PERSONAL']);
 													$Email->helpers(array('Html'));
-													$Email->subject('Suspensi&oacute;n de Clase / '.$programacion_clase['ProgramacionClase']['SIGLA_SECCION']);
+													$Email->subject('Suspensión de Clase / '.$programacion_clase['ProgramacionClase']['SIGLA_SECCION']);
 													$Email->from('lvc@duoc.cl');
 													$Email->viewVars(array(
 														'alumno' => $value,
@@ -1972,7 +2050,7 @@ include '../Vendor/phpexcel/Classes/PHPExcel/IOFactory.php';
 										if ($hay_reemplazo_docente) {
 											$subject_mail = 'Inasistencia Docente / '.$programacion_clase['ProgramacionClase']['SIGLA_SECCION'];
 										}else{
-											$subject_mail = 'Suspensi&oacute;n de Clase por Inasistencia Docente / '.$programacion_clase['ProgramacionClase']['SIGLA_SECCION'];
+											$subject_mail = 'Suspensión de Clase por Inasistencia Docente / '.$programacion_clase['ProgramacionClase']['SIGLA_SECCION'];
 										}
 										$Email->subject($subject_mail);
 										$Email->from('lvc@duoc.cl');
@@ -1993,9 +2071,9 @@ include '../Vendor/phpexcel/Classes/PHPExcel/IOFactory.php';
 								}
 							};
 							$this->ProgramacionClase->commit();
-							$this->Session->setFlash('Su informaci&oacute;n se ha guardado con &eacute;xito.','mensaje-exito');
+							$this->Session->setFlash('Su información se ha guardado con éxito.','mensaje-exito');
 						}else{
-							$this->Session->setFlash('Ha ocurrido un problema la intentar guardar la informaci&oacute;n. Intente nuevamente.','mensaje-info');
+							$this->Session->setFlash('Ha ocurrido un problema la intentar guardar la información. Intente nuevamente.','mensaje-info');
 						}
 						$this->redirect(array('action'=>'fichaDetalleClase', $cod_programacion));
 					}catch(Exception $e) {
@@ -2028,14 +2106,14 @@ include '../Vendor/phpexcel/Classes/PHPExcel/IOFactory.php';
 			if (!empty($this->data)) {
 				$error='';
 				if (empty($this->data['LogEvento']['TIPO_JUSTIFICACION_ID'])) {
-					$error.='Se requiere seleccionar un tipo de justificaci&oacute;n.<br>';
+					$error.='Se requiere seleccionar un tipo de justificación.<br>';
 				}
 				if (empty($this->data['LogEvento']['OBSERVACIONES'])) {
 					$error.='Se requieren las observaciones. Intente nuevamanete.<br>';
 				}
 				if (!empty($this->data['LogEvento']['REEMPLAZO_DOCENTE'])) {
 					if (empty($this->data['LogEvento']['DOCENTE_REEMPLAZO'])) {
-						$error.='Se requieren selecci&oacute;n del docente.<br>';
+						$error.='Se requieren selección del docente.<br>';
 					}
 				}
 				if ( empty($error) ) {
@@ -2096,9 +2174,9 @@ include '../Vendor/phpexcel/Classes/PHPExcel/IOFactory.php';
 							}
 							$this->loadModel('LogEvento');
 							if($this->LogEvento->save($new_log_evento));
-							$this->Session->setFlash('Su informaci&oacute;n se ha guardado con &eacute;xito.','mensaje-exito');
+							$this->Session->setFlash('Su información se ha guardado con éxito.','mensaje-exito');
 						}else{
-							$this->Session->setFlash('Ha ocurrido un problema la intentar guardar la informaci&oacute;n. Intente nuevamente.','mensaje-info');
+							$this->Session->setFlash('Ha ocurrido un problema la intentar guardar la información. Intente nuevamente.','mensaje-info');
 						}
 						$this->ProgramacionClase->commit();
 						$this->redirect(array('action'=>'fichaDetalleClase', $cod_programacion));
@@ -2139,14 +2217,14 @@ include '../Vendor/phpexcel/Classes/PHPExcel/IOFactory.php';
 			$programacion_clase = $this->ProgramacionClase->getProgramacionClaseFull($cod_programacion);
 
 			if (empty($programacion_clase)) {
-				$this->Session->setFlash('Ha ocurrido un error con el env&iacute;o de los datos de la programaci&oacute;n. Intente nuevamente.','mensaje-info');
+				$this->Session->setFlash('Ha ocurrido un error con el envío de los datos de la programación. Intente nuevamente.','mensaje-info');
 				$this->redirect(array('action'=>'index'));
 			}
 
 			$this->loadModel('AsignaturaHorario');
 			$asignatura_horario = $this->AsignaturaHorario->getAsignaturaHorarioFirst($programacion_clase['ProgramacionClase']['COD_ASIGNATURA_HORARIO']);
 			if (empty($asignatura_horario)) {
-				$this->Session->setFlash('Ha ocurrido un error con el env&iacute;o de los datos de la asignatura. Intente nuevamente.','mensaje-info');
+				$this->Session->setFlash('Ha ocurrido un error con el envío de los datos de la asignatura. Intente nuevamente.','mensaje-info');
 				$this->redirect(array('action'=>'index'));
 			}
 			$this->loadModel('AlumnoAsignatura');
@@ -2157,7 +2235,7 @@ include '../Vendor/phpexcel/Classes/PHPExcel/IOFactory.php';
 				$this->loadModel('Docente');
 				$docente_reemplazo  = $this->Docente->getDocente($programacion_clase['ProgramacionClase']['DOCENTE_REEMPLAZO_ID']);
 			}
-			$listado_alumnos=$this->AlumnoAsignatura->getListadoAsistencia($asignatura_horario['AsignaturaHorario']['SIGLA_SECCION'],$asignatura_horario['AsignaturaHorario']['COD_PERIODO'],$asignatura_horario['AsignaturaHorario']['COD_SEDE']);
+			$listado_alumnos=$this->AlumnoAsignatura->getListadoAsistencia($asignatura_horario['AsignaturaHorario']['COD_PERIODO'],$asignatura_horario['AsignaturaHorario']['COD_SEDE'],$asignatura_horario['AsignaturaHorario']['COD_ASIGNATURA_HORARIO']);
 			if (!empty($listado_alumnos)) {
 				$this->loadModel('Asistencia');
 				foreach ($listado_alumnos as $key => $alumno) {
@@ -2193,7 +2271,7 @@ include '../Vendor/phpexcel/Classes/PHPExcel/IOFactory.php';
 			#debug($cod_programacion);#exit();
 
 			# ------------------------------------------------------------------------------
-			# Verificar que existe la programaci&oacute;n de una clase.
+			# Verificar que existe la programación de una clase.
 			$this->loadModel('ProgramacionClase');
 			$programacion_clase = $this->ProgramacionClase->getProgramacionClaseFull($cod_programacion);
 			if (empty($programacion_clase)) {
@@ -2262,6 +2340,7 @@ include '../Vendor/phpexcel/Classes/PHPExcel/IOFactory.php';
 							'CREATED'=>date('Y-m-d H:i:s'),
 							'MODIFIED'=>date('Y-m-d H:i:s'),
 							'PRESENCIAL'=>strtoupper($form_data['LogEvento']['TIPO_CLASE'])=='PRESENCIAL'?1:0,
+							'COD_JORNADA'=>$programacion_clase['ProgramacionClase']['COD_JORNADA'],
 							'COORDINADOR_CREATED_ID'=>$session_data['CoordinadorDocente']['COD_FUNCIONARIO'],
 							'COD_SEDE'=>$session_data['Sede']['COD_SEDE'],
 							'MOTIVO_ADELANTAR_CLASE_ID'=>$form_data['LogEvento']['MOTIVO_ADELANTAR_CLASE_ID'],
@@ -2319,10 +2398,10 @@ include '../Vendor/phpexcel/Classes/PHPExcel/IOFactory.php';
 								$Email->template('adelantar_clases_coordinador_docente');
 								if ($Email->send()) {}
 								# ------------------------------------------------------------------------------
-								# Todo sal&iacute;o muy bi&eacute;n.
+								# Todo salío muy bién.
 								#debug($cod_programacion);exit();
 								$this->ProgramacionClase->commit();
-								$this->Session->setFlash('Su informaci&oacute;n ha sido almacenada con &eacute;xito.','mensaje-exito');
+								$this->Session->setFlash('Su información ha sido almacenada con éxito.','mensaje-exito');
 								$this->redirect(array('action'=>'fichaDetalleClase',$cod_programacion));
 							}
 						}
@@ -2379,7 +2458,7 @@ include '../Vendor/phpexcel/Classes/PHPExcel/IOFactory.php';
 					if (isset($form_data['ESTADO_ID']) && isset($form_data['SUB_ESTADO_ID']) && isset($form_data['DETALLE_ID'])) {
 						$new_log_evento = array(
 							'COD_PROGRAMACION'=>$programacion_clase['ProgramacionClase']['COD_PROGRAMACION'],
-							'DETALLE'=>'AJUSTE O ELIMINACI&oacute;N DE ESTADO',
+							'DETALLE'=>'AJUSTE O ELIMINACIÓN DE ESTADO',
 							'USUARIO_CREADOR'=>$session_data['CoordinadorDocente']['NOMBRES'].' '.$session_data['CoordinadorDocente']['APELLIDO_PAT'].' '.$session_data['CoordinadorDocente']['APELLIDO_MAT'],
 							'CREATED'=>date('Y-m-d H:i:s'),
 							'MODIFIED'=>date('Y-m-d H:i:s'),
@@ -2430,13 +2509,13 @@ include '../Vendor/phpexcel/Classes/PHPExcel/IOFactory.php';
 						$programacion_clase['ProgramacionClase']['COORDINADOR_CREATED_ID'] = $session_data['CoordinadorDocente']['COD_FUNCIONARIO'];
 						$this->loadModel('LogEvento');
 						if ($this->LogEvento->save($new_log_evento) && $this->ProgramacionClase->save($programacion_clase)) {
-							$this->Session->setFlash('Su informaci&oacute;n se ha almacenado con &eacute;xito.','mensaje-exito');
+							$this->Session->setFlash('Su información se ha almacenado con éxito.','mensaje-exito');
 							$this->redirect(array('action'=>'fichaDetalleClase',$programacion_clase['ProgramacionClase']['COD_PROGRAMACION']));
 						}
 
 					}
 				}
-				$this->Session->setFlash('Ha ocurrido un error con el env&iacute;o de los datos. Intente nuevamente.','mensaje-info');
+				$this->Session->setFlash('Ha ocurrido un error con el envío de los datos. Intente nuevamente.','mensaje-info');
 				$this->redirect(array('action'=>'fichaDetalleClase',$cod_programacion));
 			}
 			$this->set(array(
@@ -2451,13 +2530,13 @@ include '../Vendor/phpexcel/Classes/PHPExcel/IOFactory.php';
 			$this->loadModel('ProgramacionClase');
 			$programacion_clase = $this->ProgramacionClase->getProgramacionClaseFull($cod_programacion);
 			if (empty($programacion_clase)) {
-				$this->Session->setFlash('Ha ocurrido un error con el env&iacute;o de los datos. Intente nuevamente.','mensaje-info');
+				$this->Session->setFlash('Ha ocurrido un error con el envío de los datos. Intente nuevamente.','mensaje-info');
 				$this->redirect(array('action'=>'index'));
 			}
 			$this->loadModel('AsignaturaHorario');
 			$asignatura_horario = $this->AsignaturaHorario->getAsignaturaHorarioFirst($programacion_clase['ProgramacionClase']['COD_ASIGNATURA_HORARIO']);
 			if (empty($asignatura_horario)) {
-				$this->Session->setFlash('Ha ocurrido un error con el env&iacute;o de los datos. Intente nuevamente.','mensaje-info');
+				$this->Session->setFlash('Ha ocurrido un error con el envío de los datos. Intente nuevamente.','mensaje-info');
 				$this->redirect(array('action'=>'index'));
 			}
 			$this->loadModel('AlumnoAsignatura');
@@ -2492,9 +2571,12 @@ include '../Vendor/phpexcel/Classes/PHPExcel/IOFactory.php';
 
 		public function solicitudRecuperacionTopeHorario($cod_programacion=null) {
 			$this->loadModel('ProgramacionClase');
+
+			
+			
 			$programacion_clase = $this->ProgramacionClase->getProgramacionClaseFull($cod_programacion);
 			if (empty($programacion_clase)) {
-				$this->Session->setFlash('Ha ocurrido un error con el env&iacute;o de los datos. Intente nuevamente.','mensaje-info');
+				$this->Session->setFlash('Ha ocurrido un error con el envío de los datos. Intente nuevamente.','mensaje-info');
 				$this->redirect(array('action'=>'index'));
 			}
 			$session_data = $this->Session->read('CoordinadorLogueado');
@@ -2503,9 +2585,9 @@ include '../Vendor/phpexcel/Classes/PHPExcel/IOFactory.php';
 			$this->loadModel('MotivoSolicitudRecuperacion');
 			$this->loadModel('HorarioModulo');
 			if (isset($programacion_clase['Docente']['NOMBRE'])) {
-				$programacion_clase['Docente']['NOMBRE'] = utf8_encode($programacion_clase['Docente']['NOMBRE']);
-				$programacion_clase['Docente']['APELLIDO_PAT'] = utf8_encode($programacion_clase['Docente']['APELLIDO_PAT']);
-				$programacion_clase['Docente']['APELLIDO_MAT'] = utf8_encode($programacion_clase['Docente']['APELLIDO_MAT']);
+				$programacion_clase['Docente']['NOMBRE'] = ($programacion_clase['Docente']['NOMBRE']);
+				$programacion_clase['Docente']['APELLIDO_PAT'] = ($programacion_clase['Docente']['APELLIDO_PAT']);
+				$programacion_clase['Docente']['APELLIDO_MAT'] = ($programacion_clase['Docente']['APELLIDO_MAT']);
 			}
 			$horarios = $this->HorarioModulo->getSimpleHorarioBySede($session_data['Sede']['COD_SEDE']);
 			$this->set(array(

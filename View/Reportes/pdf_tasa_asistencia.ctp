@@ -47,6 +47,7 @@
 					<th>Nombres</th>
 					<th>Clases Presente</th>
 					<th>Clases Ausente</th>
+					<th>Clases Justificadas</th>
 					<th>Asistencia Actual</th>
 					<th>RI</th>
 				</tr>
@@ -55,20 +56,21 @@
 		  		<?php 
 		  			foreach ($registros as $key => $value): 
 		  				$porcentaje = 0;
-						if (isset($indicadores_alumnos[$value['AlumnoAsignatura']['SIGLA_SECCION']][$value['Alumno']['COD_ALUMNO']])) {
-							$porcentaje = $indicadores_alumnos[$value['AlumnoAsignatura']['SIGLA_SECCION']][$value['Alumno']['COD_ALUMNO']]['CLASES_PRESENTE']*100/$value['AsignaturaHorario']['CLASES_REGISTRADAS'];	
+						if (isset($indicadores_alumnos[$value['AlumnoAsignatura']['COD_HORARIO_ASIGNATURA']][$value['Alumno']['COD_ALUMNO']])) {
+							$porcentaje = $indicadores_alumnos[$value['AlumnoAsignatura']['COD_HORARIO_ASIGNATURA']][$value['Alumno']['COD_ALUMNO']]['CLASES_PRESENTE']*100/$value['AsignaturaHorario']['CLASES_REGISTRADAS'];	
 						}
 				?>
 				  	<tr>
 					    <td><?php echo $key+1; ?></td>
-					    <td><?php echo $value['Asignatura']['NOMBRE']; ?></td>
+					    <td><?php echo htmlspecialchars($value['Asignatura']['NOMBRE']); ?></td>
 					    <td><?php echo $value['AlumnoAsignatura']['SIGLA_SECCION']; ?></td>
 					    <td><?php echo $value['Alumno']['RUT'].'-'.$value['Alumno']['DV_RUT']; ?></td>
-					    <td><?php echo $value['Alumno']['APELLIDO_PAT']; ?></td>
-					    <td><?php echo $value['Alumno']['APELLIDO_MAT']; ?></td>
-					    <td><?php echo $value['Alumno']['NOMBRES']; ?></td>
-					    <td class="text-center" ><?php echo isset($indicadores_alumnos[$value['AlumnoAsignatura']['SIGLA_SECCION']][$value['Alumno']['COD_ALUMNO']])? $indicadores_alumnos[$value['AlumnoAsignatura']['SIGLA_SECCION']][$value['Alumno']['COD_ALUMNO']]['CLASES_PRESENTE']:0; ?></td>
-						<td class="text-center" ><?php echo isset($indicadores_alumnos[$value['AlumnoAsignatura']['SIGLA_SECCION']][$value['Alumno']['COD_ALUMNO']])? $indicadores_alumnos[$value['AlumnoAsignatura']['SIGLA_SECCION']][$value['Alumno']['COD_ALUMNO']]['CLASES_AUSENTE']:0; ?></td>
+					    <td><?php echo htmlspecialchars($value['Alumno']['APELLIDO_PAT']); ?></td>
+					    <td><?php echo htmlspecialchars($value['Alumno']['APELLIDO_MAT']); ?></td>
+					    <td><?php echo htmlspecialchars($value['Alumno']['NOMBRES']); ?></td>
+					    <td class="text-center" ><?php echo isset($indicadores_alumnos[$value['AlumnoAsignatura']['COD_HORARIO_ASIGNATURA']][$value['Alumno']['COD_ALUMNO']])? $indicadores_alumnos[$value['AlumnoAsignatura']['COD_HORARIO_ASIGNATURA']][$value['Alumno']['COD_ALUMNO']]['CLASES_PRESENTE']:0; ?></td>
+						<td class="text-center" ><?php echo isset($indicadores_alumnos[$value['AlumnoAsignatura']['COD_HORARIO_ASIGNATURA']][$value['Alumno']['COD_ALUMNO']])? $indicadores_alumnos[$value['AlumnoAsignatura']['COD_HORARIO_ASIGNATURA']][$value['Alumno']['COD_ALUMNO']]['CLASES_AUSENTE']:0; ?></td>
+						<td><?php echo isset($indicadores_alumnos[$value['AlumnoAsignatura']['COD_HORARIO_ASIGNATURA']][$value['Alumno']['COD_ALUMNO']])? $indicadores_alumnos[$value['AlumnoAsignatura']['COD_HORARIO_ASIGNATURA']][$value['Alumno']['COD_ALUMNO']]['CLASES_JUSTIFICADOS']:0; ?></td>
 					    <td><?php echo round($porcentaje,2).'%'; ?></td>
 					    <td>
 					    	<?php 
