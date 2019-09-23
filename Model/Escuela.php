@@ -1,10 +1,11 @@
-<?php 
+<?php
 	class Escuela extends AppModel {
-	
+
 		public  $name = 'Escuela';
 		public  $useTable = 'LVC_VIEW_ESCUELAS';
 		public  $primaryKey = 'COD_ESCUELA';
 		public  $displayField = 'NOMBRE_ESCUELA';
+		public $p = 0;
 
 		public function getEscuelas()
 		{
@@ -14,4 +15,5 @@
 		{
 			return $this->find('list',array('order'=>'Escuela.NOMBRE_ESCUELA'));
 		}
+
 	}

@@ -4,7 +4,6 @@
 		public  $name = 'Asistencia';
 		public  $useTable = 'ASISTENCIAS';
 		public $primaryKey = 'ID';
-		public $p = 0;
 
 		public function getAsistenciaAlumnoEvento($cod_alumno=null,$cod_programacion = Null)
 		{
